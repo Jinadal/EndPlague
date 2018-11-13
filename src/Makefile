@@ -2,13 +2,16 @@ SOURCES := $(wildcard *.cpp)
 OBJECTS := $(subst .cpp,.o,$(SOURCES))
 LIBS	:= -L./lib/linux/irrlicht -lIrrlicht
 INCLUDE := -I. -I/usr/include/irrlicht
-CC	:= g++
+CC		:= g++
+
+run: $(ejecutable)
+	cd ../bin && ./ejecutable
 
 ejecutable: $(OBJECTS)
-	$(CC) -o $@ $^ $(INCLUDE) $(LIBS)
+	$(CC) -o ../bin/$@ $^ $(INCLUDE) $(LIBS)
 
 %.o: %.cpp
-	$(CC) -o $@ -c $^ $(INCLUDE) $(LIBS)
+	$(CC) -o ../bin/$@ -c $^ $(INCLUDE) $(LIBS)
 
 info:
 	$(info $(SOURCES))
