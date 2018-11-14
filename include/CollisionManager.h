@@ -9,14 +9,14 @@ class CollisionManager{
     //Constructor
     CollisionManager(){}
 
-    void addCollisionComponent(CollisionComponent* c){
-        components.push_back(c);
-    }
-    void update(){
-        for(int i=0; i<components.size();i++){
-        components[i]->update();
-        }
+    void createComponent(Component* c, float width, float height,bool solid);
+
+    void removecomponent(Component* c);    
+    void update();
+        
   }
 private:
   std::vector<CollisionComponent*> components;
+
+  bool testCollision(CollisionComponent *obj1, CollisionComponent *obj2 );
 };
