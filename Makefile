@@ -52,6 +52,9 @@ clean: clean_linux clean_win32
 clean_linux clean_win32:
 	@$(RM) $(DESTPATH)
 
+run:
+	./bin/$(Target)
+
 .PHONY: all all_win32 static_win32 clean clean_linux clean_win32
 
 #multilib handling

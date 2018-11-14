@@ -6,33 +6,22 @@ class Component;
 
 class GameObject
 {
-public:
-  int velocity=0;
-  int x=0, y=0;
+  private:
+    int x=0, y=0;
+    std::vector<Component*> components;
 
-  GameObject(){}
+  public:
+    GameObject(int x, int y);
 
-  GameObject(int x, int y){
-    this->x = x;
-    this->y = y;
-  }
+    ~GameObject();
 
-  void addComponent(Component* c){
-    components.push_back(c);
-  }
+    int getX(){return x;}
+    int getY(){return y;}
+    void setX(int x){this->x=x;}
+    void serY(int y){this->y=y;}
 
-  //Get Component
-  template<typename T>
-  T* getComponent() {
-      for(int i=0; i<components.size(); i++){
-          if(T* c = static_cast<T*>(components[i])){
-              return c;
-          }
-      }
-      
-      return nullptr;
-  }   
+    void addComponent(Component* c);
 
-private:
-  std::vector<Component*> components;
+    template<typename T>
+    T* getComponent();
 };
