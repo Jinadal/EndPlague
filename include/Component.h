@@ -12,6 +12,12 @@ class Component
     }
     //Destructor
     virtual ~Component() {}
-    protected:
+
+    GameObject* getGameObject()
+    {
+        return gameobject;
+
+    }
+    private:
       GameObject* gameobject;
 };

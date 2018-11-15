@@ -4,19 +4,27 @@
 #include <vector>
 
 
-class CollisionManager{
+class CollisionManager
+{
+
   public:
+
     //Constructor
-    CollisionManager(){}
+  CollisionManager(){}
 
-    void createComponent(Component* c, float width, float height,bool solid);
 
-    void removecomponent(Component* c);    
-    void update();
+
+  void createComponent(GameObject *owner, float width, float height,bool solid);
+
+  void removecomponent(Component* c);    
+  
+  void update();
         
-  }
-private:
+  
+  private:
+
   std::vector<CollisionComponent*> components;
 
-  bool testCollision(CollisionComponent *obj1, CollisionComponent *obj2 );
+  bool testCollision(CollisionComponent *com1, CollisionComponent *com2 );
+
 };

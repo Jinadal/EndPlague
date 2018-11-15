@@ -1,18 +1,22 @@
 #pragma once
 //Headers
 #include "Component.h"
+#include "GameObject.h"
 
-class CollisionComponent : public Component{
+
+class CollisionComponent : public Component
+{
+
     public:
-        //Constructor
-        CollisionComponent(GameObject* g, float width, float height, bool solid):Component(g) , width_(width), height_(height), solid_(solid){}
-        //Update
-        void update();
+
+    //Constructor
+    CollisionComponent(GameObject *owner, float width, float height, bool solid): Component(owner) , width_(width), height_(height), solid_(solid){}
+    
 
 
-        float width_, height_;
+    float width_, height_;
 
-        bool solid_;
+    bool solid_;
 
     
 };
