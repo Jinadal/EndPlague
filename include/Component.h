@@ -18,6 +18,9 @@ class Component
         return gameobject;
 
     }
+    //void kill();
     private:
       GameObject* gameobject;
+
+    
 };

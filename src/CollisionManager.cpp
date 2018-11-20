@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+#include <iostream>
+
 
 void CollisionManager::removecomponent(Component *c)
 {
@@ -77,6 +79,33 @@ void CollisionManager::update()
                 {
 
                     //Colisionan
+                    
+                    //GameObject *obj1 = iter1->getGameObject();
+//
+                    //GameObject *obj2 = iter2->getGameObject();
+                    //
+                    //if(obj2->getComponent<ItemComponent>())
+                    //{
+//
+                    //    //Item
+                    //}
+//
+//
+                    //if(obj2->getComponent<CombatComponent>())
+                    //{
+//
+                    //    //Enemigo
+                    //}
+//
+//
+                    //if(obj2->getComponent<BulletComponent>())
+                    //{
+//
+                    //    //Bala
+                    //}     
+
+                    std::cout<< "collision" << std::endl;
+
                 }
             }
         }      

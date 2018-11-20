@@ -13,7 +13,9 @@ class GameObject
   public:
     GameObject(int x, int y);
 
-    ~GameObject();
+    ~GameObject()=default;
+
+   // void kill();
 
     int getX(){return x;}
     int getY(){return y;}
@@ -23,5 +25,14 @@ class GameObject
     void addComponent(Component* c);
 
     template<typename T>
-    T* getComponent();
+T* getComponent() {
+    for(int i=0; i<components.size(); i++){
+        if(T* c = dynamic_cast<T*>(components[i])){
+            return c;
+        }
+    }     
+    return nullptr;
+}
+
+   
 };

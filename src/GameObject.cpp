@@ -15,13 +15,19 @@ void GameObject::addComponent(Component* c){
 }
 
 //Get Component
-template<typename T>
-T* GameObject::getComponent() {
-    for(int i=0; i<components.size(); i++){
-        if(T* c = static_cast<T*>(components[i])){
-            return c;
-        }
-    }     
-    return nullptr;
-}
 
+
+//void GameObject::kill()
+//{
+//    std::vector<Component *>::iterator iter;
+//
+//	for(iter=components.begin(); iter!=components.end(); ++iter)
+//
+//	{
+//
+//		(*iter)->kill();
+//
+//	}
+//
+//	components.clear();
+//}
