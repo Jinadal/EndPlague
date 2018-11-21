@@ -1,4 +1,5 @@
 #pragma once
+
 //Headers
 #include "RenderComponent.h"
 #include <vector>
@@ -7,16 +8,16 @@
 class RenderManager{
   public:
     //Constructor
-    RenderManager(){}
-
-    void addRenderComponent(RenderComponent* c){
-        components.push_back(c);
+    RenderManager(RenderFacade*  rf){
+      renderFacade = rf;
     }
-    void update(){
-        for(int i=0; i<components.size();i++){
-        components[i]->update();
-        }
+
+    void addComponent(RenderComponent* c);
+    void update();
+    void init();
+    void run();
   }
-private:
-  std::vector<RenderComponent*> components;
+  private:
+    std::vector<RenderComponent*> components;
+    RenderFacade* renderFacade;
 };
