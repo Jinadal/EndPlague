@@ -8,13 +8,6 @@ class RenderManager{
 
         ~RenderManager(){}
 
-        void addComponent(RenderComponent* rc){
-            components.push_back(rc);
-        }
-
-        void updateAll(){
-            for(auto& c components){
-                c->update();
-            }
-        }
+        void addComponent(RenderComponent* rc);
+        void updateAll();
 };

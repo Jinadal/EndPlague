@@ -1,14 +1,6 @@
 #include <iostream>
-#include "GameFacade/MeshNode.h"
-#include "GameObject/Gameobject.h"
-
-//Temporal
-using namespace irr;
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
+#include "RenderManager.h"
+#include "Gameobject.h"
 
 //class MeshNode;
 int main(int argc, char const *argv[])
@@ -17,16 +9,21 @@ int main(int argc, char const *argv[])
     RenderManager* rendermanager = new RenderManager();
     
 
-    MeshNode* map = new MeshNode(render, "res/Map.obj"); 
-    
-    
-    int i=0;
+
+    GameObject* map = new Gameobject(0, 0, 0, 0);//Creates a new GO on x, y, z, rz
+    RenderComponent* rc = new RenderComponent(render, "res/Map.obj");//Creates a render Component
+
+    rendermanager->addComponent(rc);
+    map->addComponent(rc);
+
+
     while(render->run())
     {
         
         render->drawAll();
-        i++;
+
     }
+
 
     render->drop();
 

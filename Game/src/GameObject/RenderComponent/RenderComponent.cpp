@@ -1,5 +1,11 @@
 #include "RenderComponent.h"
 
+
+RenderComponent(GameObject g, RenderIrrlitch* r, char s[]) : Component(g){
+    render = r;
+    node = new MeshNode(r, s);
+}
+
 void RenderComponent::update(){
             node->setPosition(parent->getX(),
                                 parent->getY(),

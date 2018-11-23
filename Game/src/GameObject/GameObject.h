@@ -8,37 +8,30 @@ class Component;
 
 class GameObject{
     private:
-        int x, y;
+        int x, y, z, rz;
         std::vector<Component*> components;
 
     public:
-        GameObject(int x, int y){
-            this->x = x;
-            this->y = y;
-        }
+        GameObject(int x, int y, int z, int rz);
 
-        int getX(){return x;};
-        int getY(){return y;};
-        void setX(int x){this->x=x;};
-        void setY(int y){this->y=y;};
+        ~GameObject(){}
 
+        int getX(){return x;}
+        int getY(){return y;}
+        int getZ(){return z;}
+        int getRZ(){return rz;}
+        void setX(int x){this->x=x;}
+        void setY(int y){this->y=y;}
+        void setZ(int z){this->z=z;}
+        void setRZ(int rz){this->rz=rz;}
 
-        void addComponent(Component* adding){
-            components.push_back(adding);
-        }
-
-
+        void addComponent(Component* adding);
 
         //Get Component
-        template<typename T>
-        T* getComponent() {
-            for(auto& cm : components){
-                
-                if(T* c = static_cast<T*>(cm){
-                    return c;
-                }
-            }
-            
-            return nullptr;
-        }   
+        template<typename T> T* getComponent();
+
+        void init();
+
+        //Close
+        void close();
 };
