@@ -10,14 +10,14 @@ GameObject::GameObject(int x, int y, int z, int rz){
 //Init
 void GameObject::init() {
     //Initilize all components
-    for (auto& comp : components)
-		comp.get()->init();
+    //for (auto& comp : components)
+		//comp.get()->init();
 }
 
 //Close
 void GameObject::close(){
-    for (auto comp : components)
-        comp.get()->close();
+    //for (auto comp : components)
+        //comp->close();
 }
 
 //Add component
@@ -30,7 +30,7 @@ template<typename T>
 T* GameObject::getComponent() {
     for(auto& cm : components){
         
-        if(T* c = static_cast<T*>(cm){
+        if(T* c = static_cast<T*>(cm)){
             return c;
         }
     }

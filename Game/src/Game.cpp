@@ -1,6 +1,6 @@
 #include <iostream>
 #include "RenderManager.h"
-#include "Gameobject.h"
+#include "GameObject.h"
 
 //class MeshNode;
 int main(int argc, char const *argv[])
@@ -10,8 +10,8 @@ int main(int argc, char const *argv[])
     
 
 
-    GameObject* map = new Gameobject(0, 0, 0, 0);//Creates a new GO on x, y, z, rz
-    RenderComponent* rc = new RenderComponent(render, "res/Map.obj");//Creates a render Component
+    GameObject* map = new GameObject(0, 0, 0, 0);//Creates a new GO on x, y, z, rz
+    RenderComponent* rc = new RenderComponent(map, render, "res/Map.obj");//Creates a render Component
 
     rendermanager->addComponent(rc);
     map->addComponent(rc);
