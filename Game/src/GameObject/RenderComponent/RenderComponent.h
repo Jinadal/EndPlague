@@ -1,12 +1,16 @@
+#pragma once
 #include "MeshNode.h"
+#include "Component.h"
+#include "GameObject.h"
 
-class RenderComponent : Component{
+
+class RenderComponent : public Component{
     private:
         MeshNode* node;
-        RenderIrrlitch* render;
+        RenderIrrlicht* render;
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
-        RenderComponent(GameObject g, RenderIrrlitch* r, char s[]) : Component(g);
+        RenderComponent(GameObject* parent, RenderIrrlicht* r, char s[]);
 
         //Destructor
         ~RenderComponent(){}

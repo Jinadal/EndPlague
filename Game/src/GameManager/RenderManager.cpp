@@ -1,3 +1,4 @@
+#pragma once
 #include "RenderManager.h"
 
 //Adds A New Render Component to components
@@ -8,7 +9,7 @@ void RenderManager::addComponent(RenderComponent* rc){
 
 //Updates all the components
 void RenderManager::updateAll(){
-    for(auto& c components){
+    for(auto* c : components){
         c->update();
     }
 }

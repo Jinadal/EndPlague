@@ -1,4 +1,6 @@
+#pragma once
 #include "MeshNode.h"
+#include <iostream>
 
 
 
@@ -11,8 +13,10 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
         render->getDevice()->drop();
         return;
     }
-
+    
     node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);
+    node->setMaterialFlag(video::EMF_LIGHTING, false);
+
 }
 
 //Changes the mesh of the node to de path

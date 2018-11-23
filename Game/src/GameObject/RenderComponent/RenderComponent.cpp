@@ -1,21 +1,21 @@
 #include "RenderComponent.h"
 
 
-RenderComponent(GameObject g, RenderIrrlitch* r, char s[]) : Component(g){
+RenderComponent::RenderComponent(GameObject* g, RenderIrrlicht* r, char s[]) : Component(g){
     render = r;
     node = new MeshNode(r, s);
 }
 
 void RenderComponent::update(){
-            node->setPosition(parent->getX(),
-                                parent->getY(),
-                                parent->getZ(),);
+            node->setPosition(gameObject->getX(),
+                                gameObject->getY(),
+                                gameObject->getZ());
         
-            node->setRotation(parent->getR());
+            node->setRotation(gameObject->getRZ());
         }
 
-void RenderComponent::hide(bool h){
-    node->hide(h);
+void RenderComponent::setVisible(bool h){
+    node->setVisible(h);
 }
 void RenderComponent::setTexture(char s[]){
     node->setTexture(s);
