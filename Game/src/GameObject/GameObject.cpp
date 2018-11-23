@@ -3,7 +3,7 @@
 //Init
 void GameObject::init() {
     //Initilize all components
-    for (auto comp : components)
+    for (auto& comp : components)
 		comp.get()->init();
 }
 
@@ -20,5 +20,5 @@ void GameObject::close(){
 
 //Add component
 void GameObject::addComponent(Component* c){
-    this->components.push_back(c);
+    components.push_back(c);
 }

@@ -1,6 +1,5 @@
 
 
-
 # Name of the executable created (.exe will be added automatically if necessary)
 Target := Ejecutable
 # List of source files, separated by spaces

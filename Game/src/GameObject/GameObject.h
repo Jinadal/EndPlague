@@ -1,17 +1,44 @@
 #pragma once
-#include "Component.h"
+
 #include <vector>
+#include <memory>
+#include "Component.h"
 
-//Init
-	void init();
+class Component;
 
-	//Update
-	void update();
+class GameObject{
+    private:
+        int x, y;
+        std::vector<Component*> components;
 
-	//Close
-	void close();
+    public:
+        GameObject(int x, int y){
+            this->x = x;
+            this->y = y;
+        }
 
-	//Add component
-    void GameObject::addComponent(Component* c);
+        int getX(){return x;};
+        int getY(){return y;};
+        void setX(int x){this->x=x;};
+        void setY(int y){this->y=y;};
 
-}
+
+        void addComponent(Component* adding){
+            components.push_back(adding);
+        }
+
+
+
+        //Get Component
+        template<typename T>
+        T* getComponent() {
+            for(auto& cm : components){
+                
+                if(T* c = static_cast<T*>(cm){
+                    return c;
+                }
+            }
+            
+            return nullptr;
+        }   
+};
