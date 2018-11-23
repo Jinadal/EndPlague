@@ -4,7 +4,7 @@
 # Name of the executable created (.exe will be added automatically if necessary)
 Target := Ejecutable
 # List of source files, separated by spaces
-Sources := src/*.cpp
+Sources := src/GameFacade/*.cpp
 # Path to Irrlicht directory, should contain include/ and lib/
 IrrlichtHome := /usr/include/irrlicht
 # Path for the executable. Note that Irrlicht.dll should usually also be there for win32 systems
