@@ -6,25 +6,25 @@ class Component{
 
   public:
     //Constructor
-    Component(GameObject& g) : gameObject(g) {}
+    Component(GameObject* g)  {
+
+      gameObject = g;
+    }
 
     //Destructor
     virtual ~Component(){};
 
     //Getter
-    GameObject& getGameObject() {
+    GameObject* getGameObject() {
 
         return gameObject;
 
     }
 
-    //Init
-    void init(float dt) = 0;
-
-    //Update
-    void update(void) = 0;
+   
+  
 
     private:
-      GameObject& gameObject;
+      GameObject* gameObject;
 
 };

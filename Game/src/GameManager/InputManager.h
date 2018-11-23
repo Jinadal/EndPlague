@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "../GameObject/InputComponent.h"
+//#include "InputComponent.h"
 
 class InputManager{
 
@@ -22,6 +22,6 @@ class InputManager{
 
     private:
 
-    Component::Pointer inputComponent;
+    //Component::Pointer inputComponent;
 
-}
+};

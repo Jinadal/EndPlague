@@ -2,16 +2,39 @@
 #include "Component.h"
 #include <vector>
 
-//Init
-	void init();
+class GameObject
+{
+	private:
+    int x=0, y=0;
+    std::vector<Component*> components;
 
-	//Update
-	void update();
+  public:
+    GameObject(int x_, int y_);
 
-	//Close
-	void close();
+
+    ~GameObject()=default;
+
+   
+
+    int getX(){return x;}
+    int getY(){return y;}
+
+	
+
 
 	//Add component
-    void GameObject::addComponent(Component* c);
+    void addComponent(Component* c);
 
+
+
+	template<typename T>
+T* getComponent() {
+    for(int i=0; i<components.size(); i++){
+        if(T* c = dynamic_cast<T*>(components[i])){
+            return c;
+        }
+    }     
+    return nullptr;
 }
+
+};

@@ -1,22 +1,15 @@
 #include "GameObject.h"
+#include "Component.h"
 
-//Init
-void GameObject::init() {
-    //Initilize all components
-    for (auto comp : components)
-		comp.get()->init();
+
+
+GameObject::GameObject(int x, int y)
+{
+    this->x = x;
+    this->y = y;
 }
 
-//Update
-void GameObject::update() {
 
-}
-
-//Close
-void GameObject::close(){
-    for (auto comp : components)
-        comp.get()->close();
-}
 
 //Add component
 void GameObject::addComponent(Component* c){
