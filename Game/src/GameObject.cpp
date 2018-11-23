@@ -28,9 +28,9 @@ void GameObject::addComponent(Component* c){
 //Get Component
 template<typename T>
 T* GameObject::getComponent() {
-    for(auto& cm : components){
+    for(auto cm : components){
         
-        if(T* c = static_cast<T*>(cm)){
+        if(T* c = dynamic_cast<T*>(cm)){
             return c;
         }
     }

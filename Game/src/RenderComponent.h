@@ -1,3 +1,4 @@
+#pragma once
 #include "MeshNode.h"
 #include "Component.h"
 #include "GameObject.h"
