@@ -1,17 +1,39 @@
 #include "GameObject.h"
 #include "Component.h"
 
-
-
-GameObject::GameObject(int x, int y)
-{
-    this->x = x;
-    this->y = y;
+//Constructor
+GameObject::GameObject(int x, int y, int z, int rz){
+    this->x     = x;
+    this->y     = y;
+    this->z     = z;
+    this->rz    = rz;
+}
+//Init
+void GameObject::init() {
+    //Initilize all components
+    //for (auto& comp : components)
+		//comp.get()->init();
 }
 
-
+//Close
+void GameObject::close(){
+    //for (auto comp : components)
+        //comp->close();
+}
 
 //Add component
 void GameObject::addComponent(Component* c){
-    this->components.push_back(c);
+    components.push_back(c);
 }
+
+//Get Component
+template<typename T>
+T* GameObject::getComponent() {
+    for(auto cm : components){
+        
+        if(T* c = dynamic_cast<T*>(cm)){
+            return c;
+        }
+    }
+    return nullptr;
+}   

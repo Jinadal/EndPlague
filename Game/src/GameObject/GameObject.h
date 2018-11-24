@@ -1,16 +1,18 @@
 #pragma once
-#include "Component.h"
+
 #include <vector>
+#include <memory>
+#include "Component.h"
 
-class GameObject
-{
-	private:
-    int x=0, y=0;
-    std::vector<Component*> components;
+class Component;
 
-  public:
-    GameObject(int x_, int y_);
+class GameObject{
+    private:
+        int x, y, z, rz;
+        std::vector<Component*> components;
 
+    public:
+    GameObject(int x, int y, int z, int rz);
 
     ~GameObject()=default;
 
@@ -18,6 +20,13 @@ class GameObject
 
     int getX(){return x;}
     int getY(){return y;}
+    int getZ(){return z;}
+    int getRZ(){return rz;}
+
+    int setX(int x){this->x = x;}
+    int setY(int y){this->y = y;}
+    int setZ(int z){this->z = z;}
+    int setRZ(int rz){this->rz = rz;}
 
 	
 

@@ -24,7 +24,7 @@ class Component{
    
   
 
-    private:
+    protected:
       GameObject* gameObject;
 
 };
