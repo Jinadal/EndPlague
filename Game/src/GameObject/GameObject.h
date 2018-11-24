@@ -23,10 +23,10 @@ class GameObject{
     int getZ(){return z;}
     int getRZ(){return rz;}
 
-    int setX(int x){this->x = x;}
-    int setY(int y){this->y = y;}
-    int setZ(int z){this->z = z;}
-    int setRZ(int rz){this->rz = rz;}
+    void setX(int x){this->x = x;}
+    void setY(int y){this->y = y;}
+    void setZ(int z){this->z = z;}
+    void setRZ(int rz){this->rz = rz;}
 
 	
 
@@ -37,13 +37,13 @@ class GameObject{
 
 
 	template<typename T>
-T* getComponent() {
-    for(int i=0; i<components.size(); i++){
-        if(T* c = dynamic_cast<T*>(components[i])){
-            return c;
-        }
-    }     
-    return nullptr;
-}
+    T* getComponent() {
+        for(int i=0; i<components.size(); i++){
+            if(T* c = dynamic_cast<T*>(components[i])){
+                return c;
+            }
+        }     
+        return nullptr;
+    }
 
 };

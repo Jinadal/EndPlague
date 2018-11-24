@@ -3,7 +3,7 @@
 # Name of the executable created (.exe will be added automatically if necessary)
 Target := Ejecutable
 # List of source files, separated by spaces
-Sources := src/*.cpp src/GameObject/*.cpp src/GameManager/*.cpp src/GameObject/PhysicsComponent/*.cpp
+Sources := src/*.cpp src/GameObject/*.cpp src/GameManager/*.cpp src/GameFacade/*.cpp src/GameObject/PhysicsComponent/*.cpp src/GameObject/RenderComponent/*.cpp
 # Path to Irrlicht directory, should contain include/ and lib/
 IrrlichtHome := /usr/include/irrlicht
 # Path for the executable. Note that Irrlicht.dll should usually also be there for win32 systems
@@ -22,7 +22,7 @@ USERLDFLAGS =
 #no changes necessary below this line
 ####
 
-CPPFLAGS = -I$(IrrlichtHome) -I/usr/X11R6/include $(USERCPPFLAGS) -Isrc/GameObject -Isrc/GameManager -Isrc/GameObject/PhysicsComponent
+CPPFLAGS = -I$(IrrlichtHome) -I/usr/X11R6/include $(USERCPPFLAGS) -Isrc/GameObject -Isrc/GameManager -Isrc/GameObject/PhysicsComponent -Isrc/GameObject/RenderComponent -Isrc/GameFacade
 CXXFLAGS = $(USERCXXFLAGS)
 LDFLAGS = $(USERLDFLAGS)
 
