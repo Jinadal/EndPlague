@@ -1,0 +1,39 @@
+#pragma once
+
+#include <irrlicht.h>
+#include "IInputFacade.h"
+#include <iostream>
+
+
+struct SMouseState
+{
+    irr::core::position2di Position;
+    bool LeftButtonDown;
+};
+
+class InputFacade: public IInputFacade, public irr::IEventReceiver {
+
+    //CONTRUCTOR
+    InputFacade(){
+        for (irr::u32 i = 0; i < irr::KEY_KEY_CODES_COUNT; i++)
+            KeyIsDown[i] = 0;                           
+    }
+
+    //DESTRUCTOR
+    ~InputFacade(){}
+    
+    //************************
+    //IRRLICHT RELATED METHODS
+    //************************
+
+    bool OnEvent(const irr::SEvent& event);
+    // This is used to check whether a key is being held down
+    virtual bool IsKeyDown(irr::EKEY_CODE keyCode) const{
+        return KeyIsDown[keyCode];
+    }
+    private:
+    // We use this array to store the current state of each key
+    bool KeyIsDown[irr::KEY_KEY_CODES_COUNT];
+    SMouseState MouseState;
+
+};
