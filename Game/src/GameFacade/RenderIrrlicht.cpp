@@ -15,7 +15,7 @@ RenderIrrlicht::RenderIrrlicht(){
     guienv = device->getGUIEnvironment();
 
 
-    smgr->addCameraSceneNode(0, vector3df(0,10,0), vector3df(0,0,0));
+    smgr->addCameraSceneNode(0, vector3df(0,0,100), vector3df(0,0,0));
 }
 
 

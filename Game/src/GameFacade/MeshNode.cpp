@@ -32,12 +32,16 @@ void MeshNode::setMesh(char s[]){
 }
 
 //Changes the position of the node
-void MeshNode::setPosition(int x, int y, int z){
-    node->setPosition(core::vector3df(x, y, z));
+void MeshNode::setPosition(float x, float y, float z){
+    core::vector3df nodePosition = node->getPosition();
+    nodePosition.Y = y;
+    nodePosition.X = x;
+    nodePosition.Z = z;
+    node->setPosition(nodePosition);
 }
 //Changes the rotation of the node only in the z axis
-void MeshNode::setRotation(int r){
-    node->setPosition(core::vector3df(0, 0, r));
+void MeshNode::setRotation(float r){
+    node->setRotation(core::vector3df(0, 0, r));
 }
 
 //Chages the visibility of the node to b

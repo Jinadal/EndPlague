@@ -2,7 +2,7 @@
 #include "Component.h"
 
 //Constructor
-GameObject::GameObject(int x, int y, int z, int rz){
+GameObject::GameObject(float x, float y, float z, float rz){
     this->x     = x;
     this->y     = y;
     this->z     = z;

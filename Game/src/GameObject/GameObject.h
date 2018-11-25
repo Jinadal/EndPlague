@@ -8,25 +8,25 @@ class Component;
 
 class GameObject{
     private:
-        int x, y, z, rz;
+        float x, y, z, rz;
         std::vector<Component*> components;
 
     public:
-    GameObject(int x, int y, int z, int rz);
+    GameObject(float x, float y, float z, float rz);
 
     ~GameObject()=default;
 
    
 
-    int getX(){return x;}
-    int getY(){return y;}
-    int getZ(){return z;}
-    int getRZ(){return rz;}
+    float getX(){return x;}
+    float getY(){return y;}
+    float getZ(){return z;}
+    float getRZ(){return rz;}
 
-    void setX(int x){this->x = x;}
-    void setY(int y){this->y = y;}
-    void setZ(int z){this->z = z;}
-    void setRZ(int rz){this->rz = rz;}
+    void setX(float x){this->x = x;}
+    void setY(float y){this->y = y;}
+    void setZ(float z){this->z = z;}
+    void setRZ(float rz){this->rz = rz;}
 
 	
 
@@ -38,9 +38,9 @@ class GameObject{
 
 	template<typename T>
     T* getComponent() {
-        for(int i=0; i<components.size(); i++){
-            if(T* c = dynamic_cast<T*>(components[i])){
-                return c;
+        for(auto& c : components){
+            if(T* cm = dynamic_cast<T*>(c)){
+                return cm;
             }
         }     
         return nullptr;
