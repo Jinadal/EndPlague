@@ -12,16 +12,22 @@ int main()
     RenderManager* rendermanager = new RenderManager();
 
     GameObject* map = new GameObject(0, 0, 0, 0);//Creates a new GO on x, y, z, rz
-    RenderComponent* rc = new RenderComponent(map, render, "res/Map.obj");//Creates a render Component
+    RenderComponent* rc = new RenderComponent(map, render, "res/Map_zUP_-yFW.obj");//Creates a render Component
 
     rendermanager->addComponent(rc);
     map->addComponent(rc);
 
+    GameObject* player = new GameObject(0, 0, 0, 0);//Creates a new GO on x, y, z, rz
+    RenderComponent* pc = new RenderComponent(player, render, "res/Player.obj");//Creates a render Component
+
+    rendermanager->addComponent(pc);
+    player->addComponent(pc);
+
     float i = 0;
-    float d = .001;
+    float d = .1;
     while(render->run())
     {
-        map->setZ(i);
+        map->setX(i);
         rendermanager->updateAll();
         render->drawAll();
         i += d;

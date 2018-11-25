@@ -3,32 +3,32 @@
 #include <iostream>
 
 
-
+//Creation of a mesh node, recives the facade an the path of the mesh
 MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
-    render = r;
-    mesh = render->getSMgr()->getMesh(s);
+    render = r;//Assing the facade
+    mesh = render->getSMgr()->getMesh(s); //Gets a mesh
 
     if (!mesh)
     {
         render->getDevice()->drop();
         return;
     }
-    
-    node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);
-    node->setMaterialFlag(video::EMF_LIGHTING, false);
+    node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
+    node->setMaterialFlag(video::EMF_LIGHTING, false);//Set light
+    node->setMD2Animation(scene::EMAT_STAND);//??
 
 }
 
 //Changes the mesh of the node to de path
 void MeshNode::setMesh(char s[]){
-    mesh = render->getSMgr()->getMesh(s);
+    mesh = render->getSMgr()->getMesh(s);//Gets a new mesh
 
     if (!mesh)
     {
         return;
     }
 
-    node->setMesh(mesh);
+    node->setMesh(mesh);//sets the mesh on the node
 }
 
 //Changes the position of the node
