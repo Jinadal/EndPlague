@@ -18,8 +18,8 @@ int main()
     map->addComponent(rc);
 
 
-    GameObject *bola1 = new GameObject(10,10, 0, 0);
-    GameObject *bola2 = new GameObject(25,25, 0, 0);
+    GameObject *bola1 = new GameObject(10,10, 1, 0);
+    GameObject *bola2 = new GameObject(25,25, 1, 0);
 
     CollisionManager *collisionmanager = new CollisionManager();
 
