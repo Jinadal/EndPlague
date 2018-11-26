@@ -18,6 +18,7 @@ int main()
     rc->setTexture("res/green.bmp");
     rendermanager->addComponent(rc);
     map->addComponent(rc);
+    map->getComponent<RenderComponent>()->setVisible(false); //Lo ocultamos
 
     //ADDING A PLAYER
     GameObject* player = new GameObject(-250.f, -150.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
