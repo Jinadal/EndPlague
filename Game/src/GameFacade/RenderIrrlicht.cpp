@@ -15,12 +15,13 @@ RenderIrrlicht::RenderIrrlicht(){
     guienv = device->getGUIEnvironment();
 
 
-    smgr->addCameraSceneNode(0, vector3df(0,0,-20), vector3df(0,0,0));
+    smgr->addCameraSceneNode(0, vector3df(0,0,-10), vector3df(0,0,0));
+    smgr->addLightSceneNode();
 }
 
 
 void RenderIrrlicht::drawAll(){
-    driver->beginScene(true, true, SColor(255,100,101,140));
+    driver->beginScene(true, true, SColor(255,100,100,100));
 
     smgr->drawAll();
     guienv->drawAll();

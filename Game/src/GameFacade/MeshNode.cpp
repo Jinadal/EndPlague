@@ -15,8 +15,7 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
     }
     node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
     node->setMaterialFlag(video::EMF_LIGHTING, false);//Set light
-    node->setMD2Animation(scene::EMAT_STAND);//??
-
+    //node->setMD2Animation(scene::EMAT_STAND);//??
 }
 
 //Changes the mesh of the node to de path
@@ -27,7 +26,6 @@ void MeshNode::setMesh(char s[]){
     {
         return;
     }
-
     node->setMesh(mesh);//sets the mesh on the node
 }
 
@@ -40,8 +38,8 @@ void MeshNode::setPosition(float x, float y, float z){
     node->setPosition(nodePosition);
 }
 //Changes the rotation of the node only in the z axis
-void MeshNode::setRotation(float r){
-    node->setRotation(core::vector3df(0, 0, r));
+void MeshNode::setRotation(float x, float y, float z){
+    node->setRotation(core::vector3df(x, y, z));
 }
 
 //Chages the visibility of the node to b
@@ -51,5 +49,5 @@ void MeshNode::setVisible(bool b){
 
 //Changes the texture of the node to the new path
 void MeshNode::setTexture(char s[]){
-
+    node->setMaterialTexture( 0, render->getDriver()->getTexture(s) );
 }

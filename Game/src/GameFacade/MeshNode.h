@@ -24,7 +24,7 @@ class MeshNode{
         void setPosition(float x, float y, float z);
 
         //Changes the rotation of the node only in the z axis
-        void setRotation(float r);
+        void setRotation(float x, float y, float z);
 
         //Chages the visibility of the node to b
         void setVisible(bool b);
