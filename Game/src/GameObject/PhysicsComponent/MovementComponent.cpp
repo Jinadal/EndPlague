@@ -1,22 +1,8 @@
 #include "MovementComponent.h"
-#include "../GameObject.h"
+#include "GameObject.h"
 #include <iostream>
 
-void MovementComponent::Update(float k, float v){
-
-    //Get position data
-    auto posX = this->getGameObject()->getX();
-    auto posY = this->getGameObject()->getY();
-    auto posZ = this->getGameObject()->getZ();
-
-    //Speed Increment
-
-    if(v < maxVel) {
-
-        v += maxVel;
-
-    }
-
+void MovementComponent::update(){
     /* El sistema de movimiento esta pensado para que en cada ciclo del juego se comprueben
     todas las teclas, si W esta pulsada debe mandar un 1, si D esta pulsada debe mandar un 2,
     si S esta pulsada debe mandar un 3, si A esta pulsada debe mandar un 4. Este componente
@@ -32,46 +18,45 @@ void MovementComponent::Update(float k, float v){
     de Irrlicht y una variable de tiempo (tenemos que ver como gestionamos el tiempo en nuestro juego).
     El codigo mas basico y que en principio funciona es este. */
 
-    if(k == 1){
 
-        //Character moves UP
-
-        posY += v;
-
-        this->getGameObject()->setY(posY);
-
-    }
-
-    if(k == 2){
-
-        //Character moves RIGHT
-
-        posX += v;
-
-        this->getGameObject()->setX(posX);
-
-    }
-
-    if(k == 3){
-
-        //Character moves DOWN
-
-        posY += v;
-
-        this->getGameObject()->setY(posY);
-
-    }
-
-    if(k == 4){
-
-        //Character moves LEFT
-
-        posX -= v;
-
-        this->getGameObject()->setX(posX);
-
-    }
+    //Comprobar vMax
 
 
+
+
+    preX=gameObject->getX();
+    preY=gameObject->getY();
+    preZ=gameObject->getZ();
+
+    gameObject->setX(gameObject->getX() + vX);
+    gameObject->setY(gameObject->getY() + vY);
+    gameObject->setZ(gameObject->getZ() + vZ);
+
+    gameObject->setRZ(rz);
+}
+
+void MovementComponent::goBackX(){
+    gameObject->setX(preX);
+}
+
+void MovementComponent::goBackY(){
+    gameObject->setY(preY);
+}
+
+
+void MovementComponent::moveObject(int x, int y){
+    if(x<0)
+        this->vX = -1;
+    else if(x==0)
+        this->vX = 0;
+    else if(x>0)
+        this->vX = 1;
+
+    if(y<0)
+        this->vY = -1;
+    else if(y==0)
+        this->vY = 0;
+    else if(y>0)
+        this->vY = 1;
 
 }

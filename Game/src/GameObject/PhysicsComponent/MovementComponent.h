@@ -21,6 +21,13 @@ class MovementComponent : public Component{
         //Close
         void Close();
 
+        //Input
+        void moveObject(int x, int y);
+
+        //GoBack
+        void GoBackX();
+        void GoBackY();
+
     private:
 
         float vMax, vX, vY, vZ, preX, preY, preZ;
