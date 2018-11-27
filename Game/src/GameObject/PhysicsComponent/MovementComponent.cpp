@@ -1,8 +1,8 @@
-#include "MoveComponent.h"
+#include "MovementComponent.h"
 #include "../GameObject.h"
 #include <iostream>
 
-void MoveComponent::Update(float k, float v){
+void MovementComponent::Update(float k, float v){
 
     //Get position data
     auto posX = this->getGameObject()->getX();

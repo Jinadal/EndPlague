@@ -1,16 +1,16 @@
 #pragma once
 
-#include "../Component.h"
+#include "Component.h"
 
-class MoveComponent : public Component{
+class MovementComponent : public Component{
 
     public:
 
         //Constructor
-        MoveComponent(GameObject *owner) : Component(owner){}
+        MovementComponent(GameObject *owner) : Component(owner){}
 
         //Destructor
-        ~MoveComponent(){}
+        ~MovementComponent(){}
 
         //Init
         void Init();
