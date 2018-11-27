@@ -21,6 +21,58 @@ class MovementComponent : public Component{
         //Close
         void Close();
 
+        //Getters
+
+        float getvMax(){
+
+            return vMax;
+
+        }
+
+        float getvX(){
+
+            return vX;
+
+        }
+
+        float getvY(){
+
+            return vY;
+            
+        }
+
+        float getvZ(){
+
+            return vZ;
+            
+        }
+
+        //Setters
+
+        void setvMax(float v){
+
+            vMax = v;
+
+        }
+
+        void setvX(float v){
+
+            vX = v;
+
+        }
+
+        void setvY(float v){
+
+            vY = v;
+
+        }
+
+        void setvZ(float v){
+
+            vZ = v;
+
+        }
+
     private:
 
         float vMax, vX, vY, vZ, preX, preY, preZ;
