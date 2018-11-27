@@ -16,7 +16,7 @@ class RenderIrrlicht {
         ISceneManager* smgr;
         IGUIEnvironment* guienv;
 
-        int lastFPS;
+       
         u32 then;
         f32 frameDeltaTime;
     public:

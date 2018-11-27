@@ -1,5 +1,5 @@
 #include "RenderIrrlicht.h"
-
+#include <iostream>
 RenderIrrlicht::RenderIrrlicht(InputFacade* interface){
     device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
     false, false, false, interface);
@@ -19,7 +19,7 @@ RenderIrrlicht::RenderIrrlicht(InputFacade* interface){
     smgr->addLightSceneNode();
 
 
-    lastFPS = -1;
+    
     then = device->getTimer()->getTime();
 }
 
@@ -43,6 +43,8 @@ bool RenderIrrlicht::run(){
 }
 
 void RenderIrrlicht::drop(){
+   
+
     device->drop();
 }
 

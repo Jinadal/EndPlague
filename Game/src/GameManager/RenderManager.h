@@ -12,4 +12,8 @@ class RenderManager{
 
         void addComponent(RenderComponent* rc);
         void updateAll();
+
+  void removecomponent(Component* c);    
+  ///void createComponent(GameObject *owner, )
+
 };
