@@ -19,6 +19,8 @@ class CollisionManager
   void removecomponent(Component* c);    
   
   void update();
+
+  int conMove = 0;
         
   
   private:

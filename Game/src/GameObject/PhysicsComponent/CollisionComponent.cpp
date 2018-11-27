@@ -57,7 +57,7 @@ void CollisionComponent::checkCollision(GameObject *obj)
 
         std::cout<<"Colisiona \n";
 
-
+        
         
 
 
