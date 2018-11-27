@@ -1,6 +1,7 @@
 #include "MovementComponent.h"
 #include "GameObject.h"
 #include <iostream>
+#include <cmath>
 
 void MovementComponent::update(){
     /* El sistema de movimiento esta pensado para que en cada ciclo del juego se comprueben
@@ -20,9 +21,11 @@ void MovementComponent::update(){
 
 
     //Comprobar vMax
+    float length = Math.sqrt(Math.pow(vX, 2) + Math.pow(xY, 2));
+    vX = (vX/length)*vMax;
+    vY = (vY/length)*vMax;
 
-
-
+    float rz = Math.sin(vY/vX);
 
     preX=gameObject->getX();
     preY=gameObject->getY();
