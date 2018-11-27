@@ -87,6 +87,18 @@ int main()
     }
 
     render->drop();
+    
+    collisionmanager->removecomponent(box->getComponent<CollisionComponent>());
+    collisionmanager->removecomponent(box1->getComponent<CollisionComponent>());
+
+    movementmanager->removecomponent(box->getComponent<MovementComponent>());
+
+
+    delete collisionmanager;
+    delete interface;
+    delete render;
+    delete rendermanager;
+    delete movementmanager;
 
 
     return 0;

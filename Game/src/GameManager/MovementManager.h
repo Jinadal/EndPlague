@@ -12,4 +12,7 @@ class MovementManager{
 
         void addComponent(MovementComponent* rc);
         void updateAll(float dt);
+
+  void removecomponent(Component* c);    
+
 };

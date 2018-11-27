@@ -13,3 +13,24 @@ void MovementManager::updateAll(float dt){
         c->update(dt);
     }
 }
+
+void MovementManager::removecomponent(Component *c)
+{
+
+    std::vector<MovementComponent *>::iterator iter;
+
+
+    for(iter=components.begin(); iter!=components.end(); iter++)
+    {
+        if((*iter)==c)
+        {
+            delete (*iter);
+
+            components.erase(iter);
+
+            return;
+        }
+    }
+
+
+}
