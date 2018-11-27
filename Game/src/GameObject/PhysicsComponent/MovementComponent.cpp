@@ -7,16 +7,13 @@ MovementComponent::MovementComponent(GameObject* g) : Component(g){
     vX      = 0.f;
     vY      = 0.f;
     vZ      = 0.f;
-    vMax    = 1.f;
+    vMax    = 40.f;
     preX    = 0.f;
     preY    = 0.f;
     preZ    = 0.f;
 }
 
 void MovementComponent::update(float dt){
-    
-    
-    std::cout<<this->gameObject->getX()<<" "<<this->gameObject->getY()<<"\n";
     //Comprobar vMax
     float length = sqrt(pow(vX, 2) + pow(vY, 2));
     //std::cout<<length<<"\n";
@@ -27,8 +24,6 @@ void MovementComponent::update(float dt){
         vX=0.f;
         vY=0.f;
     }
-
-    std::cout<<this->vX<<" "<<this->vY<<"\n";
 
     float rz = gameObject->getRZ();//No calculado el angulo
 

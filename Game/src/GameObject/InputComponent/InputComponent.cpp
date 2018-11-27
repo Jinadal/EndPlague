@@ -20,8 +20,7 @@ void InputComponent::pulseInput(InputFacade *interface)
     if(interface->IsKeyDown((irr::EKEY_CODE)d_)){
         enX+=1;
     }
-
-    std::cout<< "EnX : " << enX << "EnY : "<< enY << "\n";
+    
     if(gameObject->getComponent<MovementComponent>()!=nullptr){
         gameObject->getComponent<MovementComponent>()->moveObject(enX,enY);
     }
