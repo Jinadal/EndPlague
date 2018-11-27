@@ -3,21 +3,20 @@
 #include "Component.h"
 
 class ProjectileComponent : public Component{
+     private:
+        float damage;
     public:
         //Constructor
-        ProjectileComponent(GameObject* g):Component(g){
-            damage = 1;
+        ProjectileComponent(GameObject* g, float damage):Component(g){
+            this->damage = damage;
         }
-        //Update
-        void update();
+        ~ProjectileComponent(){};
 
         //Setter&Getter
-        int getDamage()         {   return damage   ;}
-        void setDamager(int d)  {   damage = d      ;}
+        int getDamage()         {return damage;}
+        void setDamage(int d)   {damage = d;}
 
         //Methods
-        void dealDamage(GameObject* v);
-    private:
-    int damage;
-    
+        bool dealDamage(LifeComponent* l);
+        void kill();
 };

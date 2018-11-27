@@ -1,31 +1,25 @@
 #include "ShootComponent.h"
 
-void ShootComponent::shoot(){   //An entity shoots a proyectile
-    if(lastShoot>cadencia){
+void ShootComponent::shoot(){   //If the elapsed time is more
+    if(lastShoot>cadencia){     //than the cadence it shoots and restarts lastShoot
         lastShoot = 0.f;
+        shoot = true;
     }  
 }
 
-void ShootComponent::update(float dt){
-    lastShoot+=dt;
+void ShootComponent::update(float dt){  //Ads the elapsed time to las shoot
+    lastShoot+=dt;                      //returns the shoot and puts it on false
+    if(shoot){
+        shoot = false;
+        return true;
+    }
+    return false;
 }
 
+float ShootComponent::getX(){
+    return gameObject->getX();
+}
 
-GameObject* createProjectile(){
-    GameObject* proyectile = new GameObject(10,10);
-
-    //Add Collision
-    CollisionComponent* cc = new CollisionComponent(bullet);
-    //Add Render
-    RenderComponent* rc = new RenderComponent(bullet);
-    //Add Movement
-    MovementComponent* mc = new MovementComponent(bullet);
-    //Add Collision
-
-    //ProjectileCompoment
-    ProjectileComponent* pc = new ProjectileComponent(bullet);
-	bullet->addComponent(pc);
-    ProjectileManager::getInstance()->addProjectileComponent(pc);   //Introduce ProjectileComponent in ProjectileManager.
-    delete bullet;
-    delete pc;
+float ShootComponent::getY(){
+    return gameObject->getY();
 }

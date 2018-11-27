@@ -1,30 +1,28 @@
 #include <iostream>
 #include <ShootManager.h>
 #include <ShootComponent.h>
-#include <ProjectileComponent.h>
-#include <ProjectileManager.h>
-#include <GameObject.h>
 
 ShootManager* ShootManager::only_instance = NULL;
 
 ShootManager::ShootManager(void){}
 ShootManager::~ShootManager(void){}
 
-void ShootManager::update(){                        //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 
-    bool bbullet = false;                           //turns it to false.
-    for(size_t i=0; i < components.size(); i++){    //Check vector of ShootComponent
-        bbullet = components[i]->getShooted();      //get boolean shooted;
-        if (bbullet){
-            createBullet();                         //Create gameObject Bullet.
-            components[i]->setShooted(false);       //shooted = false, we can shoot again
+void ShootManager::update(float dt){                            //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 
+    for(size_t i=0; i < components.size(); i++){                //Check vector of ShootComponent
+        shooter = components[i];                                //get Component
+        if (shooter->update(dt)){                               //Create gameObject Bullet.
+            createBullet(shooter->getDamage(),
+                            shooter->getVelocity()
+                            shooter->getProjectileMesh()
+                            shooter->getProjectileTexture()
+                            shooter->getX(),
+                            shooter->getY());
         }
     }
 }
-void ShootManager::createBullet(){  
-    GameObject* bullet = new GameObject(10,10);     
-    ProjectileComponent* pc = new ProjectileComponent(bullet);
-	bullet->addComponent(pc);
-    ProjectileManager::getInstance()->addProjectileComponent(pc);   //Introduce ProjectileComponent in ProjectileManager.
-    delete bullet;
-    delete pc;
+
+void ShootManager::createBullet(float damage, float velocity, char mesh[], char texture[], float x, float y){  
+    //Here we may create a bullet
+
+    std::cout<<"Bala creada!:\n"<<"  damage: "<<damage<<"\n  velocity: "<<velocity<<"\n  x:"<<x<<"\n  y: "<<y<<"\n";
 }

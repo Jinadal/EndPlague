@@ -2,8 +2,6 @@
 //Headers
 #include "Component.h"
 #include "GameObject.h"
-#include <iostream>
-
 
 
 class CollisionComponent : public Component

@@ -19,7 +19,6 @@ RenderIrrlicht::RenderIrrlicht(InputFacade* interface){
     smgr->addLightSceneNode();
 
 
-    lastFPS = -1;
     then = device->getTimer()->getTime();
 }
 
