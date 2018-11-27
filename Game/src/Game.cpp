@@ -91,7 +91,7 @@ int main()
     collisionmanager->removecomponent(box->getComponent<CollisionComponent>());
     collisionmanager->removecomponent(box1->getComponent<CollisionComponent>());
 
-    movementmanager->removecomponent(box->getComponent<MovementComponent>());
+   // movementmanager->removecomponent(box->getComponent<MovementComponent>());
 
 
     delete collisionmanager;
