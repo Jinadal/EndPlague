@@ -117,7 +117,7 @@ int main()
 		driver->beginScene(true, true, SColor(255,100,101,140));
 
 
-        bola->getComponent<InputComponent*>()->pulseInput(interface);
+        bola->getComponent<InputComponent>()->pulseInput(interface);
 
 		smgr->drawAll();
 		guienv->drawAll();
