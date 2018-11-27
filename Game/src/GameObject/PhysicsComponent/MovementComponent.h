@@ -7,16 +7,13 @@ class MovementComponent : public Component{
     public:
 
         //Constructor
-        MovementComponent(GameObject *owner) : Component(owner){}
+        MovementComponent(GameObject *g);
 
         //Destructor
         ~MovementComponent(){}
 
-        //Init
-        void Init();
-
         //Update
-        void Update(float , float);
+        void Update(float dt);
 
         //Close
         void Close();
