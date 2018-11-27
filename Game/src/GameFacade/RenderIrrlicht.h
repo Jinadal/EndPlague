@@ -15,6 +15,10 @@ class RenderIrrlicht {
         IVideoDriver* driver;
         ISceneManager* smgr;
         IGUIEnvironment* guienv;
+
+        int lastFPS;
+        u32 then;
+        f32 frameDeltaTime;
     public:
         RenderIrrlicht();
 
@@ -32,4 +36,7 @@ class RenderIrrlicht {
         bool run();
         //Closes the device
         void drop();
+        //Returns the time betwen las loop and now
+        float getFrameDeltaTime();
+
 };
