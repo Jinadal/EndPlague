@@ -1,4 +1,4 @@
-#pragma once
+
 #include "MovementManager.h"
 
 //Adds A New Render Component to components

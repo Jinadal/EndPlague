@@ -1,4 +1,6 @@
 #include "CollisionManager.h"
+#include "MovementComponent.h"
+
 
 #include <cmath>
 
@@ -32,7 +34,7 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 
     if(owner->getComponent<MovementComponent>())
     {
-        components.push(new CollisionComponent(owner,width,height,solid));
+        components.insert(components.begin(),new CollisionComponent(owner,width,height,solid));
         conMove ++;
     }else{
         components.push_back(new CollisionComponent(owner,width,height,solid));
@@ -49,9 +51,9 @@ void CollisionManager::update()
 
     //std::vector<CollisionComponent *>::iterator iter1;
 
-    for(int i = 0, i<conMove; i++)
+    for(int i = 0; i<conMove; i++)
     {
-        for(int j = i+1, j < components.size(), j++)
+        for(int j = i+1; j < components.size(); j++)
         {
             if(components[i]->testCollision(components[j])){
 

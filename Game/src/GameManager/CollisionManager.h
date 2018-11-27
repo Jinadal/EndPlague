@@ -1,5 +1,4 @@
-#pragma once
-//Headers
+
 #include "CollisionComponent.h"
 #include <vector>
 

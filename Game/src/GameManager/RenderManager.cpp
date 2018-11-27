@@ -1,4 +1,4 @@
-#pragma once
+
 #include "RenderManager.h"
 
 //Adds A New Render Component to components

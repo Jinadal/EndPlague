@@ -26,6 +26,26 @@ int main()
    RenderIrrlicht*  render          = new RenderIrrlicht(interface);
    RenderManager*   rendermanager   = new RenderManager();
    MovementManager* movementmanager = new MovementManager();
+   CollisionManager* collisionmanager = new CollisionManager();
+
+     //ADDING A BOX
+    GameObject* box1 = new GameObject(200.f, -200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    
+    //Add a Render
+    RenderComponent* bc1 = new RenderComponent(box1, render, "res/Blocky.obj");//Creates a render Component
+    bc1->setTexture("res/green.bmp");
+    rendermanager->addComponent(bc1);
+    box1->addComponent(bc1);
+
+
+    //Add Collisions
+    collisionmanager -> createComponent(box1,200,200,true);
+
+
+
+
+
+
 
 
 
@@ -47,11 +67,20 @@ int main()
     movementmanager->addComponent(move);
     box->addComponent(move);
 
+    //Add Collisions
+
+    collisionmanager -> createComponent(box,200,200,true);
+    
+
+ 
+
     while(render->run())
     {
         box->getComponent<InputComponent>()->pulseInput(interface);
 
         movementmanager->updateAll(render->getFrameDeltaTime());
+
+        collisionmanager->update();
         rendermanager->updateAll();
         render->drawAll();
 
