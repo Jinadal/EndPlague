@@ -8,8 +8,8 @@ void MovementManager::addComponent(MovementComponent* rc){
 
 
 //Updates all the components
-void MovementManager::updateAll(){
+void MovementManager::updateAll(float dt){
     for(auto* c : components){
-        c->update();
+        c->update(dt);
     }
 }

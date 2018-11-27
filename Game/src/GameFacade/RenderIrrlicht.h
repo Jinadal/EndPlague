@@ -1,5 +1,5 @@
 #include <irrlicht.h>
-
+#include "InputFacade.h"
 
 //Temporal
 using namespace irr;
@@ -20,7 +20,7 @@ class RenderIrrlicht {
         u32 then;
         f32 frameDeltaTime;
     public:
-        RenderIrrlicht();
+        RenderIrrlicht(InputFacade* interface);
 
         ~RenderIrrlicht(){}
 

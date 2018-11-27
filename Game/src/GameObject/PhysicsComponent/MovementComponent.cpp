@@ -3,11 +3,11 @@
 #include <iostream>
 #include <cmath>
 
-void MovementComponent::MovementComponent(GameObject* g) : Component(g){
+MovementComponent::MovementComponent(GameObject* g) : Component(g){
     vX      = 0.f;
     vY      = 0.f;
     vZ      = 0.f;
-    vMax    = 1.f;
+    vMax    = 40.f;
     preX    = 0.f;
     preY    = 0.f;
     preZ    = 0.f;
@@ -15,11 +15,17 @@ void MovementComponent::MovementComponent(GameObject* g) : Component(g){
 
 void MovementComponent::update(float dt){
     //Comprobar vMax
-    float length = Math.sqrt(Math.pow(vX, 2) + Math.pow(xY, 2));
-    vX = (vX/length)*vMax;
-    vY = (vY/length)*vMax;
+    float length = sqrt(pow(vX, 2) + pow(vY, 2));
+    //std::cout<<length<<"\n";
+    if(length!=0.f){
+        vX = (vX/length)*vMax;
+        vY = (vY/length)*vMax;
+    }else{
+        vX=0.f;
+        vY=0.f;
+    }
 
-    float rz = Math.sin(vY/vX);
+    float rz = gameObject->getRZ();//No calculado el angulo
 
     preX=gameObject->getX();
     preY=gameObject->getY();
@@ -55,5 +61,4 @@ void MovementComponent::moveObject(int x, int y){
         this->vY = 0;
     else if(y>0)
         this->vY = 1;
-
 }
