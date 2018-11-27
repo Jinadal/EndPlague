@@ -11,5 +11,5 @@ class MovementManager{
         ~MovementManager(){}
 
         void addComponent(MovementComponent* rc);
-        void updateAll();
+        void updateAll(float dt);
 };

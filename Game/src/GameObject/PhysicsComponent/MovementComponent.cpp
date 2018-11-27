@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 
-void MovementComponent::MovementComponent(GameObject* g) : Component(g){
+MovementComponent::MovementComponent(GameObject* g) : Component(g){
     vX      = 0.f;
     vY      = 0.f;
     vZ      = 0.f;
@@ -14,12 +14,15 @@ void MovementComponent::MovementComponent(GameObject* g) : Component(g){
 }
 
 void MovementComponent::update(float dt){
+
+    std::cout<<this->vX<<" "<<this->vY<<"\n";
+    std::cout<<this->gameObject->getX()<<" "<<this->gameObject->getY()<<"\n";
     //Comprobar vMax
-    float length = Math.sqrt(Math.pow(vX, 2) + Math.pow(xY, 2));
+    float length = sqrt(pow(vX, 2) + pow(vY, 2));
     vX = (vX/length)*vMax;
     vY = (vY/length)*vMax;
 
-    float rz = Math.sin(vY/vX);
+    float rz = sin(vY/vX);
 
     preX=gameObject->getX();
     preY=gameObject->getY();
@@ -55,5 +58,4 @@ void MovementComponent::moveObject(int x, int y){
         this->vY = 0;
     else if(y>0)
         this->vY = 1;
-
 }

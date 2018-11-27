@@ -1,8 +1,8 @@
 #include "RenderIrrlicht.h"
 
-RenderIrrlicht::RenderIrrlicht(){
+RenderIrrlicht::RenderIrrlicht(InputFacade* interface){
     device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
-    false, false, false, 0);
+    false, false, false, interface);
 
     if (!device)
         return;

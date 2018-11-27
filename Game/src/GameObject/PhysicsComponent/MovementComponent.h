@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Component.h"
 
 class MovementComponent : public Component{
@@ -13,17 +12,17 @@ class MovementComponent : public Component{
         ~MovementComponent(){}
 
         //Update
-        void Update(float dt);
+        void update(float dt);
 
         //Close
-        void Close();
+        void close();
 
         //Input
         void moveObject(int x, int y);
 
         //GoBack
-        void GoBackX();
-        void GoBackY();
+        void goBackX();
+        void goBackY();
 
         
         //Getters
