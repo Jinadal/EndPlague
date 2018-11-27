@@ -12,7 +12,7 @@ struct SMouseState
 };
 
 class InputFacade: public IInputFacade, public irr::IEventReceiver {
-
+public:
     //CONTRUCTOR
     InputFacade(){
         for (irr::u32 i = 0; i < irr::KEY_KEY_CODES_COUNT; i++)
