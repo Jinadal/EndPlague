@@ -1,5 +1,5 @@
 #include "ShootComponent.h"
-
+#include <iostream>
 void ShootComponent::shoot(){   //If the elapsed time is more
     if(lastShoot>cadencia){     //than the cadence it shoots and restarts lastShoot
         lastShoot = 0.f;

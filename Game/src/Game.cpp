@@ -61,7 +61,6 @@ int main()
     while(render->run())
     {
         box->getComponent<InputComponent>()->pulseInput(interface);
-        //box->getComponent<ShootComponent>()->shoot();
 
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
