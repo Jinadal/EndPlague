@@ -29,7 +29,7 @@ int main()
    RenderManager*       rendermanager       = new RenderManager();
    MovementManager*     movementmanager     = new MovementManager();
    CollisionManager*    collisionmanager    = new CollisionManager();
-   ShootManager*        shootmanager        = new ShootManager();
+   ShootManager*        shootmanager        = ShootManager::getInstance();
    
 
 
@@ -55,13 +55,13 @@ int main()
     collisionmanager -> createComponent(box,200,200,true);
     
     //Add Shoot
-    ShootComponent* sc = new ShootComponent(box, 1.f, 1);
+    ShootComponent* sc = new ShootComponent(box, 1.0f, 1);
  
 
     while(render->run())
     {
         box->getComponent<InputComponent>()->pulseInput(interface);
-        box->getComponent<ShootComponent>()->shoot();
+        //box->getComponent<ShootComponent>()->shoot();
 
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());

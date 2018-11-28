@@ -9,6 +9,7 @@ class ShootComponent : public Component{
         float   cadencia;           //Shoots per second
         int     bulletKind;          //Kind of bullet o create
         bool    wantsShoot;
+    
     public:
 
         //Constructor

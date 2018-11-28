@@ -7,7 +7,7 @@
 class ShootManager{
   public:
     //Constructor
-    ~ShootManager(void);
+    ~ShootManager();
 
     static ShootManager *getInstance(){         //Pattern Singleton
         if(only_instance == NULL)
@@ -21,7 +21,7 @@ class ShootManager{
     void updateAll(float dt);
     void createBullet(float x, float y, float rz, int k);
 private:
-    ShootManager(void);
+    ShootManager();
     static ShootManager* only_instance;
     std::vector<ShootComponent*> components;
 };
