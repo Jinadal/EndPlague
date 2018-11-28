@@ -55,13 +55,7 @@ int main()
     collisionmanager -> createComponent(box,200,200,true);
     
     //Add Shoot
-    ShootComponent sc = new ShootComponent(box,
-                                            1.f,
-                                            1.f,
-                                            1.f,
-                                            "",
-                                            "");
-
+    ShootComponent* sc = new ShootComponent(box, 1.f, 1);
  
 
     while(render->run())

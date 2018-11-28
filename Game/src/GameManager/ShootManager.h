@@ -18,8 +18,8 @@ class ShootManager{
     void addShootComponent(ShootComponent* c){
         components.push_back(c);
     }
-    void update();
-    void createBullet();
+    void updateAll(float dt);
+    void createBullet(float x, float y, float rz, int k);
 private:
     ShootManager(void);
     static ShootManager* only_instance;

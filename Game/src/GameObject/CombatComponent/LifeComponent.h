@@ -1,6 +1,7 @@
 #pragma once
 //Headers
 #include "Component.h"
+#include "GameObject.h"
 
 class LifeComponent : public Component{
      private:

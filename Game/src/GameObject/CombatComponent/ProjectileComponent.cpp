@@ -6,5 +6,5 @@ bool ProjectileComponent::dealDamage(LifeComponent* l){//Retrurns true if l kill
 }
 
 void ProjectileComponent::kill(){
-    gamoObject->kill();
+    gameObject->kill();
 }

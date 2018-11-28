@@ -2,6 +2,8 @@
 //Headers
 #include "Component.h"
 
+class GameObject;
+class LifeComponent;
 class ProjectileComponent : public Component{
      private:
         float damage;

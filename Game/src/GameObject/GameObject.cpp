@@ -15,3 +15,5 @@ GameObject::GameObject(float x, float y, float z, float rz){
 void GameObject::addComponent(Component* c){
     components.push_back(c);
 }
+
+void GameObject::kill(){}

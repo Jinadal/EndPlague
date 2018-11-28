@@ -3,14 +3,14 @@
 void ShootComponent::shoot(){   //If the elapsed time is more
     if(lastShoot>cadencia){     //than the cadence it shoots and restarts lastShoot
         lastShoot = 0.f;
-        shoot = true;
+        wantsShoot = true;
     }  
 }
 
-void ShootComponent::update(float dt){  //Ads the elapsed time to las shoot
+bool ShootComponent::update(float dt){  //Ads the elapsed time to las shoot
     lastShoot+=dt;                      //returns the shoot and puts it on false
-    if(shoot){
-        shoot = false;
+    if(wantsShoot){
+        wantsShoot = false;
         return true;
     }
     return false;
@@ -22,4 +22,8 @@ float ShootComponent::getX(){
 
 float ShootComponent::getY(){
     return gameObject->getY();
+}
+
+float ShootComponent::getRZ(){
+    return gameObject->getRZ();
 }
