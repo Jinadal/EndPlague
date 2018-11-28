@@ -34,3 +34,12 @@ void MovementManager::removecomponent(Component *c)
 
 
 }
+
+
+void MovementManager::createComponent(GameObject *owner)
+{
+
+    components.push_back(new MovementComponent(owner));
+
+    owner->addComponent(components[components.size()-1]);
+}

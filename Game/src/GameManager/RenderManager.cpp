@@ -1,10 +1,6 @@
 
 #include "RenderManager.h"
 
-//Adds A New Render Component to components
-void RenderManager::addComponent(RenderComponent* rc){
-    components.push_back(rc);
-}
 
 
 //Updates all the components
@@ -33,4 +29,12 @@ void RenderManager::removecomponent(Component *c)
     }
 
 
+}
+
+void RenderManager::createComponent(GameObject *owner, RenderIrrlicht *render, char path[])
+{
+
+    components.push_back(new RenderComponent(owner,render,path));
+
+    owner->addComponent(components[components.size()-1]);
 }

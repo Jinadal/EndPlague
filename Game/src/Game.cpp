@@ -32,10 +32,10 @@ int main()
     GameObject* box1 = new GameObject(200.f, -200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
     //Add a Render
-    RenderComponent* bc1 = new RenderComponent(box1, render, "res/Blocky.obj");//Creates a render Component
-    bc1->setTexture("res/green.bmp");
-    rendermanager->addComponent(bc1);
-    box1->addComponent(bc1);
+
+    rendermanager->createComponent(box1, render, "res/Blocky.obj");
+    box1->getComponent<RenderComponent>()->setTexture("res/green.bmp");
+ 
 
 
     //Add Collisions
@@ -53,19 +53,15 @@ int main()
     GameObject* box = new GameObject(-200.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
     //Add a Render
-    RenderComponent* bc = new RenderComponent(box, render, "res/Blocky.obj");//Creates a render Component
-    bc->setTexture("res/red.bmp");
-    rendermanager->addComponent(bc);
-    box->addComponent(bc);
+       rendermanager->createComponent(box, render, "res/Blocky.obj");
+       box->getComponent<RenderComponent>()->setTexture("res/red.bmp");
 
     //Add an Input
     InputComponent* input = new InputComponent(box);
     box->addComponent(input);
 
     //Add a Movement
-    MovementComponent* move = new MovementComponent(box);
-    movementmanager->addComponent(move);
-    box->addComponent(move);
+    movementmanager->createComponent(box);
 
     //Add Collisions
 

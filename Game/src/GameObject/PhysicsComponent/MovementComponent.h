@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+#include "GameObject.h"
+
 
 class MovementComponent : public Component{
 

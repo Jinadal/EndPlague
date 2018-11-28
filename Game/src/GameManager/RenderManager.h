@@ -10,10 +10,10 @@ class RenderManager{
 
         ~RenderManager(){}
 
-        void addComponent(RenderComponent* rc);
+      
         void updateAll();
 
   void removecomponent(Component* c);    
-  ///void createComponent(GameObject *owner, )
+  void createComponent(GameObject *owner, RenderIrrlicht *render, char path[] );
 
 };

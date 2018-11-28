@@ -13,6 +13,6 @@ class MovementManager{
         void addComponent(MovementComponent* rc);
         void updateAll(float dt);
 
-  void removecomponent(Component* c);    
-
+    void removecomponent(Component* c);    
+    void createComponent(GameObject *owner);
 };
