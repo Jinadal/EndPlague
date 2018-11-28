@@ -2,6 +2,7 @@
 #include "MeshNode.h"
 #include "Component.h"
 #include "GameObject.h"
+#include <iostream>
 
 
 class RenderComponent : public Component{
@@ -13,7 +14,11 @@ class RenderComponent : public Component{
         RenderComponent(GameObject* parent, RenderIrrlicht* r, char s[]);
 
         //Destructor
-        ~RenderComponent(){}
+        ~RenderComponent(){
+
+            delete node;
+          std::cout << "node destruido \n";
+        }
 
         //Updates the position and the scale of the mesh
         void update();

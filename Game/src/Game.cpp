@@ -87,19 +87,29 @@ int main()
     }
 
     render->drop();
+
     
-    collisionmanager->removecomponent(box->getComponent<CollisionComponent>());
+    
+    //collisionmanager->removecomponent(box->getComponent<CollisionComponent>()); // aqui peta por segment Sara, Atentemente yo mismo
     collisionmanager->removecomponent(box1->getComponent<CollisionComponent>());
 
-   // movementmanager->removecomponent(box->getComponent<MovementComponent>());
+    movementmanager->removecomponent(box->getComponent<MovementComponent>());
 
+    rendermanager->removecomponent(box->getComponent<RenderComponent>());
+    rendermanager->removecomponent(box1->getComponent<RenderComponent>());
+
+
+    delete input;
 
     delete collisionmanager;
     delete interface;
-    delete render;
+   
     delete rendermanager;
     delete movementmanager;
 
+    delete box;
+    delete box1;
 
+    delete render;
     return 0;
 }

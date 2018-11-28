@@ -13,3 +13,24 @@ void RenderManager::updateAll(){
         c->update();
     }
 }
+
+void RenderManager::removecomponent(Component *c)
+{
+
+    std::vector<RenderComponent *>::iterator iter;
+
+
+    for(iter=components.begin(); iter!=components.end(); iter++)
+    {
+        if((*iter)==c)
+        {
+            delete (*iter);
+
+            components.erase(iter);
+
+            return;
+        }
+    }
+
+
+}
