@@ -33,7 +33,6 @@ void RenderManager::removecomponent(Component *c)
 
 void RenderManager::createComponent(GameObject *owner, RenderIrrlicht *render, char path[])
 {
-
     components.push_back(new RenderComponent(owner,render,path));
 
     owner->addComponent(components[components.size()-1]);

@@ -53,8 +53,8 @@ int main()
     GameObject* box = new GameObject(-200.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
     //Add a Render
-       rendermanager->createComponent(box, render, "res/Blocky.obj");
-       box->getComponent<RenderComponent>()->setTexture("res/red.bmp");
+    rendermanager->createComponent(box, render, "res/Blocky.obj");
+    box->getComponent<RenderComponent>()->setTexture("res/red.bmp");
 
     //Add an Input
     InputComponent* input = new InputComponent(box);
@@ -64,7 +64,6 @@ int main()
     movementmanager->createComponent(box);
 
     //Add Collisions
-
     collisionmanager -> createComponent(box,200,200,true);
     
 
@@ -75,7 +74,6 @@ int main()
         box->getComponent<InputComponent>()->pulseInput(interface);
 
         movementmanager->updateAll(render->getFrameDeltaTime());
-
         collisionmanager->update();
         rendermanager->updateAll();
         render->drawAll();
