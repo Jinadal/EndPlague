@@ -16,7 +16,10 @@ class RenderIrrlicht {
         ISceneManager* smgr;
         IGUIEnvironment* guienv;
 
+<<<<<<< HEAD
        
+=======
+>>>>>>> ShootProjectileLife
         u32 then;
         f32 frameDeltaTime;
     public:

@@ -38,7 +38,7 @@ class GameObject{
 
 	//Add component
     void addComponent(Component* c);
-
+    void kill();
 
 
 	template<typename T>

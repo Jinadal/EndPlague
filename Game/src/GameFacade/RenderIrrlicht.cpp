@@ -19,7 +19,10 @@ RenderIrrlicht::RenderIrrlicht(InputFacade* interface){
     smgr->addLightSceneNode();
 
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> ShootProjectileLife
     then = device->getTimer()->getTime();
 }
 

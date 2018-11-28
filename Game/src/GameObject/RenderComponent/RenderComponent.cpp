@@ -1,5 +1,4 @@
 #include "RenderComponent.h"
-#include <iostream>
 
 RenderComponent::RenderComponent(GameObject* g, RenderIrrlicht* r, char s[]) : Component(g){
     render = r;
