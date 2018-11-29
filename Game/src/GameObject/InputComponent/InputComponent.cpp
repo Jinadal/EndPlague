@@ -1,6 +1,6 @@
 #include "InputComponent.h"
 #include "InputFacade.h"
-//#include "ShootComponent.h"
+#include "ShootComponent.h"
 #include <iostream>
 #include <irrlicht.h>
 
@@ -25,7 +25,7 @@ void InputComponent::pulseInput(InputFacade *interface)
         enX+=1;
     }
     if(interface->IsKeyDown((irr::EKEY_CODE)space_)){
-        //gameObject->getComponent<ShootComponent>()->shoot();
+        gameObject->getComponent<ShootComponent>()->shoot();
     }
 
     if(gameObject->getComponent<MovementComponent>()!=nullptr){
