@@ -31,7 +31,12 @@ int main()
    CollisionManager*    collisionmanager    = new CollisionManager();
    ShootManager*        shootmanager        = ShootManager::getInstance();
    
+     //ADDING A BOX
+    GameObject* map = new GameObject(0.f,0.f, 0.f, 0.f);//Creates a new GO on x, y, z, rz
+    rendermanager->createComponent(map, render, "res/Mapy.obj");
+    map->getComponent<RenderComponent>()->setTexture("res/green.bmp");
 
+    
 
     //ADDING A BOX
     GameObject* box = new GameObject(-200.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
