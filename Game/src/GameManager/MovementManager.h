@@ -4,9 +4,16 @@
 
 class MovementManager{
     private:
+        MovementManager(){}
+        static MovementManager *only_instance;
         std::vector<MovementComponent*> components;
     public:
-        MovementManager(){}
+        static MovementManager* getInstance(){
+            if(only_instance == NULL)
+                only_instance = new MovementManager();
+            
+            return only_instance;
+        } 
 
         ~MovementManager(){}
 

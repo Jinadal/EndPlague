@@ -10,6 +10,9 @@
 #include "InputFacade.h"
 #include "ShootManager.h"
 #include "ShootComponent.h"
+#include "LifeManager.h"
+#include "LifeComponent.h"
+#include "ProjectileManager.h"
 
 
 using namespace irr;
@@ -26,65 +29,69 @@ int main()
 {
    InputFacade*         interface           = new InputFacade();
    RenderIrrlicht*      render              = new RenderIrrlicht(interface);
-   RenderManager*       rendermanager       = new RenderManager();
-   MovementManager*     movementmanager     = new MovementManager();
-   CollisionManager*    collisionmanager    = new CollisionManager();
+   RenderManager*       rendermanager       = RenderManager::getInstance();
+   MovementManager*     movementmanager     = MovementManager::geInstance();
+   CollisionManager*    collisionmanager    = CollisionManager::getInstance();
    ShootManager*        shootmanager        = ShootManager::getInstance();
-   
-     //ADDING A BOX
-    GameObject* map = new GameObject(0.f,0.f, 0.f, 0.f);//Creates a new GO on x, y, z, rz
-    rendermanager->createComponent(map, render, "res/Mapy.obj");
-    map->getComponent<RenderComponent>()->setTexture("res/green.bmp");
-
-    
+   LifeManager*         lifemanager         = LifeManager::getInstance();
+   ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();    
 
     //ADDING A BOX
-    GameObject* box = new GameObject(-200.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    GameObject* box = new GameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
     //Add a Render
     rendermanager->createComponent(box, render, "res/Blocky.obj");
     box->getComponent<RenderComponent>()->setTexture("res/red.bmp");
 
-    //Add an Input
-    InputComponent* input = new InputComponent(box);
-    box->addComponent(input);
-
-    //Add a Movement
-    movementmanager->createComponent(box);
-
     //Add Collisions
-    collisionmanager -> createComponent(box,200,200,true);
+    collisionmanager->createComponent(box,200,200,true);
     
-    //Add Shoot
-    ShootComponent* sc = new ShootComponent(box, 1.0f, 1);
-    shootmanager->addComponent(sc);
-    box->addComponent(sc);
- 
+    //Add Life
+    lifemanager->createComponent(box, 50.f);
 
+
+    std::vector<GameObject*> bullets;
+    float t = 10.f;
     while(render->run())
     {
-        box->getComponent<InputComponent>()->pulseInput(interface);
-        box->getComponent<MovementComponent>()->setvMax(1000.f);
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         collisionmanager->update();
         rendermanager->updateAll();
+
+
         render->drawAll();
 
+        t+=render->getFrameDeltaTime();
+        if(t>10.f){
+            t=0.f;
+            GameObject* b = new GameObject(0.f, -200.f, -10.f, 0.f);
+
+            //Add Render
+            rendermanager->createComponent(b, render, "res/Bullety.obj");
+
+            //Add Collision
+            collisionmanager->createComponent(b,50,50,true);
+
+            //Add Projectile
+            projectilemanager->createComponent(b, 10.f);
+
+            //Add Movement
+            movementmanager->createComponent(b);
+            b->getComponent<MovementComponent>()->setvY(100.f);
+
+            bullets.push_back(b);
+        }
     }
 
     render->drop();
 
     
     
-    collisionmanager->removecomponent(box->getComponent<CollisionComponent>()); // aqui peta por segment Sara, Atentemente yo mismo
-
+    collisionmanager->removecomponent(box->getComponent<CollisionComponent>());
     movementmanager->removecomponent(box->getComponent<MovementComponent>());
-
     rendermanager->removecomponent(box->getComponent<RenderComponent>());
 
-
-    delete input;
 
     delete collisionmanager;
     delete interface;

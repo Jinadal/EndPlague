@@ -1,6 +1,8 @@
 
 #include "MovementManager.h"
 
+MovementManager* MovementManager::only_instance = NULL;
+
 //Adds A New Render Component to components
 void MovementManager::addComponent(MovementComponent* rc){
     components.push_back(rc);

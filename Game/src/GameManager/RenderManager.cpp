@@ -1,7 +1,7 @@
 
 #include "RenderManager.h"
 
-
+RenderManager* RenderManager::only_instance = NULL;
 
 //Updates all the components
 void RenderManager::updateAll(){
