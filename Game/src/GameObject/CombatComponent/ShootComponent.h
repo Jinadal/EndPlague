@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "GameObject.h"
 
+
 class ShootComponent : public Component{
     private:
         float   lastShoot;          //Elapsed time since last shoot
@@ -13,7 +14,7 @@ class ShootComponent : public Component{
     public:
 
         //Constructor
-        ShootComponent(GameObject* g, float cadencia, int kind):Component(g){
+        ShootComponent(GameObject* g, Manager* m, float cadencia, int kind):Component(g, m){
             wantsShoot = false;
             lastShoot = 0.f;
             this->cadencia = cadencia;

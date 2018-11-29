@@ -2,13 +2,14 @@
 #include "ProjectileComponent.h"
 #include "GameObject.h"
 
-class GameObject;
 
-class ProjectileManager{
+class GameObject;
+class Manager;
+class ProjectileManager : public Manager{
     private:
-        ProjectileManager(){}
+        ProjectileManager():Manager(){}
         static ProjectileManager* only_instance;
-        std::vector<ProjectileComponent*> components;
+
     public:
         //Constructor
         static ProjectileManager *getInstance(){
@@ -18,7 +19,7 @@ class ProjectileManager{
             return only_instance;
         }
 
-        ~ProjectileManager();
+        ~ProjectileManager(){}
         void createComponent(GameObject* owner, float damage);
         void createBullet();
 };

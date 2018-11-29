@@ -5,6 +5,6 @@ bool ProjectileComponent::dealDamage(LifeComponent* l){//Retrurns true if l kill
     return l->looseLife(damage);
 }
 
-void ProjectileComponent::kill(){
+void ProjectileComponent::crush(){
     gameObject->kill();
 }

@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "Component.h"
+#include <iostream>
 
 //Constructor
 GameObject::GameObject(float x, float y, float z, float rz){
@@ -17,6 +18,8 @@ void GameObject::addComponent(Component* c){
 }
 
 void GameObject::kill(){
-    for(int i=component.size()-1; i>=0; i--)
+    for(int i=components.size()-1; i>=0; i--){
         components[i]->kill();
+        std::cout<<"Eliminando un componente\n";
+    }
 }

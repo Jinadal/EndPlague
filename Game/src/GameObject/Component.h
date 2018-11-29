@@ -1,13 +1,14 @@
 #pragma once
-//Headers
-class GameObject;
+#include "Manager.h"
 
+
+class GameObject;
 class Component{
 
   public:
     //Constructor
-    Component(GameObject* g)  {
-
+    Component(GameObject* g, Manager* m)  {
+      manager = m;
       gameObject = g;
     }
 
@@ -21,7 +22,12 @@ class Component{
 
     }
     
+    void kill(){
+      manager->removeComponent(this);
+    }
+
     protected:
       GameObject* gameObject;
+      Manager* manager;
 
 };

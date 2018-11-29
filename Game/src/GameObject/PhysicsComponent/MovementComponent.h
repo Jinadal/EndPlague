@@ -2,13 +2,21 @@
 #include "Component.h"
 #include "GameObject.h"
 
-
+class Manager;
 class MovementComponent : public Component{
 
     public:
 
         //Constructor
-        MovementComponent(GameObject *g);
+        MovementComponent(GameObject *g, Manager* m) : Component(g, m){
+            vX      = 0.f;
+            vY      = 0.f;
+            vZ      = 0.f;
+            vMax    = 40.f;
+            preX    = 0.f;
+            preY    = 0.f;
+            preZ    = 0.f;
+        }
 
         //Destructor
         ~MovementComponent(){}

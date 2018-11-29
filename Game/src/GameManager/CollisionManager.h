@@ -1,19 +1,14 @@
-
 #include "CollisionComponent.h"
 #include <vector>
 
+class Manager;
 class LifeComponent;
 class ProjectileComponent;
-class CollisionManager
-{
+class CollisionManager : public Manager{
    private:
     //Constructor
-    CollisionManager(){}
+    CollisionManager():Manager(){}
     static CollisionManager* only_instance;
-    std::vector<CollisionComponent*> components;
-
-    //bool testCollision(CollisionComponent *com1, CollisionComponent *com2 );
-
 
   public:
 
@@ -26,12 +21,8 @@ class CollisionManager
   
 
     virtual ~CollisionManager(){}
-
-    void createComponent(GameObject *owner, float width, float height,bool solid);
-
-    void removecomponent(Component* c);    
-    
-    void update();
+    void createComponent(GameObject *owner, float width, float height,bool solid); 
+    void updateAll();
 
     int conMove = 0;
 };

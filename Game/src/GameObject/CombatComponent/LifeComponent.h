@@ -9,7 +9,7 @@ class LifeComponent : public Component{
 
     public:
         //Constructor
-        LifeComponent(GameObject* g, float f):Component(g){
+        LifeComponent(GameObject* g, Manager* m, float f):Component(g, m){
             this->life = f;            
         }
 

@@ -10,7 +10,7 @@ class CollisionComponent : public Component
     public:
 
     //Constructor
-    CollisionComponent(GameObject *owner, float width, float height, bool solid): Component(owner) , width_(width), height_(height), solid_(solid){}
+    CollisionComponent(GameObject *owner, Manager* m, float width, float height, bool solid): Component(owner, m) , width_(width), height_(height), solid_(solid){}
     
     ~CollisionComponent() override {}
 

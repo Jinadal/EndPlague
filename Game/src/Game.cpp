@@ -40,67 +40,63 @@ int main()
     GameObject* box = new GameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
     //Add a Render
-    rendermanager->createComponent(box, render, "res/Blocky.obj");
-    box->getComponent<RenderComponent>()->setTexture("res/red.bmp");
+    rendermanager->createComponent(box, render, "res/Blocky.obj");//Fachada de render y path de obj
+    box->getComponent<RenderComponent>()->setTexture("res/red.bmp");//Path de bmp
+
+    //Add Movement
+    movementmanager->createComponent(box);
+    box->getComponent<MovementComponent>()->setvMax(1000.f);
+
+    //Add Input
+    InputComponent* in = new InputComponent(box);
+    box->addComponent(in);
 
     //Add Collisions
-    collisionmanager->createComponent(box,200,200,true);
+    collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
     
     //Add Life
-    lifemanager->createComponent(box, 50000.f);
+    lifemanager->createComponent(box, 100.f);//Vida
+
+    //Add Shoot
+    shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
 
-    std::vector<GameObject*> bullets;
-    float t = 100.f;
     while(render->run())
-    {
+    {   
+        box->getComponent<InputComponent>()->pulseInput(interface);
+
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
-        collisionmanager->update();
+        collisionmanager->updateAll();
         rendermanager->updateAll();
 
 
         render->drawAll();
-
-        t+=render->getFrameDeltaTime();
-        if(t>10.f){
-            t=0.f;
-            GameObject* b = new GameObject(0.f, -200.f, -10.f, 0.f);
-
-            //Add Render
-            rendermanager->createComponent(b, render, "res/Bullety.obj");
-
-            //Add Movement
-            movementmanager->createComponent(b);
-            b->getComponent<MovementComponent>()->setvY(100.f);
-
-            //Add Collision
-            collisionmanager->createComponent(b,50,50,true);
-
-            //Add Projectile
-            projectilemanager->createComponent(b, 1.f);
-
-            bullets.push_back(b);
-        }
     }
 
     render->drop();
 
     
     
-    collisionmanager->removecomponent(box->getComponent<CollisionComponent>());
-    movementmanager->removecomponent(box->getComponent<MovementComponent>());
-    rendermanager->removecomponent(box->getComponent<RenderComponent>());
-
-
+    collisionmanager->removeAll();
     delete collisionmanager;
-    delete interface;
-   
-    delete rendermanager;
+    movementmanager->removeAll();
     delete movementmanager;
+    rendermanager->removeAll();
+    delete rendermanager;
+    shootmanager->removeAll();
+    delete shootmanager;
+    lifemanager->removeAll();
+    delete shootmanager;
+    projectilemanager->removeAll();
+    delete projectilemanager;
 
+
+
+    delete interface;
     delete box;
-
     delete render;
+
+
     return 0;
 }

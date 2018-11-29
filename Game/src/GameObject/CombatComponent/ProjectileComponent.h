@@ -9,7 +9,7 @@ class ProjectileComponent : public Component{
         float damage;
     public:
         //Constructor
-        ProjectileComponent(GameObject* g, float damage):Component(g){
+        ProjectileComponent(GameObject* g, Manager* m, float damage):Component(g, m){
             this->damage = damage;
         }
         ~ProjectileComponent(){};
@@ -20,5 +20,5 @@ class ProjectileComponent : public Component{
 
         //Methods
         bool dealDamage(LifeComponent* l);
-        void kill();
+        void crush();
 };
