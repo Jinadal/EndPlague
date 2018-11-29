@@ -30,7 +30,7 @@ int main()
    InputFacade*         interface           = new InputFacade();
    RenderIrrlicht*      render              = new RenderIrrlicht(interface);
    RenderManager*       rendermanager       = RenderManager::getInstance();
-   MovementManager*     movementmanager     = MovementManager::geInstance();
+   MovementManager*     movementmanager     = MovementManager::getInstance();
    CollisionManager*    collisionmanager    = CollisionManager::getInstance();
    ShootManager*        shootmanager        = ShootManager::getInstance();
    LifeManager*         lifemanager         = LifeManager::getInstance();
@@ -47,11 +47,11 @@ int main()
     collisionmanager->createComponent(box,200,200,true);
     
     //Add Life
-    lifemanager->createComponent(box, 50.f);
+    lifemanager->createComponent(box, 50000.f);
 
 
     std::vector<GameObject*> bullets;
-    float t = 10.f;
+    float t = 100.f;
     while(render->run())
     {
         movementmanager->updateAll(render->getFrameDeltaTime());
@@ -70,15 +70,15 @@ int main()
             //Add Render
             rendermanager->createComponent(b, render, "res/Bullety.obj");
 
+            //Add Movement
+            movementmanager->createComponent(b);
+            b->getComponent<MovementComponent>()->setvY(100.f);
+
             //Add Collision
             collisionmanager->createComponent(b,50,50,true);
 
             //Add Projectile
-            projectilemanager->createComponent(b, 10.f);
-
-            //Add Movement
-            movementmanager->createComponent(b);
-            b->getComponent<MovementComponent>()->setvY(100.f);
+            projectilemanager->createComponent(b, 1.f);
 
             bullets.push_back(b);
         }

@@ -20,10 +20,7 @@ class Component{
         return gameObject;
 
     }
-
-   
-  
-
+    
     protected:
       GameObject* gameObject;
 

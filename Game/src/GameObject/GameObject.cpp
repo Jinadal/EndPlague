@@ -16,4 +16,7 @@ void GameObject::addComponent(Component* c){
     components.push_back(c);
 }
 
-void GameObject::kill(){}
+void GameObject::kill(){
+    for(int i=component.size()-1; i>=0; i--)
+        components[i]->kill();
+}

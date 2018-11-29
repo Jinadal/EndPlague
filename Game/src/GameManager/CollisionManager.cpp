@@ -51,12 +51,11 @@ void CollisionManager::update()
 {
 
     //std::vector<CollisionComponent *>::iterator iter1;
-
     for(int i = 0; i<conMove; i++)
     {
         for(int j = i+1; j < components.size(); j++)
         {
-            std::cout<<"Collision\n";
+            
             if(components[i]->testCollision(components[j])){
                 
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackX();
