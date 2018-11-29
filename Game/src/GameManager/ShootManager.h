@@ -15,9 +15,7 @@ class ShootManager{
         
         return only_instance;
     }
-    void addShootComponent(ShootComponent* c){
-        components.push_back(c);
-    }
+    void addComponent(ShootComponent* c);
     void updateAll(float dt);
     void createBullet(float x, float y, float rz, int k);
 private:

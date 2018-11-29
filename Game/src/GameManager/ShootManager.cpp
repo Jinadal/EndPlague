@@ -7,13 +7,17 @@ ShootManager* ShootManager::only_instance = NULL;
 ShootManager::ShootManager(void){}
 ShootManager::~ShootManager(void){}
 
-void ShootManager::updateAll(float dt){                            //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 
+void ShootManager::updateAll(float dt){                         //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 
     for(size_t i=0; i < components.size(); i++){                //Check vector of ShootComponent
         ShootComponent* shooter = components[i];                //get Component
         if (shooter->update(dt)){                               //Create gameObject Bullet.
             createBullet(shooter->getX(), shooter->getY(), shooter->getRZ(), shooter->getBulletKind());
         }
     }
+}
+
+void ShootManager::addComponent(ShootComponent* c){
+    components.push_back(c);
 }
 
 void ShootManager::createBullet(float x, float y, float rz, int k){  

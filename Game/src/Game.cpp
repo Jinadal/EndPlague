@@ -52,12 +52,14 @@ int main()
     
     //Add Shoot
     ShootComponent* sc = new ShootComponent(box, 1.0f, 1);
+    shootmanager->addComponent(sc);
+    box->addComponent(sc);
  
 
     while(render->run())
     {
         box->getComponent<InputComponent>()->pulseInput(interface);
-
+        box->getComponent<MovementComponent>()->setvMax(1000.f);
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         collisionmanager->update();
