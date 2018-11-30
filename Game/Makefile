@@ -8,21 +8,23 @@ Sources := src/*.cpp src/GameObject/*.cpp src/GameObject/CombatComponent/*.cpp s
 IrrlichtHome := /usr/include/irrlicht
 # Path for the executable. Note that Irrlicht.dll should usually also be there for win32 systems
 BinPath = bin
-
+#Bullet path
+BulletHome := /usr/include/bullet
+BulletLibraries := /usr/lib64
 # general compiler settings (might need to be set when compiling the lib, too)
 # preprocessor flags, e.g. defines and include paths
 USERCPPFLAGS = 
 # compiler flags such as optimization flags
 USERCXXFLAGS = -O3 -ffast-math
 #USERCXXFLAGS = -g -Wall
-# linker flags such as additional libraries and link paths
+# linker flags such as additional libraries and link paths${bullet_CFLAGS}
 USERLDFLAGS =
 
 ####
 #no changes necessary below this line
 ####
 
-CPPFLAGS = -I$(IrrlichtHome) -I/usr/X11R6/include $(USERCPPFLAGS) -Isrc/GameObject -Isrc/GameManager -Isrc/GameObject/PhysicsComponent -Isrc/GameObject/RenderComponent -Isrc/GameFacade -Isrc/GameObject/InputComponent -Isrc/GameObject/CombatComponent
+CPPFLAGS = -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include $(USERCPPFLAGS) -Isrc/GameObject -Isrc/GameManager -Isrc/GameObject/PhysicsComponent -Isrc/GameObject/RenderComponent -Isrc/GameFacade -Isrc/GameObject/InputComponent -Isrc/GameObject/CombatComponent
 CXXFLAGS = $(USERCXXFLAGS)
 LDFLAGS = $(USERLDFLAGS)
 
@@ -30,7 +32,7 @@ LDFLAGS = $(USERLDFLAGS)
 all: all_linux
 
 # target specific settings
-all_linux all_win32 static_win32: LDFLAGS += -L$(IrrlichtHome)/lib/$(SYSTEM) -lIrrlicht
+all_linux all_win32 static_win32: LDFLAGS += -L$(IrrlichtHome)/lib/$(SYSTEM) -lIrrlicht -L$(BulletLibraries) -lLinearMath -lBulletDynamics -lBulletCollision
 all_linux: LDFLAGS += -L/usr/X11R6/lib$(LIBSELECT) -lGL -lXxf86vm -lXext -lX11 -lXcursor
 all_linux clean_linux: SYSTEM=Linux
 all_win32 clean_win32 static_win32: SYSTEM=Win32-gcc
