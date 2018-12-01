@@ -13,6 +13,8 @@
 #include "LifeManager.h"
 #include "LifeComponent.h"
 #include "ProjectileManager.h"
+#include "bullet/btBulletCollisionCommon.h"
+#include "bullet/btBulletDynamicsCommon.h"
 
 
 using namespace irr;
