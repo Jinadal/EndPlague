@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "GameObject.h"
+#include <iostream>
 
 class Manager;
 class MovementComponent : public Component{
@@ -19,7 +20,9 @@ class MovementComponent : public Component{
         }
 
         //Destructor
-        virtual ~MovementComponent(){}
+        virtual ~MovementComponent(){
+            std::cout<<"Movement Deleted\n";
+        }
 
         //Update
         void update(float dt);

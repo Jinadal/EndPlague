@@ -56,12 +56,14 @@ void CollisionManager::updateAll()
                     J=Proyectil
     
                 */
+                std::cout<<"Colision: "<<components[i]->getGameObject()<<"  Y  "<<components[j]->getGameObject()<<"\n";
 
                 ProjectileComponent* i_projectil = components[i]->getGameObject()->getComponent<ProjectileComponent>();
                 ProjectileComponent* j_projectil = components[j]->getGameObject()->getComponent<ProjectileComponent>();
 
                 LifeComponent* i_life = components[i]->getGameObject()->getComponent<LifeComponent>();
                 LifeComponent* j_life = components[j]->getGameObject()->getComponent<LifeComponent>();
+                
 
                 if(i_projectil)
                     i_projectil->dealDamage(j_life);

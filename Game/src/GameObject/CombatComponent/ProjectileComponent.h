@@ -1,6 +1,7 @@
 #pragma once
 //Headers
 #include "Component.h"
+#include <iostream>
 
 class GameObject;
 class LifeComponent;
@@ -12,10 +13,10 @@ class ProjectileComponent : public Component{
         ProjectileComponent(GameObject* g, Manager* m, float damage):Component(g, m){
             this->damage = damage;
         }
-        virtual ~ProjectileComponent(){};
+        virtual ~ProjectileComponent(){std::cout<<"Projectile Deleted\n";};
 
         //Setter&Getter
-        int getDamage()         {return damage;}
+        float getDamage()         {return damage;}
         void setDamage(int d)   {damage = d;}
 
         //Methods

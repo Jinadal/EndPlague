@@ -17,9 +17,8 @@ class RenderComponent : public Component{
         }
         //Destructor
         virtual ~RenderComponent(){
-
+            std::cout<<"Render Deleted\n";
             delete node;
-          std::cout << "node destruido \n";
         }
 
         //Updates the position and the scale of the mesh

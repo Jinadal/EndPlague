@@ -1,7 +1,6 @@
 #pragma once
 #include "Manager.h"
-
-
+#include <iostream>
 class GameObject;
 class Component{
 

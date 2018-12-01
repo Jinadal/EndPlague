@@ -55,20 +55,41 @@ int main()
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
     
     //Add Life
-    lifemanager->createComponent(box, 100.f);//Vida
+    lifemanager->createComponent(box, 40.f);//Vida
 
     //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
+
+    float elapsedTime = 10.f;
     while(render->run())
     {   
+        //std::cout<<"Uptate Input: \n";
         box->getComponent<InputComponent>()->pulseInput(interface);
-
+        //std::cout<<"Uptate Movemnet: \n";
         movementmanager->updateAll(render->getFrameDeltaTime());
+        //std::cout<<"Uptate Shoot: \n";
         shootmanager->updateAll(render->getFrameDeltaTime());
+        //std::cout<<"Uptate Collision: \n";
         collisionmanager->updateAll();
+        //std::cout<<"Uptate GameResoure: \n";
         gameresource->updateAll();
+        //std::cout<<"Uptate Render: \n";
         rendermanager->updateAll();
+        //std::cout<<"Todo OK\n";
+
+        elapsedTime += render->getFrameDeltaTime();
+        if(elapsedTime>5.f){
+            elapsedTime=0.f;
+            GameObject* b = gameresource->createGameObject(0.f, -200.f, 0.f, 0.f);
+            std::cout<<"Proyectil: "<<b<<"\n";
+            movementmanager->createComponent(b);
+            b->getComponent<MovementComponent>()->setvMax(200.f);
+            b->getComponent<MovementComponent>()->setvY(1);
+            rendermanager->createComponent(b, render, (char*)"res/Bullety.obj");
+            collisionmanager->createComponent(b, 30.f, 30.f, true);
+            projectilemanager->createComponent(b, 10.f);
+        }
 
 
         render->drawAll();
