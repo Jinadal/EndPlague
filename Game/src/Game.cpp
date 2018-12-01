@@ -1,8 +1,9 @@
 #include <iostream>
-#include "GameObject.h"
+
+#include "GameResource.h"
 #include "RenderManager.h"
 #include "CollisionManager.h"
-#include "InputComponent.h"
+#include "InputManager.h"
 #include "MovementManager.h"
 #include "InputFacade.h"
 #include "ShootManager.h"
@@ -24,6 +25,7 @@ using namespace gui;
 
 int main()
 {
+   GameResource*        gameresource        = GameResource::getInstance();
    InputFacade*         interface           = InputFacade::getInstance();
    RenderIrrlicht*      render              = RenderIrrlicht::getInstance();
    RenderManager*       rendermanager       = RenderManager::getInstance();
@@ -31,11 +33,12 @@ int main()
    CollisionManager*    collisionmanager    = CollisionManager::getInstance();
    ShootManager*        shootmanager        = ShootManager::getInstance();
    LifeManager*         lifemanager         = LifeManager::getInstance();
-   ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();   
+   ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
+   InputManager*        inputmanager        = InputManager::getInstance();
 
 
     //ADDING A BOX
-    GameObject* box = new GameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    GameObject* box = gameresource->createGameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
     //Add a Render
     rendermanager->createComponent(box, render, (char*)"res/Blocky.obj");//Fachada de render y path de obj
@@ -46,8 +49,7 @@ int main()
     box->getComponent<MovementComponent>()->setvMax(1000.f);
 
     //Add Input
-    InputComponent* in = new InputComponent(box);
-    box->addComponent(in);
+    inputmanager->createComponent(box);
 
     //Add Collisions
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
@@ -65,6 +67,7 @@ int main()
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         collisionmanager->updateAll();
+        gameresource->updateAll();
         rendermanager->updateAll();
 
 
@@ -75,22 +78,18 @@ int main()
 
     
     
-    collisionmanager->removeAll();
-    delete collisionmanager;
-    movementmanager->removeAll();
-    delete movementmanager;
-    rendermanager->removeAll();
     delete rendermanager;
-    shootmanager->removeAll();
-    delete shootmanager;
-    lifemanager->removeAll();
-    delete shootmanager;
-    projectilemanager->removeAll();
+    delete movementmanager;
+    delete collisionmanager;   
+    delete shootmanager;    
+    delete lifemanager;
     delete projectilemanager;
+    delete inputmanager;
+
+    delete gameresource;
 
     delete render;
     delete interface;
-    delete box;
     
 
 

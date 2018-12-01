@@ -19,6 +19,5 @@ class ProjectileComponent : public Component{
         void setDamage(int d)   {damage = d;}
 
         //Methods
-        bool dealDamage(LifeComponent* l);
-        void crush();
+        void dealDamage(LifeComponent* l);
 };
