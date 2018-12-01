@@ -16,7 +16,7 @@ class RenderComponent : public Component{
             node = new MeshNode(r, s);
         }
         //Destructor
-        ~RenderComponent(){
+        virtual ~RenderComponent(){
 
             delete node;
           std::cout << "node destruido \n";

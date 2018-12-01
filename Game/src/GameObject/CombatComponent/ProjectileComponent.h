@@ -12,7 +12,7 @@ class ProjectileComponent : public Component{
         ProjectileComponent(GameObject* g, Manager* m, float damage):Component(g, m){
             this->damage = damage;
         }
-        ~ProjectileComponent(){};
+        virtual ~ProjectileComponent(){};
 
         //Setter&Getter
         int getDamage()         {return damage;}

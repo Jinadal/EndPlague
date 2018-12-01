@@ -1,5 +1,6 @@
 #include "CollisionComponent.h"
 #include <vector>
+#include <iostream>
 
 class Manager;
 class LifeComponent;
@@ -13,8 +14,10 @@ class CollisionManager : public Manager{
   public:
 
     static CollisionManager *getInstance(){         //Pattern Singleton
-        if(only_instance == NULL)
+        if(only_instance == NULL){
+            std::cout<<"Creando New\n";
             only_instance = new CollisionManager();
+        }
         
         return only_instance;
     }

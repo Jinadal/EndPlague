@@ -12,6 +12,7 @@ class LifeComponent : public Component{
         LifeComponent(GameObject* g, Manager* m, float f):Component(g, m){
             this->life = f;            
         }
+        virtual ~LifeComponent(){};
 
         //Setter&Getters
         float getLife()       {return life;};

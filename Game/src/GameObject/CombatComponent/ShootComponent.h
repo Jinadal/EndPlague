@@ -20,6 +20,7 @@ class ShootComponent : public Component{
             this->cadencia = cadencia;
             this->bulletKind = kind;
         }
+        virtual ~ShootComponent(){};
         //Getters&&Setters
         float getCadencia(){return cadencia;}
         int getBulletKind(){return bulletKind;}

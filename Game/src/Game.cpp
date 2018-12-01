@@ -27,14 +27,15 @@ using namespace gui;
 
 int main()
 {
-   InputFacade*         interface           = new InputFacade();
-   RenderIrrlicht*      render              = new RenderIrrlicht(interface);
+   InputFacade*         interface           = InputFacade::getInstance();
+   RenderIrrlicht*      render              = RenderIrrlicht::getInstance();
    RenderManager*       rendermanager       = RenderManager::getInstance();
    MovementManager*     movementmanager     = MovementManager::getInstance();
    CollisionManager*    collisionmanager    = CollisionManager::getInstance();
    ShootManager*        shootmanager        = ShootManager::getInstance();
    LifeManager*         lifemanager         = LifeManager::getInstance();
-   ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();    
+   ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();   
+
 
     //ADDING A BOX
     GameObject* box = new GameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
@@ -59,7 +60,6 @@ int main()
 
     //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
-
 
     while(render->run())
     {   
@@ -91,11 +91,10 @@ int main()
     projectilemanager->removeAll();
     delete projectilemanager;
 
-
-
+    delete render;
     delete interface;
     delete box;
-    delete render;
+    
 
 
     return 0;

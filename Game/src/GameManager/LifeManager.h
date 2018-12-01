@@ -5,6 +5,7 @@ class Manager;
 class LifeManager : public Manager{
     private:
         LifeManager():Manager(){}
+        virtual ~LifeManager(){}
         static LifeManager *only_instance;
         
     public:
@@ -14,6 +15,5 @@ class LifeManager : public Manager{
             return only_instance;
         }
 
-        ~LifeManager(){}
         void createComponent(GameObject* owner, float l);
 };

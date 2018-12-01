@@ -14,6 +14,7 @@ class Manager{
 
 
         void removeComponent(Component *c){
+            /*
             std::vector<Component *>::iterator iter;
             for(iter=components.begin(); iter!=components.end(); iter++){
                 if((*iter)==c){
@@ -22,10 +23,10 @@ class Manager{
                     return;
                 }
             }
+            */
         }
 
         void removeAll(){
-            for(int i=components.size()-1; i>=0; i--)
-                delete components[i];
+            components.clear();
         }
 };

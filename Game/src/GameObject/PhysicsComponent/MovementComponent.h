@@ -19,7 +19,7 @@ class MovementComponent : public Component{
         }
 
         //Destructor
-        ~MovementComponent(){}
+        virtual ~MovementComponent(){}
 
         //Update
         void update(float dt);

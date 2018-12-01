@@ -1,5 +1,8 @@
 #include "InputFacade.h"
-     
+
+
+InputFacade* InputFacade::only_instance = NULL;
+ 
 bool InputFacade::OnEvent(const irr::SEvent &event) {  //Recieve event Keyboard - Mouse
     
     if(event.EventType == irr::EET_KEY_INPUT_EVENT){    //If Keyboard
