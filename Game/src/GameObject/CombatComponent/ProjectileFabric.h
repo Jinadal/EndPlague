@@ -65,8 +65,8 @@ class ProjectileFabric{
         std::vector<GameObject*> projectiles;
 
         struct tipo{
-            char mesh[];
-            char texture[];
+            std::string mesh;
+            std::string texture;
             float velocity;
             float damage;
         };

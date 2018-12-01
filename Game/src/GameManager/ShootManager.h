@@ -1,7 +1,7 @@
 #pragma once
 //Headers
 #include "ShootComponent.h"
-//#include "ProjectileFabric.h"
+#include "ProjectileFabric.h"
 #include <vector>
 
 class Manager;
