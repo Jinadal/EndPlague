@@ -8,14 +8,14 @@ void ShootManager::updateAll(float dt){                         //Checks which c
     for(size_t i=0; i < components.size(); i++){                //Check vector of ShootComponent
         ShootComponent* shooter = (ShootComponent*) components[i];                //get Component
         if (shooter->update(dt)){                               //Create gameObject Bullet.
-            createBullet(shooter->getX(), shooter->getY(), shooter->getRZ(), shooter->getBulletKind());
+            createProjectile(shooter->getX(), shooter->getY(), shooter->getRZ(), shooter->getProjectileKind());
         }
     }
 }
 
-void ShootManager::createBullet(float x, float y, float rz, int k){  
+void ShootManager::createProjectile(float x, float y, float rz, int k){  
     //Here we may create a bullet
-
+    //ProjectileFabric::createProjectile(x, y, rz, k);
     std::cout<<"Bala creada!:\n"<<"  x: "<<x<<"\n  y: "<<y<<"\n  rz:"<<rz<<"\n  k: "<<k<<"\n";
 }
 

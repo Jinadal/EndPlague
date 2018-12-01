@@ -13,7 +13,7 @@ class Manager{
         ~Manager(){}
 
 
-        void removeComponent(Component *c){
+        void removeComponent(Component *c){//TODO-----No funciona
             /*std::vector<Component *>::iterator iter;
             for(iter=components.begin(); iter!=components.end(); iter++){
                 if((*iter)==c){

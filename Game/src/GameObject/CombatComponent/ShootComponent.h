@@ -8,7 +8,7 @@ class ShootComponent : public Component{
     private:
         float   lastShoot;          //Elapsed time since last shoot
         float   cadencia;           //Shoots per second
-        int     bulletKind;          //Kind of bullet o create
+        int     projectileKind;          //Kind of bullet o create
         bool    wantsShoot;
     
     public:
@@ -18,15 +18,15 @@ class ShootComponent : public Component{
             wantsShoot = false;
             lastShoot = 0.f;
             this->cadencia = cadencia;
-            this->bulletKind = kind;
+            this->projectileKind = kind;
         }
         virtual ~ShootComponent(){};
         //Getters&&Setters
         float getCadencia(){return cadencia;}
-        int getBulletKind(){return bulletKind;}
+        int getProjectileKind(){return projectileKind;}
 
         void setCadencia(float c){cadencia=c;}
-        void setBulletKind(int bk){bulletKind = bk;}
+        void setProjectileKind(int pk){projectileKind = pk;}
 
         //Methods
         void shoot();

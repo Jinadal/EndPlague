@@ -1,6 +1,7 @@
 #pragma once
 //Headers
 #include "ShootComponent.h"
+//#include "ProjectileFabric.h"
 #include <vector>
 
 class Manager;
@@ -21,6 +22,6 @@ class ShootManager : public Manager{
         ~ShootManager(){}
         void kill();
         void updateAll(float dt);
-        void createBullet(float x, float y, float rz, int k);
+        void createProjectile(float x, float y, float rz, int k);
         void createComponent(GameObject *owner, float cadencia, int tipo);
 };
