@@ -43,8 +43,8 @@ int main()
     GameObject* box = new GameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
     //Add a Render
-    rendermanager->createComponent(box, render, "res/Blocky.obj");//Fachada de render y path de obj
-    box->getComponent<RenderComponent>()->setTexture("res/red.bmp");//Path de bmp
+    rendermanager->createComponent(box, render, (char*)"res/Blocky.obj");//Fachada de render y path de obj
+    box->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
 
     //Add Movement
     movementmanager->createComponent(box);

@@ -20,6 +20,6 @@ class RenderManager : public Manager{
         ~RenderManager(){}
         void updateAll();
         void kill(); 
-        void createComponent(GameObject *owner, RenderIrrlicht *render, char path[] );
+        void createComponent(GameObject *owner, RenderIrrlicht *render, char* path);
 
 };
