@@ -17,7 +17,7 @@ class RenderManager : public Manager{
             return only_instance;
         }
 
-        ~RenderManager(){}
+        virtual ~RenderManager(){only_instance=NULL;}
         void updateAll();
         void kill(); 
         void createComponent(GameObject *owner, RenderIrrlicht *render, char* path);

@@ -1,6 +1,5 @@
 #include "CollisionComponent.h"
 #include <vector>
-#include <iostream>
 
 class Manager;
 class LifeComponent;
@@ -15,7 +14,6 @@ class CollisionManager : public Manager{
 
     static CollisionManager *getInstance(){         //Pattern Singleton
         if(only_instance == NULL){
-            std::cout<<"Creando New\n";
             only_instance = new CollisionManager();
         }
         
@@ -23,7 +21,7 @@ class CollisionManager : public Manager{
     }
   
 
-    virtual ~CollisionManager(){}
+    virtual ~CollisionManager(){only_instance=NULL;}
     void createComponent(GameObject *owner, float width, float height,bool solid); 
     void updateAll();
 

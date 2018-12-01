@@ -19,7 +19,7 @@ class ProjectileManager : public Manager{
             return only_instance;
         }
 
-        ~ProjectileManager(){}
+        virtual ~ProjectileManager(){only_instance=NULL;}
         void createComponent(GameObject* owner, float damage);
         void createBullet();
 };

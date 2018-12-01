@@ -10,10 +10,10 @@ class Manager{
         Manager(){}
 
         //Destructor
-        ~Manager(){}
+        virtual ~Manager(){}
 
 
-        void removeComponent(Component *c){//TODO-----No funciona
+        virtual void removeComponent(Component *c){//TODO-----No funciona
             /*std::vector<Component *>::iterator iter;
             for(iter=components.begin(); iter!=components.end(); iter++){
                 if((*iter)==c){
@@ -25,7 +25,7 @@ class Manager{
             */
         }
 
-        void removeAll(){
+        virtual void removeAll(){
             components.clear();
         }
 };

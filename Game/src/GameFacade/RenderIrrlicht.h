@@ -24,7 +24,7 @@ class RenderIrrlicht{
         f32 frameDeltaTime;
     public:
         
-        virtual ~RenderIrrlicht(){}
+        virtual ~RenderIrrlicht(){only_instance=NULL;}
         static RenderIrrlicht* getInstance(){
             if(only_instance==NULL){
                 only_instance = new RenderIrrlicht();

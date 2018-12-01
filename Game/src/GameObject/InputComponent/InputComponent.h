@@ -15,7 +15,7 @@ class InputComponent : public Component
     //Constructor
     InputComponent(GameObject *owner): Component(owner, nullptr) {}
     
-    virtual ~InputComponent() override {}
+    virtual ~InputComponent(){}
 
 
 

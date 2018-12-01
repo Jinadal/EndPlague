@@ -14,7 +14,7 @@ class GameObject{
     public:
     GameObject(float x, float y, float z, float rz);
 
-    ~GameObject()=default;
+    virtual ~GameObject(){}
 
    
 

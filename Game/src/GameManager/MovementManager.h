@@ -15,7 +15,7 @@ class MovementManager : public Manager{
             return only_instance;
         } 
 
-        ~MovementManager(){}
+        virtual ~MovementManager(){only_instance=NULL;}
 
         void addComponent(MovementComponent* rc);
         void updateAll(float dt);   

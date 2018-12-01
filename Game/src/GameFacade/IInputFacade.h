@@ -5,9 +5,9 @@ class IInputFacade{
 public:
 
     //Constructor
-    IInputFacade() {}
+    IInputFacade(){}
 
     //Destructor
-    virtual ~IInputFacade() {}
+    virtual ~IInputFacade(){}
 
 };

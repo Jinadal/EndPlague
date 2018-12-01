@@ -15,7 +15,7 @@ class MeshNode{
         MeshNode(RenderIrrlicht* r,char s[]);
 
         //Destructor
-        ~MeshNode(){}
+        virtual ~MeshNode(){}
         
         //Changes the mesh of the node to de path
         void setMesh(char s[]);

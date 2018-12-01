@@ -22,7 +22,7 @@ private:
 public:
 
     //DESTRUCTOR
-    virtual ~InputFacade(){}
+    virtual ~InputFacade(){only_instance=NULL;}
     
     static InputFacade* getInstance(){
         if(only_instance==NULL){
