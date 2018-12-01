@@ -10,11 +10,12 @@ class GameObject{
     private:
         float x, y, z, rx, ry, rz;
         std::vector<Component*> components;
+        bool kill;
 
     public:
     GameObject(float x, float y, float z, float rz);
 
-    virtual ~GameObject(){}
+    virtual ~GameObject();
 
    
 
@@ -38,7 +39,7 @@ class GameObject{
 
 	//Add component
     void addComponent(Component* c);
-    void kill();
+    void toKill();//Sets kill true;
 
 
 	template<typename T>

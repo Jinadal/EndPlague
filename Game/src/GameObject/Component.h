@@ -13,19 +13,15 @@ class Component{
     }
 
     //Destructor
-    virtual ~Component(){};
+    virtual ~Component(){
+      manager->removeComponent(this);
+    };
 
     //Getter
     GameObject* getGameObject() {
-
         return gameObject;
-
     }
-    
-    void kill(){
-      manager->removeComponent(this);
-    }
-
+   
     protected:
       GameObject* gameObject;
       Manager* manager;

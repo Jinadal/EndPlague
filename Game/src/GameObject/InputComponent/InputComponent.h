@@ -13,7 +13,7 @@ class InputComponent : public Component
     public:
 
     //Constructor
-    InputComponent(GameObject *owner): Component(owner, nullptr) {}
+    InputComponent(GameObject *owner, Manager* m): Component(owner, m) {}
     
     virtual ~InputComponent(){}
 
