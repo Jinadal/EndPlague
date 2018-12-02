@@ -1,8 +1,8 @@
-#include "btBulletDynamicsCommon.h"
+#include <btBulletDynamicsCommon.h>
 
 class World{
     private:
-    statitc World* only_instace;
+    static World* only_instance;
 
     World();
 
@@ -10,19 +10,21 @@ class World{
     btDefaultCollisionConfiguration*        _collisionConfiguration;
     btCollisionDispatcher*                  _dispatcher;
     btSequentialImpulseConstraintSolver*    _solver;
-    btDiscreteDynamicsWorld*                _world;
+    btDynamicsWorld*                        _world;
 
     public:
     
-    virtual ~World(){ only_instance = NULL};
+    virtual ~World(){ only_instance = NULL; }
 
-    static RenderIrrlicht* getInstance()
+    static World* getInstance()
     {   
         if(only_instance==NULL)
         {
-            only_instance = new RenderIrrlicht();
+            only_instance = new World();
         }
         return only_instance;
     }
 
-}
+    void initWorldPhysics();
+
+};
