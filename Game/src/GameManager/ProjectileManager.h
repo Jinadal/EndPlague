@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include "ProjectileComponent.h"
 #include "GameObject.h"
