@@ -30,7 +30,7 @@ int main()
    InputFacade*         interface           = new InputFacade();
    RenderIrrlicht*      render              = new RenderIrrlicht(interface);
    RenderManager*       rendermanager       = RenderManager::getInstance();
-   MovementManager*     movementmanager     = MovementManager::geInstance();
+   MovementManager*     movementmanager     = MovementManager::getInstance();
    CollisionManager*    collisionmanager    = CollisionManager::getInstance();
    ShootManager*        shootmanager        = ShootManager::getInstance();
    LifeManager*         lifemanager         = LifeManager::getInstance();
@@ -70,15 +70,17 @@ int main()
             //Add Render
             rendermanager->createComponent(b, render, "res/Bullety.obj");
 
-            //Add Collision
-            collisionmanager->createComponent(b,50,50,true);
-
+          
             //Add Projectile
             projectilemanager->createComponent(b, 10.f);
 
             //Add Movement
             movementmanager->createComponent(b);
             b->getComponent<MovementComponent>()->setvY(100.f);
+
+              //Add Collision
+            collisionmanager->createComponent(b,50,50,true);
+
 
             bullets.push_back(b);
         }
