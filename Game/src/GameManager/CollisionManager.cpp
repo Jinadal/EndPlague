@@ -8,26 +8,6 @@
 
 CollisionManager* CollisionManager::only_instance = NULL;
 
-void CollisionManager::removecomponent(Component *c)
-{
-
-    std::vector<CollisionComponent *>::iterator iter;
-
-
-    for(iter=components.begin(); iter!=components.end(); iter++)
-    {
-        if((*iter)==c)
-        {
-            delete (*iter);
-
-            components.erase(iter);
-
-            return;
-        }
-    }
-
-
-}
 
 
 void CollisionManager::createComponent(GameObject *owner ,float width, float height, bool solid)
@@ -35,10 +15,10 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 
     if(owner->getComponent<MovementComponent>())
     {
-        components.insert(components.begin(),new CollisionComponent(owner,width,height,solid));
+        components.insert(components.begin(),new CollisionComponent(owner, this, width, height, solid));
         conMove ++;
     }else{
-        components.push_back(new CollisionComponent(owner,width,height,solid));
+        components.push_back(new CollisionComponent(owner, this, width, height, solid));
     }
     
     owner->addComponent(components[components.size()-1]);
@@ -47,55 +27,46 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 
 
 
-void CollisionManager::update()
+void CollisionManager::updateAll()
 {
-
     //std::vector<CollisionComponent *>::iterator iter1;
-
     for(int i = 0; i<conMove; i++)
     {
         for(int j = i+1; j < components.size(); j++)
         {
-            std::cout<<"Collision\n";
-            if(components[i]->testCollision(components[j])){
+            if(((CollisionComponent*)components[i])->testCollision(((CollisionComponent*)components[j]))){
                 
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackX();
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackY();
                 
+                /*
+                -------------------------------------------------------------
+                                    OPCIONES DE COLISION
+                -------------------------------------------------------------
+                    I=Proyectil
+                    J=Vida
 
-                //Comprobamos si hay projectiles y/o lifes
-                LifeComponent* l;
-                ProjectileComponent* p;
-                if(p = components[i]->getGameObject()->getComponent<ProjectileComponent>()){
-                    if(l = components[j]->getGameObject()->getComponent<LifeComponent>()){
-                        if(p->dealDamage(l)){
-                            //Los dos se han destruido
-                            std::cout<<"Los dos se han destruido\n";
-                        }else{
-                            //Solo se ha destruido el projectil
-                            std::cout<<"solo se ha destruido el projectil A\n";
-                        }
-                    }else{
-                        //Solo se destuye el projectil
-                        p->kill();
-                        std::cout<<"solo se ha destruido el projectil B\n";
-                    }
-                }else if(p = components[j]->getGameObject()->getComponent<ProjectileComponent>()){
-                    if(l = components[i]->getGameObject()->getComponent<LifeComponent>()){
-                        if(p->dealDamage(l)){
-                            //Los dos se han destruido
-                            std::cout<<"Los dos se han destruido\n";
-                        }else{
-                            //Solo se ha destruido el projectil
-                            std::cout<<"solo se ha destruido el projectil A\n";
-                            
-                        }
-                    }else{
-                        //Solo se destuye el projectil
-                        std::cout<<"solo se ha destruido el projectil B\n";
-                        p->kill();
-                    }
-                }
+                    I=Proyectil
+                    J=!Vida
+
+                    I=Vida
+                    J=Proyectil
+
+                    I=!Vida
+                    J=Proyectil
+    
+                */
+
+                ProjectileComponent* i_projectil = components[i]->getGameObject()->getComponent<ProjectileComponent>();
+                ProjectileComponent* j_projectil = components[j]->getGameObject()->getComponent<ProjectileComponent>();
+
+                LifeComponent* i_life = components[i]->getGameObject()->getComponent<LifeComponent>();
+                LifeComponent* j_life = components[j]->getGameObject()->getComponent<LifeComponent>();
+
+                if(i_projectil)
+                    i_projectil->dealDamage(j_life);
+                if(j_projectil)
+                    j_projectil->dealDamage(i_life);
             }
         }
         

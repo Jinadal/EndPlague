@@ -1,20 +1,19 @@
 #include <vector>
 #include "LifeComponent.h"
 
-
-class LifeManager{
+class Manager;
+class LifeManager : public Manager{
     private:
-        std::vector<LifeComponent*> components;
+        LifeManager():Manager(){}
         static LifeManager *only_instance;
-        LifeManager(){}
         
     public:
+        virtual ~LifeManager(){only_instance=NULL;}
         //Constructor Singletone
         static LifeManager *getInstance(){
             if(only_instance == NULL){only_instance = new LifeManager();}
             return only_instance;
         }
 
-        ~LifeManager(){}
         void createComponent(GameObject* owner, float l);
 };

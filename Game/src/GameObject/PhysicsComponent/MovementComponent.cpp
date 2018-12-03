@@ -1,17 +1,7 @@
 #include "MovementComponent.h"
 #include "GameObject.h"
-#include <iostream>
 #include <cmath>
 
-MovementComponent::MovementComponent(GameObject* g) : Component(g){
-    vX      = 0.f;
-    vY      = 0.f;
-    vZ      = 0.f;
-    vMax    = 40.f;
-    preX    = 0.f;
-    preY    = 0.f;
-    preZ    = 0.f;
-}
 
 void MovementComponent::update(float dt){
     //Comprobar vMax

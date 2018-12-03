@@ -9,16 +9,15 @@ class ProjectileComponent : public Component{
         float damage;
     public:
         //Constructor
-        ProjectileComponent(GameObject* g, float damage):Component(g){
+        ProjectileComponent(GameObject* g, Manager* m, float damage):Component(g, m){
             this->damage = damage;
         }
-        ~ProjectileComponent(){};
+        virtual ~ProjectileComponent(){};
 
         //Setter&Getter
-        int getDamage()         {return damage;}
-        void setDamage(int d)   {damage = d;}
+        float getDamage()         {return damage;}
+        void setDamage(float d)   {damage = d;}
 
         //Methods
-        bool dealDamage(LifeComponent* l);
-        void kill();
+        void dealDamage(LifeComponent* l);
 };

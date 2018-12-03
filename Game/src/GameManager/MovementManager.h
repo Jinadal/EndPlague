@@ -1,12 +1,12 @@
-
 #include "MovementComponent.h"
 #include <vector>
 
-class MovementManager{
+class Manager;
+class MovementManager : public Manager{
     private:
-        MovementManager(){}
+        MovementManager():Manager(){}
         static MovementManager *only_instance;
-        std::vector<MovementComponent*> components;
+
     public:
         static MovementManager* getInstance(){
             if(only_instance == NULL)
@@ -15,11 +15,9 @@ class MovementManager{
             return only_instance;
         } 
 
-        ~MovementManager(){}
+        virtual ~MovementManager(){only_instance=NULL;}
 
         void addComponent(MovementComponent* rc);
-        void updateAll(float dt);
-
-    void removecomponent(Component* c);    
-    void createComponent(GameObject *owner);
+        void updateAll(float dt);   
+        void createComponent(GameObject *owner);
 };

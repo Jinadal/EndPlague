@@ -11,10 +11,12 @@ class RenderComponent : public Component{
         RenderIrrlicht* render;
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
-        RenderComponent(GameObject* parent, RenderIrrlicht* r, char s[]);
-
+        RenderComponent(GameObject* g, Manager* m,  RenderIrrlicht* r, char s[]) : Component(g, m){
+            render = r;
+            node = new MeshNode(r, s);
+        }
         //Destructor
-        ~RenderComponent(){
+        virtual ~RenderComponent(){
 
             delete node;
           std::cout << "node destruido \n";

@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "Component.h"
+#include <iostream>
 
 //Constructor
 GameObject::GameObject(float x, float y, float z, float rz){
@@ -9,11 +10,16 @@ GameObject::GameObject(float x, float y, float z, float rz){
     this->rx    = 0;
     this->ry    = 0;
     this->rz    = rz;
+    kill        = false;
+}
+
+//Destructor
+GameObject::~GameObject(){
+    components.clear();
 }
 
 //Add component
 void GameObject::addComponent(Component* c){
     components.push_back(c);
 }
-
-void GameObject::kill(){}
+void GameObject::toKill(){kill=true;}

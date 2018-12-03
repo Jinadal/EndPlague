@@ -1,30 +1,29 @@
 #pragma once
-//Headers
-class GameObject;
+#include "Manager.h"
 
+
+class GameObject;
 class Component{
 
   public:
     //Constructor
-    Component(GameObject* g)  {
-
+    Component(GameObject* g, Manager* m)  {
+      manager = m;
       gameObject = g;
     }
 
     //Destructor
-    virtual ~Component(){};
+    virtual ~Component(){
+      manager->removeComponent(this);
+    };
 
     //Getter
     GameObject* getGameObject() {
-
         return gameObject;
-
     }
-
    
-  
-
     protected:
       GameObject* gameObject;
+      Manager* manager;
 
 };
