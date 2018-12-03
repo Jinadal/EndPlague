@@ -6,15 +6,16 @@ class World{
 
     World();
 
-    btBroadphaseInterface*                  _broadphase;
-    btDefaultCollisionConfiguration*        _collisionConfiguration;
-    btCollisionDispatcher*                  _dispatcher;
-    btSequentialImpulseConstraintSolver*    _solver;
-    btDynamicsWorld*                        _world;
-
+    btBroadphaseInterface*                      _broadphase;
+    btDefaultCollisionConfiguration*            _collisionConfiguration;
+    btCollisionDispatcher*                      _dispatcher;
+    btSequentialImpulseConstraintSolver*        _solver;
+    btDynamicsWorld*                            _world;
+    btAlignedObjectArray<btCollisionShape*>    _collisionShapes;
+    
     public:
     
-    virtual ~World(){ only_instance = NULL; }
+    virtual ~World();
 
     static World* getInstance()
     {   
@@ -26,5 +27,6 @@ class World{
     }
 
     void initWorldPhysics();
-
+    void createRigidBody();
+    void iteration();
 };
