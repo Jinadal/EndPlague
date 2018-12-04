@@ -9,12 +9,7 @@ GameObject* GameResource::createGameObject(float x, float y, float z, float rz){
 }
 
 void GameResource::updateAll(){
-    //std::cout<<"GameObjects: ";
-    for(int i=0; i<gameobjects.size(); i++)
-        //std::cout<<gameobjects[i];
-
-    //std::cout<<"\n";
-    if(deleted)return;
+    
     std::vector<GameObject*>::iterator it;
     for(it = gameobjects.begin(); it!=gameobjects.end(); it++){
         GameObject* go = *it;
@@ -22,10 +17,10 @@ void GameResource::updateAll(){
             std::cout<<"Antes de borrar: "<<go<<"\n";
             delete go;
             //*it = nullptr;
-            deleted=true;
             std::cout<<"Despues de borrar\n";
             //it=gameobjects.erase(it);
             //it--;
         }
+        it = gameobjects.erase(it);
     }
 }

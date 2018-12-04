@@ -90,8 +90,6 @@ int main()
             collisionmanager->createComponent(b, 30.f, 30.f, true);
             projectilemanager->createComponent(b, 10.f);
         }
-
-
         render->drawAll();
     }
 

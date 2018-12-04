@@ -10,7 +10,7 @@ GameObject::GameObject(float x, float y, float z, float rz){
     this->rx    = 0;
     this->ry    = 0;
     this->rz    = rz;
-    kill        = false;
+    std::cout<<kill<<"\n";
 }
 
 //Destructor
@@ -26,4 +26,5 @@ GameObject::~GameObject(){
 void GameObject::addComponent(Component* c){
     components.push_back(c);
 }
+
 void GameObject::toKill(){kill=true;}
