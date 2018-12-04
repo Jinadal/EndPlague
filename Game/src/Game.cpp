@@ -9,8 +9,11 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
-//#include "bullet/btBulletCollisionCommon.h"
-//#include "bullet/btBulletDynamicsCommon.h"
+#include "bullet/btBulletCollisionCommon.h"
+#include "bullet/btBulletDynamicsCommon.h"
+#include "Nodo.h"
+#include "IAManager.h"
+
 
 
 using namespace irr;
@@ -36,23 +39,62 @@ int main()
    ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
    InputManager*        inputmanager        = InputManager::getInstance();
 
+   IAManager*        iamanager        = IAManager::getInstance();
+
+
+   //ITEM MANAGER
+   //STORAGE MANAGER
+
 
     //ADDING A BOX
     GameObject* box = gameresource->createGameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    //Adding an Item1
+    GameObject* item1 = gameresource->createGameObject(0.f, 30.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    //Adding an Item2
+    GameObject* item2 = gameresource->createGameObject(0.f, -200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+
+    GameObject* primero = gameresource->createGameObject(200.f, -200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+
     
     //Add a Render
     rendermanager->createComponent(box, render, (char*)"res/Blocky.obj");//Fachada de render y path de obj
-    box->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
+    box->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmpç
+
+    //Add a Render for Item 1
+    rendermanager->createComponent(item1, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
+
+    //Add a Render for Item 2
+    rendermanager->createComponent(item2, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
+
+    //Add a Render to primero
+    rendermanager->createComponent(primero, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    primero->getComponent<RenderComponent>()->setTexture((char*) "res/red.bmp");//Path de bmp
+
 
     //Add Movement
     movementmanager->createComponent(box);
     box->getComponent<MovementComponent>()->setvMax(1000.f);
+
+     //Add Movement to primero
+    movementmanager->createComponent(primero);
+    primero->getComponent<MovementComponent>()->setvMax(50.f);
 
     //Add Input
     inputmanager->createComponent(box);
 
     //Add Collisions
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(item1, 50, 50, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(item2, 50, 50, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(primero, 100, 100, true); //Ancho, alto y si es solido
+
+    //Add IA
+
+    iamanager->createComponent(primero);
+
+    primero->getComponent<IAComponent>()->Initialice();
     
     //Add Life
     lifemanager->createComponent(box, 100.f);//Vida
@@ -64,14 +106,23 @@ int main()
     {   
         box->getComponent<InputComponent>()->pulseInput(interface);
 
+
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
+        iamanager->updateAll();
+        
         collisionmanager->updateAll();
+
         gameresource->updateAll();
         rendermanager->updateAll();
 
 
         render->drawAll();
+
+
+
+
+
     }
 
     render->drop();

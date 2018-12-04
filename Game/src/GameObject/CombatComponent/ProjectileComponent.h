@@ -15,8 +15,8 @@ class ProjectileComponent : public Component{
         virtual ~ProjectileComponent(){};
 
         //Setter&Getter
-        int getDamage()         {return damage;}
-        void setDamage(int d)   {damage = d;}
+        float getDamage()         {return damage;}
+        void setDamage(float d)   {damage = d;}
 
         //Methods
         void dealDamage(LifeComponent* l);
