@@ -13,6 +13,12 @@ class ItemComponent : public Component{
         //DESTRUCTOR
         virtual ~ItemComponent(){}
 
+        //Stores the item if possible
+        bool itemCatch();
+        //Drops the actual item
+        bool itemDrop();
+
+
         //SETTERS AND GETTERS
         int getType(){return type;}
         void setType(int t){type = t;}
