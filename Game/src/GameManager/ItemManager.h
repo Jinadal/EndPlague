@@ -22,5 +22,6 @@ class ItemManager : public Manager{
         //DESTRUCTOR
         virtual ~ItemManager() {only_instance = NULL;}
         void createComponent(GameObject *owner, int type);
+        void updateAll();
 
 };

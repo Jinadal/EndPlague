@@ -66,7 +66,7 @@ int main()
 
     //Add a Render for Item 2
     rendermanager->createComponent(item2, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
-    item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
+    //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
 
     //Add a Render to primero
     rendermanager->createComponent(primero, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
