@@ -9,8 +9,8 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
-#include "bullet/btBulletCollisionCommon.h"
-#include "bullet/btBulletDynamicsCommon.h"
+//#include "bullet/btBulletCollisionCommon.h"
+//#include "bullet/btBulletDynamicsCommon.h"
 
 
 using namespace irr;
