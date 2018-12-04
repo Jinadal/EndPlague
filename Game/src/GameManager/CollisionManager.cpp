@@ -29,34 +29,16 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 
 void CollisionManager::updateAll()
 {
-    //std::vector<CollisionComponent *>::iterator iter1;
-    for(int i = 0; i<conMove; i++)
+    for(std::size_t i = 0; i<conMove; i++)
     {
-        for(int j = i+1; j < components.size(); j++)
+        for(std::size_t j = i+1; j < components.size(); j++)
         {
             if(((CollisionComponent*)components[i])->testCollision(((CollisionComponent*)components[j]))){
                 
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackX();
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackY();
-                
-                /*
-                -------------------------------------------------------------
-                                    OPCIONES DE COLISION
-                -------------------------------------------------------------
-                    I=Proyectil
-                    J=Vida
-
-                    I=Proyectil
-                    J=!Vida
-
-                    I=Vida
-                    J=Proyectil
-
-                    I=!Vida
-                    J=Proyectil
-    
-                */
-                std::cout<<"Colision: "<<components[i]->getGameObject()<<"  Y  "<<components[j]->getGameObject()<<"\n";
+               
+                std::cout<<"Colision: GO:"<<components[i]->getGameObject()<<"  CO:"<<components[i]<<"  &&  GO:"<<components[j]->getGameObject()<<"  CO:"<<components[j]<<"\n";
 
                 ProjectileComponent* i_projectil = components[i]->getGameObject()->getComponent<ProjectileComponent>();
                 ProjectileComponent* j_projectil = components[j]->getGameObject()->getComponent<ProjectileComponent>();

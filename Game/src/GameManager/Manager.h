@@ -15,13 +15,16 @@ class Manager{
 
 
         virtual void removeComponent(Component* c){//TODO-----No funciona
+            std::cout<<"Borrando Componente\n";
+            std::cout<<components.size()<<"\n";
             for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++){
                 Component* co = *it;
                 if(co==c){
+                    
                     components.erase(it);
-                    return;
+                    break;
                 }
             }
-            
+            std::cout<<components.size()<<"\n";
         }
 };
