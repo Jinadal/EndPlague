@@ -74,3 +74,24 @@ void CollisionManager::updateAll()
     }
 
 }
+
+bool CollisionManager::checkSingle(CollisionComponent * c)
+{
+    
+    for(int i =0; i<components.size();i++){
+        if (components[i] != c){
+           
+             if(c->testCollision(((CollisionComponent*)components[i])))
+             {
+                
+                 return true;
+
+             }else{
+                 
+             }
+
+        }
+
+    }
+    return false;
+}

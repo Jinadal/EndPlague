@@ -21,6 +21,10 @@ class Component{
     GameObject* getGameObject() {
         return gameObject;
     }
+
+     Manager* getManager() {
+        return manager;
+    }
    
     protected:
       GameObject* gameObject;
