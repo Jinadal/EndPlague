@@ -61,6 +61,11 @@ int main()
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
 
+    GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
+    rendermanager->createComponent(map, render, (char*)"res/Mapy.obj");//Fachada de render y path de obj
+    map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp    
+
+
     float elapsedTime = 10.f;
     while(render->run())
     {   
