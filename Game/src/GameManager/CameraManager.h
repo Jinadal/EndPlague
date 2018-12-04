@@ -1,11 +1,9 @@
-
 #include "CameraComponent.h"
 
 class Manager;
-class GameObject;
 class CameraManager : public Manager{
     private:
-        CameraManager(){}
+        CameraManager():Manager(){}
         static CameraManager* only_instance;
     public:
         CameraManager* getInstance(){

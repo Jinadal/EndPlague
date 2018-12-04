@@ -30,9 +30,9 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 void CollisionManager::updateAll()
 {
     //std::vector<CollisionComponent *>::iterator iter1;
-    for(int i = 0; i<conMove; i++)
+    for(std::size_t i = 0; i<conMove; i++)
     {
-        for(int j = i+1; j < components.size(); j++)
+        for(std::size_t j = i+1; j < components.size(); j++)
         {
             if(((CollisionComponent*)components[i])->testCollision(((CollisionComponent*)components[j]))){
                 

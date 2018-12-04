@@ -10,10 +10,10 @@ void CameraManager::createComponent(GameObject* go)
     go->addComponent(components[components.size()-1]);
 }
 
-void updateAll()
+void CameraManager::updateAll()
 {
     for(auto* c : components)
     {
-        ((CameraComponent*)c)->update();
+       ((CameraComponent*)c)->update();
     }
 }
