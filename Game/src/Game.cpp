@@ -9,6 +9,7 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
+#include "CameraManager.h"
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 
@@ -35,6 +36,7 @@ int main()
    LifeManager*         lifemanager         = LifeManager::getInstance();
    ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
    InputManager*        inputmanager        = InputManager::getInstance();
+   CameraManager*       cameramanager       = CameraManager::getInstance();
 
 
     //ADDING A BOX
@@ -60,13 +62,16 @@ int main()
     //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
+    //Add Camera
+    std::cout<<"Creando Camara\n";
+    cameramanager->createComponent(box);
+    std::cout<<"Camara Creada\n";
 
     GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
     rendermanager->createComponent(map, render, (char*)"res/Mapy.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp    
 
 
-    float elapsedTime = 10.f;
     while(render->run())
     {   
         //std::cout<<"Uptate Input: \n";
@@ -80,22 +85,10 @@ int main()
         //std::cout<<"Uptate GameResoure: \n";
         gameresource->updateAll();
         //std::cout<<"Uptate Render: \n";
+        cameramanager->updateAll();
+
         rendermanager->updateAll();
         //std::cout<<"Todo OK\n";
-
-        elapsedTime += render->getFrameDeltaTime();
-        if(elapsedTime>5.f){
-            elapsedTime=0.f;
-            GameObject* b = gameresource->createGameObject(0.f, -200.f, 0.f, 0.f);
-            std::cout<<"Proyectil: "<<b<<"\n";
-            movementmanager->createComponent(b);
-            b->getComponent<MovementComponent>()->setvMax(200.f);
-            b->getComponent<MovementComponent>()->setvY(1);
-            rendermanager->createComponent(b, render, (char*)"res/Bullety.obj");
-            collisionmanager->createComponent(b, 30.f, 30.f, true);
-            projectilemanager->createComponent(b, 10.f);
-        }
-
 
         render->drawAll();
     }

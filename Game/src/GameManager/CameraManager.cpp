@@ -1,19 +1,20 @@
-#include "CameraManager.h"
 
+#include "CameraManager.h"
 
 CameraManager* CameraManager::only_instance = NULL;
 
-void CameraManager::createComponent(GameObject* go)
-{
-    components.push_back(new CameraComponent(go, this));
 
-    go->addComponent(components[components.size()-1]);
+//Updates all the components
+void CameraManager::updateAll(){
+    for(auto* c : components){
+        ((CameraComponent*)c)->update();
+    }
 }
 
-void CameraManager::updateAll()
+void CameraManager::createComponent(GameObject *owner)
 {
-    for(auto* c : components)
-    {
-       ((CameraComponent*)c)->update();
-    }   
+
+    components.push_back(new CameraComponent(owner, this));
+
+    owner->addComponent(components[components.size()-1]);
 }

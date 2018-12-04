@@ -1,3 +1,4 @@
+#pragma once
 #include "CameraComponent.h"
 
 class Manager;
@@ -6,7 +7,7 @@ class CameraManager : public Manager{
         CameraManager():Manager(){}
         static CameraManager* only_instance;
     public:
-        CameraManager* getInstance(){
+        static CameraManager* getInstance(){
             if(only_instance = NULL)
                 only_instance = new CameraManager();
             
