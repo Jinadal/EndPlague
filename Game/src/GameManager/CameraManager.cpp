@@ -15,5 +15,5 @@ void CameraManager::updateAll()
     for(auto* c : components)
     {
        ((CameraComponent*)c)->update();
-    }
+    }   
 }
