@@ -10,17 +10,9 @@ CollisionManager* CollisionManager::only_instance = NULL;
 
 
 
-void CollisionManager::createComponent(GameObject *owner ,float width, float height, bool solid)
+void CollisionManager::createComponent(GameObject* owner ,float width, float height, bool solid)
 {
-
-    if(owner->getComponent<MovementComponent>())
-    {
-        components.insert(components.begin(),new CollisionComponent(owner, this, width, height, solid));
-        conMove ++;
-    }else{
-        components.push_back(new CollisionComponent(owner, this, width, height, solid));
-    }
-    
+    components.push_back(new CollisionComponent(owner, this, width, height, solid));
     owner->addComponent(components[components.size()-1]);
 }
 
@@ -29,17 +21,17 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 
 void CollisionManager::updateAll()
 {
-    for(std::size_t i = 0; i<conMove; i++)
+    for(std::size_t i = 0; i<components.size(); i++)
     {
-        for(std::size_t j = i+1; j < components.size(); j++)
+        for(std::size_t j = i+1; j < components.size() && components[j]->getGameObject()->getComponent<MovementComponent>(); j++)
         {
             if(((CollisionComponent*)components[i])->testCollision(((CollisionComponent*)components[j]))){
                 
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackX();
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackY();
                
-                std::cout<<"Colision: GO:"<<components[i]->getGameObject()<<"  CO:"<<components[i]<<"  &&  GO:"<<components[j]->getGameObject()<<"  CO:"<<components[j]<<"\n";
-
+                
+                
                 ProjectileComponent* i_projectil = components[i]->getGameObject()->getComponent<ProjectileComponent>();
                 ProjectileComponent* j_projectil = components[j]->getGameObject()->getComponent<ProjectileComponent>();
 

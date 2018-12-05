@@ -18,6 +18,7 @@ class RenderComponent : public Component{
         //Destructor
         virtual ~RenderComponent(){
             std::cout<<"Render Deleted\n";
+            setVisible(false);
             delete node;
         }
 

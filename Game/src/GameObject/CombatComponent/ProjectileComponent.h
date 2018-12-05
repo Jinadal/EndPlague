@@ -13,7 +13,7 @@ class ProjectileComponent : public Component{
         ProjectileComponent(GameObject* g, Manager* m, float damage):Component(g, m){
             this->damage = damage;
         }
-        virtual ~ProjectileComponent(){std::cout<<"Projectile Deleted\n";};
+        ~ProjectileComponent(){std::cout<<"Projectile Deleted\n";};
 
         //Setter&Getter
         float getDamage()         {return damage;}

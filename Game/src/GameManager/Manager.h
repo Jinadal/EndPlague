@@ -16,16 +16,9 @@ class Manager{
 
         void removeComponent(Component* c)//TODO-----No funciona
         {
-            std::cout<<"Borrando Componente\n";
-            std::cout<<components.size()<<"\n";
-            for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++)
-            {
-                if((*it)==c)
-                {    
-                    components.erase(it);
-                    break;
-                }
+            for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++){
+                components.erase(it);
+                break;
             }
-            std::cout<<components.size()<<"\n";
         }
 };

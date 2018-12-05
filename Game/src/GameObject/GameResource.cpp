@@ -9,18 +9,17 @@ GameObject* GameResource::createGameObject(float x, float y, float z, float rz){
 }
 
 void GameResource::updateAll(){
-    
-    std::vector<GameObject*>::iterator it;
-    for(it = gameobjects.begin(); it!=gameobjects.end(); it++){
-        GameObject* go = *it;
-        if(go->getKill()){
-            std::cout<<"Antes de borrar: "<<go<<"\n";
-            delete go;
-            //*it = nullptr;
-            std::cout<<"Despues de borrar\n";
-            //it=gameobjects.erase(it);
-            //it--;
+    for(std::vector<GameObject*>::iterator it = gameobjects.begin(); it!=gameobjects.end(); it++){
+        std::cout<<"Try:\n";
+        GameObject* g = *it;
+        std::cout<<"a\n";
+        if(g!=NULL && g->getKill()){
+            std::cout<<"  KILL!  ";
+            delete g;
+            it = gameobjects.erase(it);
+            std::cout<<"Killed\n";
+
         }
-        it = gameobjects.erase(it);
+        std::cout<<"b\n";
     }
 }

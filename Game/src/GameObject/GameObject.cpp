@@ -10,21 +10,18 @@ GameObject::GameObject(float x, float y, float z, float rz){
     this->rx    = 0;
     this->ry    = 0;
     this->rz    = rz;
-    std::cout<<kill<<"\n";
 }
 
 //Destructor
 GameObject::~GameObject(){
-    for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++){
-        Component* co = *it;
-        delete co;
+    for(std::size_t i= 0; i<components.size(); i++)
+    {
+        std::cout<<i;
+        delete components[i];
     }
-    std::cout<<"GameObject borrado: "<<this<<"\n";
 }
 
 //Add component
 void GameObject::addComponent(Component* c){
     components.push_back(c);
 }
-
-void GameObject::toKill(){kill=true;}

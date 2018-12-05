@@ -6,6 +6,5 @@ void ProjectileComponent::dealDamage(LifeComponent* l){
     if(l)
         l->looseLife(damage);
 
-    gameObject->toKill();
-    std::cout<<"Deleting pojectile\n";
+    gameObject->setKill(true);
 }
