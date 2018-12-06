@@ -1,14 +1,16 @@
-#include "World.h"
+ 
+#include "PhysicBullet.h"
 
-World* World::only_instance = NULL;
 
-World::~World()
+PhysicBullet* PhysicBullet::only_instance = NULL;
+
+PhysicBullet::~PhysicBullet()
 {
 
     //Deleting motionstate/rigidbodies/shapes
     for(int i=0; i < _world->getNumCollisionObjects() - 1 ; i--)
     {
-        btCollisionObject*   delShape    = _world->getCollisionObjectArray()[i];
+        btCollisionObject*  delShape    = _world->getCollisionObjectArray()[i];
         btRigidBody*        delbody     = btRigidBody::upcast(delShape);
         if(delbody && delbody->getMotionState())
         {
@@ -31,7 +33,7 @@ World::~World()
     only_instance = NULL;
 }
 
-void World::initWorldPhysics()
+void PhysicBullet::initWorldPhysics()
 {
     //Initialize the scene where the physics take part. It defines how collision are going to take part and resolved.
 
@@ -55,12 +57,14 @@ void World::initWorldPhysics()
 
     //Set gravity to physics in y=-9,8
     _world->setGravity(btVector3(0,-9.8,0));
+
+
+    //We create the floor of our world
+    createRigidBody(btVector3(0.0f,0.0f,0.0f), btVector3(10.0f,0.5f,10.0f),0.0f);
 }
 
-void World::createRigidBody()
+void PhysicBullet::createRigidBody(const btVector3 &initPos, const btVector3 &scale, btScalar mass)
 {
-    btVector3 initPos(10,0,0);
-
     //Matrix 4x4 for position and rotation
     btTransform transform;
 	transform.setIdentity();
@@ -72,9 +76,11 @@ void World::createRigidBody()
     //We create a collision with box shape with sides 100. Each parametre starts from the center of the shape
     //Afterwards we create a RigidBody that wont modifate its shape after collision. 
     //Body parametres = (mass,motionstate,collisionshape,)
-    btCollisionShape*   boxyBox = new btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
-    btRigidBody*        body    = new btRigidBody(0.1f,motionState,boxyBox);
-
+    btCollisionShape*   boxyBox = new btBoxShape(scale);
+    btVector3 LocalInertia;                                                                 // METODO BULLET AÑADIR CUBO
+    boxyBox->calculateLocalInertia(mass, LocalInertia);
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, motionState, boxyBox,LocalInertia);
+	btRigidBody* body = new btRigidBody(rbInfo);
 
 	//Array of shapes in the world
 	//Better re-use collision shapes than rigidbodies
@@ -84,11 +90,11 @@ void World::createRigidBody()
     _world->addRigidBody(body);
 }
 
-void World::iteration()
+void PhysicBullet::iteration(float delta)
 {
     //Update the objects in the world based on the step parametres of time
     //Parametres = stepSimulation(btScalar timeStep,int maxSubSteps=1,btScalar fixedTimeStep=btScalar(1.)/btScalar(60.));
     //timeStep is the time passed after last simulation.
-    _world->stepSimulation(1.f / 60.f, 10);
+    _world->stepSimulation(delta,1,1.0/60.0);
 
 }

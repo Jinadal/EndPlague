@@ -1,32 +1,32 @@
+ 
 #include <btBulletDynamicsCommon.h>
 
-class World{
+class PhysicBullet{
     private:
-    static World* only_instance;
-
-    World();
+    static PhysicBullet* only_instance;
 
     btBroadphaseInterface*                      _broadphase;
     btDefaultCollisionConfiguration*            _collisionConfiguration;
     btCollisionDispatcher*                      _dispatcher;
     btSequentialImpulseConstraintSolver*        _solver;
     btDynamicsWorld*                            _world;
-    btAlignedObjectArray<btCollisionShape*>    _collisionShapes;
+    btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
     
     public:
     
-    virtual ~World();
+    virtual ~PhysicBullet();
 
-    static World* getInstance()
+    static PhysicBullet* getInstance()
     {   
         if(only_instance==NULL)
         {
-            only_instance = new World();
+            only_instance = new PhysicBullet();
         }
         return only_instance;
     }
 
     void initWorldPhysics();
-    void createRigidBody();
-    void iteration();
+    void createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
+    void iteration(float d);
+    btDynamicsWorld* getWorld(){ return _world; }
 };
