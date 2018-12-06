@@ -15,7 +15,7 @@ class IAManager : public Manager{
             return only_instance;
         }
 
-        void createComponent(GameObject* owner);
+        void createComponent(GameObject* owner, GameObject* personaje);
         void updateAll();
 
 };

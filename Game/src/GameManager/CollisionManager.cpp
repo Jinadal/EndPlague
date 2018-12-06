@@ -17,11 +17,14 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
     {
         components.insert(components.begin(),new CollisionComponent(owner, this, width, height, solid));
         conMove ++;
+    owner->addComponent(components[0]);
+
     }else{
         components.push_back(new CollisionComponent(owner, this, width, height, solid));
+    owner->addComponent(components[components.size()-1]);
+
     }
     
-    owner->addComponent(components[components.size()-1]);
 }
 
 

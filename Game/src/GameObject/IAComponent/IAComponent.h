@@ -10,7 +10,7 @@ class IAComponent : public Component
 
     public:
 
-    IAComponent(GameObject * owner, Manager * m): Component(owner, m){}
+    IAComponent(GameObject * owner, Manager * m, GameObject* main): Component(owner, m), main(main){}
     ~IAComponent(){}
 
     void Initialice();
@@ -18,7 +18,7 @@ class IAComponent : public Component
 
     std::map<std::string,Nodo*> mapa;
 
-
+    GameObject* main;
 
 
 

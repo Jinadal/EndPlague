@@ -5,12 +5,12 @@ IAManager* IAManager::only_instance = NULL;
 
 
 
-void IAManager::createComponent(GameObject *owner )
+void IAManager::createComponent(GameObject *owner, GameObject *personaje )
 {
 
    
    
-        components.push_back(new IAComponent(owner,this));
+        components.push_back(new IAComponent(owner,this, personaje));
    
     
     owner->addComponent(components[components.size()-1]);

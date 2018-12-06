@@ -24,6 +24,14 @@ bool MoverArriba::run(){
     owner->getComponent<MovementComponent>()->moveObject(0,1);
     return true;
 }
+
+
+bool MoverAbajo::run(){
+
+
+    owner->getComponent<MovementComponent>()->moveObject(0,-1);
+    return true;
+}
 bool MoverIzda::run(){
 
 

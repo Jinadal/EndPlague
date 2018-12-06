@@ -52,3 +52,16 @@ class MoverDcha : public Nodo
 
 GameObject * owner;
 };
+
+class MoverAbajo : public Nodo
+{
+    
+    public:
+
+    MoverAbajo(GameObject * o){owner = o;}
+    virtual ~MoverAbajo(){}
+
+    bool run() override;
+
+GameObject * owner;
+};

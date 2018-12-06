@@ -79,7 +79,7 @@ int main()
 
      //Add Movement to primero
     movementmanager->createComponent(primero);
-    primero->getComponent<MovementComponent>()->setvMax(50.f);
+    primero->getComponent<MovementComponent>()->setvMax(200.f);
 
     //Add Input
     inputmanager->createComponent(box);
@@ -88,11 +88,11 @@ int main()
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
     collisionmanager->createComponent(item1, 50, 50, true); //Ancho, alto y si es solido
     collisionmanager->createComponent(item2, 50, 50, true); //Ancho, alto y si es solido
-    collisionmanager->createComponent(primero, 100, 100, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(primero, 55, 55, true); //Ancho, alto y si es solido
 
     //Add IA
 
-    iamanager->createComponent(primero);
+    iamanager->createComponent(primero,box);
 
     primero->getComponent<IAComponent>()->Initialice();
     
@@ -104,12 +104,14 @@ int main()
 
     while(render->run())
     {   
+       
+
         box->getComponent<InputComponent>()->pulseInput(interface);
+        iamanager->updateAll();
 
 
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
-        iamanager->updateAll();
         
         collisionmanager->updateAll();
 
