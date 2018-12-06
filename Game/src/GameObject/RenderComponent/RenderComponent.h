@@ -19,7 +19,7 @@ class RenderComponent : public Component{
         ~RenderComponent()
         {
             setVisible(false);
-            //delete node;
+            delete node;
         }
 
         //Updates the position and the scale of the mesh

@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
+#include "RenderIrrlicht.h"
 #include <vector>
 
 class Manager;
@@ -17,9 +18,8 @@ class RenderManager : public Manager{
             return only_instance;
         }
 
-        virtual ~RenderManager(){only_instance=NULL;}
+        ~RenderManager(){only_instance=NULL;}
         void updateAll();
-        void kill(); 
-        void createComponent(GameObject *owner, RenderIrrlicht *render, char* path);
+        void createComponent(GameObject *owner, char* path);
 
 };

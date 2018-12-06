@@ -3,7 +3,6 @@
 #include <ShootComponent.h>
 
 ShootManager* ShootManager::only_instance = NULL;
-ProjectileFabric* fabric = new ProjectileFabric();
 
 void ShootManager::updateAll(float dt){                         //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 
     for(size_t i=0; i < components.size(); i++){                //Check vector of ShootComponent
@@ -17,9 +16,6 @@ void ShootManager::updateAll(float dt){                         //Checks which c
 void ShootManager::createProjectile(float x, float y, float rz, int k){  
     
     //Here we may create a bullet
-
-    fabric->createBullet(x, y, rz, k);
-
     std::cout<<"Bala creada!:\n"<<"  x: "<<x<<"\n  y: "<<y<<"\n  rz:"<<rz<<"\n  k: "<<k<<"\n";
 }
 

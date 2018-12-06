@@ -9,4 +9,3 @@ void ProjectileManager::createComponent(GameObject *owner, float damage)
     owner->addComponent(components[components.size()-1]);
 }
 
-void ProjectileManager::createBullet(){}

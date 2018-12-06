@@ -26,7 +26,8 @@ RenderIrrlicht::RenderIrrlicht(){
 }
 
 
-void RenderIrrlicht::drawAll(){
+void RenderIrrlicht::drawAll()
+{
     // Work out a frame delta time.
     const u32 now = device->getTimer()->getTime();
     frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
@@ -40,16 +41,17 @@ void RenderIrrlicht::drawAll(){
     driver->endScene();
 }
 
-bool RenderIrrlicht::run(){
+bool RenderIrrlicht::run()
+{
     return device->run();
 }
 
-void RenderIrrlicht::drop(){
-   
-
+void RenderIrrlicht::drop()
+{
     device->drop();
 }
 
-float RenderIrrlicht::getFrameDeltaTime(){
+float RenderIrrlicht::getFrameDeltaTime()
+{
     return frameDeltaTime;
 }

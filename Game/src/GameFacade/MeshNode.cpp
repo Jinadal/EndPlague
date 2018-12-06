@@ -29,7 +29,7 @@ void MeshNode::setMesh(char s[]){
     node->setMesh(mesh);//sets the mesh on the node
 }
 
-//Changes the position of the node
+//Changes the position nsertof the node
 void MeshNode::setPosition(float x, float y, float z){
     core::vector3df nodePosition = node->getPosition();
     nodePosition.Y = y;
