@@ -1,3 +1,4 @@
+
 #include "RenderIrrlicht.h"
 #include <iostream>
 
@@ -18,7 +19,7 @@ RenderIrrlicht::RenderIrrlicht(){
     guienv = device->getGUIEnvironment();
 
 
-    smgr->addCameraSceneNode(0, vector3df(0,0,-600), vector3df(0,0,0));
+    //smgr->addCameraSceneNode(0, vector3df(0,0,-600), vector3df(0,0,0));
     smgr->addLightSceneNode();
 
 

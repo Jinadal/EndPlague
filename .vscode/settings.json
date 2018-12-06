@@ -1,6 +1,10 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "deque": "cpp",
         "vector": "cpp"
+=======
+        "iostream": "cpp"
+>>>>>>> CameraOmponent
     }
 }

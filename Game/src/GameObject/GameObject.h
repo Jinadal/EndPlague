@@ -25,6 +25,7 @@ class GameObject{
     float getRX(){return rx;}
     float getRY(){return ry;}
     float getRZ(){return rz;}
+    bool getKill(){return kill;}
     
 
     void setX(float x){this->x = x;}
@@ -40,6 +41,7 @@ class GameObject{
 	//Add component
     void addComponent(Component* c);
     void toKill();//Sets kill true;
+    
 
 
 	template<typename T>

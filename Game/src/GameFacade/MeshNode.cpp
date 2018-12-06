@@ -3,6 +3,13 @@
 #include <iostream>
 
 
+using namespace irr;
+using namespace core;
+using namespace scene;
+using namespace video;
+using namespace io;
+using namespace gui;
+
 //Creation of a mesh node, recives the facade an the path of the mesh
 MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
     render = r;//Assing the facade
@@ -15,7 +22,7 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
     }
     node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
     node->setMaterialFlag(video::EMF_LIGHTING, false);//Set light
-    //node->setMD2Animation(scene::EMAT_STAND);//??
+    node->setAutomaticCulling(EAC_OFF);
 }
 
 //Changes the mesh of the node to de path

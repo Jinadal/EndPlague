@@ -9,6 +9,7 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
+#include "CameraManager.h"
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 #include "Nodo.h"
@@ -38,6 +39,7 @@ int main()
    LifeManager*         lifemanager         = LifeManager::getInstance();
    ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
    InputManager*        inputmanager        = InputManager::getInstance();
+   CameraManager*       cameramanager       = CameraManager::getInstance();
 
    IAManager*        iamanager        = IAManager::getInstance();
 
@@ -97,25 +99,50 @@ int main()
     primero->getComponent<IAComponent>()->Initialice();
     
     //Add Life
-    lifemanager->createComponent(box, 100.f);//Vida
+    lifemanager->createComponent(box, 40.f);//Vida
 
     //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
+    //Add Camera
+    std::cout<<"Creando Camara\n";
+    cameramanager->createComponent(box);
+    std::cout<<"Camara Creada\n";
+
+    GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
+    rendermanager->createComponent(map, render, (char*)"res/Mapy.obj");//Fachada de render y path de obj
+    map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp    
+
+
     while(render->run())
     {   
+        //std::cout<<"Uptate Input: \n";
         box->getComponent<InputComponent>()->pulseInput(interface);
+<<<<<<< HEAD
 
 
+=======
+        //std::cout<<"Uptate Movemnet: \n";
+>>>>>>> CameraOmponent
         movementmanager->updateAll(render->getFrameDeltaTime());
+        //std::cout<<"Uptate Shoot: \n";
         shootmanager->updateAll(render->getFrameDeltaTime());
+<<<<<<< HEAD
         iamanager->updateAll();
         
         collisionmanager->updateAll();
 
+=======
+        //std::cout<<"Uptate Collision: \n";
+        collisionmanager->updateAll();
+        //std::cout<<"Uptate GameResoure: \n";
+>>>>>>> CameraOmponent
         gameresource->updateAll();
-        rendermanager->updateAll();
+        //std::cout<<"Uptate Render: \n";
+        cameramanager->updateAll();
 
+        rendermanager->updateAll();
+        //std::cout<<"Todo OK\n";
 
         render->drawAll();
 
