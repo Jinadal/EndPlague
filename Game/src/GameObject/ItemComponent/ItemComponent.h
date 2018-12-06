@@ -3,23 +3,15 @@
 class GameObject;
 class ItemComponent : public Component{
     private:
-        int type;
+        float cadencia;
     public:
         //CONSTRUCTOR
-        ItemComponent(GameObject* g, Manager* m, int type):Component(g, m){
-            this->type = type;
+        ItemComponent(GameObject* g, Manager* m, float cadencia) :Component(g, m){
+            this->cadencia = cadencia;
         }
 
         //DESTRUCTOR
-        virtual ~ItemComponent(){}
-
-        //Stores the item if possible
-        bool itemCatch();
-        //Drops the actual item
-        bool itemDrop();
+        ~ItemComponent(){}
 
 
-        //SETTERS AND GETTERS
-        int getType(){return type;}
-        void setType(int t){type = t;}
 };

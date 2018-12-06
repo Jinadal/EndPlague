@@ -1,12 +1,6 @@
-#include <ItemComponent.h>
-#include <CollisionComponent.h>
+#include "ItemComponent.h"
 #include <iostream>
 
-bool itemCatch(){
-}
-
-bool itemDrop(){
-}
 
 
 

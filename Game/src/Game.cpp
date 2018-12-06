@@ -9,6 +9,8 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
+#include "ItemManager.h"
+#include "StorageManager.h"
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 
@@ -35,9 +37,9 @@ int main()
    LifeManager*         lifemanager         = LifeManager::getInstance();
    ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
    InputManager*        inputmanager        = InputManager::getInstance();
+   ItemManager*         itemManager         = ItemManager::getInstance();
+   StorageManager*      storageManager      = StorageManager::getInstance();
 
-   //ITEM MANAGER
-   //STORAGE MANAGER
 
 
     //ADDING A BOX
@@ -77,6 +79,11 @@ int main()
     //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
+    itemManager->createComponent(item1, 0);
+
+    storageManager->createComponent(box, 0);
+
+
     while(render->run())
     {   
         box->getComponent<InputComponent>()->pulseInput(interface);
@@ -93,8 +100,8 @@ int main()
 
     render->drop();
 
-    
-    
+
+
     delete rendermanager;
     delete movementmanager;
     delete collisionmanager;   
@@ -102,6 +109,7 @@ int main()
     delete lifemanager;
     delete projectilemanager;
     delete inputmanager;
+    delete itemManager;
 
     delete gameresource;
 

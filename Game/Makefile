@@ -15,8 +15,8 @@ BulletLibraries := /usr/lib64
 # preprocessor flags, e.g. defines and include paths
 USERCPPFLAGS = 
 # compiler flags such as optimization flags
-USERCXXFLAGS = -O3 -ffast-math
-#USERCXXFLAGS = -g -Wall
+#USERCXXFLAGS = -O3 -ffast-math
+USERCXXFLAGS = -g -Wall
 # linker flags such as additional libraries and link paths${bullet_CFLAGS}
 USERLDFLAGS =
 
@@ -24,7 +24,7 @@ USERLDFLAGS =
 #no changes necessary below this line
 ####
 
-CPPFLAGS = -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include $(USERCPPFLAGS) -Isrc/GameObject -Isrc/GameManager -Isrc/GameObject/PhysicsComponent -Isrc/GameObject/RenderComponent -Isrc/GameFacade -Isrc/GameObject/InputComponent -Isrc/GameObject/CombatComponent -Isrc/GameObject/ItemComponent
+CPPFLAGS = -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include $(USERCPPFLAGS) -Isrc/GameObject -Isrc/GameManager -Isrc/GameObject/PhysicsComponent -Isrc/GameObject/RenderComponent -Isrc/GameFacade -Isrc/GameObject/InputComponent -Isrc/GameObject/CombatComponent -Isrc/GameObject/ItemComponent -Isrc/GameObject/StorageComponent
 CXXFLAGS = $(USERCXXFLAGS)
 LDFLAGS = $(USERLDFLAGS)
 
@@ -35,7 +35,7 @@ all: all_linux
 all_linux all_win32 static_win32: LDFLAGS += -L$(IrrlichtHome)/lib/$(SYSTEM) -lIrrlicht -L$(BulletLibraries) -lLinearMath -lBulletDynamics -lBulletCollision
 all_linux: LDFLAGS += -L/usr/X11R6/lib$(LIBSELECT) -lGL -lXxf86vm -lXext -lX11 -lXcursor
 all_linux clean_linux: SYSTEM=Linux
-all_win32 clean_win32 static_win32: SYSTEM=Win32-gcc
+all_win32 clean_win32 static_win32: SYSTEM=Win32-g++
 all_win32 clean_win32 static_win32: SUF=.exe
 static_win32: CPPFLAGS += -D_IRR_STATIC_LIB_
 all_win32: LDFLAGS += -lopengl32 -lm
