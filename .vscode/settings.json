@@ -1,5 +1,6 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "array": "cpp",
         "atomic": "cpp",
         "*.tcc": "cpp",
@@ -41,5 +42,9 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "algorithm": "cpp"
+=======
+        "deque": "cpp",
+        "vector": "cpp"
+>>>>>>> origin/ultimafabrica
     }
 }
