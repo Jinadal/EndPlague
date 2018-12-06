@@ -10,7 +10,7 @@ GameObject* GameResource::createGameObject(float x, float y, float z, float rz){
 
 void GameResource::updateAll(){
     //std::cout<<"GameObjects: ";
-    for(int i=0; i<gameobjects.size(); i++)
+    for(std::size_t i=0; i<gameobjects.size(); i++)
         //std::cout<<gameobjects[i];
 
     //std::cout<<"\n";

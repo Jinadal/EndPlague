@@ -7,12 +7,11 @@
 class CameraComponent : public Component{
     private:
         CameraNode* node;
-        float x, y, z, dMAX=10.f; 
+        float x, y, z, dMAX=200.f; 
     public:
         CameraComponent(GameObject* parent, Manager* m) : Component(parent, m)
         {
             node = new CameraNode();
-            dMAX = 0.f;
             x = parent->getX();
             y = parent->getY();
             z = parent->getZ();

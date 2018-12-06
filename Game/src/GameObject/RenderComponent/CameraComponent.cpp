@@ -1,4 +1,5 @@
 #include "CameraComponent.h"
+#include <iostream>
 
 void CameraComponent::update()
 {
@@ -7,21 +8,36 @@ void CameraComponent::update()
     float dx = x - gameObject->getX();
     float dy = y - gameObject->getY();        
 
+    std::cout<<"\nADX: "<<abs(dx)<<", ADY: "<<abs(dy)<<"\n";
+    std::cout<<"dMAX: "<<dMAX<<"\n";
+
     if(abs(dx)>dMAX)
+    {
         if(x<gameObject->getX())
+        {
             x=gameObject->getX()-dMAX;
+        }
         else if(x>gameObject->getX())
+        {
             x=gameObject->getX()+dMAX;
+        }
+    }
 
     if(abs(dy)>dMAX)
+    {
         if(y<gameObject->getY())
+        {
             y=gameObject->getY()-dMAX;
+        }
         else if(y>gameObject->getY())
+        {
             y=gameObject->getY()+dMAX;
+        }
+    }
 
-
-
-    node->update(x, y+20.f, z-20.f, x, y, z);
+    std::cout<<x<<y<<z<<"\n";
+    node->update(x, y+20.f, z-600.f, x, y, z);
+    //node->update(0, 0, -600, 0, 0, 0);
 }
 
 void CameraComponent::setFOV(float fov)

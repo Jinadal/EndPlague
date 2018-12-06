@@ -15,7 +15,7 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
     }
     node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
     node->setMaterialFlag(video::EMF_LIGHTING, false);//Set light
-    //node->setMD2Animation(scene::EMAT_STAND);//??
+    node->setAutomaticCulling(EA);
 }
 
 //Changes the mesh of the node to de path
