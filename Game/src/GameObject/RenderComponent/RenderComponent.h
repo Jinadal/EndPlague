@@ -16,10 +16,10 @@ class RenderComponent : public Component{
             node = new MeshNode(r, s);
         }
         //Destructor
-        virtual ~RenderComponent(){
-            std::cout<<"Render Deleted\n";
+        ~RenderComponent()
+        {
             setVisible(false);
-            delete node;
+            //delete node;
         }
 
         //Updates the position and the scale of the mesh

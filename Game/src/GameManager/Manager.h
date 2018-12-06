@@ -14,7 +14,7 @@ class Manager{
         virtual ~Manager(){components.clear();}
 
 
-        void removeComponent(Component* c)//TODO-----No funciona
+        void removeComponent(Component* c)
         {
             for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++){
                 components.erase(it);

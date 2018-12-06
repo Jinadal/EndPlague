@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "GameResource.h"
 #include "RenderManager.h"
@@ -37,6 +38,8 @@ int main()
    InputManager*        inputmanager        = InputManager::getInstance();
 
 
+
+
     //ADDING A BOX
     GameObject* box = gameresource->createGameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     
@@ -58,17 +61,12 @@ int main()
         //if(box!=nullptr){
         //    box->getComponent<InputComponent>()->pulseInput(interface);
         //}
-        std::cout<<"Vuelta: ";
+        
         movementmanager->updateAll(render->getFrameDeltaTime());
-        std::cout<<"1";
         shootmanager->updateAll(render->getFrameDeltaTime());
-        std::cout<<"2";
         collisionmanager->updateAll();
-        std::cout<<"3";
         gameresource->updateAll();
-        std::cout<<"4";
         rendermanager->updateAll();
-        std::cout<<"5";
 
         
         elapsedTime += render->getFrameDeltaTime();
@@ -79,12 +77,12 @@ int main()
             b->getComponent<MovementComponent>()->setvMax(200.f);
             b->getComponent<MovementComponent>()->setvY(1);
             rendermanager->createComponent(b, render, (char*)"res/Bullety.obj");
+            std::cout<<b<<"\n";
             collisionmanager->createComponent(b, 30.f, 30.f, true);
             projectilemanager->createComponent(b, 10.f);
         }
-        std::cout<<"6";
+        
         render->drawAll();
-        std::cout<<"7\n";
     }
 
     render->drop();

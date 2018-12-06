@@ -16,7 +16,7 @@ class MeshNode{
         MeshNode(RenderIrrlicht* r,char s[]);
 
         //Destructor
-        virtual ~MeshNode(){
+        ~MeshNode(){
           //setVisible(false);
         }
         

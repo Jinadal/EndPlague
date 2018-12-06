@@ -20,9 +20,7 @@ class MovementComponent : public Component{
         }
 
         //Destructor
-        virtual ~MovementComponent(){
-            std::cout<<"Movement Deleted\n";
-        }
+        ~MovementComponent(){}
 
         //Update
         void update(float dt);
