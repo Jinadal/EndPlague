@@ -17,7 +17,7 @@ class MeshNode{
 
         //Destructor
         ~MeshNode(){
-          //setVisible(false);
+          node->remove();
         }
         
         //Changes the mesh of the node to de path
