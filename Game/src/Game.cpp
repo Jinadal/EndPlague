@@ -118,25 +118,14 @@ int main()
     {   
         //std::cout<<"Uptate Input: \n";
         box->getComponent<InputComponent>()->pulseInput(interface);
-<<<<<<< HEAD
-
-
-=======
         //std::cout<<"Uptate Movemnet: \n";
->>>>>>> CameraOmponent
         movementmanager->updateAll(render->getFrameDeltaTime());
         //std::cout<<"Uptate Shoot: \n";
         shootmanager->updateAll(render->getFrameDeltaTime());
-<<<<<<< HEAD
         iamanager->updateAll();
         
         collisionmanager->updateAll();
 
-=======
-        //std::cout<<"Uptate Collision: \n";
-        collisionmanager->updateAll();
-        //std::cout<<"Uptate GameResoure: \n";
->>>>>>> CameraOmponent
         gameresource->updateAll();
         //std::cout<<"Uptate Render: \n";
         cameramanager->updateAll();
