@@ -79,7 +79,8 @@ int main()
     //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
-    itemManager->createComponent(item1, 0);
+    itemManager->createComponent(item1, ITEM_CADENCE);
+    itemManager->createComponent(item2, ITEM_LIFE);
 
     storageManager->createComponent(box, 0);
 

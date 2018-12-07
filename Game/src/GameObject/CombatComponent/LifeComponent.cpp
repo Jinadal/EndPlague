@@ -6,3 +6,7 @@ void LifeComponent::looseLife(float d){     //Gets by parametre a int damage fro
         gameObject->toKill();
     }
 }
+
+void LifeComponent::addLife(float l){
+    life+=l;
+}
