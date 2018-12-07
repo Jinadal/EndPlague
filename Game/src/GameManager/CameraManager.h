@@ -19,5 +19,5 @@ class CameraManager : public Manager{
         }
 
         void createComponent(GameObject* go);
-        void updateAll();
+        void updateAll(float dt);
 };
