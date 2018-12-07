@@ -85,7 +85,7 @@ int main()
         //std::cout<<"Uptate GameResoure: \n";
         gameresource->updateAll();
         //std::cout<<"Uptate Render: \n";
-        cameramanager->updateAll();
+        cameramanager->updateAll(render->getFrameDeltaTime());
 
         rendermanager->updateAll();
         //std::cout<<"Todo OK\n";

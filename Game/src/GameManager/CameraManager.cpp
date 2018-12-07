@@ -5,9 +5,9 @@ CameraManager* CameraManager::only_instance = NULL;
 
 
 //Updates all the components
-void CameraManager::updateAll(){
+void CameraManager::updateAll(float dt){
     for(auto* c : components){
-        ((CameraComponent*)c)->update();
+        ((CameraComponent*)c)->update(dt);
     }
 }
 
