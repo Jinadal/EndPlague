@@ -2,10 +2,14 @@
 #include <CollisionComponent.h>
 #include <iostream>
 
-bool itemCatch(){
+bool itemCatch()
+{
+    return false;
 }
 
-bool itemDrop(){
+bool itemDrop()
+{
+    return false;
 }
 
 

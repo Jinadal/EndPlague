@@ -59,19 +59,19 @@ int main()
 
     
     //Add a Render
-    rendermanager->createComponent(box, render, (char*)"res/Blocky.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(box, (char*)"res/Blocky.obj");//Fachada de render y path de obj
     box->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmpç
 
     //Add a Render for Item 1
-    rendermanager->createComponent(item1, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(item1, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
 
     //Add a Render for Item 2
-    rendermanager->createComponent(item2, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(item2, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
 
     //Add a Render to primero
-    rendermanager->createComponent(primero, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(primero, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     primero->getComponent<RenderComponent>()->setTexture((char*) "res/red.bmp");//Path de bmp
 
 
@@ -110,28 +110,20 @@ int main()
     std::cout<<"Camara Creada\n";
 
     GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
-    rendermanager->createComponent(map, render, (char*)"res/Mapy.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(map, (char*)"res/Mapy.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp    
 
 
     while(render->run())
     {   
-        //std::cout<<"Uptate Input: \n";
         box->getComponent<InputComponent>()->pulseInput(interface);
-        //std::cout<<"Uptate Movemnet: \n";
         movementmanager->updateAll(render->getFrameDeltaTime());
-        //std::cout<<"Uptate Shoot: \n";
         shootmanager->updateAll(render->getFrameDeltaTime());
         iamanager->updateAll();
-        
         collisionmanager->updateAll();
-
         gameresource->updateAll();
-        //std::cout<<"Uptate Render: \n";
         cameramanager->updateAll(render->getFrameDeltaTime());
-
         rendermanager->updateAll();
-        //std::cout<<"Todo OK\n";
 
         render->drawAll();
 

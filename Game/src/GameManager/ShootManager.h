@@ -1,6 +1,5 @@
 #pragma once
 #include "ShootComponent.h"
-#include "ProjectileFabric.h"
 #include <vector>
 
 class Manager;
