@@ -10,6 +10,7 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
+#include "ProjectileFabric.h"
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 
@@ -36,7 +37,7 @@ int main()
    LifeManager*         lifemanager         = LifeManager::getInstance();
    ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
    InputManager*        inputmanager        = InputManager::getInstance();
-
+   ProjectileFabric*    projectilefabric    = new ProjectileFabric();
 
 
 
@@ -74,13 +75,9 @@ int main()
             elapsedTime=0.f;
 
             std::cout<<"Disparando.\n";
-            projectiles.push_back(gameresource->createGameObject(0.f, -200.f, 0.f, 0.f));
-            movementmanager->createComponent(projectiles[projectiles.size()-1]);
-            projectiles[projectiles.size()-1]->getComponent<MovementComponent>()->setvMax(200.f);
-            projectiles[projectiles.size()-1]->getComponent<MovementComponent>()->setvY(1);
-            rendermanager->createComponent(projectiles[projectiles.size()-1], (char*)"res/Bullety.obj");
-            collisionmanager->createComponent(projectiles[projectiles.size()-1], 30.f, 30.f, true);
-            projectilemanager->createComponent(projectiles[projectiles.size()-1], 10.f);
+            projectilefabric->createProjectile(0.f, 200.f, 0.f, 0.f, PROJECTILE_1);
+
+            
         }
         
         render->drawAll();
