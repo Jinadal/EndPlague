@@ -1,9 +1,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
  
 #include <irrlicht.h>
- 
+#include "PhysicBullet.h"
 #include <btBulletDynamicsCommon.h>
 #include <btBulletCollisionCommon.h>
  
@@ -23,8 +24,8 @@ static void UpdatePhysics(u32 TDeltaTime);
 static void UpdateRender(btRigidBody* TObject);
 static void ClearObjects();
 static int GetRandInt(int TMax) { return rand() % TMax; }
- 
-
+PhysicBullet* physic = PhysicBullet::getInstance();
+btDiscreteDynamicsWorld* _world;
 static bool Done = false;
 static btDiscreteDynamicsWorld* dynamicsWorld;
 static IrrlichtDevice* Device;
@@ -86,8 +87,12 @@ int main(int argc, char* argv[])
     btBroadphaseInterface* broadphase = new btAxisSweep3(btVector3(-1000,-1000,-1000), btVector3(1000,1000,1000));
     btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
     btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver();
+    _world = physic->initWorldPhysics();
+
     dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
-    
+
+
+
     ICameraSceneNode* Camera = Smgr->addCameraSceneNode(0,vector3df(0,0,0),vector3df(0,0,100));
     Camera->setPosition(vector3df(0,5,-10));
     Camera->setTarget(vector3df(0,0,0));
@@ -114,6 +119,7 @@ int main(int argc, char* argv[])
     }
     
     ClearObjects();
+    delete physic;
     delete dynamicsWorld;
     delete solver;
     delete dispatcher;
@@ -127,7 +133,7 @@ int main(int argc, char* argv[])
  
 void UpdatePhysics(u32 TDeltaTime)
 {
-    dynamicsWorld->stepSimulation(TDeltaTime * 0.001f, 60);         //ACTUALIZAR BULLET
+    physic->iteration(TDeltaTime );         //ACTUALIZAR BULLET
     
     for(list<btRigidBody*>::Iterator Iterator = Objects.begin(); Iterator != Objects.end(); ++Iterator)
     {
@@ -142,25 +148,32 @@ void CreateBox(const btVector3 &TPosition, const vector3df &TScale, btScalar TMa
     Node->setMaterialFlag(EMF_LIGHTING,1);                          //METODO IRRLICHT AÑADIR CUBO    
     Node->setMaterialFlag(EMF_NORMALIZE_NORMALS, true);             //    
     Node->setMaterialTexture(0,Driver->getTexture("ice0.jpg"));     //    
+
+    btVector3 v = btVector3(TScale.X * 0.5f, TScale.Y * 0.5f, TScale.Z * 0.5f);
     
-    btTransform Transform;                                                                  //
-    Transform.setIdentity();                                                                //
-    Transform.setOrigin(TPosition);                                                         //
+    btRigidBody* rbody;
+    cout<<"1\n";
+    rbody = physic->createRigidBody(TPosition, v, TMass);
+        cout<<"2\n";
+
+    //btTransform Transform;                                                                  //
+    //Transform.setIdentity();                                                                //
+    //Transform.setOrigin(TPosition);                                                         //
+    //                                                                                        //
+    //btDefaultMotionState* MotionState = new btDefaultMotionState(Transform);                //    
+    //                                                                                        //
+    //btVector3 HalfExtents(TScale.X * 0.5f, TScale.Y * 0.5f, TScale.Z * 0.5f);               //
+    //btCollisionShape* Shape = new btBoxShape(HalfExtents);                                  //
+    //                                                                                        //        
+    //btVector3 LocalInertia;                                                                 // METODO BULLET AÑADIR CUBO
+    //Shape->calculateLocalInertia(TMass, LocalInertia);                                      //
+    //                                                                                        //
+    //btRigidBody* RigidBody = new btRigidBody(TMass, MotionState, Shape, LocalInertia);      //
                                                                                             //
-    btDefaultMotionState* MotionState = new btDefaultMotionState(Transform);                //    
-                                                                                            //
-    btVector3 HalfExtents(TScale.X * 0.5f, TScale.Y * 0.5f, TScale.Z * 0.5f);               //
-    btCollisionShape* Shape = new btBoxShape(HalfExtents);                                  //
-                                                                                            //        
-    btVector3 LocalInertia;                                                                 // METODO BULLET AÑADIR CUBO
-    Shape->calculateLocalInertia(TMass, LocalInertia);                                      //
-                                                                                            //
-    btRigidBody* RigidBody = new btRigidBody(TMass, MotionState, Shape, LocalInertia);      //
-                                                                                            //
-    RigidBody->setUserPointer((void*)(Node));                                               //
+    rbody->setUserPointer((void*)(Node));                                               //
                                                                                             //    
-    dynamicsWorld->addRigidBody(RigidBody);                                                 //
-    Objects.push_back(RigidBody);                                                           //
+    _world->addRigidBody(rbody);                                                 //
+    Objects.push_back(rbody);                                                           //
 }
 void CreateSphere(const btVector3 &TPosition, btScalar TRadius, btScalar TMass) {
 	
@@ -189,7 +202,7 @@ void CreateSphere(const btVector3 &TPosition, btScalar TRadius, btScalar TMass) 
 	RigidBody->setUserPointer((void *)(Node));
 
 	// Add it to the world
-	dynamicsWorld->addRigidBody(RigidBody);
+	_world->addRigidBody(RigidBody);
 	Objects.push_back(RigidBody);
 }
  
@@ -197,6 +210,7 @@ void CreateStartScene()
 {
     ClearObjects();
     CreateBox(btVector3(0.0f,0.0f,0.0f), vector3df(10.0f,0.5f,10.0f),0.0f);
+
 }
  
 void UpdateRender(btRigidBody* TObject)
@@ -223,7 +237,7 @@ void ClearObjects()
         ISceneNode *Node = static_cast<ISceneNode*>(Object->getUserPointer());
         Node->remove();
         
-        dynamicsWorld->removeRigidBody(Object);
+        _world->removeRigidBody(Object);
         
         delete Object->getMotionState();
         delete Object->getCollisionShape();
