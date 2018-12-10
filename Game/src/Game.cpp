@@ -47,7 +47,7 @@ int main()
     box->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
     movementmanager->createComponent(box);
     box->getComponent<MovementComponent>()->setvMax(1000.f);
-    inputmanager->createComponent(box);
+    //inputmanager->createComponent(box);
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
     lifemanager->createComponent(box, 40.f);//Vida
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
@@ -65,8 +65,8 @@ int main()
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         collisionmanager->updateAll();
-        gameresource->updateAll();
         rendermanager->updateAll();
+        gameresource->updateAll();
 
         
         elapsedTime += render->getFrameDeltaTime();
