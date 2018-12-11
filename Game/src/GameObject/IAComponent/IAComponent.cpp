@@ -37,7 +37,6 @@ void IAComponent::Initialice(){
 
   
   */
- 
     Selector* raizIAmov = new Selector();
     pair<string,Nodo*> p;
     p.first= "Movimiento";
