@@ -80,11 +80,11 @@ void CollisionManager::updateAll()
                 StorageComponent* i_storage = components[i]->getGameObject()->getComponent<StorageComponent>();
                 StorageComponent* j_storage = components[j]->getGameObject()->getComponent<StorageComponent>();
 
-                if(i_item) //Si i es un item
-                    j_storage->itemCatch(i_item);
-        
-                if(j_item) //Si i es un item
+                if(i_storage) //Si i es un item
                     i_storage->itemCatch(j_item);
+        
+                if(j_storage) //Si i es un item
+                    j_storage->itemCatch(i_item);
 
             }
         }

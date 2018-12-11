@@ -4,6 +4,10 @@
 
 void StorageComponent::itemCatch(ItemComponent* item)
 {
+    if(!item)
+        return;
+
+    
     if(this->item)
     {
         if(this->item->getType() != item->getType())
@@ -17,6 +21,7 @@ void StorageComponent::itemCatch(ItemComponent* item)
     {
         this->item = item;
         applyEffect(item->getType());
+        item->getGameObject()->setKill(true);
         std::cout<<"He cogido el item\n";
     }
     

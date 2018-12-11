@@ -1,4 +1,5 @@
 #include <LifeComponent.h>
+#include <iostream>
 
 void LifeComponent::looseLife(float d){     //Gets by parametre a int damage from the attacker
     life-=d;    
