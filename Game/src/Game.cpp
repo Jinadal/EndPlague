@@ -65,7 +65,7 @@ int main()
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         collisionmanager->updateAll();
-        rendermanager->updateAll();
+        rendermanager->updateAll();cd
         gameresource->updateAll();
 
         
