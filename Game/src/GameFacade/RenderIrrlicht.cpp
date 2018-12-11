@@ -5,7 +5,7 @@
 RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
 
 RenderIrrlicht::RenderIrrlicht(){
-    device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
+    device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(1920, 1080), 16,
     false, false, false, InputFacade::getInstance());
 
     if (!device)

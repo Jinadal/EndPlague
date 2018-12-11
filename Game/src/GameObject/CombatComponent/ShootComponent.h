@@ -2,31 +2,33 @@
 //Headers
 #include "Component.h"
 #include "GameObject.h"
-
+#include "ProjectileFabric.h"
 
 class ShootComponent : public Component{
     private:
-        float   lastShoot;          //Elapsed time since last shoot
-        float   cadencia;           //Shoots per second
-        int     projectileKind;          //Kind of bullet o create
-        bool    wantsShoot;
+        float           lastShoot;          //Elapsed time since last shoot
+        float           cadencia;           //Shoots per second
+        ProjectileType  type;          //Kind of bullet o create
+        float           distance;           //Distance of the canon
+        bool            wantsShoot;
     
     public:
 
         //Constructor
-        ShootComponent(GameObject* g, Manager* m, float cadencia, int kind):Component(g, m){
+        ShootComponent(GameObject* g, Manager* m, float cadencia, float distance, ProjectileType type):Component(g, m){
             wantsShoot = false;
             lastShoot = 0.f;
             this->cadencia = cadencia;
-            this->projectileKind = kind;
+            this->distance = distance;
+            this->type = type;
         }
         ~ShootComponent(){}
         //Getters&&Setters
         float getCadencia(){return cadencia;}
-        int getProjectileKind(){return projectileKind;}
+        ProjectileType getType(){return type;}
 
         void setCadencia(float c){cadencia=c;}
-        void setProjectileKind(int pk){projectileKind = pk;}
+        void setType(ProjectileType t){type = t;}
 
         //Methods
         void shoot();
@@ -34,4 +36,5 @@ class ShootComponent : public Component{
         float getX();
         float getY();
         float getRZ();
+        float getDistance(){return distance;}
 };

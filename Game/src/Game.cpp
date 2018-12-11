@@ -10,9 +10,13 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
+<<<<<<< HEAD
 #include "CameraManager.h"
 #include "ItemManager.h"
 #include "StorageManager.h"
+=======
+#include "ProjectileFabric.h"
+>>>>>>> Fabrics
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 #include "Nodo.h"
@@ -40,8 +44,6 @@ int main()
 
    ItemManager*         itemManager         = ItemManager::getInstance();
    StorageManager*      storageManager      = StorageManager::getInstance();
-
-
 
 
 
@@ -95,7 +97,7 @@ int main()
     
     //Add Life
     lifemanager->createComponent(box, 40.f);//Vida
-    shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
+    shootmanager->createComponent(box, .2f, 115.f, PROJECTILE_1);//Cadencia y Tipo
 
     //Add Camera
     std::cout<<"Creando Camara\n";
@@ -112,6 +114,7 @@ int main()
 
 
     while(render->run())
+<<<<<<< HEAD
     {   
        
 
@@ -119,6 +122,13 @@ int main()
         iamanager->updateAll();
 
 
+=======
+    {
+        if(box!=nullptr){
+            box->getComponent<InputComponent>()->pulseInput(interface);
+        }
+        
+>>>>>>> Fabrics
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         
@@ -127,6 +137,10 @@ int main()
         gameresource->updateAll();
         rendermanager->updateAll();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Fabrics
         render->drawAll();
 
 
