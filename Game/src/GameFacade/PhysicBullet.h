@@ -30,4 +30,5 @@ class PhysicBullet{
     void MoveRigidBody();
     void iteration(float d);
     btDynamicsWorld* getWorld(){ return _world; }
+    void move(btRigidBody* body,int m);
 };

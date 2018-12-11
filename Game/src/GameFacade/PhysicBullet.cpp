@@ -74,62 +74,33 @@ btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVec
     btTransform transform;
 	transform.setIdentity();
 	transform.setOrigin(initPos);
-        cout<<"2\n";
 
     //Used for locate position and rotation of every object in each iteration
     btDefaultMotionState*  motionState = new btDefaultMotionState(transform);
-        cout<<"2\n";
 
     //We create a collision with box shape with sides 100. Each parametre starts from the center of the shape
     //Afterwards we create a RigidBody that wont modifate its shape after collision. 
     //Body parametres = (mass,motionstate,collisionshape,)
     btCollisionShape*   boxyBox = new btBoxShape(scale);
-            cout<<"2\n";
 
     btVector3 LocalInertia;                                                                 
     boxyBox->calculateLocalInertia(mass, LocalInertia);
-            cout<<"2\n";
 
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, motionState, boxyBox,LocalInertia);
-            cout<<"2\n";
 
 	btRigidBody* body = new btRigidBody(rbInfo);
-        cout<<"2\n";
+    
+    body->setCollisionFlags(body->getCollisionFlags()|btCollisionObject::CF_KINEMATIC_OBJECT);
+    body->setActivationState( DISABLE_DEACTIVATION );
 
-	//Array of shapes in the world
+    //Array of shapes in the world
 	//Better re-use collision shapes than rigidbodies
     _collisionShapes.push_back(boxyBox);
-        cout<<"21\n";
 
     //We add the body to the world so it can interactuate
     _world->addRigidBody(body);
-
+    
     return body;
-}
-
-void PhysicBullet::MoveRigidBody(){
-    //btCollisionObject* obj = _world->getDynamicsWorld()->getCollisionObjectArray()[0];
-	//btRigidBody* body = btRigidBody::upcast(obj);
-	//btVector3 v = body->getLinearVelocity();
-//
-	//v.setX(body->getVelocity().x);
-	//v.setZ(body->getVelocity().z);
-	//body->setLinearVelocity(v);
-//
-	//_world->step();
-//
-	//if (body && body->getMotionState())
-	//{
-	//	btTransform trans;
-	//	body->getMotionState()->getWorldTransform(trans);
-//
-	//	body->setPositon(btVector3(
-	//		trans.getOrigin().getX(),
-	//		trans.getOrigin().getY(),
-	//		trans.getOrigin().getZ()
-	//		));
-	//}
-//
 }
 
 void PhysicBullet::iteration(float delta)
@@ -139,4 +110,15 @@ void PhysicBullet::iteration(float delta)
     //timeStep is the time passed after last simulation.
     _world->stepSimulation(delta*0.001f,60);
 
+}
+void PhysicBullet::move(btRigidBody* body,int m)
+{
+    
+    btTransform newTrans;
+    body->getMotionState()->getWorldTransform(newTrans);
+        if(m==1)newTrans.getOrigin() += (btVector3(-0.1f, 0, 0));
+        if(m==2)newTrans.getOrigin() += (btVector3(0.1f, 0, 0));
+        if(m==3)newTrans.getOrigin() += (btVector3(0, 0, -0.1f));
+        if(m==4)newTrans.getOrigin() += (btVector3(0, 0, 0.1f));
+    body->getMotionState()->setWorldTransform(newTrans);
 }
