@@ -38,7 +38,7 @@ void StorageComponent::itemDrop()
 void StorageComponent::setDefaultValues()
 {
     gameObject->getComponent<ShootComponent>()->setCadencia(1);
-    gameObject->getComponent<ShootComponent>()->setProjectileKind(1);
+    gameObject->getComponent<ShootComponent>()->setType(PROJECTILE_1);
 }
 
 void StorageComponent::applyEffect(int Type)
@@ -70,7 +70,7 @@ void StorageComponent::throwable()
     if(gameObject->getComponent<ShootComponent>())
     {
         std::cout<<"I'm a throwable\n";
-        gameObject->getComponent<ShootComponent>()->setProjectileKind(2);
+        gameObject->getComponent<ShootComponent>()->setType(PROJECTILE_2);
     }
     
 
@@ -93,7 +93,7 @@ void StorageComponent::booster()
     if(gameObject->getComponent<ShootComponent>())
     {
         std::cout<<"I modify your cadence\n";
-        gameObject->getComponent<ShootComponent>()->setCadencia(-0.8);
+        gameObject->getComponent<ShootComponent>()->setCadencia(0.05);
     }
     
 }

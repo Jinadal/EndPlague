@@ -4,13 +4,6 @@
 
 ShootManager* ShootManager::only_instance = NULL;
 
-<<<<<<< HEAD
-void ShootManager::updateAll(float dt){                         //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 
-    for(std::size_t i=0; i < components.size(); i++){                //Check vector of ShootComponent
-        ShootComponent* shooter = (ShootComponent*) components[i];                //get Component
-        if (shooter->update(dt)){                               //Create gameObject Bullet.
-            createProjectile(shooter->getX(), shooter->getY(), shooter->getRZ(), shooter->getProjectileKind());
-=======
 void ShootManager::updateAll(float dt)
 {                                                                       //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 
     for(size_t i=0; i < components.size(); i++)
@@ -21,7 +14,6 @@ void ShootManager::updateAll(float dt)
             float x = shooter->getX() + shooter->getDistance() * sin(shooter->getRZ());
             float y = shooter->getY() + shooter->getDistance() * cos(shooter->getRZ());
             createProjectile(x, y, shooter->getRZ(), shooter->getType());
->>>>>>> Fabrics
         }
     }
 }

@@ -10,13 +10,9 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
-<<<<<<< HEAD
 #include "CameraManager.h"
 #include "ItemManager.h"
 #include "StorageManager.h"
-=======
-#include "ProjectileFabric.h"
->>>>>>> Fabrics
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 #include "Nodo.h"
@@ -76,7 +72,7 @@ int main()
 
     //Add Movement
     movementmanager->createComponent(box);
-    box->getComponent<MovementComponent>()->setvMax(1000.f);
+    box->getComponent<MovementComponent>()->setvMax(700.f);
 
      //Add Movement to primero
     movementmanager->createComponent(primero);
@@ -84,13 +80,14 @@ int main()
 
     //Add Input
     inputmanager->createComponent(box);
+
+    //Add Collisions
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
     collisionmanager->createComponent(item1, 50, 50, true); //Ancho, alto y si es solido
     collisionmanager->createComponent(item2, 50, 50, true); //Ancho, alto y si es solido
     collisionmanager->createComponent(primero, 55, 55, true); //Ancho, alto y si es solido
 
     //Add IA
-
     iamanager->createComponent(primero,box);
 
     primero->getComponent<IAComponent>()->Initialice();
@@ -100,9 +97,8 @@ int main()
     shootmanager->createComponent(box, .2f, 115.f, PROJECTILE_1);//Cadencia y Tipo
 
     //Add Camera
-    std::cout<<"Creando Camara\n";
     cameramanager->createComponent(box);
-    std::cout<<"Camara Creada\n";
+
 
     GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
     rendermanager->createComponent(map, (char*)"res/Mapy.obj");//Fachada de render y path de obj
@@ -114,7 +110,6 @@ int main()
 
 
     while(render->run())
-<<<<<<< HEAD
     {   
        
 
@@ -122,13 +117,6 @@ int main()
         iamanager->updateAll();
 
 
-=======
-    {
-        if(box!=nullptr){
-            box->getComponent<InputComponent>()->pulseInput(interface);
-        }
-        
->>>>>>> Fabrics
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         
@@ -137,10 +125,6 @@ int main()
         gameresource->updateAll();
         rendermanager->updateAll();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> Fabrics
         render->drawAll();
 
 
