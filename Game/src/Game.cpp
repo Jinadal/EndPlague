@@ -93,7 +93,7 @@ int main()
     primero->getComponent<IAComponent>()->Initialice();
     
     //Add Life
-    lifemanager->createComponent(box, 40.f);//Vida
+    lifemanager->createComponent(primero, 100.f);//Vida
     shootmanager->createComponent(box, .2f, 115.f, PROJECTILE_1);//Cadencia y Tipo
 
     //Add Camera
