@@ -39,14 +39,14 @@ class ProjectileFabric
                 PROJECTILE_1,
                 (char*)"res/Projectiley.obj",
                 (char*)"res/red.bmp",
-                10.f,
+                1000.f,
                 10.f
             },
             {
                 PROJECTILE_2,
                 (char*)"res/Projectiley.obj",
                 (char*)"res/green.bmp",
-                20.f,
+                1000.f,
                 40.f
             }
         };
@@ -55,5 +55,5 @@ class ProjectileFabric
         ProjectileFabric(){}
         virtual ~ProjectileFabric(){}
 
-        GameObject* createProjectile(float x, float y, float z, float rz, ProjectileType type);
+        GameObject* createProjectile(float x, float y, float rz, ProjectileType type);
 };
