@@ -18,10 +18,10 @@ bool CheckX::run()
 
 bool CheckXwid::run()
 {
-    std::cout<< "MAIN X + WIDTH  "<< (main->getX() + main->getComponent<CollisionComponent>()->width_) << "\n";
-    std::cout << "owner X  " << owner->getX() << "\n";
+   // std::cout<< "MAIN X + WIDTH  "<< (main->getX() + main->getComponent<CollisionComponent>()->width_) << "\n";
+  //  std::cout << "owner X  " << owner->getX() << "\n";
 
-    if((main->getX() + main->getComponent<CollisionComponent>()->width_) < owner->getX()){
+    if((main->getX() + main->getComponent<CollisionComponent>()->width_) < (owner->getX()+owner->getComponent<CollisionComponent>()->width_)){
         return true;
     }
 
