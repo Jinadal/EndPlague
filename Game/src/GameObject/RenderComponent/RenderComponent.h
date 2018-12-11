@@ -18,7 +18,6 @@ class RenderComponent : public Component{
         //Destructor
         ~RenderComponent()
         {
-            setVisible(false);
             delete node;
         }
 
