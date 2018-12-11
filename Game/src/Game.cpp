@@ -9,6 +9,7 @@
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
+#include "CameraManager.h"
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 #include "Nodo.h"
@@ -38,6 +39,7 @@ int main()
    LifeManager*         lifemanager         = LifeManager::getInstance();
    ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
    InputManager*        inputmanager        = InputManager::getInstance();
+   CameraManager*       cameramanager       = CameraManager::getInstance();
 
    IAManager*        iamanager        = IAManager::getInstance();
 
@@ -57,19 +59,19 @@ int main()
 
     
     //Add a Render
-    rendermanager->createComponent(box, render, (char*)"res/Blocky.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(box, (char*)"res/Blocky.obj");//Fachada de render y path de obj
     box->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmpç
 
     //Add a Render for Item 1
-    rendermanager->createComponent(item1, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(item1, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
 
     //Add a Render for Item 2
-    rendermanager->createComponent(item2, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(item2, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
 
     //Add a Render to primero
-    rendermanager->createComponent(primero, render, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    rendermanager->createComponent(primero, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     primero->getComponent<RenderComponent>()->setTexture((char*) "res/red.bmp");//Path de bmp
 
 
@@ -97,10 +99,20 @@ int main()
     primero->getComponent<IAComponent>()->Initialice();
     
     //Add Life
-    lifemanager->createComponent(box, 100.f);//Vida
+    lifemanager->createComponent(box, 40.f);//Vida
 
     //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
+
+    //Add Camera
+    std::cout<<"Creando Camara\n";
+    cameramanager->createComponent(box);
+    std::cout<<"Camara Creada\n";
+
+    GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
+    rendermanager->createComponent(map, (char*)"res/Mapy.obj");//Fachada de render y path de obj
+    map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp    
+
 
     while(render->run())
     {   
@@ -114,10 +126,9 @@ int main()
         shootmanager->updateAll(render->getFrameDeltaTime());
         
         collisionmanager->updateAll();
-
         gameresource->updateAll();
+        cameramanager->updateAll(render->getFrameDeltaTime());
         rendermanager->updateAll();
-
 
         render->drawAll();
 

@@ -20,6 +20,6 @@ class RenderManager : public Manager{
         virtual ~RenderManager(){only_instance=NULL;}
         void updateAll();
         void kill(); 
-        void createComponent(GameObject *owner, RenderIrrlicht *render, char* path);
+        void createComponent(GameObject *owner, char* path);
 
 };

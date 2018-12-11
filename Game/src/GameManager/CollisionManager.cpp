@@ -16,15 +16,11 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
     if(owner->getComponent<MovementComponent>())
     {
         components.insert(components.begin(),new CollisionComponent(owner, this, width, height, solid));
-        conMove ++;
-    owner->addComponent(components[0]);
-
+        owner->addComponent(components[0]);
     }else{
         components.push_back(new CollisionComponent(owner, this, width, height, solid));
-    owner->addComponent(components[components.size()-1]);
-
+        owner->addComponent(components[components.size()-1]);
     }
-    
 }
 
 
@@ -33,9 +29,12 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 void CollisionManager::updateAll()
 {
     //std::vector<CollisionComponent *>::iterator iter1;
-    for(int i = 0; i<conMove; i++)
+    for(std::size_t i = 0; i<components.size(); i++)
     {
-        for(int j = i+1; j < components.size(); j++)
+        if(!components[i]->getGameObject()->getComponent<MovementComponent>())
+            break;
+        
+        for(std::size_t j = i+1; j < components.size(); j++)
         {
             if(((CollisionComponent*)components[i])->testCollision(((CollisionComponent*)components[j]))){
                 
@@ -81,7 +80,7 @@ void CollisionManager::updateAll()
 bool CollisionManager::checkSingle(CollisionComponent * c)
 {
     
-    for(int i =0; i<components.size();i++){
+    for(std::size_t i =0; i<components.size();i++){
         if (components[i] != c){
            
              if(c->testCollision(((CollisionComponent*)components[i])))

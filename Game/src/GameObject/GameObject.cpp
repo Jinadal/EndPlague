@@ -15,7 +15,11 @@ GameObject::GameObject(float x, float y, float z, float rz){
 
 //Destructor
 GameObject::~GameObject(){
-    components.clear();
+    for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++){
+        Component* co = *it;
+        delete co;
+    }
+    std::cout<<"GameObject borrado: "<<this<<"\n";
 }
 
 //Add component

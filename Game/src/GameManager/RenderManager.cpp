@@ -1,4 +1,3 @@
-
 #include "RenderManager.h"
 
 RenderManager* RenderManager::only_instance = NULL;
@@ -11,7 +10,7 @@ void RenderManager::updateAll(){
 }
 
 
-void RenderManager::createComponent(GameObject *owner, RenderIrrlicht *render, char path[]){
-    components.push_back(new RenderComponent(owner, this, render, path));
+void RenderManager::createComponent(GameObject *owner, char path[]){
+    components.push_back(new RenderComponent(owner, this, path));
     owner->addComponent(components[components.size()-1]);
 }

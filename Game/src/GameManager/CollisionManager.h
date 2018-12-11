@@ -26,5 +26,4 @@ class CollisionManager : public Manager{
     void updateAll();
     bool checkSingle(CollisionComponent* c);
 
-    int conMove = 0;
 };

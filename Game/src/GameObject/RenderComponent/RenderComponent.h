@@ -8,19 +8,14 @@
 class RenderComponent : public Component{
     private:
         MeshNode* node;
-        RenderIrrlicht* render;
+        RenderIrrlicht* render = RenderIrrlicht::getInstance();
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
-        RenderComponent(GameObject* g, Manager* m,  RenderIrrlicht* r, char s[]) : Component(g, m){
-            render = r;
-            node = new MeshNode(r, s);
+        RenderComponent(GameObject* g, Manager* m, char s[]) : Component(g, m){
+            node = new MeshNode(render, s);
         }
         //Destructor
-        virtual ~RenderComponent(){
-
-            delete node;
-          std::cout << "node destruido \n";
-        }
+        virtual ~RenderComponent(){delete node;}
 
         //Updates the position and the scale of the mesh
         void update();
