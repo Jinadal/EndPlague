@@ -2,6 +2,7 @@
 #include "MovementComponent.h"
 #include "ProjectileComponent.h"
 #include "LifeComponent.h"
+#include "StorageComponent.h"
 #include <cmath>
 #include <iostream>
 
@@ -29,11 +30,8 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 void CollisionManager::updateAll()
 {
     //std::vector<CollisionComponent *>::iterator iter1;
-    for(std::size_t i = 0; i<components.size(); i++)
+    for(std::size_t i = 0; i<components.size() && components[i]->getGameObject()->getComponent<MovementComponent>(); i++)
     {
-        if(!components[i]->getGameObject()->getComponent<MovementComponent>())
-            break;
-        
         for(std::size_t j = i+1; j < components.size(); j++)
         {
             if(((CollisionComponent*)components[i])->testCollision(((CollisionComponent*)components[j]))){
@@ -69,6 +67,21 @@ void CollisionManager::updateAll()
                     i_projectil->dealDamage(j_life);
                 if(j_projectil)
                     j_projectil->dealDamage(i_life);
+
+
+                //En el caso de que lo que colisione sea un item
+                ItemComponent* i_item = components[i]->getGameObject()->getComponent<ItemComponent>(); //EL PRIMER COMPONENTE DE LA COLISION ES UN ITEM
+                ItemComponent* j_item = components[j]->getGameObject()->getComponent<ItemComponent>(); //EL SEGUNDO COMPONENTE DE LA COLISION ES UN ITEM
+
+                StorageComponent* i_storage = components[i]->getGameObject()->getComponent<StorageComponent>();
+                StorageComponent* j_storage = components[j]->getGameObject()->getComponent<StorageComponent>();
+
+                if(i_item) //Si i es un item
+                    j_storage->itemCatch(i_item);
+        
+                if(j_item) //Si i es un item
+                    i_storage->itemCatch(j_item);
+
             }
         }
         

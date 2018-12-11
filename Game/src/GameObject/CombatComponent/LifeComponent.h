@@ -21,6 +21,6 @@ class LifeComponent : public Component{
 
         //Methods
         void looseLife(float d);  //Gets by parametre a int damage from the attacker
-
+        void addLife(float l);
    
 };

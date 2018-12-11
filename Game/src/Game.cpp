@@ -10,6 +10,8 @@
 #include "LifeManager.h"
 #include "ProjectileManager.h"
 #include "CameraManager.h"
+#include "ItemManager.h"
+#include "StorageManager.h"
 #include "bullet/btBulletCollisionCommon.h"
 #include "bullet/btBulletDynamicsCommon.h"
 #include "Nodo.h"
@@ -43,9 +45,9 @@ int main()
 
    IAManager*        iamanager        = IAManager::getInstance();
 
+   ItemManager*         itemManager         = ItemManager::getInstance();
+   StorageManager*      storageManager      = StorageManager::getInstance();
 
-   //ITEM MANAGER
-   //STORAGE MANAGER
 
 
     //ADDING A BOX
@@ -112,6 +114,10 @@ int main()
     GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
     rendermanager->createComponent(map, (char*)"res/Mapy.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp    
+    itemManager->createComponent(item1, ITEM_CADENCE);
+    itemManager->createComponent(item2, ITEM_LIFE);
+
+    storageManager->createComponent(box, 0);
 
 
     while(render->run())
@@ -140,8 +146,8 @@ int main()
 
     render->drop();
 
-    
-    
+
+
     delete rendermanager;
     delete movementmanager;
     delete collisionmanager;   
@@ -149,6 +155,7 @@ int main()
     delete lifemanager;
     delete projectilemanager;
     delete inputmanager;
+    delete itemManager;
 
     delete gameresource;
 

@@ -35,7 +35,7 @@ all: all_linux
 all_linux all_win32 static_win32: LDFLAGS += -L$(IrrlichtHome)/lib/$(SYSTEM) -lIrrlicht -L$(BulletLibraries) -lLinearMath -lBulletDynamics -lBulletCollision
 all_linux: LDFLAGS += -L/usr/X11R6/lib$(LIBSELECT) -lGL -lXxf86vm -lXext -lX11 -lXcursor
 all_linux clean_linux: SYSTEM=Linux
-all_win32 clean_win32 static_win32: SYSTEM=Win32-gcc
+all_win32 clean_win32 static_win32: SYSTEM=Win32-g++
 all_win32 clean_win32 static_win32: SUF=.exe
 static_win32: CPPFLAGS += -D_IRR_STATIC_LIB_
 all_win32: LDFLAGS += -lopengl32 -lm
