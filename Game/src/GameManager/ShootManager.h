@@ -17,8 +17,7 @@ class ShootManager : public Manager{
             return only_instance;
         }
 
-        virtual ~ShootManager(){only_instance=NULL;}
-        void kill();
+        ~ShootManager(){only_instance=NULL;}
         void updateAll(float dt);
         void createProjectile(float x, float y, float rz, int k);
         void createComponent(GameObject *owner, float cadencia, int tipo);

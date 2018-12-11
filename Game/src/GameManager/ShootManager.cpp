@@ -16,7 +16,6 @@ void ShootManager::updateAll(float dt){                         //Checks which c
 void ShootManager::createProjectile(float x, float y, float rz, int k){  
     
     //Here we may create a bullet
-
     std::cout<<"Bala creada!:\n"<<"  x: "<<x<<"\n  y: "<<y<<"\n  rz:"<<rz<<"\n  k: "<<k<<"\n";
 }
 

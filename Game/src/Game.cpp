@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "GameResource.h"
 #include "RenderManager.h"
@@ -19,14 +20,6 @@
 
 
 
-using namespace irr;
-
-
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
 
 
 int main()
@@ -47,6 +40,8 @@ int main()
 
    ItemManager*         itemManager         = ItemManager::getInstance();
    StorageManager*      storageManager      = StorageManager::getInstance();
+
+
 
 
 
@@ -87,8 +82,6 @@ int main()
 
     //Add Input
     inputmanager->createComponent(box);
-
-    //Add Collisions
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
     collisionmanager->createComponent(item1, 50, 50, true); //Ancho, alto y si es solido
     collisionmanager->createComponent(item2, 50, 50, true); //Ancho, alto y si es solido
@@ -102,8 +95,6 @@ int main()
     
     //Add Life
     lifemanager->createComponent(box, 40.f);//Vida
-
-    //Add Shoot
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
 
     //Add Camera
@@ -132,8 +123,8 @@ int main()
         shootmanager->updateAll(render->getFrameDeltaTime());
         
         collisionmanager->updateAll();
-        gameresource->updateAll();
         cameramanager->updateAll(render->getFrameDeltaTime());
+        gameresource->updateAll();
         rendermanager->updateAll();
 
         render->drawAll();
@@ -162,7 +153,7 @@ int main()
     delete render;
     delete interface;
     
-
+    
 
     return 0;
 }

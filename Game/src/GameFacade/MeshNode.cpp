@@ -21,8 +21,10 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
         return;
     }
     node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
-    node->setMaterialFlag(video::EMF_LIGHTING, false);//Set light
     node->setAutomaticCulling(EAC_OFF);
+    node->setMaterialFlag(video::EMF_LIGHTING, true);//Set light
+    node->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
+    //node->setMD2Animation(scene::EMAT_STAND);//??
 }
 
 //Changes the mesh of the node to de path
@@ -36,7 +38,7 @@ void MeshNode::setMesh(char s[]){
     node->setMesh(mesh);//sets the mesh on the node
 }
 
-//Changes the position of the node
+//Changes the position nsertof the node
 void MeshNode::setPosition(float x, float y, float z){
     core::vector3df nodePosition = node->getPosition();
     nodePosition.Y = y;

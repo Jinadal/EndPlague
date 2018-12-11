@@ -13,7 +13,14 @@ class Manager{
         virtual ~Manager(){components.clear();}
 
 
-        virtual void removeComponent(Component *c){//TODO-----No funciona
-            //components.erase(std::remove(components.begin(), components.end(), c), components.end());
+        void removeComponent(Component* c)
+        {
+            for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++){
+                if(c==*it)
+                {
+                    components.erase(it);
+                    break;
+                }
+            }
         }
 };

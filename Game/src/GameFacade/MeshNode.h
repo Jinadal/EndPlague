@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderIrrlicht.h"
+#include <iostream>
 
 /*
 Node ony implemented with a AnimatedMesh in Irr
@@ -16,7 +17,9 @@ class MeshNode{
         MeshNode(RenderIrrlicht* r,char s[]);
 
         //Destructor
-        virtual ~MeshNode(){}
+        ~MeshNode(){
+          node->remove();
+        }
         
         //Changes the mesh of the node to de path
         void setMesh(char s[]);

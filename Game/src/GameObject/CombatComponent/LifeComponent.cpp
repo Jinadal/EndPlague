@@ -1,9 +1,10 @@
 #include <LifeComponent.h>
 
 void LifeComponent::looseLife(float d){     //Gets by parametre a int damage from the attacker
-    life-=d;                                //Sets decreased life
+    life-=d;    
+    std::cout<<"Life: "<<life <<"\n";                           //Sets decreased life
     if(life<=0){
-        gameObject->toKill();
+        gameObject->setKill(true);
     }
 }
 
