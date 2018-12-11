@@ -36,7 +36,7 @@ PhysicBullet::~PhysicBullet()
     only_instance = NULL;
 }
 
-btDiscreteDynamicsWorld* PhysicBullet::initWorldPhysics()
+btDynamicsWorld* PhysicBullet::initWorldPhysics()
 {
     //Initialize the scene where the physics take part. It defines how collision are going to take part and resolved.
 
@@ -105,6 +105,31 @@ btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVec
     _world->addRigidBody(body);
 
     return body;
+}
+
+void PhysicBullet::MoveRigidBody(){
+    //btCollisionObject* obj = _world->getDynamicsWorld()->getCollisionObjectArray()[0];
+	//btRigidBody* body = btRigidBody::upcast(obj);
+	//btVector3 v = body->getLinearVelocity();
+//
+	//v.setX(body->getVelocity().x);
+	//v.setZ(body->getVelocity().z);
+	//body->setLinearVelocity(v);
+//
+	//_world->step();
+//
+	//if (body && body->getMotionState())
+	//{
+	//	btTransform trans;
+	//	body->getMotionState()->getWorldTransform(trans);
+//
+	//	body->setPositon(btVector3(
+	//		trans.getOrigin().getX(),
+	//		trans.getOrigin().getY(),
+	//		trans.getOrigin().getZ()
+	//		));
+	//}
+//
 }
 
 void PhysicBullet::iteration(float delta)

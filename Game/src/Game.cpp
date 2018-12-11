@@ -25,7 +25,7 @@ static void UpdateRender(btRigidBody* TObject);
 static void ClearObjects();
 static int GetRandInt(int TMax) { return rand() % TMax; }
 PhysicBullet* physic = PhysicBullet::getInstance();
-btDiscreteDynamicsWorld* _world;
+btDynamicsWorld* _world;
 static bool Done = false;
 static btDiscreteDynamicsWorld* dynamicsWorld;
 static IrrlichtDevice* Device;
@@ -33,6 +33,7 @@ static IVideoDriver* Driver;
 static ISceneManager* Smgr;
 static IGUIEnvironment* Env;
 static ITimer* Timer;
+btRigidBody* rbody;
  
 static list <btRigidBody*> Objects;
  
@@ -53,7 +54,7 @@ class MainEvent : public IEventReceiver
                         break;
                         
                     case KEY_KEY_A:
-                        CreateBox(btVector3(ran,ran2,ran), vector3df(0.5f,0.5f,.5f),1.0f);
+                        rbody->setLinearVelocity(btVector3(-1, rbody->getLinearVelocity().y(),-1));
                         break;
                     case KEY_KEY_S:
 					    CreateSphere(btVector3(GetRandInt(10) - 5.0f, 7.0f, GetRandInt(10) - 5.0f), GetRandInt(5) / 5.0f + 0.2f, 1.0f);
@@ -61,7 +62,7 @@ class MainEvent : public IEventReceiver
                     case KEY_KEY_X:
                         CreateStartScene();
                         break;
-                        
+                    
                     default:
                         return false;
                 }
@@ -107,7 +108,8 @@ int main(int argc, char* argv[])
     {
         DeltaTime = Timer->getTime() - TimeStamp;
         TimeStamp = Timer->getTime();
-        
+        rbody->setActivationState(DISABLE_DEACTIVATION);
+
         UpdatePhysics(DeltaTime);
         
         Driver->beginScene(true, true, SColor(255,20,0,0));
@@ -151,7 +153,7 @@ void CreateBox(const btVector3 &TPosition, const vector3df &TScale, btScalar TMa
 
     btVector3 v = btVector3(TScale.X * 0.5f, TScale.Y * 0.5f, TScale.Z * 0.5f);
     
-    btRigidBody* rbody;
+    
     cout<<"1\n";
     rbody = physic->createRigidBody(TPosition, v, TMass);
         cout<<"2\n";
@@ -210,6 +212,7 @@ void CreateStartScene()
 {
     ClearObjects();
     CreateBox(btVector3(0.0f,0.0f,0.0f), vector3df(10.0f,0.5f,10.0f),0.0f);
+    CreateBox(btVector3(ran,ran2,ran), vector3df(0.5f,0.5f,.5f),1.0f);
 
 }
  

@@ -9,7 +9,7 @@ class PhysicBullet{
     btDefaultCollisionConfiguration*            _collisionConfiguration;
     btCollisionDispatcher*                      _dispatcher;
     btSequentialImpulseConstraintSolver*        _solver;
-    btDiscreteDynamicsWorld*                            _world;
+    btDynamicsWorld*                            _world;
     btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
     
     public:
@@ -25,8 +25,9 @@ class PhysicBullet{
         return only_instance;
     }
 
-    btDiscreteDynamicsWorld* initWorldPhysics();
+    btDynamicsWorld* initWorldPhysics();
     btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
+    void MoveRigidBody();
     void iteration(float d);
     btDynamicsWorld* getWorld(){ return _world; }
 };
