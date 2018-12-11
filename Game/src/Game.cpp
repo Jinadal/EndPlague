@@ -14,14 +14,6 @@
 #include "bullet/btBulletDynamicsCommon.h"
 
 
-using namespace irr;
-
-
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
 
 
 int main()
@@ -47,7 +39,7 @@ int main()
     box->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
     movementmanager->createComponent(box);
     box->getComponent<MovementComponent>()->setvMax(1000.f);
-    //inputmanager->createComponent(box);
+    inputmanager->createComponent(box);
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
     lifemanager->createComponent(box, 40.f);//Vida
     shootmanager->createComponent(box, 1.f, 1);//Cadencia y Tipo
@@ -58,14 +50,14 @@ int main()
     float elapsedTime = 10.f;
     while(render->run())
     {
-        //if(box!=nullptr){
-        //    box->getComponent<InputComponent>()->pulseInput(interface);
-        //}
+        if(box){
+            box->getComponent<InputComponent>()->pulseInput(interface);
+        }
         
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
         collisionmanager->updateAll();
-        rendermanager->updateAll();cd
+        rendermanager->updateAll();
         gameresource->updateAll();
 
         
@@ -103,7 +95,7 @@ int main()
     delete render;
     delete interface;
     
-
+    
 
     return 0;
 }

@@ -16,7 +16,6 @@ GameObject::GameObject(float x, float y, float z, float rz){
 GameObject::~GameObject(){
     for(std::size_t i= 0; i<components.size(); i++)
     {
-        std::cout<<i;
         delete components[i];
     }
 }

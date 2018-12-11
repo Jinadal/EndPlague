@@ -17,8 +17,11 @@ class Manager{
         void removeComponent(Component* c)
         {
             for(std::vector<Component*>::iterator it = components.begin(); it!=components.end(); it++){
-                components.erase(it);
-                break;
+                if(c==*it)
+                {
+                    components.erase(it);
+                    break;
+                }
             }
         }
 };

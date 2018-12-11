@@ -14,7 +14,8 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
         return;
     }
     node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
-    node->setMaterialFlag(video::EMF_LIGHTING, false);//Set light
+    node->setMaterialFlag(video::EMF_LIGHTING, true);//Set light
+    node->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
     //node->setMD2Animation(scene::EMAT_STAND);//??
 }
 

@@ -27,11 +27,11 @@ void GameResource::updateAll()
         if(g->getKill())
         {
             delete g;
-            gameobjects.erase(it);
+            it = gameobjects.erase(it);
             i--;
 
-        }
-        it++;
+        } else
+            it++;
     }
 
 }
