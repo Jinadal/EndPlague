@@ -25,7 +25,8 @@ class PhysicBullet{
         }
         return only_instance;
     }
-
+    
+    void removeRigidBody(btRigidBody* rigidbody);
     btDynamicsWorld* initWorldPhysics();
     btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
     //void MoveRigidBody();
