@@ -19,7 +19,7 @@ class StorageManager : public Manager{
         }
 
         virtual ~StorageManager() {only_instance = NULL;};
-        void createComponent(GameObject *owner, float cadencia);
+        void createComponent(GameObject *owner);
         
 
 };

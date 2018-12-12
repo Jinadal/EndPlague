@@ -5,7 +5,7 @@
 StorageManager* StorageManager::only_instance = NULL;
 
 
-void StorageManager::createComponent(GameObject *owner, float cadencia){
-    components.push_back(new StorageComponent(owner, this, cadencia));
+void StorageManager::createComponent(GameObject *owner){
+    components.push_back(new StorageComponent(owner, this));
     owner->addComponent(components[components.size()-1]);
 }

@@ -16,7 +16,7 @@ class StorageComponent : public Component{
 
 
     public:
-        StorageComponent(GameObject* g, Manager* m, float cadencia):Component(g, m){};
+        StorageComponent(GameObject* g, Manager* m):Component(g, m){};
         ~StorageComponent(){};
 
         //Stores the item if possible

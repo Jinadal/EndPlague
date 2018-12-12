@@ -6,9 +6,10 @@ class InputManager : public Manager{
     private:
         InputManager():Manager(){}
         static InputManager *only_instance;
-        
     public:
-        virtual ~InputManager(){only_instance=NULL;}
+        virtual ~InputManager(){
+            delete InputFacade::getInstance();
+            only_instance=NULL;}
         //Constructor Singletone
         static InputManager *getInstance(){
             if(only_instance == NULL){only_instance = new InputManager();}
@@ -16,4 +17,6 @@ class InputManager : public Manager{
         }
 
         void createComponent(GameObject* owner);
+
+        void updateAll();
 };
