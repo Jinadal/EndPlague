@@ -1,4 +1,3 @@
-#include <iostream>
 #include <ShootManager.h>
 #include <ShootComponent.h>
 

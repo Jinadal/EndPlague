@@ -1,3 +1,4 @@
+#pragma once
 #include "GameResource.h"
 
 enum EnemyType
