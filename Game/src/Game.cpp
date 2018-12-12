@@ -37,9 +37,7 @@ int main()
    ProjectileManager*   projectilemanager   = ProjectileManager::getInstance();
    InputManager*        inputmanager        = InputManager::getInstance();
    CameraManager*       cameramanager       = CameraManager::getInstance();
-
-   IAManager*        iamanager        = IAManager::getInstance();
-
+   IAManager*           iamanager           = IAManager::getInstance();
    ItemManager*         itemManager         = ItemManager::getInstance();
    StorageManager*      storageManager      = StorageManager::getInstance();
 
@@ -80,7 +78,8 @@ int main()
     movementmanager->createComponent(primero);
     primero->getComponent<MovementComponent>()->setvMax(200.f);
 
-    _world = physic->initWorldPhysics();
+    //Add Input
+    inputmanager->createComponent(box);
 
     //Add Collisions
     collisionmanager->createComponent(box, 200, 200, true); //Ancho, alto y si es solido
@@ -113,8 +112,10 @@ int main()
     while(render->run())
     {   
        
+        if(box)
+            box->getComponent<InputComponent>()->pulseInput(interface);
 
-        box->getComponent<InputComponent>()->pulseInput(interface);
+
         iamanager->updateAll();
 
 
@@ -128,18 +129,7 @@ int main()
 
         render->drawAll();
 
-
-
-
-
     }
-
- 
-void CreateStartScene()
-{
-    ClearObjects();
-    CreateBox(btVector3(0.0f,0.0f,0.0f), vector3df(10.0f,0.5f,10.0f),0.0f);
-    CreateBox(btVector3(.5,0.5,.5), vector3df(0.5f,0.5f,.5f),1.0f);
 
 
 
