@@ -20,7 +20,7 @@ class InputComponent : public Component
 
 
 
-    void pulseInput(InputFacade *interface);
+    void pulseInput();
 
 
 

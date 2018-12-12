@@ -29,9 +29,7 @@ void GameResource::updateAll()
             delete g;
             it = gameobjects.erase(it);
             i--;
-
         } else
             it++;
     }
-
 }
