@@ -34,11 +34,6 @@ PhysicBullet::~PhysicBullet()
     only_instance = NULL;
 }
 
-void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
-{
-    
-}
-
 btDynamicsWorld* PhysicBullet::initWorldPhysics()
 {
     //Initialize the scene where the physics take part. It defines how collision are going to take part and resolved.
