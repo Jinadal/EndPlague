@@ -5,5 +5,5 @@ void ProjectileComponent::dealDamage(LifeComponent* l){
     if(l)
         l->looseLife(damage);
 
-    gameObject->toKill();
+    gameObject->setKill(true);
 }

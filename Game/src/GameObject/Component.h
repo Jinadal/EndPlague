@@ -15,7 +15,7 @@ class Component{
     //Destructor
     virtual ~Component(){
       manager->removeComponent(this);
-    };
+    }
 
     //Getter
     GameObject* getGameObject() {
@@ -29,5 +29,4 @@ class Component{
     protected:
       GameObject* gameObject;
       Manager* manager;
-
 };

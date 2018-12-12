@@ -11,12 +11,11 @@ CollisionManager* CollisionManager::only_instance = NULL;
 
 
 
-void CollisionManager::createComponent(GameObject *owner ,float width, float height, bool solid)
+void CollisionManager::createComponent(GameObject* owner ,float width, float height, bool solid)
 {
-
     if(owner->getComponent<MovementComponent>())
     {
-        components.insert(components.begin(),new CollisionComponent(owner, this, width, height, solid));
+        components.insert(components.begin(), new CollisionComponent(owner, this, width, height, solid));
         owner->addComponent(components[0]);
     }else{
         components.push_back(new CollisionComponent(owner, this, width, height, solid));
@@ -29,15 +28,20 @@ void CollisionManager::createComponent(GameObject *owner ,float width, float hei
 
 void CollisionManager::updateAll()
 {
-    //std::vector<CollisionComponent *>::iterator iter1;
-    for(std::size_t i = 0; i<components.size() && components[i]->getGameObject()->getComponent<MovementComponent>(); i++)
+    for(std::size_t i = 0; i<components.size(); i++)
     {
+        if(!components[i]->getGameObject()->getComponent<MovementComponent>())
+            break;
+
+
         for(std::size_t j = i+1; j < components.size(); j++)
         {
             if(((CollisionComponent*)components[i])->testCollision(((CollisionComponent*)components[j]))){
                 
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackX();
                 components[i]->getGameObject()->getComponent<MovementComponent>()->goBackY();
+               
+                
                 
                 /*
                 -------------------------------------------------------------
@@ -76,11 +80,11 @@ void CollisionManager::updateAll()
                 StorageComponent* i_storage = components[i]->getGameObject()->getComponent<StorageComponent>();
                 StorageComponent* j_storage = components[j]->getGameObject()->getComponent<StorageComponent>();
 
-                if(i_item) //Si i es un item
-                    j_storage->itemCatch(i_item);
-        
-                if(j_item) //Si i es un item
+                if(i_storage) //Si i es un item
                     i_storage->itemCatch(j_item);
+        
+                if(j_storage) //Si i es un item
+                    j_storage->itemCatch(i_item);
 
             }
         }

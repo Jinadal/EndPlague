@@ -5,7 +5,7 @@
 RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
 
 RenderIrrlicht::RenderIrrlicht(){
-    device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
+    device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(1920, 1080), 16,
     false, false, false, InputFacade::getInstance());
 
     if (!device)
@@ -27,7 +27,8 @@ RenderIrrlicht::RenderIrrlicht(){
 }
 
 
-void RenderIrrlicht::drawAll(){
+void RenderIrrlicht::drawAll()
+{
     // Work out a frame delta time.
     const u32 now = device->getTimer()->getTime();
     frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
@@ -41,16 +42,17 @@ void RenderIrrlicht::drawAll(){
     driver->endScene();
 }
 
-bool RenderIrrlicht::run(){
+bool RenderIrrlicht::run()
+{
     return device->run();
 }
 
-void RenderIrrlicht::drop(){
-   
-
+void RenderIrrlicht::drop()
+{
     device->drop();
 }
 
-float RenderIrrlicht::getFrameDeltaTime(){
+float RenderIrrlicht::getFrameDeltaTime()
+{
     return frameDeltaTime;
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "CollisionComponent.h"
 #include <vector>
 
@@ -22,7 +23,7 @@ class CollisionManager : public Manager{
   
 
     virtual ~CollisionManager(){only_instance=NULL;}
-    void createComponent(GameObject *owner, float width, float height,bool solid); 
+    void createComponent(GameObject* owner, float width, float height,bool solid); 
     void updateAll();
     bool checkSingle(CollisionComponent* c);
 

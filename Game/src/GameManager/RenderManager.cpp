@@ -4,9 +4,8 @@ RenderManager* RenderManager::only_instance = NULL;
 
 //Updates all the components
 void RenderManager::updateAll(){
-    for(auto* c : components){
-        ((RenderComponent*)c)->update();
-    }
+    for(std::size_t i = 0; i<components.size(); i++)
+        ((RenderComponent*)components[i])->update();
 }
 
 
