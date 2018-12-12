@@ -8,9 +8,9 @@ void StorageComponent::itemCatch(ItemComponent* item)
         return;
 
     
-    if(this->item)
+    if(this->itemType)
     {
-        if(this->item->getType() != item->getType())
+        if(this->itemType != item->getType())
         {
             itemDrop();
             itemCatch(item);
@@ -19,7 +19,7 @@ void StorageComponent::itemCatch(ItemComponent* item)
     }
     else
     {
-        this->item = item;
+        this->itemType = item->getType();
         applyEffect(item->getType());
         item->getGameObject()->setKill(true);
         std::cout<<"He cogido el item\n";
@@ -30,7 +30,7 @@ void StorageComponent::itemCatch(ItemComponent* item)
 
 void StorageComponent::itemDrop()
 {
-    this->item = NULL;
+    this->itemType = 0;
     setDefaultValues();
     std::cout<<"He tirado el objeto que tenia\n";
 }
