@@ -1,7 +1,6 @@
 #pragma once
 #include "EnemyFabric.h"
 #include "SpawnComponent.h"
-#include <cmath>
 
 class Manager;
 class SpawnManager : public Manager

@@ -1,6 +1,7 @@
 #include "SpawnManager.h"
 
-SpawnManager* only_instance = NULL;
+
+SpawnManager* SpawnManager::only_instance = NULL;
 
 void SpawnManager::createComponent(GameObject* owner, float distance, EnemyType type)
 {
