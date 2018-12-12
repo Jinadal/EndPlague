@@ -84,18 +84,9 @@ int main()
     lifemanager->createComponent(primero, 100.f);//Vida
 
     while(render->run())
-<<<<<<< HEAD
-    {   
-       
-        if(box)
-            box->getComponent<InputComponent>()->pulseInput(interface);
-
-
-=======
     {
 
         inputmanager->updateAll();
->>>>>>> Spawns
         iamanager->updateAll();
         movementmanager->updateAll(render->getFrameDeltaTime());
         shootmanager->updateAll(render->getFrameDeltaTime());
@@ -104,13 +95,8 @@ int main()
         gameresource->updateAll();
         rendermanager->updateAll();
 
-<<<<<<< HEAD
-        render->drawAll();
-
-=======
 
         render->drawAll();
->>>>>>> Spawns
     }
 
 
