@@ -8,6 +8,11 @@
 void IAComponent::Initialice(){
 
 
+
+
+
+
+
     //Movimiento
 
   /*
