@@ -118,6 +118,8 @@ int main()
     itemManager->createComponent(item2, ITEM_LIFE);
 
     storageManager->createComponent(box, 0);
+    storageManager->createComponent(primero, 0);
+
 
 
     while(render->run())
