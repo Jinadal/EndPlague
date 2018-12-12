@@ -17,4 +17,5 @@ class BCollisionManager : public Manager
         }
 
         void createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass);
+        void updateAll();
 };

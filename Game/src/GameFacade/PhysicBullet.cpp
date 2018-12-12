@@ -70,6 +70,7 @@ PhysicBullet::~PhysicBullet()
     delete _world;;
 }
 
+<<<<<<< HEAD
 void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
 {
     if(rigidbody && rigidbody->getMotionState())
@@ -89,6 +90,8 @@ void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
     delete rigidbody;
 }
 
+=======
+>>>>>>> 279a9ad49b978627e52395b561122ef44d5ef381
 btDynamicsWorld* PhysicBullet::initWorldPhysics()
 {
     //Initialize the scene where the physics take part. It defines how collision are going to take part and resolved.
