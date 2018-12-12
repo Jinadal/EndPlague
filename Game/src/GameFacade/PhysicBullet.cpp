@@ -1,8 +1,6 @@
  
 #include "PhysicBullet.h"
-#include <iostream>
 
-using namespace std;
 
 
 PhysicBullet* PhysicBullet::only_instance = NULL;
@@ -34,6 +32,11 @@ PhysicBullet::~PhysicBullet()
     delete _solver;
     delete _world;
     only_instance = NULL;
+}
+
+void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
+{
+    
 }
 
 btDynamicsWorld* PhysicBullet::initWorldPhysics()

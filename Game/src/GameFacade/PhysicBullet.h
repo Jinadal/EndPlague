@@ -4,6 +4,7 @@
 class PhysicBullet{
     private:
     static PhysicBullet* only_instance;
+    PhysicBullet(){};
 
     btBroadphaseInterface*                      _broadphase;
     btDefaultCollisionConfiguration*            _collisionConfiguration;
@@ -27,8 +28,8 @@ class PhysicBullet{
 
     btDynamicsWorld* initWorldPhysics();
     btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
-    void MoveRigidBody();
+    //void MoveRigidBody();
     void iteration(float d);
-    btDynamicsWorld* getWorld(){ return _world; }
+    //btDynamicsWorld* getWorld(){ return _world; }
     void move(btRigidBody* body,int m);
 };

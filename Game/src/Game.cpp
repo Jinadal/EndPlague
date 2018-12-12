@@ -19,7 +19,6 @@ using namespace gui;
 
 static void CreateStartScene();
 static void CreateBox(const btVector3 &TPosition, const vector3df &TScale, btScalar TMass);
-static void CreateSphere(const btVector3 &TPosition, btScalar TRadius, btScalar TMass);
 static void UpdatePhysics(u32 TDeltaTime);
 static void UpdateRender(btRigidBody* TObject);
 static void ClearObjects();
@@ -37,71 +36,21 @@ btRigidBody* rbody;
  
 static list <btRigidBody*> Objects;
  
-int ran = rand() % 10 + 1;
-int ran2 = rand() % 5 + 3;
- 
-class MainEvent : public IEventReceiver
-{
-    public:
-        virtual bool OnEvent(const SEvent& event)
-        {
-            if(event.EventType == EET_KEY_INPUT_EVENT && !event.KeyInput.PressedDown)
-            {
-                switch(event.KeyInput.Key)
-                {
-                    case KEY_ESCAPE:
-                        Done = true;
-                        break;
-                        
-                    case KEY_KEY_A:
-                        physic->move(rbody,1);
-                        break;
-                    case KEY_KEY_W:
-                        physic->move(rbody,4);
-                        break;
-                    case KEY_KEY_S:
-                        physic->move(rbody,3);
-                        break;
-                    case KEY_KEY_D:
-                        physic->move(rbody,2);
-                        break;
-                    case KEY_KEY_P:
-					    CreateSphere(btVector3(GetRandInt(10) - 5.0f, 7.0f, GetRandInt(10) - 5.0f), GetRandInt(5) / 5.0f + 0.2f, 1.0f);
-				    break;
-                    case KEY_KEY_X:
-                        CreateStartScene();
-                        break;
-                    
-                    default:
-                        return false;
-                }
-                
-                return true;
-            }
-            
-            return false;
-        }
-};
- 
+
+
 int main(int argc, char* argv[])
 {
-    MainEvent receiver;
+
     
-    Device = createDevice(EDT_OPENGL, dimension2d<u32>(800,600),32,false,false,false,&receiver);
+    Device = createDevice(EDT_OPENGL, dimension2d<u32>(800,600),32,false,false,false, NULL);
     Driver = Device->getVideoDriver();
     Smgr = Device->getSceneManager();
     Env = Device->getGUIEnvironment();
     Timer = Device->getTimer();
     
-    btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
-    btBroadphaseInterface* broadphase = new btAxisSweep3(btVector3(-1000,-1000,-1000), btVector3(1000,1000,1000));
-    btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
-    btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver();
+
+
     _world = physic->initWorldPhysics();
-
-    dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
-
-
 
     ICameraSceneNode* Camera = Smgr->addCameraSceneNode(0,vector3df(0,0,0),vector3df(0,0,100));
     Camera->setPosition(vector3df(0,5,-10));
@@ -117,7 +66,7 @@ int main(int argc, char* argv[])
     {
         DeltaTime = Timer->getTime() - TimeStamp;
         TimeStamp = Timer->getTime();
-        rbody->activate();
+        ///rbody->activate();
         UpdatePhysics(DeltaTime);
         
         Driver->beginScene(true, true, SColor(255,20,0,0));
@@ -130,11 +79,7 @@ int main(int argc, char* argv[])
     
     ClearObjects();
     delete physic;
-    delete dynamicsWorld;
-    delete solver;
-    delete dispatcher;
-    delete broadphase;
-    delete collisionConfiguration;
+    
     
     Device->drop();
     
@@ -163,61 +108,19 @@ void CreateBox(const btVector3 &TPosition, const vector3df &TScale, btScalar TMa
     
     rbody = physic->createRigidBody(TPosition, v, TMass);
 
-    //btTransform Transform;                                                                  //
-    //Transform.setIdentity();                                                                //
-    //Transform.setOrigin(TPosition);                                                         //
-    //                                                                                        //
-    //btDefaultMotionState* MotionState = new btDefaultMotionState(Transform);                //    
-    //                                                                                        //
-    //btVector3 HalfExtents(TScale.X * 0.5f, TScale.Y * 0.5f, TScale.Z * 0.5f);               //
-    //btCollisionShape* Shape = new btBoxShape(HalfExtents);                                  //
-    //                                                                                        //        
-    //btVector3 LocalInertia;                                                                 // METODO BULLET AÑADIR CUBO
-    //Shape->calculateLocalInertia(TMass, LocalInertia);                                      //
-    //                                                                                        //
-    //btRigidBody* RigidBody = new btRigidBody(TMass, MotionState, Shape, LocalInertia);      //
-                                                                                            //
+
     rbody->setUserPointer((void*)(Node));                                               //
                                                                                             //    
     _world->addRigidBody(rbody);                                                 //
-    Objects.push_back(rbody);                                                           //
+    Objects.push_back(rbody);                                                          
 }
-void CreateSphere(const btVector3 &TPosition, btScalar TRadius, btScalar TMass) {
-	
-	ISceneNode *Node = Smgr->addSphereSceneNode(TRadius, 32);
-    Node->setMaterialFlag(EMF_LIGHTING,1);
-    Node->setMaterialFlag(EMF_NORMALIZE_NORMALS, true);
-    Node->setMaterialTexture(0,Driver->getTexture("ice0.jpg"));
-	// Set the initial position of the object
-	btTransform Transform;
-	Transform.setIdentity();
-	Transform.setOrigin(TPosition);
 
-	btDefaultMotionState *MotionState = new btDefaultMotionState(Transform);
-
-	// Create the shape
-	btCollisionShape *Shape = new btSphereShape(TRadius);
-
-	// Add mass
-	btVector3 LocalInertia;
-	Shape->calculateLocalInertia(TMass, LocalInertia);
-
-	// Create the rigid body object
-	btRigidBody *RigidBody = new btRigidBody(TMass, MotionState, Shape, LocalInertia);
-
-	// Store a pointer to the irrlicht node so we can update it later
-	RigidBody->setUserPointer((void *)(Node));
-
-	// Add it to the world
-	_world->addRigidBody(RigidBody);
-	Objects.push_back(RigidBody);
-}
  
 void CreateStartScene()
 {
     ClearObjects();
     CreateBox(btVector3(0.0f,0.0f,0.0f), vector3df(10.0f,0.5f,10.0f),0.0f);
-    CreateBox(btVector3(ran,0.5,ran), vector3df(0.5f,0.5f,.5f),1.0f);
+    CreateBox(btVector3(.5,0.5,.5), vector3df(0.5f,0.5f,.5f),1.0f);
 
 }
  
