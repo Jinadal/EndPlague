@@ -2,13 +2,13 @@
 
 GameObject* ItemFabric::createItem(float x, float y, float z, float rz, ItemType type)
 {
-    //GameObject* r =  gameresource->createGameObject(x, y, x, rz);
-    //rendermanager->createComponent(r, types[type].mesh);
-    //r->getComponent<RenderComponent>()->setTexture(types[type].texture);
+    GameObject* r =  gameresource->createGameObject(x, y, x, rz);
+    rendermanager->createComponent(r, itemtypes[type].mesh);
+    r->getComponent<RenderComponent>()->setTexture(itemtypes[type].texture);
 
-    //collisionmanager->createComponent(r, 30.f, 30.f, true);
+    collisionmanager->createComponent(r, 30.f, 30.f, true);
 
-    //itemmanager->createComponent(r, type);
+    itemmanager->createComponent(r, type);
 
-    return nullptr;
+    return r;
 }

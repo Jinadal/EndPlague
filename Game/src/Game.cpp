@@ -61,7 +61,7 @@ int main()
     //Adding an ITEM1
     GameObject* item1 = gameresource->createGameObject(0.f, 30.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item1, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
-    item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
+    //item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
     collisionmanager->createComponent(item1, 50, 50, true); //Ancho, alto y si es solido
     itemManager->createComponent(item1, ITEM_CADENCE);
     
@@ -71,6 +71,13 @@ int main()
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     collisionmanager->createComponent(item2, 50, 50, true); //Ancho, alto y si es solido
     itemManager->createComponent(item2, ITEM_LIFE);
+
+    //Adding an ITEM3
+    GameObject* item3 = gameresource->createGameObject(0.f, -500.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    rendermanager->createComponent(item3, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
+    //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
+    collisionmanager->createComponent(item3, 50, 50, true); //Ancho, alto y si es solido
+    itemManager->createComponent(item3, ITEM_LIFE);
 
     //ADDING A ENEMY
     GameObject* primero = gameresource->createGameObject(200.f, -200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
