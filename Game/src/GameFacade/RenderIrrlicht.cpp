@@ -5,7 +5,7 @@
 RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
 
 RenderIrrlicht::RenderIrrlicht(){
-    device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(1920, 1080), 16,
+    device = createDevice( video::EDT_OPENGL, dimension2d<u32>(1920, 1080), 16,
     false, false, false, InputFacade::getInstance());
 
     if (!device)
@@ -18,9 +18,7 @@ RenderIrrlicht::RenderIrrlicht(){
     smgr = device->getSceneManager();
     guienv = device->getGUIEnvironment();
 
-
-    //smgr->addCameraSceneNode(0, vector3df(0,0,-600), vector3df(0,0,0));
-    smgr->addLightSceneNode();
+    //smgr->addLightSceneNode();
 
 
     then = device->getTimer()->getTime();
@@ -37,6 +35,7 @@ void RenderIrrlicht::drawAll()
     driver->beginScene(true, true, SColor(255,100,100,100));
 
     smgr->drawAll();
+    //
     guienv->drawAll();
 
     driver->endScene();

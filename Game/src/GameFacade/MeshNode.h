@@ -8,8 +8,8 @@ Node ony implemented with a AnimatedMesh in Irr
 class MeshNode{
     private:
         RenderIrrlicht* render;//Irrlich facade
-        IAnimatedMesh* mesh;//Mesh of the node
-        IAnimatedMeshSceneNode* node;//Node
+        IMesh* mesh;//Mesh of the node
+        IMeshSceneNode* node;//Node
 
     public:
         //Recives de render facade, and de path of the mesh

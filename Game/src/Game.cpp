@@ -49,13 +49,13 @@ int main()
     map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp   
 
     //ADDING A PLAYER
-    GameObject* player = gameresource->createGameObject(0.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    GameObject* player = gameresource->createGameObject(0.f, 200.f, -10.f, 180.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(player, (char*)"res/Playery.obj");//Fachada de render y path de obj
     player->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
     movementmanager->createComponent(player);
     player->getComponent<MovementComponent>()->setvMax(700.f);
     inputmanager->createComponent(player);
-    collisionmanager->createComponent(player, 50, 50, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(player, 25, 50, true); //Ancho, alto y si es solido
     shootmanager->createComponent(player, .2f, 115.f, PROJECTILE_1);//Cadencia y Tipo
     cameramanager->createComponent(player);
     storagemanager->createComponent(player);
