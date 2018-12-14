@@ -20,11 +20,10 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
         render->getDevice()->drop();
         return;
     }
-    node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
-    node->setAutomaticCulling(EAC_OFF);
-    node->setMaterialFlag(video::EMF_LIGHTING, true);//Set light
-    node->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
-    //node->setMD2Animation(scene::EMAT_STAND);//??
+    node = render->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
+    node->setMaterialFlag(EMF_LIGHTING, false);
+    //node->setMaterialFlag(EMF_WIREFRAME, true);
+    node->setDebugDataVisible(EDS_BBOX);
 }
 
 //Changes the mesh of the node to de path
