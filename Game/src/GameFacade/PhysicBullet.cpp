@@ -1,6 +1,6 @@
  
 #include "PhysicBullet.h"
-
+#include <iostream>
 
 
 PhysicBullet* PhysicBullet::only_instance = NULL;
@@ -70,7 +70,6 @@ PhysicBullet::~PhysicBullet()
     delete _world;;
 }
 
-<<<<<<< HEAD
 void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
 {
     if(rigidbody && rigidbody->getMotionState())
@@ -90,8 +89,6 @@ void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
     delete rigidbody;
 }
 
-=======
->>>>>>> 279a9ad49b978627e52395b561122ef44d5ef381
 btDynamicsWorld* PhysicBullet::initWorldPhysics()
 {
     //Initialize the scene where the physics take part. It defines how collision are going to take part and resolved.
@@ -148,11 +145,13 @@ btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVec
     
     body->setCollisionFlags(body->getCollisionFlags()|btCollisionObject::CF_KINEMATIC_OBJECT);
     body->setActivationState( DISABLE_DEACTIVATION );
-
+    //body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
     //Array of shapes in the world
 	//Better re-use collision shapes than rigidbodies
     _collisionShapes.push_back(boxyBox);
 
+    //Pointer to the last shape added to de array
+    body->setUserPointer(_collisionShapes[_collisionShapes.size()-1]);
     //We add the body to the world so it can interactuate
     _world->addRigidBody(body);
     
@@ -169,7 +168,6 @@ void PhysicBullet::iteration(float delta)
 }
 void PhysicBullet::move(btRigidBody* body,int m)
 {
-    
     btTransform newTrans;
     body->getMotionState()->getWorldTransform(newTrans);
         if(m==1)newTrans.getOrigin() += (btVector3(-0.1f, 0, 0));
@@ -177,4 +175,12 @@ void PhysicBullet::move(btRigidBody* body,int m)
         if(m==3)newTrans.getOrigin() += (btVector3(0, 0, -0.1f));
         if(m==4)newTrans.getOrigin() += (btVector3(0, 0, 0.1f));
     body->getMotionState()->setWorldTransform(newTrans);
+}
+
+bool PhysicBullet::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
+{
+    std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;
+    std::cout<<obj2->getCollisionObject()->getUserPointer()<<std::endl;
+    
+    return false;
 }
