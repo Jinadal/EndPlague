@@ -81,8 +81,10 @@ public:
 
 int main(int argc, char* argv[])
 {
-
+    //Allows to make a callback in another directory
     gContactAddedCallback = physic->callbackFunc;
+
+
 	EventReceiverClass Receiver;
     Device = createDevice(EDT_OPENGL, dimension2d<u32>(800,600),32,false,false,false, &Receiver);
     Driver = Device->getVideoDriver();

@@ -143,9 +143,13 @@ btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVec
 
 	btRigidBody* body = new btRigidBody(rbInfo);
     
+    //Makes a rigidbody inot kinematic so we can control it
     body->setCollisionFlags(body->getCollisionFlags()|btCollisionObject::CF_KINEMATIC_OBJECT);
     body->setActivationState( DISABLE_DEACTIVATION );
+    
+    //Allows to use the pointer and the callback with this object
     //body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+    
     //Array of shapes in the world
 	//Better re-use collision shapes than rigidbodies
     _collisionShapes.push_back(boxyBox);
@@ -177,6 +181,8 @@ void PhysicBullet::move(btRigidBody* body,int m)
     body->getMotionState()->setWorldTransform(newTrans);
 }
 
+//Callback which registers and shows in terminal the colliding objects
+//Parametres are standars of the bullet engine, no need of thinking much about them
 bool PhysicBullet::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
 {
     std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;
