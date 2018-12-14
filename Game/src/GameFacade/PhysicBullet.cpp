@@ -114,7 +114,6 @@ btDynamicsWorld* PhysicBullet::initWorldPhysics()
     //Set gravity to physics in y=-9,8
     _world->setGravity(btVector3(0,-9.8,0));
 
-
     //We create the floor of our world
     //createRigidBody(btVector3(0.0f,0.0f,0.0f), btVector3(100.0f,0.5f,100.0f),0.0f);
 
@@ -179,14 +178,4 @@ void PhysicBullet::move(btRigidBody* body,int m)
         if(m==3)newTrans.getOrigin() += (btVector3(0, 0, -0.1f));
         if(m==4)newTrans.getOrigin() += (btVector3(0, 0, 0.1f));
     body->getMotionState()->setWorldTransform(newTrans);
-}
-
-//Callback which registers and shows in terminal the colliding objects
-//Parametres are standars of the bullet engine, no need of thinking much about them
-bool PhysicBullet::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
-{
-    std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;
-    std::cout<<obj2->getCollisionObject()->getUserPointer()<<std::endl;
-    
-    return false;
 }
