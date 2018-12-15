@@ -3,17 +3,27 @@
 class GameObject;
 class ItemComponent : public Component{
     private:
-        int type;
+        int Type;
+
+        
+
     public:
         //CONSTRUCTOR
-        ItemComponent(GameObject* g, Manager* m, int type):Component(g, m){
-            this->type = type;
+        ItemComponent(GameObject* g, Manager* m, int Type) :Component(g, m){
+            this->Type = Type;
         }
 
         //DESTRUCTOR
-        virtual ~ItemComponent(){}
+        ~ItemComponent(){}
 
-        //SETTERS AND GETTERS
-        int getType(){return type;}
-        void setType(int t){type = t;}
+        int getType(){
+            return Type;
+        }
+
+
+};
+enum Type {
+    ITEM_THROWABLE,
+    ITEM_LIFE,
+    ITEM_CADENCE
 };

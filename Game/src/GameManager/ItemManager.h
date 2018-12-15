@@ -1,5 +1,4 @@
-#include <vector>
-#include "ItemComponent.h"
+
 #include "GameObject.h"
 
 class GameObject;
@@ -20,7 +19,7 @@ class ItemManager : public Manager{
         }
 
         //DESTRUCTOR
-        virtual ~ItemManager() {only_instance = NULL;}
-        void createComponent(GameObject *owner, int type);
+        virtual ~ItemManager() {only_instance = NULL;};
+        void createComponent(GameObject *owner, float cadencia);
 
 };

@@ -45,22 +45,3 @@ bool CollisionComponent::testCollision(CollisionComponent *com)
 
     return false;
 }
-
-//Recibe un gameobject y mira si colisiona con este objecto
-// si colisiona, según el objeto que sea hara una cosa u otra
-void CollisionComponent::checkCollision(GameObject *obj)
-{
-
-    CollisionComponent *com = obj->getComponent<CollisionComponent>();
-
-    if(testCollision(com)){
-
-        std::cout<<"Colisiona \n";
-
-        
-        
-
-
-    }
-
-}

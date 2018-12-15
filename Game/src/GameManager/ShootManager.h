@@ -1,14 +1,13 @@
 #pragma once
-//Headers
 #include "ShootComponent.h"
-//#include "ProjectileFabric.h"
-#include <vector>
+#include "ProjectileFabric.h"
 
 class Manager;
 class ShootManager : public Manager{
     private:
-        ShootManager():Manager(){}
+        ShootManager():Manager(){fabric = new ProjectileFabric();}
         static ShootManager* only_instance;
+        ProjectileFabric* fabric;
 
     public:
     
@@ -19,9 +18,8 @@ class ShootManager : public Manager{
             return only_instance;
         }
 
-        virtual ~ShootManager(){only_instance=NULL;}
-        void kill();
+        ~ShootManager(){delete fabric; only_instance=NULL;}
         void updateAll(float dt);
-        void createProjectile(float x, float y, float rz, int k);
-        void createComponent(GameObject *owner, float cadencia, int tipo);
+        void createProjectile(float x, float y, float rz, ProjectileType tipo);
+        void createComponent(GameObject *owner, float cadencia, float distance, ProjectileType tipo);
 };

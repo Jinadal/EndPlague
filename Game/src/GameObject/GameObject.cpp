@@ -10,16 +10,17 @@ GameObject::GameObject(float x, float y, float z, float rz){
     this->rx    = 0;
     this->ry    = 0;
     this->rz    = rz;
-    kill        = false;
 }
 
 //Destructor
 GameObject::~GameObject(){
-    components.clear();
+    for(std::size_t i= 0; i<components.size(); i++)
+    {
+        delete components[i];
+    }
 }
 
 //Add component
 void GameObject::addComponent(Component* c){
     components.push_back(c);
 }
-void GameObject::toKill(){kill=true;}

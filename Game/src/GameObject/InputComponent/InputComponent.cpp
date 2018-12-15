@@ -1,11 +1,11 @@
 #include "InputComponent.h"
 #include "InputFacade.h"
 #include "ShootComponent.h"
-#include <iostream>
 #include <irrlicht.h>
 
-void InputComponent::pulseInput(InputFacade *interface)
+void InputComponent::pulseInput()
 {
+    InputFacade* interface = InputFacade::getInstance();
 
     int enX = 0, enY = 0;
 

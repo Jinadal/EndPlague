@@ -10,14 +10,13 @@ class GameObject{
     private:
         float x, y, z, rx, ry, rz;
         std::vector<Component*> components;
-        bool kill;
+        bool kill=false;
 
     public:
     GameObject(float x, float y, float z, float rz);
 
-    virtual ~GameObject();
-
-   
+    ~GameObject();
+    
 
     float getX(){return x;}
     float getY(){return y;}
@@ -25,6 +24,7 @@ class GameObject{
     float getRX(){return rx;}
     float getRY(){return ry;}
     float getRZ(){return rz;}
+    bool getKill(){return kill;}
     
 
     void setX(float x){this->x = x;}
@@ -33,13 +33,13 @@ class GameObject{
     void setRX(float rx){this->rx = rx;}
     void setRY(float ry){this->ry = ry;}
     void setRZ(float rz){this->rz = rz;}
-
+    void setKill(bool kill){this->kill = kill;}
 	
 
 
 	//Add component
     void addComponent(Component* c);
-    void toKill();//Sets kill true;
+    
 
 
 	template<typename T>

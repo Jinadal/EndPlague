@@ -12,7 +12,7 @@ class LifeComponent : public Component{
         LifeComponent(GameObject* g, Manager* m, float f):Component(g, m){
             this->life = f;            
         }
-        virtual ~LifeComponent(){};
+        ~LifeComponent(){}
 
         //Setter&Getters
         float getLife()       {return life;};
@@ -21,6 +21,6 @@ class LifeComponent : public Component{
 
         //Methods
         void looseLife(float d);  //Gets by parametre a int damage from the attacker
-
+        void addLife(float l);
    
 };

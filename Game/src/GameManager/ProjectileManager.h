@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include "ProjectileComponent.h"
 #include "GameObject.h"
@@ -21,5 +22,4 @@ class ProjectileManager : public Manager{
 
         virtual ~ProjectileManager(){only_instance=NULL;}
         void createComponent(GameObject* owner, float damage);
-        void createBullet();
 };

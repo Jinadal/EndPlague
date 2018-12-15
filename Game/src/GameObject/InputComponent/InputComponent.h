@@ -15,12 +15,12 @@ class InputComponent : public Component
     //Constructor
     InputComponent(GameObject *owner, Manager* m): Component(owner, m) {}
     
-    virtual ~InputComponent(){}
+    ~InputComponent(){}
 
 
 
 
-    void pulseInput(InputFacade *interface);
+    void pulseInput();
 
 
 

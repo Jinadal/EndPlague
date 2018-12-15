@@ -3,6 +3,13 @@
 #include <iostream>
 
 
+using namespace irr;
+using namespace core;
+using namespace scene;
+using namespace video;
+using namespace io;
+using namespace gui;
+
 //Creation of a mesh node, recives the facade an the path of the mesh
 MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
     render = r;//Assing the facade
@@ -13,9 +20,10 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
         render->getDevice()->drop();
         return;
     }
-    node = render->getSMgr()->addAnimatedMeshSceneNode(mesh);//Adds the mesh to the node
-    node->setMaterialFlag(video::EMF_LIGHTING, false);//Set light
-    //node->setMD2Animation(scene::EMAT_STAND);//??
+    node = render->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
+    node->setMaterialFlag(EMF_LIGHTING, false);
+    //node->setMaterialFlag(EMF_WIREFRAME, true);
+    node->setDebugDataVisible(EDS_BBOX);
 }
 
 //Changes the mesh of the node to de path
@@ -29,7 +37,7 @@ void MeshNode::setMesh(char s[]){
     node->setMesh(mesh);//sets the mesh on the node
 }
 
-//Changes the position of the node
+//Changes the position nsertof the node
 void MeshNode::setPosition(float x, float y, float z){
     core::vector3df nodePosition = node->getPosition();
     nodePosition.Y = y;

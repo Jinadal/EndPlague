@@ -1,3 +1,4 @@
+#pragma once
 #include "MovementComponent.h"
 #include <vector>
 
@@ -17,7 +18,6 @@ class MovementManager : public Manager{
 
         virtual ~MovementManager(){only_instance=NULL;}
 
-        void addComponent(MovementComponent* rc);
         void updateAll(float dt);   
         void createComponent(GameObject *owner);
 };
