@@ -13,9 +13,8 @@ class BCollisionComponent : public Component
             btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());
             btVector3 size = btVector3(xsize, ysize, zsize);
             rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass);
+            rbody->setUserPointer((void *)(gameObject));
         }
 
         void update();
-        static bool callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2);
-
 };

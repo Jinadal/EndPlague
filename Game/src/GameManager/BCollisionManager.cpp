@@ -40,13 +40,12 @@ void BCollisionManager::updateAll(){
 //Need to add the next to lines to main or world init
 
 //Allows to make a callback in another directory
-//gContactAddedCallback = <nameofcollisionmanager>->callbackFunc;
+//gContactAddedCallback = <nameofcollisionmanager>p->callbackFunc;
 bool BCollisionManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
 {
     
-    
     std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;
     std::cout<<obj2->getCollisionObject()->getUserPointer()<<std::endl;
-    
+
     return false;
 }
