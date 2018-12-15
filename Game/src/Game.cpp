@@ -27,7 +27,6 @@ static int GetRandInt(int TMax) { return rand() % TMax; }
 PhysicBullet* physic = PhysicBullet::getInstance();
 btDynamicsWorld* _world;
 static bool Done = false;
-static btDiscreteDynamicsWorld* dynamicsWorld;
 static IrrlichtDevice* Device;
 static IVideoDriver* Driver;
 static ISceneManager* Smgr;

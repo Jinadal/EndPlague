@@ -154,7 +154,7 @@ btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVec
     _collisionShapes.push_back(boxyBox);
 
     //Pointer to the last shape added to de array
-    body->setUserPointer(_collisionShapes[_collisionShapes.size()-1]);
+    //body->setUserPointer(_collisionShapes[_collisionShapes.size()-1]);
     //We add the body to the world so it can interactuate
     _world->addRigidBody(body);
     
