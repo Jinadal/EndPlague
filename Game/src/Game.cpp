@@ -78,21 +78,21 @@ int main()
     collisionmanager->createComponent(item1, 50, 50, true); //Ancho, alto y si es solido
     itemmanager->createComponent(item1, ITEM_CADENCE);
     
-    /*
+    
     //Adding an ITEM2
     GameObject* item2 = gameresource->createGameObject(0.f, -200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item2, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     collisionmanager->createComponent(item2, 50, 50, true); //Ancho, alto y si es solido
     itemmanager->createComponent(item2, ITEM_LIFE);
-    */
+    
 
     //Adding an ITEM3
     GameObject* item3 = gameresource->createGameObject(0.f, -500.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item3, (char*)"res/Enemyy.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     collisionmanager->createComponent(item3, 50, 50, true); //Ancho, alto y si es solido
-    itemManager->createComponent(item3, ITEM_LIFE);
+    itemmanager->createComponent(item3, ITEM_THROWABLE);
 
     //ADDING A ENEMY
     GameObject* primero = gameresource->createGameObject(-200.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
