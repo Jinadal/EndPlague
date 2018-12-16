@@ -1,8 +1,6 @@
 #-------------------------------------------------------
 #-------------------------------------------------------
-
 #					NUEVO MAKEFILE		
-
 #-------------------------------------------------------
 #-------------------------------------------------------
 
@@ -16,23 +14,25 @@
 #GETTING ALL CPPS
 SOURCES := $(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp)
 
-#GETTING ALL CPPS
-#SOURCESNP := $(notdir $(SOURCES))
-
-#GETTING ALL HEADERS
+#ALL HEADERS
 HEADERS := $(subst .cpp,.h,$(SOURCES))
 
+#ALL DIRS
 #GETTING ALL DIRS
 DIRS := $(dir $(SOURCES))
 
+#ALL .O
 #OBJECTS := $(addprefix bin/,$(subst .cpp,.o,$(notdir $(SOURCES))))
 #OBJECTS := $(subst .cpp,.o,$(SOURCESNP))
 OBJECTS := $(subst .cpp,.o,$(SOURCES))
 
+
+#EXTERNAL HOMES
 IrrlichtHome := /usr/include/irrlicht
 BulletHome := /usr/include/bullet
 BulletLibraries := /usr/lib64
 
+#INCLUDES && LIBRAIES
 INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include
 LIBRAIES := -L$(IrrlichtHome)/lib/$(SYSTEM) -lIrrlicht -L$(BulletLibraries) -lLinearMath -lBulletDynamics -lBulletCollision
 
@@ -43,13 +43,10 @@ bin/Ejecutable: $(OBJECTS)
 	@g++ -o $@ $^ $(LIBRAIES) $(INCLUDES)
 	@echo Proceso terminado
 	
-
+#Compiler
 %.o: %.cpp %.h
 	@echo Compilando: $(notdir $<)
 	@g++ -g -Wall -o $@ -c $< $(LIBRAIES) $(INCLUDES)
-
-
-
 
 
 info:
