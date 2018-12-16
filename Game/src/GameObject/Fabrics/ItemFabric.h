@@ -34,21 +34,21 @@ class ItemFabric
         {
             {
                 ITEM_1,
-                (char*)"res/Enemyy.obj",
+                (char*)"res/ITEM.obj",
                 (char*)"res/green.bmp", 
                 1
 
             },
             {
                 ITEM_2,
-                (char*)"res/Enemyy.obj",
+                (char*)"res/ITEM.obj",
                 (char*)"res/red.bmp",
                 2
             }, 
             {
                 ITEM_3,
-                (char*)"res/Enemyy.obj",
-                "", 
+                (char*)"res/ITEM.obj",
+                (char*)"res/red.bmp", 
                 3
             }
         };
