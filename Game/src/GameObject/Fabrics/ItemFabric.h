@@ -1,3 +1,4 @@
+#pragma once
 #include "GameResource.h"
 #include "GameObject.h"
 #include "RenderManager.h"
@@ -5,37 +6,21 @@
 #include "ItemManager.h"
 
 
-enum ItemType
+enum ItemTypes
 {
     ITEM_1,
-    ITEM_2, 
+    ITEM_2,
     ITEM_3
 };
 
-struct Type{
-    ItemType type;
+struct IType{
+    ItemTypes type;
     char* mesh;
     char* texture;
+    int Itype;
 };
 
-Type itemtypes [3] = 
-{
-    {
-        ITEM_1,
-        (char*)"res/Enemyy.obj",
-        (char*)"res/red.bmp"
-    },
-    {
-        ITEM_2,
-        (char*)"res/Enemyy.obj",
-        (char*)"res/red.bmp"
-    }, 
-    {
-        ITEM_3,
-        (char*)"res/Enemyy.obj",
-        (char*)"res/red.bmp"
-    }
-};
+
 
 class ItemFabric
 {
@@ -45,11 +30,34 @@ class ItemFabric
         CollisionManager*   collisionmanager    = CollisionManager::getInstance();
         ItemManager*        itemmanager         = ItemManager::getInstance();
 
+        IType item_types [3] = 
+        {
+            {
+                ITEM_1,
+                (char*)"res/Enemyy.obj",
+                (char*)"res/green.bmp", 
+                1
+
+            },
+            {
+                ITEM_2,
+                (char*)"res/Enemyy.obj",
+                (char*)"res/red.bmp",
+                2
+            }, 
+            {
+                ITEM_3,
+                (char*)"res/Enemyy.obj",
+                "", 
+                3
+            }
+        };
+
     public:
         ItemFabric(){}
         virtual ~ItemFabric(){}
 
-        GameObject* createItem(float x, float y, float z, float rz, ItemType type);
+        GameObject* createItem(float x, float y, float z, float rz, int type);
 };
 
 
