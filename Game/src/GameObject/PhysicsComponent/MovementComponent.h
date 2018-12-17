@@ -4,6 +4,8 @@
 
 class Manager;
 class MovementComponent : public Component{
+    private:
+        float vMax, vX, vY, vZ, rZ, preX, preY, preZ;
 
     public:
 
@@ -12,6 +14,7 @@ class MovementComponent : public Component{
             vX      = 0.f;
             vY      = 0.f;
             vZ      = 0.f;
+            rZ      = 0.f;
             vMax    = 40.f;
             preX    = 0.f;
             preY    = 0.f;
@@ -28,7 +31,7 @@ class MovementComponent : public Component{
         void close();
 
         //Input
-        void moveObject(int x, int y);
+        void moveObject(int x, int y, float tx, float ty);
 
         //GoBack
         void goBackX();
@@ -46,9 +49,4 @@ class MovementComponent : public Component{
         void setvX(float v){vX = v;}
         void setvY(float v){vY = v;}
         void setvZ(float v){vZ = v;}
-
-    private:
-
-        float vMax, vX, vY, vZ, preX, preY, preZ;
-
 };

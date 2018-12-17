@@ -3,7 +3,7 @@
 #include "ShootComponent.h"
 #include <irrlicht.h>
 
-void InputComponent::pulseInput()
+void InputComponent::pulseInput(float cursorX, float cursorY)
 {
     InputFacade* interface = InputFacade::getInstance();
 
@@ -29,8 +29,6 @@ void InputComponent::pulseInput()
     }
 
     if(gameObject->getComponent<MovementComponent>()!=nullptr){
-        gameObject->getComponent<MovementComponent>()->moveObject(enX,enY);
+        gameObject->getComponent<MovementComponent>()->moveObject(enX,enY, cursorX, cursorY);
     }
-
-
 }
