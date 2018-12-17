@@ -20,6 +20,7 @@ class IAComponent : public Component
 
     GameObject* main;
 
+    bool didIcollide = false;
 
 
 };

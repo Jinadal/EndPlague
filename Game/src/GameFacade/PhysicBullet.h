@@ -27,11 +27,10 @@ class PhysicBullet{
     }
 
     void removeRigidBody(btRigidBody* rigidbody);
+    bool callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2);
 
     btDynamicsWorld* initWorldPhysics();
     btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
-    //void MoveRigidBody();
     void iteration(float d);
-    //btDynamicsWorld* getWorld(){ return _world; }
     void move(btRigidBody* body,int m);
 };

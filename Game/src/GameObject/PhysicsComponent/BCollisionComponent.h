@@ -13,6 +13,7 @@ class BCollisionComponent : public Component
             btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());
             btVector3 size = btVector3(xsize, ysize, zsize);
             rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass);
+            rbody->setUserPointer((void *)(gameObject));
         }
 
         void update();
