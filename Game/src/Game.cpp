@@ -1,7 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <iostream>
-#include <vector>
 
 #include "GameResource.h"
 #include "RenderManager.h"
@@ -18,14 +16,11 @@
 #include "SpawnManager.h"
 #include "Nodo.h"
 #include "IAManager.h"
- 
-#include <irrlicht.h>
+
 #include "PhysicBullet.h"
-#include <btBulletDynamicsCommon.h>
-#include <btBulletCollisionCommon.h>
 
 
-
+#include "SoundSystem.h"
 
 
 int main()
