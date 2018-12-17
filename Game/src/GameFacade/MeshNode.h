@@ -36,4 +36,6 @@ class MeshNode{
         //Changes the texture of the node to the new path
         void setTexture(char s[]);
 
+        IMeshSceneNode* getMeshSceneNode(){return node;}
+
 };

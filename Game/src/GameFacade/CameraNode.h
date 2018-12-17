@@ -9,6 +9,7 @@ class CameraNode{
         CameraNode()
         {
             node = RenderIrrlicht::getInstance()->getSMgr()->addCameraSceneNode(0, vector3df(0,0,0), vector3df(0,0,0));
+            RenderIrrlicht::getInstance()->setCamera(node);
             node->setAutomaticCulling(EAC_OFF);
         }
 

@@ -21,6 +21,9 @@ class RenderIrrlicht{
         ISceneManager* smgr;
         IGUIEnvironment* guienv;
 
+        ICameraSceneNode* camera;
+        IMeshSceneNode* map;
+
         u32 then;
         f32 frameDeltaTime;
     public:
@@ -32,11 +35,13 @@ class RenderIrrlicht{
             }
             return only_instance;
         }
+
         //Geters
         IrrlichtDevice* getDevice(){return device;}
         IVideoDriver* getDriver(){return driver;}
         ISceneManager* getSMgr(){return smgr;}
         IGUIEnvironment* getGUIEnv(){return guienv;}
+        void setCamera(ICameraSceneNode* node){camera=node;}
 
         //Draws all the scene, better at the end of loop
         void drawAll();
@@ -46,4 +51,7 @@ class RenderIrrlicht{
         void drop();
         //Returns the time betwen las loop and now
         float getFrameDeltaTime();
+        float getCursorX();
+        float getCursorY();
+        void isMap(IMeshSceneNode* node){map=node;}
 };

@@ -21,7 +21,7 @@ return false;
 bool MoverArriba::run(){
 
 
-    owner->getComponent<MovementComponent>()->moveObject(0,1);
+    owner->getComponent<MovementComponent>()->moveObject(0,1,0.f,0.f);
     return true;
 }
 
@@ -29,19 +29,19 @@ bool MoverArriba::run(){
 bool MoverAbajo::run(){
 
 
-    owner->getComponent<MovementComponent>()->moveObject(0,-1);
+    owner->getComponent<MovementComponent>()->moveObject(0,-1,0.f,0.f);
     return true;
 }
 bool MoverIzda::run(){
 
 
-    owner->getComponent<MovementComponent>()->moveObject(-1,0);
+    owner->getComponent<MovementComponent>()->moveObject(-1,0,0.f,0.f);
     
     return true;
 }
 bool MoverDcha::run(){
 
 
-    owner->getComponent<MovementComponent>()->moveObject(1,0);
+    owner->getComponent<MovementComponent>()->moveObject(1,0,0.f,0.f);
     return true;
 }

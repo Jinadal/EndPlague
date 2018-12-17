@@ -28,4 +28,6 @@ class RenderComponent : public Component{
 
         //Sets the mesh
         void setMesh(char s[]);
+
+        void isMap(){render->isMap(node->getMeshSceneNode());}
 };
