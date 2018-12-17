@@ -16,8 +16,6 @@
 #include "ItemManager.h"
 #include "StorageManager.h"
 #include "SpawnManager.h"
-#include "bullet/btBulletCollisionCommon.h"
-#include "bullet/btBulletDynamicsCommon.h"
 #include "Nodo.h"
 #include "IAManager.h"
 
@@ -46,6 +44,7 @@ int main()
     //ADDING A MAP
     GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
     rendermanager->createComponent(map, (char*)"res/Mapy.obj");//Fachada de render y path de obj
+    map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp   
 
     //ADDING A PLAYER
@@ -101,6 +100,8 @@ int main()
     while(render->run())
     {
 
+
+        inputmanager->setCursorPosition(render->getCursorX(), render->getCursorY());
         inputmanager->updateAll();
         spawnmanager->updateAll(render->getFrameDeltaTime());
         iamanager->updateAll();

@@ -1,5 +1,6 @@
 #include <ShootManager.h>
 #include <ShootComponent.h>
+#define PI 3.14159265
 
 ShootManager* ShootManager::only_instance = NULL;
 
@@ -10,8 +11,8 @@ void ShootManager::updateAll(float dt)
         ShootComponent* shooter = (ShootComponent*) components[i];      //get Component
         if (shooter->update(dt))
         {                                                               //Create gameObject Bullet.
-            float x = shooter->getX() + shooter->getDistance() * sin(shooter->getRZ());
-            float y = shooter->getY() + shooter->getDistance() * cos(shooter->getRZ());
+            float x = shooter->getX() + shooter->getDistance() * -cos(-PI/2 + shooter->getRZ()*PI/180);
+            float y = shooter->getY() + shooter->getDistance() * -sin(-PI/2 + shooter->getRZ()*PI/180);
             createProjectile(x, y, shooter->getRZ(), shooter->getType());
         }
     }

@@ -6,6 +6,7 @@ class InputManager : public Manager{
     private:
         InputManager():Manager(){}
         static InputManager *only_instance;
+        float cursorX, cursorY;
     public:
         virtual ~InputManager(){
             delete InputFacade::getInstance();
@@ -17,6 +18,6 @@ class InputManager : public Manager{
         }
 
         void createComponent(GameObject* owner);
-
+        void setCursorPosition(float x, float y);
         void updateAll();
 };

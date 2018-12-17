@@ -55,3 +55,42 @@ float RenderIrrlicht::getFrameDeltaTime()
 {
     return frameDeltaTime;
 }
+
+
+float RenderIrrlicht::getCursorX()
+{
+    ITriangleSelector*  selector=smgr->createTriangleSelector(map->getMesh(), map);
+    core::vector3df     outCollisionPoint;
+    core::triangle3df   outTriangle;
+    ISceneNode*         outNode=nullptr;
+
+    ISceneCollisionManager* colmgr = smgr->getSceneCollisionManager();
+    line3d<float> raytrace = colmgr->getRayFromScreenCoordinates(device->getCursorControl()->getPosition(), camera);
+    colmgr->getCollisionPoint(	raytrace,
+                                selector,
+                                outCollisionPoint,
+                                outTriangle,
+                                outNode
+                                );
+
+    return outCollisionPoint.X;
+}
+
+float RenderIrrlicht::getCursorY()
+{
+     ITriangleSelector*  selector=smgr->createTriangleSelector(map->getMesh(), map);
+    core::vector3df     outCollisionPoint;
+    core::triangle3df   outTriangle;
+    ISceneNode*         outNode=nullptr;
+
+    ISceneCollisionManager* colmgr = smgr->getSceneCollisionManager();
+    line3d<float> raytrace = colmgr->getRayFromScreenCoordinates(device->getCursorControl()->getPosition(), camera);
+    colmgr->getCollisionPoint(	raytrace,
+                                selector,
+                                outCollisionPoint,
+                                outTriangle,
+                                outNode
+                                );
+
+    return outCollisionPoint.Y;
+}

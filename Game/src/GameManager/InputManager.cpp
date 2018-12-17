@@ -14,6 +14,12 @@ void InputManager::updateAll()
 {
     for(std::size_t i = 0 ; i<components.size(); i++)
     {
-        ((InputComponent*)components[i])->pulseInput(); 
+        ((InputComponent*)components[i])->pulseInput(cursorX, cursorY); 
     }
+}
+
+void InputManager::setCursorPosition(float x, float y)
+{
+    cursorX=x;
+    cursorY=y;
 }
