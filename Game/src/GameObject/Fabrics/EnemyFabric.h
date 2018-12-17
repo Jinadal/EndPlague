@@ -5,6 +5,7 @@
 #include "CollisionManager.h"
 #include "IAManager.h"
 #include "LifeManager.h"
+#include "ShootManager.h"
 
 enum EnemyType
 {
@@ -46,6 +47,9 @@ class EnemyFabric
         CollisionManager*   collisionmanager    = CollisionManager::getInstance();
         IAManager*          iamanager           = IAManager::getInstance();
         LifeManager*        lifemanager         = LifeManager::getInstance();
+        ShootManager*        shootmanager        = ShootManager::getInstance();
+        ProjectileManager*     proyectilemanager   = ProjectileManager::getInstance();
+
 
     public:
         EnemyFabric(){}

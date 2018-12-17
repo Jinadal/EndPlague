@@ -58,7 +58,7 @@ info:
 
 all:
 	@rm -f $(OBJECTS)
-	@./make
+	@make
 
 clear:
 	@rm -f $(OBJECTS)

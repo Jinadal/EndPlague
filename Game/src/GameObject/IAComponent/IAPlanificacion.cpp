@@ -5,6 +5,8 @@
 #include <iostream>
 #include "IAComponent.h"
 #include "MovementComponent.h"
+#include "ShootComponent.h"
+
 
 
 bool IA_Plan_InSight::run()
@@ -13,8 +15,8 @@ bool IA_Plan_InSight::run()
     float dx = main->getX() - owner->getX();
     float dy = main->getY() - owner->getY();
 
-    if(fabs(dx) <= 250 && fabs(dy) <= 250){
-        
+    if(fabs(dx) <= 500  && fabs(dy) <= 500){
+        owner->getComponent<ShootComponent>()->shoot();
         ///std::cout << "PERSONAJE DETECTADO!!! \n";
          return true;
     }

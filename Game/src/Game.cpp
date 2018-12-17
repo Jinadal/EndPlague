@@ -55,7 +55,7 @@ int main()
     //ADDING A PLAYER
     GameObject* player = gameresource->createGameObject(0.f, 200.f, -10.f, 180.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(player, (char*)"res/DOMMIEZ.obj");//Fachada de render y path de obj
-    player->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
+   // player->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
     movementmanager->createComponent(player);
     player->getComponent<MovementComponent>()->setvMax(700.f);
     inputmanager->createComponent(player);
@@ -64,6 +64,8 @@ int main()
     cameramanager->createComponent(player);
     storagemanager->createComponent(player);
     iamanager->setPlayer(player);
+  //  lifemanager->createComponent(player, 100.f);//Vida
+
     
 
     //ADDING A SPAWN
@@ -108,6 +110,9 @@ int main()
     iamanager->createComponent(primero);
     primero->getComponent<IAComponent>()->Initialice();
     lifemanager->createComponent(primero, 100.f);//Vida
+    shootmanager->createComponent(primero, .8f, 115.f, PROJECTILE_1);//Cadencia y Tipo
+
+
 
     while(render->run())
     {

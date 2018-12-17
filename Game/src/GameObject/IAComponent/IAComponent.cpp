@@ -3,6 +3,7 @@
 #include "IAMovimiento.h"
 #include "IASeguimiento.h"
 #include "IAPlanificacion.h"
+#include "MovementComponent.h"
 #include <iostream>
 
 
@@ -120,12 +121,12 @@ void IAComponent::Initialice(){
    // MoverDcha* movedcha = new MoverDcha(gameObject);
    // pared_arriba->addChild(movedcha);
 
-    MoverArriba* moveup = new MoverArriba(gameObject);
+    MoverArriba* moveup = new MoverArriba(gameObject, main);
     pared_arriba->addChild(moveup);
 
 
 
-    MoverIzda* movelft = new MoverIzda(gameObject);
+    MoverIzda* movelft = new MoverIzda(gameObject, main);
     raizIAmov->addChild(movelft);
 
     
@@ -163,7 +164,7 @@ void IAComponent::Initialice(){
                          IA_Seg_CheckXIzd* seg_checkXIzd = new IA_Seg_CheckXIzd(gameObject, main);
                          seg_XIzq->addChild(seg_checkXIzd);
 
-                         MoverDcha* seg_movDcha = new MoverDcha(gameObject);
+                         MoverDcha* seg_movDcha = new MoverDcha(gameObject, main);
                          seg_XIzq->addChild(seg_movDcha);
 
 
@@ -173,7 +174,7 @@ void IAComponent::Initialice(){
                          IA_Seg_CheckXDer* seg_checkXDer = new IA_Seg_CheckXDer(gameObject, main);
                          seg_XDer->addChild(seg_checkXDer);
 
-                         MoverIzda* seg_movIzda = new MoverIzda(gameObject);
+                         MoverIzda* seg_movIzda = new MoverIzda(gameObject, main);
                          seg_XDer->addChild(seg_movIzda);
 
 
@@ -196,7 +197,7 @@ void IAComponent::Initialice(){
                       IA_Seg_CheckYAbj* seg_checkYAbj = new IA_Seg_CheckYAbj(gameObject, main);
                       seg_YAbj->addChild(seg_checkYAbj);
 
-                      MoverArriba* seg_movArri = new MoverArriba(gameObject);
+                      MoverArriba* seg_movArri = new MoverArriba(gameObject, main);
                       seg_YAbj->addChild(seg_movArri);
 
 
@@ -206,7 +207,7 @@ void IAComponent::Initialice(){
                       IA_Seg_CheckYArr* seg_checkYArr = new IA_Seg_CheckYArr(gameObject, main);
                       seg_YArr->addChild(seg_checkYArr);
 
-                      MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject);
+                      MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject, main);
                       seg_YArr->addChild(seg_movAbjo);
                       
 
@@ -265,7 +266,9 @@ void IAComponent::Initialice(){
 
 void IAComponent::run(){
 
-  mapa.find("Raiz")->second->run();
+
+if(!mapa.find("Raiz")->second->run())
+    gameObject->getComponent<MovementComponent>()->setvMax(0.f);
 
 
 

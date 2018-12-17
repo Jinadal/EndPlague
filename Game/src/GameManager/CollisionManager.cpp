@@ -4,6 +4,7 @@
 #include "ProjectileComponent.h"
 #include "LifeComponent.h"
 #include "StorageComponent.h"
+#include "InputComponent.h"
 #include <cmath>
 #include <iostream>
 
@@ -65,9 +66,9 @@ void CollisionManager::updateAll()
 
                  if(i_IA){
 
-                    MovementComponent* j_move = components[j]->getGameObject()->getComponent<MovementComponent>();
+                    InputComponent* j_input = components[j]->getGameObject()->getComponent<InputComponent>();
 
-                    if(!j_move)
+                    if(!j_input)
                     i_IA->didIcollide = true;   
                  }
 

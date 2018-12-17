@@ -13,6 +13,8 @@ GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyT
     iamanager->createComponent(primero);
     primero->getComponent<IAComponent>()->Initialice();
     lifemanager->createComponent(primero, enemytypes[type].life);//Vida
+    shootmanager->createComponent(primero, .2f, 95.f, PROJECTILE_1);//Cadencia y Tipo
+
 
     return primero;
 }
