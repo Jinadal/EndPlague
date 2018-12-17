@@ -2,6 +2,7 @@
 #include "IAComponent.h"
 #include "IAMovimiento.h"
 #include "IASeguimiento.h"
+#include "IAPlanificacion.h"
 #include <iostream>
 
 
@@ -10,12 +11,22 @@ void IAComponent::Initialice(){
 
 
 
+// Planificacion
+/*
+
+                 main(sel)
+
+ pared?(sec)      segui(sec)      movi
+
+ choco? chdir   ¿a rango? segui        
+  
+
 
 
 
     //Movimiento
 
-  /*
+  
   raiz(sel)
   |       \
   |         \
@@ -37,11 +48,55 @@ void IAComponent::Initialice(){
   |    \      sec y sec yhe
   sec x  sec xwid
 
+  //Seguimiento personaje 2.0
+
   
+                      sel raiz
 
+             sec enX?                            sec enY?
+  abs.dx>=abs.dy?   sel goOnX        abs.dx<abs.dy?    sel goOnY
 
+                sec x<-     sec x->                  sec y V     sec y ^
+
+               dx>0? go->  dx<0 go<-              dy>0? go ^     dy<0 go V
   
   */
+
+ /////////// MAIN TREE ////////////
+
+
+
+    Selector* nodoRaiz = new Selector();
+    pair<string,Nodo*> pRaiz;
+    pRaiz.first= "Raiz";
+    pRaiz.second = nodoRaiz;
+
+    mapa.insert(pRaiz);
+
+
+    Secuencia* hayColl = new Secuencia();
+    nodoRaiz->addChild(hayColl);
+
+    IA_Plan_DidICollide* plan_didIcollide = new IA_Plan_DidICollide(gameObject);
+    hayColl->addChild(plan_didIcollide);
+
+    IA_Plan_ChangeDirection* plan_changeDirection = new IA_Plan_ChangeDirection(gameObject);
+    hayColl->addChild(plan_changeDirection);
+
+
+    Secuencia* decideSeg = new Secuencia();
+    nodoRaiz->addChild(decideSeg);
+
+    IA_Plan_InSight* aRango = new IA_Plan_InSight(gameObject, main);
+    decideSeg->addChild(aRango);
+
+
+  ///////////////////////////////////  
+
+
+
+
+
     Selector* raizIAmov = new Selector();
     pair<string,Nodo*> p;
     p.first= "Movimiento";
@@ -87,6 +142,79 @@ void IAComponent::Initialice(){
 
     mapa.insert(ps);
 
+  ///
+    decideSeg->addChild(raizIASeg);
+  ///
+
+
+      Secuencia* seg_enX = new Secuencia();
+      raizIASeg->addChild(seg_enX);
+
+            IA_Seg_DifX* seg_difenX = new IA_Seg_DifX(gameObject, main);
+            seg_enX->addChild(seg_difenX);
+
+            Selector* seg_goOnX = new Selector();
+            seg_enX->addChild(seg_goOnX);
+
+
+                Secuencia* seg_XIzq = new Secuencia();
+                seg_goOnX->addChild(seg_XIzq);
+
+                         IA_Seg_CheckXIzd* seg_checkXIzd = new IA_Seg_CheckXIzd(gameObject, main);
+                         seg_XIzq->addChild(seg_checkXIzd);
+
+                         MoverDcha* seg_movDcha = new MoverDcha(gameObject);
+                         seg_XIzq->addChild(seg_movDcha);
+
+
+                Secuencia* seg_XDer = new Secuencia();
+                seg_goOnX->addChild(seg_XDer);
+
+                         IA_Seg_CheckXDer* seg_checkXDer = new IA_Seg_CheckXDer(gameObject, main);
+                         seg_XDer->addChild(seg_checkXDer);
+
+                         MoverIzda* seg_movIzda = new MoverIzda(gameObject);
+                         seg_XDer->addChild(seg_movIzda);
+
+
+                
+
+
+
+      Secuencia* seg_enY = new Secuencia();
+      raizIASeg->addChild(seg_enY);
+
+          IA_Seg_DifY* seg_difenY = new IA_Seg_DifY(gameObject, main);
+          seg_enY->addChild(seg_difenY);
+
+          Selector* seg_goOnY = new Selector();
+          seg_enY->addChild(seg_goOnY);
+
+                Secuencia* seg_YAbj = new Secuencia();
+                seg_goOnY->addChild(seg_YAbj);
+
+                      IA_Seg_CheckYAbj* seg_checkYAbj = new IA_Seg_CheckYAbj(gameObject, main);
+                      seg_YAbj->addChild(seg_checkYAbj);
+
+                      MoverArriba* seg_movArri = new MoverArriba(gameObject);
+                      seg_YAbj->addChild(seg_movArri);
+
+
+                Secuencia* seg_YArr = new Secuencia();
+                seg_goOnY->addChild(seg_YArr);
+
+                      IA_Seg_CheckYArr* seg_checkYArr = new IA_Seg_CheckYArr(gameObject, main);
+                      seg_YArr->addChild(seg_checkYArr);
+
+                      MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject);
+                      seg_YArr->addChild(seg_movAbjo);
+                      
+
+
+                
+
+/*
+
     Selector* xgeneral = new Selector();
     raizIASeg->addChild(xgeneral);
 
@@ -131,15 +259,20 @@ void IAComponent::Initialice(){
 
     MoverArriba* ymar = new MoverArriba(gameObject);
     enyhei->addChild(ymar);
+
+    */
 }
 
 void IAComponent::run(){
 
+  mapa.find("Raiz")->second->run();
 
-  mapa.find("Movimiento")->second->run();
+
+
+  /*mapa.find("Movimiento")->second->run();
 
   mapa.find("Seguimiento")->second->run();
 
-      
+     */ 
 }
 
