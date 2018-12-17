@@ -43,19 +43,19 @@ bool IA_Plan_ChangeDirection::run()
     std::srand((unsigned) time(0));
     int i = (rand()%4)+1;
     if(i ==1){
-        owner->getComponent<MovementComponent>()->moveObject(0,1);
+        owner->getComponent<MovementComponent>()->moveObject(0,1, 0.f, 0.f);
         return true;
     }
       if(i ==2){
-        owner->getComponent<MovementComponent>()->moveObject(0,-1);
+        owner->getComponent<MovementComponent>()->moveObject(0,-1, 0.f, 0.f);
         return true;
     }
       if(i ==3){
-        owner->getComponent<MovementComponent>()->moveObject(1,0);
+        owner->getComponent<MovementComponent>()->moveObject(1,0, 0.f, 0.f);
         return true;
     }
       if(i ==4){
-        owner->getComponent<MovementComponent>()->moveObject(-1,0);
+        owner->getComponent<MovementComponent>()->moveObject(-1,0, 0.f, 0.f);
         return true;
     }
 
