@@ -56,3 +56,9 @@ info:
 	$(info $(DIRS))
 	$(info $(OBJECTS))
 
+all:
+	@rm -f $(OBJECTS)
+	make
+
+clear:
+	@rm -f $(OBJECTS)
