@@ -8,7 +8,7 @@ GameObject* ItemFabric::createItem(float x, float y, float z, float rz, int type
 
     collisionmanager->createComponent(r, 30.f, 30.f, true);
 
-    itemmanager->createComponent(r, (float)type);
+    itemmanager->createComponent(r, type);
 
     return r;
 }

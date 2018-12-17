@@ -17,7 +17,7 @@ struct IType{
     ItemTypes type;
     char* mesh;
     char* texture;
-    int Itype;
+    float Itype;
 };
 
 
