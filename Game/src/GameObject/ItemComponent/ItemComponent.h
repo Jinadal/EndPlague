@@ -22,8 +22,10 @@ class ItemComponent : public Component{
 
 
 };
-enum Type {
-    ITEM_THROWABLE,
-    ITEM_LIFE,
-    ITEM_CADENCE
+
+enum ItemType {
+    ITEM_NONE, //0
+    ITEM_THROWABLE, //1
+    ITEM_LIFE, //2
+    ITEM_CADENCE //3
 };

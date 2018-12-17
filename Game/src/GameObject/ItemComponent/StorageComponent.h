@@ -10,7 +10,7 @@
 
 class StorageComponent : public Component{
     private:
-        ItemComponent*  item;
+        int itemType = 0;
         float initialCadence;
         int initialType;
 

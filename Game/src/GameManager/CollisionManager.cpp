@@ -1,4 +1,5 @@
 #include "CollisionManager.h"
+#include "IAComponent.h"
 #include "MovementComponent.h"
 #include "ProjectileComponent.h"
 #include "LifeComponent.h"
@@ -60,6 +61,15 @@ void CollisionManager::updateAll()
                     J=Proyectil
     
                 */
+                 IAComponent* i_IA = components[i]->getGameObject()->getComponent<IAComponent>();
+
+                 if(i_IA){
+
+                    MovementComponent* j_move = components[j]->getGameObject()->getComponent<MovementComponent>();
+
+                    if(!j_move)
+                    i_IA->didIcollide = true;   
+                 }
 
                 ProjectileComponent* i_projectil = components[i]->getGameObject()->getComponent<ProjectileComponent>();
                 ProjectileComponent* j_projectil = components[j]->getGameObject()->getComponent<ProjectileComponent>();
@@ -85,6 +95,9 @@ void CollisionManager::updateAll()
         
                 if(j_storage) //Si i es un item
                     j_storage->itemCatch(i_item);
+
+
+                 
 
             }
         }

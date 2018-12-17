@@ -1,25 +1,27 @@
 #include "StorageComponent.h"
+#include "ItemFabric.h"
 #include <iostream>
 
 
 void StorageComponent::itemCatch(ItemComponent* item)
 {
-    if(!item)
-        return;
-
+    if(!item) return;
     
-    if(this->item)
+    if(this->itemType == 1 ||
+            this->itemType == 2 ||
+            this->itemType == 3  )
     {
-        if(this->item->getType() != item->getType())
-        {
-            itemDrop();
-            itemCatch(item);
-        }
+        
+        itemDrop();
+        this->itemType = item->getType();
+        applyEffect(item->getType());
+        item->getGameObject()->setKill(true);
+        std::cout<<"He cogido el item y he tirado el anterior\n";
 
     }
     else
     {
-        this->item = item;
+        this->itemType = item->getType();
         applyEffect(item->getType());
         item->getGameObject()->setKill(true);
         std::cout<<"He cogido el item\n";
@@ -30,9 +32,14 @@ void StorageComponent::itemCatch(ItemComponent* item)
 
 void StorageComponent::itemDrop()
 {
-    this->item = NULL;
+    ItemFabric* fabric = new ItemFabric();
+    fabric->createItem(gameObject->getX()-50.f, gameObject->getY()-50.f, gameObject->getZ(), gameObject->getRZ(), this->itemType-1);
+
+    this->itemType = 0;
     setDefaultValues();
     std::cout<<"He tirado el objeto que tenia\n";
+
+    delete fabric;
 }
 
 void StorageComponent::setDefaultValues()

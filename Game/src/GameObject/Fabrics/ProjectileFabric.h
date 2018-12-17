@@ -37,14 +37,14 @@ class ProjectileFabric
         {
             {
                 PROJECTILE_1,
-                (char*)"res/Projectiley.obj",
+                (char*)"res/FLECHAY.obj",
                 (char*)"res/red.bmp",
                 1000.f,
                 10.f
             },
             {
                 PROJECTILE_2,
-                (char*)"res/Projectiley.obj",
+                (char*)"res/HACHA.obj",
                 (char*)"res/green.bmp",
                 1000.f,
                 40.f

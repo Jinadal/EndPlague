@@ -27,14 +27,14 @@ class EnemyFabric
         {
             {
                 ENEMY_2,
-                (char*)"res/Enemyy.obj",
+                (char*)"res/DOMMIEZ.obj",
                 (char*)"res/red.bmp",
                 50.f,
                 400.f
             },
             {
                 ENEMY_1,
-                (char*)"res/Enemyy.obj",
+                (char*)"res/DOMMIEZ.obj",
                 (char*)"res/geen.bmp",
                 80.f,
                 600.f

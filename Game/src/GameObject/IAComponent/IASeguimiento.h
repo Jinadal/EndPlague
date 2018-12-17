@@ -1,24 +1,24 @@
 #include "Nodo.h"
 #include "GameObject.h"
 
-class CheckX : public Nodo
+class IA_Seg_CheckXIzd : public Nodo
 {
     public:
 
-    CheckX(GameObject* o, GameObject* m){owner = o; main = m;}
-    virtual ~CheckX(){}
+    IA_Seg_CheckXIzd(GameObject* o, GameObject* m){owner = o; main = m;}
+    virtual ~IA_Seg_CheckXIzd(){}
 
     bool run() override;
     GameObject * owner;
     GameObject* main;
 
 };
-class CheckXwid : public Nodo
+class IA_Seg_CheckXDer : public Nodo
 {
     public:
 
-    CheckXwid(GameObject* o, GameObject* m){owner = o; main = m;}
-    virtual ~CheckXwid(){}
+    IA_Seg_CheckXDer(GameObject* o, GameObject* m){owner = o; main = m;}
+    virtual ~IA_Seg_CheckXDer(){}
 
     bool run() override;
     GameObject * owner;
@@ -26,12 +26,12 @@ class CheckXwid : public Nodo
 
 };
 
-class CheckY : public Nodo
+class IA_Seg_CheckYAbj : public Nodo
 {
     public:
 
-    CheckY(GameObject* o , GameObject* m){owner = o; main = m;}
-    virtual ~CheckY(){}
+    IA_Seg_CheckYAbj(GameObject* o , GameObject* m){owner = o; main = m;}
+    virtual ~IA_Seg_CheckYAbj(){}
 
     bool run() override;
     GameObject * owner;
@@ -39,12 +39,41 @@ class CheckY : public Nodo
 
 
 };
-class CheckYhei : public Nodo
+class IA_Seg_CheckYArr : public Nodo
 {
     public:
 
-    CheckYhei(GameObject* o, GameObject* m){owner = o; main = m;}
-    virtual ~CheckYhei(){}
+    IA_Seg_CheckYArr(GameObject* o, GameObject* m){owner = o; main = m;}
+    virtual ~IA_Seg_CheckYArr(){}
+
+    bool run() override;
+    GameObject * owner;
+    GameObject* main;
+
+
+};
+
+
+
+class IA_Seg_DifX : public Nodo
+{
+    public:
+
+    IA_Seg_DifX (GameObject* o, GameObject* m){owner = o; main = m;}
+    virtual ~IA_Seg_DifX (){}
+
+    bool run() override;
+    GameObject * owner;
+    GameObject* main;
+
+
+};
+class IA_Seg_DifY : public Nodo
+{
+    public:
+
+    IA_Seg_DifY (GameObject* o, GameObject* m){owner = o; main = m;}
+    virtual ~IA_Seg_DifY (){}
 
     bool run() override;
     GameObject * owner;

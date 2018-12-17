@@ -3,13 +3,100 @@
 #include "MovementComponent.h"
 #include "CollisionManager.h"
 #include <iostream>
+#include <cmath>
 
 
+
+bool IA_Seg_CheckXIzd::run()
+{
+    float dx = main->getX() - owner->getX();
+
+   if(dx > 0){
+       return true;
+   }
+
+   return false;
+}
+
+bool IA_Seg_CheckXDer::run()
+{
+    float dx = main->getX() - owner->getX();
+   
+    if(dx <= 0){
+        return true;
+    }
+
+    return false;
+}
+
+
+bool IA_Seg_CheckYAbj::run()
+{
+    float dy = main->getY() - owner->getY();
+
+   if(dy > 0){
+       return true;
+   }
+
+   return false;
+}
+
+bool IA_Seg_CheckYArr::run()
+{
+    float dy = main->getY() - owner->getY();
+
+    if(dy <= 0){
+        return true;
+    }
+
+    return false;
+}
+
+
+bool IA_Seg_DifX::run()
+{
+    float dx = main->getX() - owner->getX();
+    float dy = main->getY() - owner->getY();
+    
+    if(fabs(dx) >= fabs(dy)) return true;
+    return false;
+}
+
+bool IA_Seg_DifY::run()
+{
+    float dx = main->getX() - owner->getX();
+    float dy = main->getY() - owner->getY();
+    
+    if(fabs(dy) > fabs(dx)) return true;
+    return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 bool CheckX::run()
 {
 
-   if(main->getX() > (owner->getX()+ owner->getComponent<CollisionComponent>()->width_)){
+   if(main->getX() > (owner->getX()+ owner->getComponent<CollisionComponent>()->width_/2)){
        return true;
    }
 
@@ -21,7 +108,7 @@ bool CheckXwid::run()
    // std::cout<< "MAIN X + WIDTH  "<< (main->getX() + main->getComponent<CollisionComponent>()->width_) << "\n";
   //  std::cout << "owner X  " << owner->getX() << "\n";
 
-    if((main->getX() + main->getComponent<CollisionComponent>()->width_) < (owner->getX()+owner->getComponent<CollisionComponent>()->width_)){
+    if((main->getX() + main->getComponent<CollisionComponent>()->width_/2) < owner->getX()){
         return true;
     }
 
@@ -48,3 +135,4 @@ bool CheckYhei::run()
 
     return false;
 }
+*/
