@@ -7,11 +7,7 @@ class BCollisionComponent : public Component
     private:
         btRigidBody* rbody;
     public:
-<<<<<<< HEAD
         ~BCollisionComponent(){};
-=======
-        ~BCollisionComponent(){PhysicBullet::getInstance()->removeRigidBody(rbody);};
->>>>>>> Bullet
         BCollisionComponent(GameObject* owner, Manager* manager, float xsize, float ysize, float zsize, float mass) : Component(owner, manager)
         {
             btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());

@@ -30,7 +30,6 @@ PhysicBullet::~PhysicBullet()
 		delete obj;
 	}
 
-<<<<<<< HEAD
 	//delete collision shapes
 	for (int j=0;j<_collisionShapes.size();j++)
 	{
@@ -38,63 +37,6 @@ PhysicBullet::~PhysicBullet()
 		delete shape;
 	}
 	_collisionShapes.clear();
-=======
-    //Deleting motionstate/rigidbodies/shapes
-    //for(int i=0; i < _world->getNumCollisionObjects() - 1 ; i--)
-    //{
-    //    btCollisionObject*  delShape    = _world->getCollisionObjectArray()[i];
-    //    btRigidBody*        delbody     = btRigidBody::upcast(delShape);
-    //    if(delbody && delbody->getMotionState())
-    //    {
-    //        delete delbody->getMotionState();
-    //    }
-    //    _world->removeCollisionObject(delShape);
-    //    delete delShape;
-    //}
-	//for (int i = 0; i < _collisionShapes.size(); i++)
-	//{
-	//	btCollisionShape* delShape = _collisionShapes[i];
-	//	_collisionShapes[i] = 0;
-	//	delete delShape;
-	//}
-    //delete _broadphase;
-    //delete _collisionConfiguration;
-    //delete _dispatcher;
-    //delete _solver;
-    //delete _world;
-    //only_instance = NULL;
-    int i;
-	for (i=_world->getNumCollisionObjects()-1; i>=0 ;i--)
-	{
-		btCollisionObject* obj = _world->getCollisionObjectArray()[i];
-		btRigidBody* body = btRigidBody::upcast(obj);
-		if (body && body->getMotionState())
-		{
-
-			while (body->getNumConstraintRefs())
-			{
-				btTypedConstraint* constraint = body->getConstraintRef(0);
-				_world->removeConstraint(constraint);
-				delete constraint;
-			}
-			delete body->getMotionState();
-			_world->removeRigidBody(body);
-		} else
-		{
-			_world->removeCollisionObject( obj );
-		}
-		delete obj;
-	}
-
-	//delete collision shapes
-	for (int j=0;j<_collisionShapes.size();j++)
-	{
-		btCollisionShape* shape = _collisionShapes[j];
-		delete shape;
-	}
-	_collisionShapes.clear();
-
->>>>>>> Bullet
     delete _broadphase;
     delete _collisionConfiguration;
     delete _dispatcher;
