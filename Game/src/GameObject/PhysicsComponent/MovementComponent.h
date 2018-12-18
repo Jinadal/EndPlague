@@ -14,7 +14,7 @@ class MovementComponent : public Component{
             vX      = 0.f;
             vY      = 0.f;
             vZ      = 0.f;
-            rZ      = 0.f;
+            rZ      = g->getRZ();
             vMax    = 40.f;
             preX    = 0.f;
             preY    = 0.f;
