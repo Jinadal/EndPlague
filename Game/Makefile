@@ -29,12 +29,16 @@ OBJECTS := $(subst .cpp,.o,$(SOURCES))
 
 #EXTERNAL HOMES
 IrrlichtHome := /usr/include/irrlicht
+
 BulletHome := /usr/include/bullet
 BulletLibraries := /usr/lib64
 
+FmodHome := include/fmod
+FmodLibraries := include/fmod
+
 #INCLUDES && LIBRAIES
-INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include
-LIBRAIES := -L$(IrrlichtHome)/lib/$(SYSTEM) -lIrrlicht -L$(BulletLibraries) -lLinearMath -lBulletDynamics -lBulletCollision
+INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) -I$(FmodHome) -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include
+LIBRAIES := -L$(FmodLibraries) -L$(IrrlichtHome) -lIrrlicht -L$(BulletLibraries) -lLinearMath -lBulletDynamics -lBulletCollision
 
 
 #Linker
