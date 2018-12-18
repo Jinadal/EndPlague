@@ -11,6 +11,11 @@
 #no complila nada si se han hecho modficaciones en un .h que no
 #tiene .cpp.
 
+
+#Compiler
+CXX = g++
+#CXX = clang++
+
 #GETTING ALL CPPS
 SOURCES := $(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp)
 
@@ -44,13 +49,15 @@ LIBRAIES := -L$(FmodLibraries) -L$(IrrlichtHome) -lIrrlicht -L$(BulletLibraries)
 #Linker
 bin/Ejecutable: $(OBJECTS)
 	@echo Linkeando
-	@g++ -o $@ $^ $(LIBRAIES) $(INCLUDES)
+	@$(CXX) -o $@ $^ $(LIBRAIES)
 	@echo Proceso terminado
-	
+
+
+
 #Compiler
 %.o: %.cpp %.h
 	@echo Compilando: $(notdir $<)
-	@g++ -g -Wall -o $@ -c $< $(LIBRAIES) $(INCLUDES)
+	@$(CXX) -g -Wall -o $@ -c $< $(INCLUDES)
 
 
 info:
