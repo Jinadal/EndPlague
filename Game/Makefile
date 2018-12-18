@@ -34,7 +34,7 @@ BulletHome := /usr/include/bullet
 BulletLibraries := /usr/lib64
 
 FmodHome := include/fmod
-FmodLibraries := include/fmod
+FmodLibraries := lib
 
 #INCLUDES && LIBRAIES
 INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) -I$(FmodHome) -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include
