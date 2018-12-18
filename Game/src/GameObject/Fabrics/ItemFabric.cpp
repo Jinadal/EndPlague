@@ -6,7 +6,7 @@ GameObject* ItemFabric::createItem(float x, float y, float z, float rz, int type
     rendermanager->createComponent(r, item_types[type].mesh);
     r->getComponent<RenderComponent>()->setTexture(item_types[type].texture);
 
-    collisionmanager->createComponent(r, 30.f, 30.f, true);
+    collisionmanager->createComponent(r, .5f, .5f, true);
 
     itemmanager->createComponent(r, type);
 

@@ -37,17 +37,17 @@ class ProjectileFabric
         {
             {
                 PROJECTILE_1,
-                (char*)"res/FLECHAY.obj",
-                (char*)"res/red.bmp",
-                1000.f,
+                (char*)"res/FLECHA.obj",
+                (char*)"res/green.bmp",
+                20.f,
                 10.f
             },
             {
                 PROJECTILE_2,
                 (char*)"res/HACHA.obj",
                 (char*)"res/green.bmp",
-                1000.f,
-                40.f
+                20.f,
+                50.f
             }
         };
 

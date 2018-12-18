@@ -33,7 +33,7 @@ void StorageComponent::itemCatch(ItemComponent* item)
 void StorageComponent::itemDrop()
 {
     ItemFabric* fabric = new ItemFabric();
-    fabric->createItem(gameObject->getX()-50.f, gameObject->getY()-50.f, gameObject->getZ(), gameObject->getRZ(), this->itemType-1);
+    fabric->createItem(gameObject->getX()-3.f, gameObject->getY()-3.f, gameObject->getZ(), gameObject->getRZ(), this->itemType-1);
 
     this->itemType = 0;
     setDefaultValues();

@@ -9,7 +9,7 @@
 class SpawnComponent : public Component{
     private:
         float distance;
-        float cadencia = 3.f;
+        float cadencia = 2.f;
         float elapsed = 0.f;
         EnemyType type = ENEMY_1;
     public:

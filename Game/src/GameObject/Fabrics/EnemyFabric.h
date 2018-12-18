@@ -27,18 +27,18 @@ class EnemyFabric
         EType enemytypes [2] = 
         {
             {
-                ENEMY_2,
-                (char*)"res/DOMMIEZ.obj",
-                (char*)"res/red.bmp",
+                ENEMY_1,
+                (char*)"res/DOOMIE.obj",
+                (char*)"res/green.bmp",
                 50.f,
-                400.f
+                1.4f  //Velocidad media andando
             },
             {
-                ENEMY_1,
-                (char*)"res/DOMMIEZ.obj",
-                (char*)"res/geen.bmp",
-                80.f,
-                600.f
+                ENEMY_2,
+                (char*)"res/DOOMIE.obj",
+                (char*)"res/green.bmp",
+                100.f,
+                2.f
             },
         };
         GameResource*       gameresource        = GameResource::getInstance();
@@ -47,8 +47,8 @@ class EnemyFabric
         CollisionManager*   collisionmanager    = CollisionManager::getInstance();
         IAManager*          iamanager           = IAManager::getInstance();
         LifeManager*        lifemanager         = LifeManager::getInstance();
-        ShootManager*        shootmanager        = ShootManager::getInstance();
-        ProjectileManager*     proyectilemanager   = ProjectileManager::getInstance();
+        ShootManager*       shootmanager        = ShootManager::getInstance();
+        ProjectileManager*  proyectilemanager   = ProjectileManager::getInstance();
 
 
     public:

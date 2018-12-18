@@ -56,6 +56,6 @@ void MeshNode::setVisible(bool b){
 }
 
 //Changes the texture of the node to the new path
-void MeshNode::setTexture(char s[]){
+void MeshNode::setTexture(char* s){
     node->setMaterialTexture( 0, render->getDriver()->getTexture(s) );
 }

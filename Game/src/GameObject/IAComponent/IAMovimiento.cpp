@@ -22,7 +22,7 @@ bool MoverArriba::run(){
 
 
     owner->getComponent<MovementComponent>()->moveObject(0,1,main->getX(),main->getY());
-    owner->getComponent<MovementComponent>()->setvMax(300.f);
+    owner->getComponent<MovementComponent>()->setvMax(2.f);
 
     return true;
 }
@@ -32,7 +32,7 @@ bool MoverAbajo::run(){
 
 
     owner->getComponent<MovementComponent>()->moveObject(0,-1,main->getX(),main->getY());
-    owner->getComponent<MovementComponent>()->setvMax(300.f);
+    owner->getComponent<MovementComponent>()->setvMax(2.f);
 
     return true;
 }
@@ -40,7 +40,7 @@ bool MoverIzda::run(){
 
 
     owner->getComponent<MovementComponent>()->moveObject(-1,0,main->getX(),main->getY());
-    owner->getComponent<MovementComponent>()->setvMax(300.f);
+    owner->getComponent<MovementComponent>()->setvMax(2.f);
 
     
     return true;
@@ -49,7 +49,7 @@ bool MoverDcha::run(){
 
 
     owner->getComponent<MovementComponent>()->moveObject(1,0,main->getX(),main->getY());
-    owner->getComponent<MovementComponent>()->setvMax(300.f);
+    owner->getComponent<MovementComponent>()->setvMax(2.f);
 
     return true;
 }

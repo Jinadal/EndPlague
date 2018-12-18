@@ -41,72 +41,58 @@ int main()
    SpawnManager*        spawnmanager        = SpawnManager::getInstance();
 
 
-    //ADDING A MAP
-    GameObject* map = gameresource->createGameObject(0.f, 0.f, 20.f, 0.f);
-    rendermanager->createComponent(map, (char*)"res/Mapy.obj");//Fachada de render y path de obj
+    //ADDING A MAP 700 x 700 x 1
+    GameObject* map = gameresource->createGameObject(0.f, 0.f, 0.f, 0.f);
+    rendermanager->createComponent(map, (char*)"res/SUELO.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
-    map->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp   
+    map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
 
-    //ADDING A PLAYER
-    GameObject* player = gameresource->createGameObject(0.f, 200.f, -10.f, 180.f);//Creates a new GO on x, y, z, rz
-    rendermanager->createComponent(player, (char*)"res/DOMMIEZ.obj");//Fachada de render y path de obj
-   // player->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
+    //ADDING A PLAYER 1 x 1 x 2
+    GameObject* player = gameresource->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    rendermanager->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
+    //player->getComponent<RenderComponent>()->setTexture((char*)"res/PLAYER.bmp");//Path de bmp
     movementmanager->createComponent(player);
-    player->getComponent<MovementComponent>()->setvMax(700.f);
+    player->getComponent<MovementComponent>()->setvMax(7.f);
     inputmanager->createComponent(player);
-    collisionmanager->createComponent(player, 25, 50, true); //Ancho, alto y si es solido
-    shootmanager->createComponent(player, .2f, 115.f, PROJECTILE_1);//Cadencia y Tipo
+    collisionmanager->createComponent(player, 1, 1, true); //Ancho, alto y si es solido
+    shootmanager->createComponent(player, .2f, 1.f, PROJECTILE_1);//Cadencia y Tipo
     cameramanager->createComponent(player);
     storagemanager->createComponent(player);
     iamanager->setPlayer(player);
-  //  lifemanager->createComponent(player, 100.f);//Vida
 
     
 
-    //ADDING A SPAWN
-    GameObject* spawn = gameresource->createGameObject(250.f, -200.f, -10.f, 0.f);
-    rendermanager->createComponent(spawn, (char*)"res/SPAWNz.obj");//Fachada de render y path de obj
-    spawn->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");//Path de bmp
-    collisionmanager->createComponent(spawn, 200, 200, true); //Ancho, alto y si es solido
-    spawnmanager->createComponent(spawn, 135.f, ENEMY_1);
-    lifemanager->createComponent(spawn, 300.f);
+    //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
+    GameObject* spawn = gameresource->createGameObject(10.f, -10.f, -1.f, 0.f);
+    rendermanager->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
+    spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
+    collisionmanager->createComponent(spawn, 4, 4, true); //Ancho, alto y si es solido
+    spawnmanager->createComponent(spawn, 2.5f, ENEMY_1);
+    lifemanager->createComponent(spawn, 400.f);
 
 
-    //Adding an ITEM1
-    GameObject* item1 = gameresource->createGameObject(0.f, 30.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5
+    GameObject* item1 = gameresource->createGameObject(0.f, 3.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
-    collisionmanager->createComponent(item1, 50, 50, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(item1, .5, .5, true); //Ancho, alto y si es solido
     itemmanager->createComponent(item1, ITEM_CADENCE);
     
     
     //Adding an ITEM2
-    GameObject* item2 = gameresource->createGameObject(0.f, -200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    GameObject* item2 = gameresource->createGameObject(0.f, 6.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item2, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
-    collisionmanager->createComponent(item2, 50, 50, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(item2, .5, .5, true); //Ancho, alto y si es solido
     itemmanager->createComponent(item2, ITEM_LIFE);
     
 
     //Adding an ITEM3
-    GameObject* item3 = gameresource->createGameObject(0.f, -500.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
+    GameObject* item3 = gameresource->createGameObject(0.f, 9.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
-    collisionmanager->createComponent(item3, 50, 50, true); //Ancho, alto y si es solido
+    collisionmanager->createComponent(item3, .5, .5, true); //Ancho, alto y si es solido
     itemmanager->createComponent(item3, ITEM_THROWABLE);
-
-    //ADDING A ENEMY
-    GameObject* primero = gameresource->createGameObject(-200.f, 200.f, -10.f, 0.f);//Creates a new GO on x, y, z, rz
-    rendermanager->createComponent(primero, (char*)"res/DOMMIEZ.obj");//Fachada de render y path de obj
-    primero->getComponent<RenderComponent>()->setTexture((char*) "res/red.bmp");//Path de bmp
-    movementmanager->createComponent(primero);
-    primero->getComponent<MovementComponent>()->setvMax(200.f);
-    collisionmanager->createComponent(primero, 55, 55, true); //Ancho, alto y si es solido
-    iamanager->createComponent(primero);
-    primero->getComponent<IAComponent>()->Initialice();
-    lifemanager->createComponent(primero, 100.f);//Vida
-    shootmanager->createComponent(primero, .8f, 115.f, PROJECTILE_1);//Cadencia y Tipo
-
 
 
     while(render->run())
