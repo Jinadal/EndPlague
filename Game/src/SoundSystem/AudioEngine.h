@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include "fmod_studio.hpp"
 #include "fmod.hpp"
@@ -63,3 +64,5 @@ public:
 	float VolumeTodB(float volume);
 	FMOD_VECTOR VectorToFmod(const Vector3& vPosition);
 };
+
+*/

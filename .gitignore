@@ -1,9 +1,8 @@
 # ignore all .o
-bin !bin/Ejecutable
+bin
 
 # ignore all .zip
 *.zip
 
-
-# ignore all logs
-*.log
+#vscode
+.vscode

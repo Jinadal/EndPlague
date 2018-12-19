@@ -1,5 +1,5 @@
 #include "AudioEngine.h"
-
+/*
 Implementation::Implementation() {
 	mpStudioSystem = NULL;
 	CAudioEngine::ErrorCheck(FMOD::Studio::System::create(&mpStudioSystem));
@@ -222,3 +222,5 @@ float  CAudioEngine::VolumeTodB(float volume)
 void CAudioEngine::Shutdown() {
 	delete sgpImplementation;
 }
+
+*/
