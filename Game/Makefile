@@ -47,7 +47,7 @@ default:
 #Linker
 Ejecutable: $(OBJECTS)
 	@echo Linkeando
-	@$(CXX) -o $@ $^ $(LIBRAIES)
+	@$(CXX) -o bin/$@ $^ $(LIBRAIES)
 	@echo Proceso terminado
 
 
