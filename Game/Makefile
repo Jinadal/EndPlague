@@ -54,16 +54,11 @@ Ejecutable: $(OBJECTS)
 #REGlA Compiler
 define REGLA
 $(1): $(2)
-	@echo Compilando: $(1)
+	@echo Compilando: $(basename $(notdir $(1)))
 	@$(CXX) -g -Wall -o $(1) -c $(2) $(INCLUDES)
 
 endef
 $(foreach O,$(OBJECTS),$(eval $(call REGLA,$(O),$(subst bin/,src/,$(O:.o=.cpp)))))
-#%.o: %.cpp %.h
-#	@echo Compilando: $(notdir $<)
-#	@$(CXX) -g -Wall -o obj/$@ -c src/$< $(INCLUDES)
-
-
 
 
 info:
