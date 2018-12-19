@@ -1,9 +1,13 @@
 #include <fmod_studio.h>
 
+/*
+FMOD_RESULT result;
+FMOD_STUDIO_SYSTEM *fmod;
 
 class SoundSystem 
 {
     private:
+	    FMOD_SOUND *sound;
         static SoundSystem* only_instance;
         SoundSystem();
     public:
@@ -21,3 +25,5 @@ class SoundSystem
         void play(float volume);
         void pause();
 };
+
+*/

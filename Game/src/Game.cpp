@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-
 #include "GameResource.h"
 #include "RenderManager.h"
 #include "CollisionManager.h"
@@ -21,6 +20,7 @@
 
 
 #include "SoundSystem.h"
+#include "AudioEngine.h"
 
 
 int main()

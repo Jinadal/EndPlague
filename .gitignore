@@ -1,0 +1,9 @@
+# ignore all .o
+bin !bin/Ejecutable
+
+# ignore all .zip
+*.zip
+
+
+# ignore all logs
+*.log
