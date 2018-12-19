@@ -4,71 +4,73 @@
 #-------------------------------------------------------
 #-------------------------------------------------------
 
-#Este makefile es mucho mas eficiente que e anterior, pero
-#genera un .o al lado de cada .cpp, en el futuro la solucion
-#pasa por generar eso .o dentro de bin/, pero esta por llegar
-#solo complila si hay modificaciones en el .cpp o en el .h
-#no complila nada si se han hecho modficaciones en un .h que no
-#tiene .cpp.
-
 
 #Compiler
 CXX = g++
 #CXX = clang++
 
-#GETTING ALL CPPS
-SOURCES := $(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp)
+#GETTING ALL .CPP
+SOURCES := $(subst src/,,$(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp))
 
-#ALL HEADERS
+#ALL .H
 HEADERS := $(subst .cpp,.h,$(SOURCES))
+
+#ALL .O
+OBJECTS := $(subst .cpp,.o,$(subst src/,bin/,$(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp)))
+
 
 #ALL DIRS
 #GETTING ALL DIRS
-DIRS := $(dir $(SOURCES))
+DIRS := $(subst src,bin,$(wildcard src/. src/*/. src/*/*/.))
 
-#ALL .O
-#OBJECTS := $(addprefix bin/,$(subst .cpp,.o,$(notdir $(SOURCES))))
-#OBJECTS := $(subst .cpp,.o,$(SOURCESNP))
-OBJECTS := $(subst .cpp,.o,$(SOURCES))
 
 
 #EXTERNAL HOMES
-IrrlichtHome := /usr/include/irrlicht
+IrrlichtHome := -I/usr/include/irrlicht -lIrrlicht
+IrrlichtLibraries := -L/usr/include/irrlicht -lIrrlicht
 
-BulletHome := /usr/include/bullet
-BulletLibraries := /usr/lib64
+BulletHome := -I/usr/include/bullet
+BulletLibraries := -L/usr/lib64 -lLinearMath -lBulletDynamics -lBulletCollision
 
-FmodHome := include/fmod
-FmodLibraries := lib
+FmodHome := -Iinclude/fmod
+FmodLibraries := -Llib
 
 #INCLUDES && LIBRAIES
-INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) -I$(FmodHome) -I$(BulletHome) -I$(IrrlichtHome) -I/usr/X11R6/include
-LIBRAIES := -L$(FmodLibraries) -L$(IrrlichtHome) -lIrrlicht -L$(BulletLibraries) -lLinearMath -lBulletDynamics -lBulletCollision
+INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) $(FmodHome) $(BulletHome) $(IrrlichtHome) -I/usr/X11R6/include
+LIBRAIES := $(FmodLibraries) $(IrrlichtLibraries) $(BulletLibraries) 
 
+
+default:
+	@mkdir -p $(DIRS)
+	@make Ejecutable
 
 #Linker
-bin/Ejecutable: $(OBJECTS)
+Ejecutable: $(OBJECTS)
 	@echo Linkeando
-	@$(CXX) -o $@ $^ $(LIBRAIES)
+	@$(CXX) -o bin/$@ $^ $(LIBRAIES) $(INCLUDES)
 	@echo Proceso terminado
 
 
+#REGlA Compiler
+define REGLA
+$(1): $(2)
+	@echo Compilando: $(1)
+	@$(CXX) -g -Wall -o $(1) -c $(2) $(INCLUDES)
 
-#Compiler
-%.o: %.cpp %.h
-	@echo Compilando: $(notdir $<)
-	@$(CXX) -g -Wall -o $@ -c $< $(INCLUDES)
+endef
+$(foreach O,$(OBJECTS),$(eval $(call REGLA,$(O),$(subst bin/,src/,$(O:.o=.cpp)))))
+#%.o: %.cpp %.h
+#	@echo Compilando: $(notdir $<)
+#	@$(CXX) -g -Wall -o obj/$@ -c src/$< $(INCLUDES)
+
+
 
 
 info:
-	$(info $(LIBRAIES))
-	$(info $(SOURCESNP))
-	$(info $(HEADERS))
-	$(info $(DIRS))
 	$(info $(OBJECTS))
 
 all:
-	@rm -f $(OBJECTS)
+	@make clear
 	@make
 
 clear:

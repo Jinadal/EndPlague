@@ -21,7 +21,7 @@ MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
         return;
     }
     node = render->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
-    node->setMaterialFlag(EMF_LIGHTING, false);
+    //node->setMaterialFlag(EMF_LIGHTING, false);
     //node->setMaterialFlag(EMF_WIREFRAME, true);
     node->setDebugDataVisible(EDS_BBOX);
 }

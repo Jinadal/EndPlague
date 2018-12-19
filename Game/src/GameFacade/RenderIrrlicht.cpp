@@ -18,7 +18,11 @@ RenderIrrlicht::RenderIrrlicht(){
     smgr = device->getSceneManager();
     guienv = device->getGUIEnvironment();
 
-    //smgr->addLightSceneNode();
+    smgr->addLightSceneNode(0, core::vector3df(10,0,-100),
+    video::SColorf(1.0f,1.0f,1.0f,1.0f), 1000.0f);
+
+ 
+
 
 
     then = device->getTimer()->getTime();

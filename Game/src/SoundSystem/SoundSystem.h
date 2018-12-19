@@ -1,2 +1,1 @@
-#include "fmod_studio.hpp"
-#include "fmod.hpp"
+#include <fmod_studio.h>
