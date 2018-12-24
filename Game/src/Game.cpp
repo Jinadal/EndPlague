@@ -5,7 +5,6 @@
 #include "CollisionManager.h"
 #include "InputManager.h"
 #include "MovementManager.h"
-#include "InputFacade.h"
 #include "ShootManager.h"
 #include "LifeManager.h"
 #include "ProjectileManager.h"
@@ -13,7 +12,6 @@
 #include "ItemManager.h"
 #include "StorageManager.h"
 #include "SpawnManager.h"
-#include "Nodo.h"
 #include "IAManager.h"
 
 #include "PhysicBullet.h"
