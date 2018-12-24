@@ -1,14 +1,15 @@
 #pragma once
 #include "PhysicBullet.h"
 #include "GameObject.h"
+#include <iostream>
 
-class BCollisionComponent : public Component 
+class BPhysicComponent : public Component 
 {
     private:
         btRigidBody* rbody;
     public:
-        ~BCollisionComponent(){};
-        BCollisionComponent(GameObject* owner, Manager* manager, float xsize, float ysize, float zsize, float mass) : Component(owner, manager)
+        ~BPhysicComponent(){};
+        BPhysicComponent(GameObject* owner, Manager* manager, float xsize, float ysize, float zsize, float mass) : Component(owner, manager)
         {
             btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());
             btVector3 size = btVector3(xsize, ysize, zsize);
@@ -17,4 +18,5 @@ class BCollisionComponent : public Component
         }
 
         void update();
+        void setVelocity(float x, float y, float z);
 };

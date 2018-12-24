@@ -1,10 +1,10 @@
-#include "BCollisionManager.h"
+#include "BPhysicManager.h"
 
-BCollisionManager* only_instance = NULL;
+BPhysicManager* BPhysicManager::only_instance = NULL;
 
-void BCollisionManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass)
+void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass)
 {
-    components.push_back(new BCollisionComponent(owner, this, xsize, ysize, zsize, mass));
+    components.push_back(new BPhysicComponent(owner, this, xsize, ysize, zsize, mass));
     owner->addComponent(components[components.size()-1]);
 }
 
@@ -29,10 +29,10 @@ leido se tiene que hacer con un Contact Callback o algo asi
             }
 
 */
-void BCollisionManager::updateAll(){
+void BPhysicManager::updateAll(){
     for(std::size_t i = 0; i<components.size(); i++)
     {
-        ((BCollisionComponent*)components[i])->update();
+        ((BPhysicComponent*)components[i])->update();
     }
 }
 //Callback which registers and shows in terminal the colliding objects
@@ -41,7 +41,7 @@ void BCollisionManager::updateAll(){
 
 //Allows to make a callback in another directory
 //gContactAddedCallback = <nameofcollisionmanager>p->callbackFunc;
-bool BCollisionManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
+bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
 {
     
     std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;

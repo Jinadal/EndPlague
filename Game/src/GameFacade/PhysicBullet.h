@@ -1,10 +1,10 @@
- 
+#pragma once 
 #include <btBulletDynamicsCommon.h>
 
 class PhysicBullet{
     private:
     static PhysicBullet* only_instance;
-    PhysicBullet(){};
+    PhysicBullet(){initWorldPhysics();};
 
     btBroadphaseInterface*                      _broadphase;
     btDefaultCollisionConfiguration*            _collisionConfiguration;

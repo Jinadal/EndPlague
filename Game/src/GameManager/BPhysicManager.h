@@ -1,18 +1,18 @@
 #pragma once
-#include "BCollisionComponent.h"
+#include "BPhysicComponent.h"
 #include <iostream>
 
 class GameObject;
 class Manager;
-class BCollisionManager : public Manager
+class BPhysicManager : public Manager
 {
     private:
-        static BCollisionManager* only_instance;
-        BCollisionManager(){}
+        static BPhysicManager* only_instance;
+        BPhysicManager(){}
     public:
-        ~BCollisionManager(){only_instance = NULL;}
-        static BCollisionManager* getInstance(){
-            if(only_instance==NULL) only_instance = new BCollisionManager();
+        ~BPhysicManager(){only_instance = NULL;}
+        static BPhysicManager* getInstance(){
+            if(only_instance==NULL) only_instance = new BPhysicManager();
 
             return only_instance;
         }

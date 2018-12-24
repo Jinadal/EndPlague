@@ -86,7 +86,7 @@ btDynamicsWorld* PhysicBullet::initWorldPhysics()
     _world = new btDiscreteDynamicsWorld(_dispatcher, _broadphase, _solver, _collisionConfiguration);
 
     //Set gravity to physics in y=-9,8
-    _world->setGravity(btVector3(0,-9.8,0));
+    _world->setGravity(btVector3(0,0,0));
 
     //We create the floor of our world
     //createRigidBody(btVector3(0.0f,0.0f,0.0f), btVector3(100.0f,0.5f,100.0f),0.0f);
@@ -117,7 +117,7 @@ btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVec
 	btRigidBody* body = new btRigidBody(rbInfo);
     
     //Makes a rigidbody inot kinematic so we can control it
-    body->setCollisionFlags(body->getCollisionFlags()|btCollisionObject::CF_KINEMATIC_OBJECT);
+    //body->setCollisionFlags(body->getCollisionFlags()|btCollisionObject::CF_KINEMATIC_OBJECT);
     body->setActivationState( DISABLE_DEACTIVATION );
     
     //Allows to use the pointer and the callback with this object
@@ -140,7 +140,7 @@ void PhysicBullet::iteration(float delta)
     //Update the objects in the world based on the step parametres of time
     //Parametres = stepSimulation(btScalar timeStep,int maxSubSteps=1,btScalar fixedTimeStep=btScalar(1.)/btScalar(60.));
     //timeStep is the time passed after last simulation.
-    _world->stepSimulation(delta*0.001f,60);
+    _world->stepSimulation(delta);
 
 }
 void PhysicBullet::move(btRigidBody* body,int m)
