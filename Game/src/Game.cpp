@@ -47,14 +47,14 @@ int main()
     //ADDING A PLAYER 1 x 1 x 2
     GameObject* player = gameresource->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
-    //inputmanager->createComponent(player);
+    inputmanager->createComponent(player);
     cameramanager->createComponent(player);
     bphysicmanager->createComponent(player, 1.f, 1.f, 2.f, 1.f);
-    player->getComponent<BPhysicComponent>()->setVelocity(0, 5.f, 0);
+    //player->getComponent<BPhysicComponent>()->setVelocity(0, 5.f, 0);
 
     while(render->run())
     {
-        //inputmanager->setCursorPosition(render->getCursorX(), render->getCursorY());
+        inputmanager->setCursorPosition(render->getCursorX(), render->getCursorY());
         physicbullet->iteration(render->getFrameDeltaTime());
         inputmanager->updateAll();
         spawnmanager->updateAll(render->getFrameDeltaTime());

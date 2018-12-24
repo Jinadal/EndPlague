@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "InputFacade.h"
 #include "MovementComponent.h"
+#include "BPhysicComponent.h"
 #include <iostream>
 
 
