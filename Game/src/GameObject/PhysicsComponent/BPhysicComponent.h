@@ -7,16 +7,25 @@ class BPhysicComponent : public Component
 {
     private:
         btRigidBody* rbody;
+        float tx = 0.f, ty = 0.f;
+        float vMax;
     public:
         ~BPhysicComponent(){};
-        BPhysicComponent(GameObject* owner, Manager* manager, float xsize, float ysize, float zsize, float mass) : Component(owner, manager)
+        BPhysicComponent(GameObject* owner, Manager* manager, float xsize, float ysize, float zsize, float mass, int physicType) : Component(owner, manager)
         {
             btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());
             btVector3 size = btVector3(xsize, ysize, zsize);
-            rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass);
+
+            if(physicType == 0)
+                rbody = PhysicBullet::getInstance()->createDynamicRigidBody(position, size, mass);
+            else if(physicType == 1)
+                rbody = PhysicBullet::getInstance()->createKinematicRigidBody(position, size, mass);
+
             rbody->setUserPointer((void *)(gameObject));
+            vMax = 10.f;
         }
 
         void update();
-        void setVelocity(float x, float y, float z);
+        void moveObject(float x, float y, float z, float tx, float ty);
+        void setvMax(float v){vMax = v; std::cout<<"Setting VMAX: "<<vMax<<"\n";};
 };

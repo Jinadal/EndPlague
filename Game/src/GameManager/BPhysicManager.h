@@ -17,6 +17,6 @@ class BPhysicManager : public Manager
             return only_instance;
         }
         static bool callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2);
-        void createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass);
+        void createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass, int physicType);
         void updateAll();
 };

@@ -3,7 +3,7 @@
 #include "IAMovimiento.h"
 #include "IASeguimiento.h"
 #include "IAPlanificacion.h"
-#include "MovementComponent.h"
+#include "BPhysicComponent.h"
 #include <iostream>
 
 
@@ -268,7 +268,7 @@ void IAComponent::run(){
 
 
 if(!mapa.find("Raiz")->second->run())
-    gameObject->getComponent<MovementComponent>()->setvMax(0.f);
+    gameObject->getComponent<BPhysicComponent>()->setvMax(0.f);
 
 
 

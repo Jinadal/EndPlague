@@ -1,7 +1,5 @@
 #include "IASeguimiento.h"
-#include "CollisionComponent.h"
-#include "MovementComponent.h"
-#include "CollisionManager.h"
+#include "BPhysicComponent.h"
 #include <iostream>
 #include <cmath>
 

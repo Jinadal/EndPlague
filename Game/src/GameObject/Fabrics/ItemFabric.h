@@ -2,7 +2,7 @@
 #include "GameResource.h"
 #include "GameObject.h"
 #include "RenderManager.h"
-#include "CollisionManager.h"
+#include "BPhysicManager.h"
 #include "ItemManager.h"
 
 
@@ -27,7 +27,7 @@ class ItemFabric
     private:
         GameResource*       gameresource        = GameResource::getInstance();
         RenderManager*      rendermanager       = RenderManager::getInstance();
-        CollisionManager*   collisionmanager    = CollisionManager::getInstance();
+        BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
         ItemManager*        itemmanager         = ItemManager::getInstance();
 
         IType item_types [3] = 

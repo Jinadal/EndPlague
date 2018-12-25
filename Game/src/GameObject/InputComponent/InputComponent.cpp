@@ -25,14 +25,11 @@ void InputComponent::pulseInput(float cursorX, float cursorY)
         enX+=1;
     }
     if(interface->IsKeyDown((irr::EKEY_CODE)space_)){
+        if(gameObject->getComponent<ShootComponent>()!=nullptr)
         gameObject->getComponent<ShootComponent>()->shoot();
     }
 
-    if(gameObject->getComponent<MovementComponent>()!=nullptr){
-        gameObject->getComponent<MovementComponent>()->moveObject(enX,enY, cursorX, cursorY);
-    }
-
     if(gameObject->getComponent<BPhysicComponent>()!=nullptr){
-        gameObject->getComponent<BPhysicComponent>()->setVelocity(enX ,enY, 0.f);
+        gameObject->getComponent<BPhysicComponent>()->moveObject(enX ,enY, 0.f, cursorX, cursorY);
     }
 }

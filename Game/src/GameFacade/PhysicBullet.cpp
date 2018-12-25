@@ -86,7 +86,7 @@ btDynamicsWorld* PhysicBullet::initWorldPhysics()
     _world = new btDiscreteDynamicsWorld(_dispatcher, _broadphase, _solver, _collisionConfiguration);
 
     //Set gravity to physics in y=-9,8
-    _world->setGravity(btVector3(0,0,0));
+    _world->setGravity(btVector3(0,0,9.8));
 
     //We create the floor of our world
     //createRigidBody(btVector3(0.0f,0.0f,0.0f), btVector3(100.0f,0.5f,100.0f),0.0f);
@@ -94,7 +94,7 @@ btDynamicsWorld* PhysicBullet::initWorldPhysics()
     return _world;
 }
 
-btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVector3 &scale, btScalar mass)
+btRigidBody* PhysicBullet::createDynamicRigidBody(const btVector3 &initPos, const btVector3 &scale, btScalar mass)
 {
     //Matrix 4x4 for position and rotation
     btTransform transform;
@@ -134,6 +134,48 @@ btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVec
     
     return body;
 }
+
+btRigidBody* PhysicBullet::createKinematicRigidBody(const btVector3 &initPos, const btVector3 &scale, btScalar mass)
+{
+    //Matrix 4x4 for position and rotation
+    btTransform transform;
+	transform.setIdentity();
+	transform.setOrigin(initPos);
+
+    //Used for locate position and rotation of every object in each iteration
+    btDefaultMotionState*  motionState = new btDefaultMotionState(transform);
+
+    //We create a collision with box shape with sides 100. Each parametre starts from the center of the shape
+    //Afterwards we create a RigidBody that wont modifate its shape after collision. 
+    //Body parametres = (mass,motionstate,collisionshape,)
+    btCollisionShape*   boxyBox = new btBoxShape(scale);
+
+    btVector3 LocalInertia;                                                                 
+    boxyBox->calculateLocalInertia(mass, LocalInertia);
+
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, motionState, boxyBox,LocalInertia);
+
+	btRigidBody* body = new btRigidBody(rbInfo);
+    
+    //Makes a rigidbody inot kinematic so we can control it
+    body->setCollisionFlags(body->getCollisionFlags()|btCollisionObject::CF_KINEMATIC_OBJECT);
+    body->setActivationState( DISABLE_DEACTIVATION );
+    
+    //Allows to use the pointer and the callback with this object
+    //body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+    
+    //Array of shapes in the world
+	//Better re-use collision shapes than rigidbodies
+    _collisionShapes.push_back(boxyBox);
+
+    //Pointer to the last shape added to de array
+    //body->setUserPointer(_collisionShapes[_collisionShapes.size()-1]);
+    //We add the body to the world so it can interactuate
+    _world->addRigidBody(body);
+    
+    return body;
+}
+
 
 void PhysicBullet::iteration(float delta)
 {

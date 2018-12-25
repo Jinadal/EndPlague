@@ -1,8 +1,7 @@
 #pragma once
 #include "GameResource.h"
 #include "RenderManager.h"
-#include "MovementManager.h"
-#include "CollisionManager.h"
+#include "BPhysicManager.h"
 #include "IAManager.h"
 #include "LifeManager.h"
 #include "ShootManager.h"
@@ -43,12 +42,10 @@ class EnemyFabric
         };
         GameResource*       gameresource        = GameResource::getInstance();
         RenderManager*      rendermanager       = RenderManager::getInstance();
-        MovementManager*    movementmanager     = MovementManager::getInstance();
-        CollisionManager*   collisionmanager    = CollisionManager::getInstance();
         IAManager*          iamanager           = IAManager::getInstance();
         LifeManager*        lifemanager         = LifeManager::getInstance();
         ShootManager*       shootmanager        = ShootManager::getInstance();
-        ProjectileManager*  proyectilemanager   = ProjectileManager::getInstance();
+        BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
 
 
     public:

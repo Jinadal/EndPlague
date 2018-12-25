@@ -30,7 +30,8 @@ class PhysicBullet{
     bool callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2);
 
     btDynamicsWorld* initWorldPhysics();
-    btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
+    btRigidBody* createDynamicRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
+    btRigidBody* createKinematicRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
     void iteration(float d);
     void move(btRigidBody* body,int m);
 };

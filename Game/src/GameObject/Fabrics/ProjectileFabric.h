@@ -2,8 +2,8 @@
 #include "GameResource.h"
 #include "GameObject.h"
 #include "RenderManager.h"
-#include "MovementManager.h"
-#include "CollisionManager.h"
+#include "BPhysicManager.h"
+//#include "CollisionManager.h"
 #include "ProjectileManager.h"
 
 
@@ -17,7 +17,7 @@ struct PType{
     ProjectileType type;
     char* mesh;
     char* texture;
-    float vMax;
+    float outputForce;
     float damage;
 };
 
@@ -26,9 +26,8 @@ class ProjectileFabric
 {
     private:
         GameResource*       gameresource        = GameResource::getInstance();
-        MovementManager*    movementmanager     = MovementManager::getInstance();
         RenderManager*      rendermanager       = RenderManager::getInstance();
-        CollisionManager*   collisionmanager    = CollisionManager::getInstance();
+        BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
         ProjectileManager*  projectilemanager   = ProjectileManager::getInstance();
 
 

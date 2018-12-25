@@ -1,5 +1,10 @@
 #pragma once
 #include "CollisionComponent.h"
+#include "IAComponent.h"
+#include "ProjectileComponent.h"
+#include "LifeComponent.h"
+#include "StorageComponent.h"
+#include "InputComponent.h"
 #include <vector>
 
 class Manager;

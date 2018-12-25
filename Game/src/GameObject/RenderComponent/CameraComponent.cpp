@@ -13,7 +13,8 @@ void CameraComponent::update(float dt)
     float vy = - dy * v;
 
     x += vx*dt; 
-    y += vy*dt; 
+    y += vy*dt;
+    z = gameObject->getZ();
 
     //If we want the player on the middle 
     /*   

@@ -2,9 +2,9 @@
 
 BPhysicManager* BPhysicManager::only_instance = NULL;
 
-void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass)
+void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass, int physicType)
 {
-    components.push_back(new BPhysicComponent(owner, this, xsize, ysize, zsize, mass));
+    components.push_back(new BPhysicComponent(owner, this, xsize, ysize, zsize, mass, physicType));
     owner->addComponent(components[components.size()-1]);
 }
 
