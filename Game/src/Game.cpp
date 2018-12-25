@@ -15,6 +15,16 @@
 
 #include "PhysicBullet.h"
 
+bool callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
+{
+    std::cout<<"Colision\n";
+
+    std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;
+    std::cout<<obj2->getCollisionObject()->getUserPointer()<<std::endl;
+
+    return false;
+}
+
 
 int main()
 {
@@ -32,9 +42,8 @@ int main()
     SpawnManager*           spawnmanager        = SpawnManager::getInstance();
     BPhysicManager*         bphysicmanager      = BPhysicManager::getInstance();
     PhysicBullet*           physicbullet        = PhysicBullet::getInstance();
-
-
-
+    
+    gContactAddedCallback = callbackFunc;
 
     //ADDING A MAP 700 x 700 x 1
     GameObject* map = gameresource->createGameObject(0.f, 0.f, 0.f, 0.f);
@@ -50,7 +59,7 @@ int main()
     bphysicmanager->createComponent(player, .5f, .5f, 2.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     inputmanager->createComponent(player);
-    shootmanager->createComponent(player, .2f, 1.f, PROJECTILE_1);//Cadencia y Tipo
+    shootmanager->createComponent(player, .5f, 1.f, PROJECTILE_1);//Cadencia y Tipo
     cameramanager->createComponent(player);
     storagemanager->createComponent(player);
     iamanager->setPlayer(player);

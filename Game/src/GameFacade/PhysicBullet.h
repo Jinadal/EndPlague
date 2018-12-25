@@ -1,6 +1,8 @@
 #pragma once 
 #include <btBulletDynamicsCommon.h>
 
+
+
 class PhysicBullet{
     private:
     static PhysicBullet* only_instance;
@@ -27,7 +29,6 @@ class PhysicBullet{
     }
 
     void removeRigidBody(btRigidBody* rigidbody);
-    bool callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2);
 
     btDynamicsWorld* initWorldPhysics();
     btRigidBody* createDynamicRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);

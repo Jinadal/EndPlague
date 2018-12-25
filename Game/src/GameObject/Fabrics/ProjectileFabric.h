@@ -17,7 +17,7 @@ struct PType{
     ProjectileType type;
     char* mesh;
     char* texture;
-    float outputForce;
+    float velocity;
     float damage;
 };
 
@@ -38,7 +38,7 @@ class ProjectileFabric
                 PROJECTILE_1,
                 (char*)"res/FLECHA.obj",
                 (char*)"res/green.bmp",
-                20.f,
+                10.f,
                 10.f
             },
             {

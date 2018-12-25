@@ -131,9 +131,11 @@ btRigidBody* PhysicBullet::createDynamicRigidBody(const btVector3 &initPos, cons
     //body->setUserPointer(_collisionShapes[_collisionShapes.size()-1]);
     //We add the body to the world so it can interactuate
     _world->addRigidBody(body);
+
     
     return body;
 }
+
 
 btRigidBody* PhysicBullet::createKinematicRigidBody(const btVector3 &initPos, const btVector3 &scale, btScalar mass)
 {
@@ -194,12 +196,4 @@ void PhysicBullet::move(btRigidBody* body,int m)
         if(m==3)newTrans.getOrigin() += (btVector3(0, 0, -0.1f));
         if(m==4)newTrans.getOrigin() += (btVector3(0, 0, 0.1f));
     body->getMotionState()->setWorldTransform(newTrans);
-}
-bool PhysicBullet::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
-{
-    
-    std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;
-    std::cout<<obj2->getCollisionObject()->getUserPointer()<<std::endl;
-
-    return false;
 }

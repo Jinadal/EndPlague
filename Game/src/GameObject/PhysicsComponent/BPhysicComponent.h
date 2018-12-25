@@ -21,11 +21,14 @@ class BPhysicComponent : public Component
             else if(physicType == 1)
                 rbody = PhysicBullet::getInstance()->createKinematicRigidBody(position, size, mass);
 
+            rbody->applyTorque(btVector3(0, 0, owner->getRZ()));
+
             rbody->setUserPointer((void *)(gameObject));
             vMax = 10.f;
         }
 
         void update();
         void moveObject(float x, float y, float z, float tx, float ty);
-        void setvMax(float v){vMax = v; std::cout<<"Setting VMAX: "<<vMax<<"\n";};
+        void setvMax(float v){vMax = v;};
+        void setVelocity(float x, float y, float z);
 };
