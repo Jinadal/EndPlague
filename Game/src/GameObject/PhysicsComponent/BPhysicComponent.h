@@ -16,10 +16,7 @@ class BPhysicComponent : public Component
             btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());
             btVector3 size = btVector3(xsize, ysize, zsize);
 
-            if(physicType == 0)
-                rbody = PhysicBullet::getInstance()->createDynamicRigidBody(position, size, mass);
-            else if(physicType == 1)
-                rbody = PhysicBullet::getInstance()->createKinematicRigidBody(position, size, mass);
+            rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass, physicType);
 
             rbody->applyTorque(btVector3(0, 0, owner->getRZ()));
 

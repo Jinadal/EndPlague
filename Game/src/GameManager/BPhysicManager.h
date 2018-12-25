@@ -1,8 +1,11 @@
 #pragma once
 #include "BPhysicComponent.h"
-#include <iostream>
+#include "IAComponent.h"
+#include "ProjectileComponent.h"
+#include "LifeComponent.h"
+#include "StorageComponent.h"
+#include "InputComponent.h"
 
-class GameObject;
 class Manager;
 class BPhysicManager : public Manager
 {

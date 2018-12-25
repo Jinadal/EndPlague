@@ -43,7 +43,7 @@ int main()
     BPhysicManager*         bphysicmanager      = BPhysicManager::getInstance();
     PhysicBullet*           physicbullet        = PhysicBullet::getInstance();
     
-    gContactAddedCallback = callbackFunc;
+    gContactAddedCallback = bphysicmanager->callbackFunc;
 
     //ADDING A MAP 700 x 700 x 1
     GameObject* map = gameresource->createGameObject(0.f, 0.f, 0.f, 0.f);
@@ -70,33 +70,33 @@ int main()
     GameObject* spawn = gameresource->createGameObject(10.f, -10.f, -1.f, 0.f);
     rendermanager->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    spawnmanager->createComponent(spawn, 2.5f, ENEMY_1);
+    //spawnmanager->createComponent(spawn, 2.5f, ENEMY_1);
     lifemanager->createComponent(spawn, 400.f);
     bphysicmanager->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
 
 
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5
-    GameObject* item1 = gameresource->createGameObject(0.f, 3.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
-    rendermanager->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
-    //item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
-    bphysicmanager->createComponent(item1, .5f, .5f, .5f, 1.f, 1);
-    itemmanager->createComponent(item1, ITEM_CADENCE);
+    //GameObject* item1 = gameresource->createGameObject(0.f, 3.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    //rendermanager->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
+    ////item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
+    //bphysicmanager->createComponent(item1, .5f, .5f, .5f, 1.f, 1);
+    //itemmanager->createComponent(item1, ITEM_CADENCE);
     
     
     //Adding an ITEM2
-    GameObject* item2 = gameresource->createGameObject(0.f, 6.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
-    rendermanager->createComponent(item2, (char*)"res/ITEM.obj");//Fachada de render y path de obj
-    //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
-    bphysicmanager->createComponent(item2, .5f, .5f, .5f, 1.f, 1);
-    itemmanager->createComponent(item2, ITEM_LIFE);
+    //GameObject* item2 = gameresource->createGameObject(0.f, 6.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    //rendermanager->createComponent(item2, (char*)"res/ITEM.obj");//Fachada de render y path de obj
+    ////item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
+    //bphysicmanager->createComponent(item2, .5f, .5f, .5f, 1.f, 1);
+    //itemmanager->createComponent(item2, ITEM_LIFE);
     
 
     //Adding an ITEM3
-    GameObject* item3 = gameresource->createGameObject(0.f, 9.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
-    rendermanager->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
-    //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
-    bphysicmanager->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
-    itemmanager->createComponent(item3, ITEM_THROWABLE);
+    //GameObject* item3 = gameresource->createGameObject(0.f, 9.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    //rendermanager->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
+    ////item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
+    //bphysicmanager->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
+    //itemmanager->createComponent(item3, ITEM_THROWABLE);
 
 
     while(render->run())

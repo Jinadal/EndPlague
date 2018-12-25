@@ -8,7 +8,7 @@ class ShootComponent : public Component{
     private:
         float           lastShoot;          //Elapsed time since last shoot
         float           cadencia;           //Shoots per second
-        ProjectileType  type;          //Kind of bullet o create
+        ProjectileType  type;               //Kind of bullet o create
         float           distance;           //Distance of the canon
         bool            wantsShoot;
     

@@ -3,9 +3,7 @@
 #include "GameObject.h"
 #include "RenderManager.h"
 #include "BPhysicManager.h"
-//#include "CollisionManager.h"
 #include "ProjectileManager.h"
-
 
 enum ProjectileType
 {

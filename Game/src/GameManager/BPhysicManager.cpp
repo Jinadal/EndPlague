@@ -9,26 +9,6 @@ void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize
 }
 
 
-
-/*
-    Update all tendria que actualizar todas las posiciones de 
-los objetos en bullet, eso ya lo hace, llamando al  update de 
-cada compnente. 
-
-    Una vez hecho esto, tendria que realizar la simulacion y 
-resolver las  colisiones, y con las colisiones detectadas 
-recorrer todas las situaciones de contacto (Colisiones) y 
-hacer en funcion de cada par de colisiones acciones. Segun he
-leido se tiene que hacer con un Contact Callback o algo asi
-
-            dynamicsWorld->contactTest(mPlayerObject, resultCallback);
-            int numManifolds = dynamicsWorld->getDispatcher()->getNumManifolds();
-            if(numManifolds > 0)
-            {
-            //there's a collision, execute blah blah blah
-            }
-
-*/
 void BPhysicManager::updateAll(){
     for(std::size_t i = 0; i<components.size(); i++)
     {
@@ -43,11 +23,44 @@ void BPhysicManager::updateAll(){
 //gContactAddedCallback = <nameofcollisionmanager>p->callbackFunc;
 bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
 {
-    std::cout<<"Colision\n";
+
+    //IAComponent* i_IA = components[i]->getGameObject()->getComponent<IAComponent>();
+//
+    //if(i_IA)
+    //{
+    //InputComponent* j_input = components[j]->getGameObject()->getComponent<InputComponent>();
+//
+    //if(!j_input)
+    //i_IA->didIcollide = true;   
+    //}
+
+    GameObject* go1 = (GameObject*)obj1->getCollisionObject()->getUserPointer();
+    GameObject* go2 = (GameObject*)obj2->getCollisionObject()->getUserPointer();
+    
+    ProjectileComponent* i_projectil = go1->getComponent<ProjectileComponent>();
+    ProjectileComponent* j_projectil = go2->getComponent<ProjectileComponent>();
+
+    LifeComponent* i_life = go1->getComponent<LifeComponent>();
+    LifeComponent* j_life = go2->getComponent<LifeComponent>();
+
+    if(i_projectil)
+        i_projectil->dealDamage(j_life);
+    if(j_projectil)
+        j_projectil->dealDamage(i_life);
 
 
-    std::cout<<obj1->getCollisionObject()->getUserPointer()<<std::endl;
-    std::cout<<obj2->getCollisionObject()->getUserPointer()<<std::endl;
+    //En el caso de que lo que colisione sea un item
+    ItemComponent* i_item = go1->getComponent<ItemComponent>(); //EL PRIMER COMPONENTE DE LA COLISION ES UN ITEM
+    ItemComponent* j_item = go2->getComponent<ItemComponent>(); //EL SEGUNDO COMPONENTE DE LA COLISION ES UN ITEM
+
+    StorageComponent* i_storage = go1->getComponent<StorageComponent>();
+    StorageComponent* j_storage = go2->getComponent<StorageComponent>();
+
+    if(i_storage) //Si i es un item
+        i_storage->itemCatch(j_item);
+
+    if(j_storage) //Si i es un item
+        j_storage->itemCatch(i_item);
 
     return false;
 }

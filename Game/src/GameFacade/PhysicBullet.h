@@ -31,8 +31,7 @@ class PhysicBullet{
     void removeRigidBody(btRigidBody* rigidbody);
 
     btDynamicsWorld* initWorldPhysics();
-    btRigidBody* createDynamicRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
-    btRigidBody* createKinematicRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass);
+    btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
     void iteration(float d);
     void move(btRigidBody* body,int m);
 };
