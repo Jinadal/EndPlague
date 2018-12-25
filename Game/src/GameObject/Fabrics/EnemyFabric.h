@@ -37,7 +37,7 @@ class EnemyFabric
                 (char*)"res/DOOMIE.obj",
                 (char*)"res/green.bmp",
                 100.f,
-                2.f
+                20.f
             },
         };
         GameResource*       gameresource        = GameResource::getInstance();

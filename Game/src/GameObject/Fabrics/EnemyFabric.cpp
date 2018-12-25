@@ -9,7 +9,6 @@ GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyT
     primero->getComponent<RenderComponent>()->setTexture(enemytypes[type].texture);//Path de bmp
     bphysicmanager->createComponent(primero, .5f, .5f, 1.f, 100.f, 0);
     primero->getComponent<BPhysicComponent>()->setvMax(enemytypes[type].vMax);
-    //collisionmanager->createComponent(primero, 1, 1, true); //Ancho, alto y si es solido
     iamanager->createComponent(primero);
     primero->getComponent<IAComponent>()->Initialice();
     lifemanager->createComponent(primero, enemytypes[type].life);//Vida

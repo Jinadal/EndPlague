@@ -16,7 +16,7 @@ bool IA_Plan_InSight::run()
     float dy = main->getY() - owner->getY();
 
     if(fabs(dx) <= 50  && fabs(dy) <= 50){
-        owner->getComponent<ShootComponent>()->shoot();
+        //owner->getComponent<ShootComponent>()->shoot();
         ///std::cout << "PERSONAJE DETECTADO!!! \n";
          return true;
     }

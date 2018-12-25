@@ -58,8 +58,8 @@ void CollisionManager::updateAll()
                 */
                  IAComponent* i_IA = components[i]->getGameObject()->getComponent<IAComponent>();
 
-                 if(i_IA){
-
+                 if(i_IA)
+                 {
                     InputComponent* j_input = components[j]->getGameObject()->getComponent<InputComponent>();
 
                     if(!j_input)
