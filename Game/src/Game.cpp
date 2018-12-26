@@ -77,7 +77,7 @@ int main()
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5
     GameObject* item1 = gameresource->createGameObject(0.f, 3.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
-    //item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
+    item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
     bphysicmanager->createComponent(item1, .5f, .5f, .5f, 1.f, 1);
     itemmanager->createComponent(item1, ITEM_CADENCE);
     
