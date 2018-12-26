@@ -51,6 +51,7 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
     rbody->applyTorque(btVector3(0, 0, rZ));
 }
 
+
 void BPhysicComponent::setVelocity(float x, float y, float z)
 {
     rbody->setLinearVelocity( btVector3(x, y, z) );

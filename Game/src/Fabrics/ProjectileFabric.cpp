@@ -11,6 +11,7 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
     float fz = 0.f;
     bphysicmanager->createComponent(r, .7f, .2f, .2f, 10.f, 0);
     r->getComponent<BPhysicComponent>()->setVelocity(fx, fy, fz);
+    r->getComponent<BPhysicComponent>()->setGravity(0.f,0.f,0.f);
     rendermanager->createComponent(r, projectile_types[type].mesh);
     r->getComponent<RenderComponent>()->setTexture(projectile_types[type].texture);
     projectilemanager->createComponent(r, projectile_types[type].damage);

@@ -1,7 +1,4 @@
 #include "StorageComponent.h"
-#include "ItemFabric.h"
-#include <iostream>
-
 
 void StorageComponent::itemCatch(ItemComponent* item)
 {
@@ -16,7 +13,6 @@ void StorageComponent::itemCatch(ItemComponent* item)
         this->itemType = item->getType();
         applyEffect(item->getType());
         item->getGameObject()->setKill(true);
-        std::cout<<"He cogido el item y he tirado el anterior\n";
 
     }
     else
@@ -24,7 +20,6 @@ void StorageComponent::itemCatch(ItemComponent* item)
         this->itemType = item->getType();
         applyEffect(item->getType());
         item->getGameObject()->setKill(true);
-        std::cout<<"He cogido el item\n";
     }
     
 
@@ -37,7 +32,6 @@ void StorageComponent::itemDrop()
 
     this->itemType = 0;
     setDefaultValues();
-    std::cout<<"He tirado el objeto que tenia\n";
 
     delete fabric;
 }
@@ -76,7 +70,6 @@ void StorageComponent::throwable()
 
     if(gameObject->getComponent<ShootComponent>())
     {
-        std::cout<<"I'm a throwable\n";
         gameObject->getComponent<ShootComponent>()->setType(PROJECTILE_2);
     }
     
@@ -88,7 +81,6 @@ void StorageComponent::melon()
     //it gives you life
     if(gameObject->getComponent<LifeComponent>())
     {
-        std::cout<<"I give you life\n";
         gameObject->getComponent<LifeComponent>()->addLife(50);
     }
     
@@ -99,7 +91,6 @@ void StorageComponent::booster()
     //makes you shoot faster
     if(gameObject->getComponent<ShootComponent>())
     {
-        std::cout<<"I modify your cadence\n";
         gameObject->getComponent<ShootComponent>()->setCadencia(0.05);
     }
     

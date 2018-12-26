@@ -23,19 +23,19 @@ void BPhysicManager::updateAll(){
 //gContactAddedCallback = <nameofcollisionmanager>p->callbackFunc;
 bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
 {
-
-    //IAComponent* i_IA = components[i]->getGameObject()->getComponent<IAComponent>();
-//
-    //if(i_IA)
-    //{
-    //InputComponent* j_input = components[j]->getGameObject()->getComponent<InputComponent>();
-//
-    //if(!j_input)
-    //i_IA->didIcollide = true;   
-    //}
-
     GameObject* go1 = (GameObject*)obj1->getCollisionObject()->getUserPointer();
     GameObject* go2 = (GameObject*)obj2->getCollisionObject()->getUserPointer();
+
+    IAComponent* i_IA = go1->getComponent<IAComponent>();
+
+    if(i_IA)
+    {
+    InputComponent* j_input = go2->getComponent<InputComponent>();
+
+    if(!j_input)
+    i_IA->didIcollide = true;   
+    }
+
     
     ProjectileComponent* i_projectil = go1->getComponent<ProjectileComponent>();
     ProjectileComponent* j_projectil = go2->getComponent<ProjectileComponent>();
@@ -49,18 +49,18 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
         j_projectil->dealDamage(i_life);
 
 
-    //En el caso de que lo que colisione sea un item
-    ItemComponent* i_item = go1->getComponent<ItemComponent>(); //EL PRIMER COMPONENTE DE LA COLISION ES UN ITEM
-    ItemComponent* j_item = go2->getComponent<ItemComponent>(); //EL SEGUNDO COMPONENTE DE LA COLISION ES UN ITEM
-
-    StorageComponent* i_storage = go1->getComponent<StorageComponent>();
-    StorageComponent* j_storage = go2->getComponent<StorageComponent>();
-
-    if(i_storage) //Si i es un item
-        i_storage->itemCatch(j_item);
-
-    if(j_storage) //Si i es un item
-        j_storage->itemCatch(i_item);
-
+ //   //En el caso de que lo que colisione sea un item
+//    ItemComponent* i_item = go1->getComponent<ItemComponent>(); //EL PRIMER COMPONENTE DE LA COLISION ES UN ITEM
+//    ItemComponent* j_item = go2->getComponent<ItemComponent>(); //EL SEGUNDO COMPONENTE DE LA COLISION ES UN ITEM
+//
+//    StorageComponent* i_storage = go1->getComponent<StorageComponent>();
+//    StorageComponent* j_storage = go2->getComponent<StorageComponent>();
+//
+//    if(i_storage) //Si i es un item
+//        i_storage->itemCatch(j_item);
+//
+//    if(j_storage) //Si i es un item
+//        j_storage->itemCatch(i_item);
+//
     return false;
 }

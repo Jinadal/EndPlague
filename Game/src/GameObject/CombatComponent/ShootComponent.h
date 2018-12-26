@@ -1,5 +1,4 @@
 #pragma once
-//Headers
 #include "Component.h"
 #include "GameObject.h"
 #include "ProjectileFabric.h"

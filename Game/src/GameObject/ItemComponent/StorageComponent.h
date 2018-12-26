@@ -4,6 +4,9 @@
 #include "ItemComponent.h"
 #include "ShootComponent.h"
 #include "LifeComponent.h"
+#include "ItemFabric.h"
+#include <iostream>
+
 
 
 
@@ -13,7 +16,6 @@ class StorageComponent : public Component{
         int itemType = 0;
         float initialCadence;
         int initialType;
-
 
     public:
         StorageComponent(GameObject* g, Manager* m):Component(g, m){};
