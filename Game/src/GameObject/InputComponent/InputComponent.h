@@ -2,9 +2,9 @@
 //Headers
 #include "Component.h"
 #include "GameObject.h"
-#include "InputFacade.h"
 #include "BPhysicComponent.h"
 #include <iostream>
+#include <SFML/Window.hpp>
 
 
 class InputComponent : public Component
@@ -20,7 +20,7 @@ class InputComponent : public Component
 
 
 
-    void pulseInput(float cursorX, float cursorY);
+    void update(float cursorX, float cursorY);
 
 
 

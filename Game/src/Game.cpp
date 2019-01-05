@@ -1,5 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
+
+
+//#include "Menus.h"
 #include "GameResource.h"
 #include "RenderManager.h"
 #include "InputManager.h"
@@ -28,6 +31,10 @@ bool callbackFunc(btManifoldPoint& cp, const btCollisionObjectWrapper* obj1, int
 
 int main()
 {
+    //Menus* menus = new Menus();
+    //menus->loadStartMenu();
+
+
     GameResource*           gameresource        = GameResource::getInstance();
     RenderIrrlicht*         render              = RenderIrrlicht::getInstance();
     RenderManager*          rendermanager       = RenderManager::getInstance();
@@ -43,6 +50,7 @@ int main()
     BPhysicManager*         bphysicmanager      = BPhysicManager::getInstance();
     PhysicBullet*           physicbullet        = PhysicBullet::getInstance();
     
+
     gContactAddedCallback = bphysicmanager->callbackFunc;
 
     //ADDING A MAP 700 x 700 x 1

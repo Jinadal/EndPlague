@@ -1,6 +1,7 @@
 #include "InputManager.h"
 
 
+
 InputManager* InputManager::only_instance = NULL;
 
 
@@ -14,7 +15,7 @@ void InputManager::updateAll()
 {
     for(std::size_t i = 0 ; i<components.size(); i++)
     {
-        ((InputComponent*)components[i])->pulseInput(cursorX, cursorY); 
+        ((InputComponent*)components[i])->update(cursorX, cursorY); 
     }
 }
 

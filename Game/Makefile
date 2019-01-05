@@ -35,9 +35,13 @@ BulletLibraries := -L/usr/lib64 -lLinearMath -lBulletDynamics -lBulletCollision
 #FmodHome := -Iinclude/fmod
 #FmodLibraries := -Llib -lfmodstudio -lfmod
 
+SfmlHome := -Iusr/include/SFML
+SfmlLibraries := -Llib -lsfml-system -lsfml-window -lsfml-graphics
+
+
 #INCLUDES && LIBRAIES
-INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) $(FmodHome) $(BulletHome) $(IrrlichtHome) -I/usr/X11R6/include
-LIBRAIES := $(FmodLibraries) $(IrrlichtLibraries) $(BulletLibraries) 
+INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) $(FmodHome) $(BulletHome) $(IrrlichtHome) $(SfmlHome) -I/usr/X11R6/include
+LIBRAIES := $(SfmlLibraries) $(FmodLibraries) $(IrrlichtLibraries) $(BulletLibraries) 
 
 
 default:

@@ -1,0 +1,12 @@
+#include <SFML/Graphics.hpp>
+
+class Menus
+{
+    private:
+
+    public:
+        Menus(){}
+        ~Menus(){}
+
+        void loadStartMenu();
+};

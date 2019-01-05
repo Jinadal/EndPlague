@@ -1,12 +1,11 @@
 
 #include "RenderIrrlicht.h"
-#include <iostream>
 
 RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
 
 RenderIrrlicht::RenderIrrlicht(){
     device = createDevice( video::EDT_OPENGL, dimension2d<u32>(1920, 1080), 16,
-    false, false, false, InputFacade::getInstance());
+    false, false, false, 0);
 
     if (!device)
         return;

@@ -1,4 +1,3 @@
-#include <vector>
 #include "InputComponent.h"
 
 class Manager;
@@ -9,7 +8,6 @@ class InputManager : public Manager{
         float cursorX, cursorY;
     public:
         virtual ~InputManager(){
-            delete InputFacade::getInstance();
             only_instance=NULL;}
         //Constructor Singletone
         static InputManager *getInstance(){
