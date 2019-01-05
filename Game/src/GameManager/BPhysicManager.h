@@ -3,7 +3,7 @@
 #include "IAComponent.h"
 #include "ProjectileComponent.h"
 #include "LifeComponent.h"
-//#include "StorageComponent.h"
+#include "StorageComponent.h"
 #include "ItemComponent.h"
 #include "InputComponent.h"
 #include "GameObject.h"
