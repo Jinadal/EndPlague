@@ -15,7 +15,7 @@ class CameraNode{
 
         ~CameraNode()
         {
-            delete node;
+            //delete node;
         }
 
         void update(float x, float y, float z, float rx, float ry, float rz);

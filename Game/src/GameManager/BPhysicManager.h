@@ -3,12 +3,15 @@
 #include "IAComponent.h"
 #include "ProjectileComponent.h"
 #include "LifeComponent.h"
-#include "StorageComponent.h"
-#include "ItemComponent.h"
+//#include "StorageComponent.h"
+//#include "ItemComponent.h"
 #include "InputComponent.h"
 #include "GameObject.h"
 
 class Manager;
+//class StorageComponent;
+//class ItemComponent;
+
 class BPhysicManager : public Manager
 {
     private:

@@ -57,6 +57,7 @@ int main()
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     inputmanager->createComponent(player);
     shootmanager->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
+    lifemanager->createComponent(player, 100.f);
     cameramanager->createComponent(player);
     storagemanager->createComponent(player);
     iamanager->setPlayer(player);
@@ -71,7 +72,7 @@ int main()
     lifemanager->createComponent(spawn, 400.f);
     bphysicmanager->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
 
-
+    /*
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5
     GameObject* item1 = gameresource->createGameObject(0.f, 3.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     rendermanager->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
@@ -94,7 +95,7 @@ int main()
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     bphysicmanager->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
     itemmanager->createComponent(item3, ITEM_THROWABLE);
-
+    */
 
     while(render->run())
     {
@@ -106,8 +107,8 @@ int main()
         bphysicmanager->updateAll();
         shootmanager->updateAll(render->getFrameDeltaTime());
         cameramanager->updateAll(render->getFrameDeltaTime());
-        gameresource->updateAll();
         rendermanager->updateAll();
+        gameresource->updateAll();
 
 
         render->drawAll();

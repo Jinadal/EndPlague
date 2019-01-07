@@ -50,17 +50,14 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
 
 
    //En el caso de que lo que colisione sea un item
-    ItemComponent* i_item = go1->getComponent<ItemComponent>(); //EL PRIMER COMPONENTE DE LA COLISION ES UN ITEM
-    ItemComponent* j_item = go2->getComponent<ItemComponent>(); //EL SEGUNDO COMPONENTE DE LA COLISION ES UN ITEM
+    //StorageComponent* i_storage = go1->getComponent<StorageComponent>();
+    //StorageComponent* j_storage = go2->getComponent<StorageComponent>();
 
-    StorageComponent* i_storage = go1->getComponent<StorageComponent>();
-    StorageComponent* j_storage = go2->getComponent<StorageComponent>();
+    //if(i_storage) //Si i es un item
+    //    i_storage->itemCatch(go1->getComponent<ItemComponent>());
 
-    if(i_storage) //Si i es un item
-        i_storage->itemCatch(j_item);
-
-    if(j_storage) //Si i es un item
-        j_storage->itemCatch(i_item);
+    //if(j_storage) //Si i es un item
+    //    j_storage->itemCatch(go2->getComponent<ItemComponent>());
 
     return false;
 }

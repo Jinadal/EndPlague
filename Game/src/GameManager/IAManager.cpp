@@ -13,9 +13,13 @@ void IAManager::createComponent(GameObject *owner)
 
 void IAManager::updateAll()
 {
- std::vector<Component*>::iterator iter;
-    for(iter = components.begin(); iter!=components.end(); iter ++)
+    if(player)
     {
-        ((IAComponent*)(*iter))->run();
+        std::vector<Component*>::iterator iter;
+        for(iter = components.begin(); iter!=components.end(); iter ++)
+        {
+            ((IAComponent*)(*iter))->run();
+        }
     }
+ 
 }
