@@ -9,3 +9,9 @@ void LifeManager::createComponent(GameObject *owner, float l)
     components.push_back(new LifeComponent(owner, this, l));
     owner->addComponent(components[components.size()-1]);
 }
+
+
+void LifeManager::updateAll(float dt)
+{
+    
+}

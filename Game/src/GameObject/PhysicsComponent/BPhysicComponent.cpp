@@ -12,6 +12,7 @@ void BPhysicComponent::update()
     gameObject->setRX(rotation[0]);
     gameObject->setRY(rotation[1]);
     gameObject->setRZ(rotation[2]);
+
 }
 
 void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)

@@ -17,4 +17,5 @@ class LifeManager : public Manager{
         }
 
         void createComponent(GameObject* owner, float l);
+        void updateAll(float dt);
 };

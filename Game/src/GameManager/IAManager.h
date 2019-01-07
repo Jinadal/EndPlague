@@ -17,6 +17,6 @@ class IAManager : public Manager{
         }
         void setPlayer(GameObject* player){this->player = player;}
         void createComponent(GameObject* owner);
-        void updateAll();
+        void updateAll(float dt);
 
 };

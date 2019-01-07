@@ -22,4 +22,5 @@ class ProjectileManager : public Manager{
 
         virtual ~ProjectileManager(){only_instance=NULL;}
         void createComponent(GameObject* owner, float damage);
+        void updateAll(float dt);
 };

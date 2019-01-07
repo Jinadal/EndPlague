@@ -9,11 +9,12 @@ void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize
 }
 
 
-void BPhysicManager::updateAll(){
+void BPhysicManager::updateAll(float dt){
     for(std::size_t i = 0; i<components.size(); i++)
     {
         ((BPhysicComponent*)components[i])->update();
     }
+    PhysicBullet::getInstance()->iteration(dt);
 }
 //Callback which registers and shows in terminal the colliding objects
 //Parametres are standars of the bullet engine, no need of thinking much about them

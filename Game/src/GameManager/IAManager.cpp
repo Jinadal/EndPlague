@@ -11,7 +11,7 @@ void IAManager::createComponent(GameObject *owner)
     owner->addComponent(components[components.size()-1]);
 }
 
-void IAManager::updateAll()
+void IAManager::updateAll(float dt)
 {
     if(player)
     {

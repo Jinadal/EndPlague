@@ -12,3 +12,8 @@ void ItemManager::createComponent(GameObject  *owner,float type){
 }
 
 
+void ItemManager::updateAll(float dt)
+{
+
+}
+

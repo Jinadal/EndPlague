@@ -1,3 +1,4 @@
+#pragma once
 #include "InputComponent.h"
 
 class Manager;
@@ -17,5 +18,5 @@ class InputManager : public Manager{
 
         void createComponent(GameObject* owner);
         void setCursorPosition(float x, float y);
-        void updateAll();
+        void updateAll(float dt);
 };

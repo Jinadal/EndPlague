@@ -11,7 +11,7 @@ void InputManager::createComponent(GameObject *owner)
     owner->addComponent(components[components.size()-1]);
 }
 
-void InputManager::updateAll()
+void InputManager::updateAll(float dt)
 {
     for(std::size_t i = 0 ; i<components.size(); i++)
     {

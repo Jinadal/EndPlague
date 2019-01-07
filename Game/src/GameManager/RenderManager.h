@@ -19,7 +19,7 @@ class RenderManager : public Manager{
         }
 
         ~RenderManager(){only_instance=NULL;}
-        void updateAll();
+        void updateAll(float dt);
         void createComponent(GameObject *owner, char* path);
 
 };

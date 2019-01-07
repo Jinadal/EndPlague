@@ -3,7 +3,7 @@
 RenderManager* RenderManager::only_instance = NULL;
 
 //Updates all the components
-void RenderManager::updateAll(){
+void RenderManager::updateAll(float dt){
     for(std::size_t i = 0; i<components.size(); i++)
         ((RenderComponent*)components[i])->update();
 }

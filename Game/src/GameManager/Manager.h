@@ -12,6 +12,7 @@ class Manager{
         //Destructor
         virtual ~Manager(){components.clear();}
 
+        virtual void updateAll(float dt) = 0;
 
         void removeComponent(Component* c)
         {

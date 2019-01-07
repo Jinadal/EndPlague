@@ -1,3 +1,4 @@
+#pragma once
 #include "StorageComponent.h"
 #include "GameObject.h"
 
@@ -21,5 +22,6 @@ class StorageManager : public Manager{
         virtual ~StorageManager() {only_instance = NULL;};
         void createComponent(GameObject *owner);
         
+        void updateAll(float dt);
 
 };

@@ -2,14 +2,16 @@
 
 
 void RenderComponent::update(){
-            node->setPosition(gameObject->getX(),
-                                gameObject->getY(),
-                                gameObject->getZ());
-        
-            node->setRotation(gameObject->getRX(), 
-                                gameObject->getRY(), 
-                                gameObject->getRZ());
-        }
+    node->setPosition(gameObject->getX(),
+                        gameObject->getY(),
+                        gameObject->getZ());
+
+    node->setRotation(gameObject->getRX(), 
+                        gameObject->getRY(), 
+                        gameObject->getRZ());
+
+}
+
 
 void RenderComponent::setVisible(bool h){
     node->setVisible(h);
