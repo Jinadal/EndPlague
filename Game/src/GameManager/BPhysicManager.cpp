@@ -34,7 +34,7 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
     InputComponent* j_input = go2->getComponent<InputComponent>();
 
     if(!j_input)
-    i_IA->didIcollide = true;   
+        i_IA->didIcollide = true;   
     }
 
     

@@ -158,3 +158,19 @@ void PhysicBullet::move(btRigidBody* body,int m)
         if(m==4)newTrans.getOrigin() += (btVector3(0, 0, 0.1f));
     body->getMotionState()->setWorldTransform(newTrans);
 }
+
+
+
+btRigidBody* PhysicBullet::createTerrain(btScalar mass, btVector3 position, btConvexTriangleMeshShape* shape){
+	//Matrix 4x4 for position and rotation
+    btTransform transform;
+	transform.setIdentity();
+	transform.setOrigin(position);
+
+    //Used for locate position and rotation of every object in each iteration
+    btDefaultMotionState*  motionState = new btDefaultMotionState(transform);
+    
+    btRigidBody* body = new btRigidBody(mass, motionState, shape, btVector3(0,0,0));
+    _world->addRigidBody(body);
+    return body;
+}

@@ -7,10 +7,12 @@ void FabricVillage::loadLevel()
 
      //ADDING A MAP 700 x 700 x 1
     GameObject* map = GameResource::getInstance()->createGameObject(0.f, 0.f, 0.f, 0.f);
-    RenderManager::getInstance()->createComponent(map, (char*)"res/SUELO.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
+    //BTerrainManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
+    BTerrainManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");
+
 
     //ADDING A PLAYER 1 x 1 x 2
     GameObject* player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
@@ -30,7 +32,7 @@ void FabricVillage::loadLevel()
     GameObject* spawn = GameResource::getInstance()->createGameObject(10.f, -10.f, -1.f, 0.f);
     RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    SpawnManager::getInstance()->createComponent(spawn, 2.5f, ENEMY_1);
+    //SpawnManager::getInstance()->createComponent(spawn, 2.5f, ENEMY_1);
     LifeManager::getInstance()->createComponent(spawn, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
 
