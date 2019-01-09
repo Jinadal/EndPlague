@@ -10,7 +10,7 @@ bool IA_Seg_CheckXIzd::run()
     float dx = main->getX() - owner->getX();
 
    if(dx > 0){
-       if(fabs(dx) > 3.f)
+      // if(fabs(dx) > 3.f)
        return true;
    }
 
@@ -23,7 +23,7 @@ bool IA_Seg_CheckXDer::run()
    
     if(dx <= 0){
        
-       if(fabs(dx) > 3.f)
+      // if(fabs(dx) > 3.f)
         return true;
     }
 
@@ -37,7 +37,7 @@ bool IA_Seg_CheckYAbj::run()
 
    if(dy > 0){
        
-       if(fabs(dy) > 3.f)
+      // if(fabs(dy) > 3.f)
        return true;
    }
 
@@ -50,7 +50,7 @@ bool IA_Seg_CheckYArr::run()
 
     if(dy <= 0){
 
-       if(fabs(dy) > 3.f)
+      // if(fabs(dy) > 3.f)
         return true;
     }
 

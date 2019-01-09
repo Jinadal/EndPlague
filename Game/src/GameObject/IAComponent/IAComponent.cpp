@@ -267,8 +267,9 @@ void IAComponent::Initialice(){
 void IAComponent::run(){
 
 
-if(!mapa.find("Raiz")->second->run())
+if(!mapa.find("Raiz")->second->run()){
     gameObject->getComponent<BPhysicComponent>()->setvMax(0.f);
+}
 
 
 
