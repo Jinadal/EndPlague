@@ -1,4 +1,4 @@
-/*#include "BTerrainComponent.h"
+#include "BTerrainComponent.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -60,5 +60,3 @@
 
 
 void BTerrainComponent::update(){}
-
-*/
