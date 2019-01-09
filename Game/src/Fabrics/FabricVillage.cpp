@@ -1,4 +1,15 @@
 #include "FabricVillage.h"
+#include "InputManager.h"
+#include "ItemManager.h"
+#include "SpawnManager.h"
+#include "IAManager.h"
+#include "BPhysicManager.h"
+#include "ShootManager.h"
+#include "CameraManager.h"
+#include "RenderManager.h"
+#include "StorageManager.h"
+#include "GameResource.h"
+
 
 
 void FabricVillage::loadLevel()
@@ -34,13 +45,13 @@ void FabricVillage::loadLevel()
     LifeManager::getInstance()->createComponent(spawn, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
 
-    /*
+    
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5
     GameObject* item1 = GameResource::getInstance()->createGameObject(0.f, 3.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item1, .5f, .5f, .5f, 1.f, 1);
-    itemmanager->createComponent(item1, ITEM_CADENCE);
+    ItemManager::getInstance()->createComponent(item1, ITEM_CADENCE);
     
     
     //Adding an ITEM2
@@ -48,7 +59,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item2, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item2, .5f, .5f, .5f, 1.f, 1);
-    itemmanager->createComponent(item2, ITEM_LIFE);
+    ItemManager::getInstance()->createComponent(item2, ITEM_LIFE);
     
 
     //Adding an ITEM3
@@ -56,8 +67,8 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
-    itemmanager->createComponent(item3, ITEM_THROWABLE);
-    */
+    ItemManager::getInstance()->createComponent(item3, ITEM_THROWABLE);
+    
 
 
 

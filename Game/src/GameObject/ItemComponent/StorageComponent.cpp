@@ -2,8 +2,11 @@
 
 void StorageComponent::itemCatch(ItemComponent* item)
 {
+    
     if(!item) return;
     
+    std::cout<<"ItemCatch!\n";
+
     if(this->itemType == 1 ||
             this->itemType == 2 ||
             this->itemType == 3  )
@@ -91,7 +94,7 @@ void StorageComponent::booster()
     //makes you shoot faster
     if(gameObject->getComponent<ShootComponent>())
     {
-        gameObject->getComponent<ShootComponent>()->setCadencia(0.05);
+        gameObject->getComponent<ShootComponent>()->setCadencia(0.1);
     }
     
 }

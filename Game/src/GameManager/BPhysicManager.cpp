@@ -1,4 +1,10 @@
 #include "BPhysicManager.h"
+#include "IAComponent.h"
+#include "ProjectileComponent.h"
+#include "LifeComponent.h"
+#include "StorageComponent.h"
+#include "ItemComponent.h"
+#include "InputComponent.h"
 
 BPhysicManager* BPhysicManager::only_instance = NULL;
 
@@ -50,15 +56,19 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
         j_projectil->dealDamage(i_life);
 
 
-   //En el caso de que lo que colisione sea un item
-    //StorageComponent* i_storage = go1->getComponent<StorageComponent>();
-    //StorageComponent* j_storage = go2->getComponent<StorageComponent>();
+    //En el caso de que lo que colisione sea un item
+    StorageComponent* i_storage = go1->getComponent<StorageComponent>();
+    StorageComponent* j_storage = go2->getComponent<StorageComponent>();
 
-    //if(i_storage) //Si i es un item
-    //    i_storage->itemCatch(go1->getComponent<ItemComponent>());
+    ItemComponent* i_item   = go1->getComponent<ItemComponent>();
+    ItemComponent* j_item   = go2->getComponent<ItemComponent>();
 
-    //if(j_storage) //Si i es un item
-    //    j_storage->itemCatch(go2->getComponent<ItemComponent>());
+    if(i_storage) //Si i es un item
+        i_storage->itemCatch(go2->getComponent<ItemComponent>());
+
+    //if(j_storage && i_item) //Si i es un item
+        //std::cout<<"Tiene Storage\n";
+        //j_storage->itemCatch(go1->getComponent<ItemComponent>());
 
     return false;
 }
