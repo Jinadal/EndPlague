@@ -8,6 +8,13 @@ void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize
     owner->addComponent(components[components.size()-1]);
 }
 
+/*
+void BPhysicManager::createComponent(GameObject* owner,char* mesh)
+{
+    components.push_back(new BTerrainComponent(owner, this, mesh));
+    owner->addComponent(components[components.size()-1]);
+}
+*/
 
 void BPhysicManager::updateAll(float dt){
     for(std::size_t i = 0; i<components.size(); i++)

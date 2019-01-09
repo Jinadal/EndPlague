@@ -10,8 +10,8 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    //BTerrainManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
-    BTerrainManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");
+    BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
+    //BPhysicManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");
 
 
     //ADDING A PLAYER 1 x 1 x 2

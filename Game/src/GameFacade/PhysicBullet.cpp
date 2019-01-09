@@ -160,8 +160,8 @@ void PhysicBullet::move(btRigidBody* body,int m)
 }
 
 
-
-btRigidBody* PhysicBullet::createTerrain(btScalar mass, btVector3 position, btConvexTriangleMeshShape* shape){
+/*
+btRigidBody* PhysicBullet::createTerrain(btScalar mass, btVector3 position, btBvhTriangleMeshShape* shape){
 	//Matrix 4x4 for position and rotation
     btTransform transform;
 	transform.setIdentity();
@@ -174,3 +174,4 @@ btRigidBody* PhysicBullet::createTerrain(btScalar mass, btVector3 position, btCo
     _world->addRigidBody(body);
     return body;
 }
+*/

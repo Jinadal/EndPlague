@@ -1,4 +1,4 @@
-#include "BTerrainComponent.h"
+/*#include "BTerrainComponent.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -21,9 +21,8 @@
         if (line[0] == 'v' && line[1] == ' ') { //IS A VEREX
             btScalar x, y, z;
             iss >> x >> y >> z;
-            btVector3 point(x, z, y);
+            btVector3 point(x, y, z);
             vertices.push_back(point);
-            std::cout<<"VEREX: "<<x<<" "<<y<<" "<<z<<"\n";
         } else if (line[0] == 'f' && line[1] == ' ') { //IS A FACE
             std::string s1, s2, s3;
             iss >> s1 >> s2 >> s3;
@@ -48,7 +47,9 @@
         triangleMesh->addTriangle(vertices[triangle.x()], vertices[triangle.y()], vertices[triangle.z()]);
 
     //Finally add the triangle to a meshshape
-    btConvexTriangleMeshShape* shape = new btConvexTriangleMeshShape(triangleMesh);
+    //btBvhTriangleMeshShape
+    //btConvexTriangleMeshShape* shape = new btConvexTriangleMeshShape(triangleMesh);
+    btBvhTriangleMeshShape* shape = new btBvhTriangleMeshShape(triangleMesh, true, true);
     rbody = PhysicBullet::getInstance()->createTerrain(btScalar(0.f), btVector3(gameObject->getX(), gameObject->getY(), gameObject->getZ()), shape);
 
 
@@ -58,3 +59,6 @@
 
 
 
+void BTerrainComponent::update(){}
+
+*/
