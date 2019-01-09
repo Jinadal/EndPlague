@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "FabricVillage.h"
 #include "InputManager.h"
+#include "BPhysicManager.h"
 
 
 int main()

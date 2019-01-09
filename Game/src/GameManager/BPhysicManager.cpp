@@ -1,4 +1,5 @@
 #include "BPhysicManager.h"
+#include "SpawnComponent.h"
 
 BPhysicManager* BPhysicManager::only_instance = NULL;
 
@@ -31,10 +32,19 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
 
     if(i_IA)
     {
-    InputComponent* j_input = go2->getComponent<InputComponent>();
+        InputComponent* j_input = go2->getComponent<InputComponent>();
 
-    if(!j_input)
-    i_IA->didIcollide = true;   
+        if(!j_input)
+            i_IA->didIcollide = true;   
+    }
+
+    SpawnComponent* i_SP = go1->getComponent<SpawnComponent>();
+    if(i_SP)
+    {
+        IAComponent* j_IA = go2->getComponent<IAComponent>();
+        if(j_IA)
+            j_IA->didIcollide = true;
+
     }
 
     
@@ -51,13 +61,13 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
 
 
    //En el caso de que lo que colisione sea un item
-    //StorageComponent* i_storage = go1->getComponent<StorageComponent>();
-    //StorageComponent* j_storage = go2->getComponent<StorageComponent>();
+   // StorageComponent* i_storage = go1->getComponent<StorageComponent>();
+   // StorageComponent* j_storage = go2->getComponent<StorageComponent>();
 
-    //if(i_storage) //Si i es un item
-    //    i_storage->itemCatch(go1->getComponent<ItemComponent>());
+   // if(i_storage) //Si i es un item
+   //    i_storage->itemCatch(go1->getComponent<ItemComponent>());
 
-    //if(j_storage) //Si i es un item
+   // if(j_storage) //Si i es un item
     //    j_storage->itemCatch(go2->getComponent<ItemComponent>());
 
     return false;
