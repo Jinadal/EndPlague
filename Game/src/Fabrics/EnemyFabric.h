@@ -35,7 +35,7 @@ class EnemyFabric
             {
                 ENEMY_2,
                 (char*)"res/DOOMIE.obj",
-                (char*)"res/green.bmp",
+                (char*)"res/red.bmp",
                 100.f,
                 20.f
             },
