@@ -1,13 +1,10 @@
 #pragma once
-#include "GameResource.h"
 #include "GameObject.h"
-#include "RenderManager.h"
-#include "BPhysicManager.h"
-#include "ItemManager.h"
 
 
 enum ItemTypes
 {
+    ITEM_0,
     ITEM_1,
     ITEM_2,
     ITEM_3
@@ -25,31 +22,33 @@ struct IType{
 class ItemFabric
 {
     private:
-        GameResource*       gameresource        = GameResource::getInstance();
-        RenderManager*      rendermanager       = RenderManager::getInstance();
-        BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
-        ItemManager*        itemmanager         = ItemManager::getInstance();
-
-        IType item_types [3] = 
+        IType item_types [4] = 
         {
+            {
+                ITEM_0,
+                (char*)"res/ITEM.obj",
+                (char*)"res/ITEM.bmp", 
+                0.f
+
+            },
             {
                 ITEM_1,
                 (char*)"res/ITEM.obj",
                 (char*)"res/ITEM.bmp", 
-                1
+                1.f
 
             },
             {
                 ITEM_2,
                 (char*)"res/ITEM.obj",
-                (char*)"res/green.bmp",
-                2
+                (char*)"res/ITEM.bmp",
+                2.f
             }, 
             {
                 ITEM_3,
                 (char*)"res/ITEM.obj",
-                (char*)"res/green.bmp", 
-                3
+                (char*)"res/ITEM.bmp", 
+                3.f
             }
         };
 
@@ -57,7 +56,7 @@ class ItemFabric
         ItemFabric(){}
         virtual ~ItemFabric(){}
 
-        GameObject* createItem(float x, float y, float z, float rz, int type);
+        GameObject* createItem(float x, float y, float z, float rz, ItemTypes type);
 };
 
 

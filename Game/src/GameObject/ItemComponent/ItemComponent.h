@@ -1,23 +1,22 @@
 #pragma once
 #include "Component.h"
+#include "ItemFabric.h"
 
 class GameObject;
 class ItemComponent : public Component{
     private:
-        int Type;
-
-        
+        ItemTypes Type;
 
     public:
         //CONSTRUCTOR
-        ItemComponent(GameObject* g, Manager* m, int Type) :Component(g, m){
+        ItemComponent(GameObject* g, Manager* m, ItemTypes Type) :Component(g, m){
             this->Type = Type;
         }
 
         //DESTRUCTOR
         ~ItemComponent(){}
 
-        int getType(){
+        ItemTypes getType(){
             return Type;
         }
 

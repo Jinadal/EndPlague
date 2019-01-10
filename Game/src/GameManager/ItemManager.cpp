@@ -6,7 +6,7 @@ ItemManager* ItemManager::only_instance = NULL;
 
 
 
-void ItemManager::createComponent(GameObject  *owner,float type){
+void ItemManager::createComponent(GameObject  *owner,ItemTypes type){
     components.push_back(new ItemComponent(owner, this, type));
     owner->addComponent(components[components.size()-1]);
 }

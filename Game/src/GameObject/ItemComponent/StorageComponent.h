@@ -13,9 +13,9 @@
 
 class StorageComponent : public Component{
     private:
-        int itemType = 0;
+        ItemTypes itemType = ITEM_0;
         float initialCadence;
-        int initialType;
+        ItemTypes initialType;
 
     public:
         StorageComponent(GameObject* g, Manager* m):Component(g, m){};
@@ -26,7 +26,7 @@ class StorageComponent : public Component{
         //Drops the actual item
         void itemDrop();
         //Applies the effect of the item 
-        void applyEffect(int Type);
+        void applyEffect(ItemTypes Type);
 
         void setDefaultValues();
 

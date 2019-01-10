@@ -4,12 +4,10 @@ void StorageComponent::itemCatch(ItemComponent* item)
 {
     
     if(!item) return;
-    
-    std::cout<<"ItemCatch!\n";
 
-    if(this->itemType == 1 ||
-            this->itemType == 2 ||
-            this->itemType == 3  )
+    if(this->itemType == ITEM_1 ||
+            this->itemType == ITEM_2 ||
+            this->itemType == ITEM_3  )
     {
         
         itemDrop();
@@ -24,19 +22,20 @@ void StorageComponent::itemCatch(ItemComponent* item)
         applyEffect(item->getType());
         item->getGameObject()->setKill(true);
     }
-    
-
 }
 
 void StorageComponent::itemDrop()
 {
-    ItemFabric* fabric = new ItemFabric();
-    fabric->createItem(gameObject->getX()-3.f, gameObject->getY()-3.f, gameObject->getZ(), gameObject->getRZ(), this->itemType-1);
+    if(itemType!=ITEM_0)
+    {
+        ItemFabric* fabric = new ItemFabric();
+        fabric->createItem(gameObject->getX()-3.f, gameObject->getY()-3.f, gameObject->getZ(), gameObject->getRZ(), itemType);
 
-    this->itemType = 0;
-    setDefaultValues();
+        this->itemType = ITEM_0;
+        setDefaultValues();
 
-    delete fabric;
+        delete fabric;
+    }
 }
 
 void StorageComponent::setDefaultValues()
@@ -45,20 +44,20 @@ void StorageComponent::setDefaultValues()
     gameObject->getComponent<ShootComponent>()->setType(PROJECTILE_1);
 }
 
-void StorageComponent::applyEffect(int Type)
+void StorageComponent::applyEffect(ItemTypes Type)
 {
     
     switch (Type)
     {
-        case ITEM_THROWABLE:
+        case ITEM_1:
             throwable();
             break;
 
-        case ITEM_CADENCE:
+        case ITEM_2:
             booster();
             break;
 
-        case ITEM_LIFE:
+        case ITEM_3:
             melon();
             break;
     

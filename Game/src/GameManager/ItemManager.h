@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "ItemFabric.h"
 
 class GameObject;
 class Manager;
@@ -20,7 +21,7 @@ class ItemManager : public Manager{
 
         //DESTRUCTOR
         virtual ~ItemManager() {only_instance = NULL;};
-        void createComponent(GameObject *owner, float type);
+        void createComponent(GameObject *owner, ItemTypes type);
         void updateAll(float dt);
 
 };
