@@ -79,7 +79,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item1, .5f, .5f, .5f, 1.f, 1);
-    ItemManager::getInstance()->createComponent(item1, ITEM_CADENCE);
+    ItemManager::getInstance()->createComponent(item1, ITEM_1);
     
     
     //Adding an ITEM2
@@ -87,7 +87,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item2, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item2, .5f, .5f, .5f, 1.f, 1);
-    ItemManager::getInstance()->createComponent(item2, ITEM_LIFE);
+    ItemManager::getInstance()->createComponent(item2, ITEM_2);
     
 
     //Adding an ITEM3
@@ -95,7 +95,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
-    ItemManager::getInstance()->createComponent(item3, ITEM_THROWABLE);
+    ItemManager::getInstance()->createComponent(item3, ITEM_3);
     
 
 
