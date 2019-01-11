@@ -8,7 +8,7 @@ MenuState* MenuState::only_instance = NULL;
 
 void MenuState::update()
 {
-    std::cout<<"MENU"<<std::endl;
+    //std::cout<<"MENU"<<std::endl;
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
         Game::getInstance()->setState(IGameState::stateType::PAUSE);

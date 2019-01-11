@@ -4,24 +4,11 @@ void StorageComponent::itemCatch(ItemComponent* item)
 {
     
     if(!item) return;
-
-    if(this->itemType == ITEM_1 ||
-            this->itemType == ITEM_2 ||
-            this->itemType == ITEM_3  )
-    {
         
-        itemDrop();
-        this->itemType = item->getType();
-        applyEffect(item->getType());
-        item->getGameObject()->setKill(true);
-
-    }
-    else
-    {
-        this->itemType = item->getType();
-        applyEffect(item->getType());
-        item->getGameObject()->setKill(true);
-    }
+    itemDrop();
+    applyEffect(item->getType());
+    std::cout<<"Kil?:";
+    item->getGameObject()->setKill(true);
 }
 
 void StorageComponent::itemDrop()
@@ -46,7 +33,7 @@ void StorageComponent::setDefaultValues()
 
 void StorageComponent::applyEffect(ItemTypes Type)
 {
-    
+ itemType = Type;   
     switch (Type)
     {
         case ITEM_1:

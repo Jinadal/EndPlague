@@ -7,6 +7,7 @@
 
 GameObject* ItemFabric::createItem(float x, float y, float z, float rz, ItemTypes type)
 {
+    if(type == ITEM_0)return NULL;
     GameObject* r =  GameResource::getInstance()->createGameObject(x, y, z, rz);
     RenderManager::getInstance()->createComponent(r, item_types[type].mesh);
     r->getComponent<RenderComponent>()->setTexture(item_types[type].texture);

@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include "Component.h"
+#include <iostream>
 
 class Component;
 
@@ -33,7 +34,7 @@ class GameObject{
     void setRX(float rx){this->rx = rx;}
     void setRY(float ry){this->ry = ry;}
     void setRZ(float rz){this->rz = rz;}
-    void setKill(bool kill){this->kill = kill;}
+    void setKill(bool kill){std::cout<<"KIlling\n";this->kill = kill;}
 	
 
 

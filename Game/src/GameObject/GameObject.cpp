@@ -20,6 +20,8 @@ GameObject::~GameObject(){
     }
 }
 
+
+
 //Add component
 void GameObject::addComponent(Component* c){
     components.push_back(c);
