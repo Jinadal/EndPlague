@@ -5,7 +5,7 @@
 
 PauseState* PauseState::only_instance = NULL;
 
-void PauseState::update()
+void PauseState::update(float dt)
 {
     std::cout<<"PAUSE"<<std::endl;
 

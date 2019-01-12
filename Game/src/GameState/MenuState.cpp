@@ -6,7 +6,7 @@
 
 MenuState* MenuState::only_instance = NULL;
 
-void MenuState::update()
+void MenuState::update(float dt)
 {
     std::cout<<"MENU"<<std::endl;
 

@@ -5,7 +5,7 @@
 
 EndState* EndState::only_instance = NULL;
 
-void EndState::update()
+void EndState::update(float dt)
 {
     std::cout<<"END"<<std::endl;
 

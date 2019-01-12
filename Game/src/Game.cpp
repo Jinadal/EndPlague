@@ -1,9 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
-#include "GameManager.h"
-#include "FabricVillage.h"
-#include "InputManager.h"
+
 #include "BPhysicManager.h"
 #include "MenuState.h"
 #include "PauseState.h"
@@ -13,10 +11,6 @@ Game* Game::only_instance = NULL;
 
 void Game::run()
 {
-    RenderIrrlicht*         render              = RenderIrrlicht::getInstance();
-    FabricVillage*          fabric              = new FabricVillage();
-    GameManager*            gameManager         = new GameManager();
-
     initGame();
     fabric->loadLevel();
    
@@ -37,6 +31,10 @@ void Game::run()
 
 void Game::initGame()
 {  
+    render              = RenderIrrlicht::getInstance();
+    fabric              = new FabricVillage();
+    gameManager         = new GameManager();
+
     setState(IGameState::stateType::MENU);
 }
 

@@ -18,5 +18,5 @@ class PauseState : public IGameState
 
     virtual ~PauseState() {}
     virtual void initState(){ type = IGameState::PAUSE; };
-    virtual void update();
+    virtual void update(float dt);
 };

@@ -18,5 +18,5 @@ class MenuState : public IGameState
 
     virtual ~MenuState() {}
     virtual void initState(){ type = IGameState::MENU; };
-    virtual void update();
+    virtual void update(float dt);
 };
