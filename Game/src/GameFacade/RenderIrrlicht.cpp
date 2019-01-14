@@ -38,9 +38,7 @@ void RenderIrrlicht::drawAll()
     driver->beginScene(true, true, SColor(255,100,100,100));
 
     smgr->drawAll();
-    //
     guienv->drawAll();
-
     driver->endScene();
 }
 
