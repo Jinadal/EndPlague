@@ -33,6 +33,7 @@ class PhysicBullet{
     btDynamicsWorld* initWorldPhysics();
     btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
     btRigidBody* createTerrain(btScalar mass, btVector3 position, btBvhTriangleMeshShape* shape);
+    btRigidBody* createFromFile(char* filename);
     void iteration(float d);
     void move(btRigidBody* body,int m);
 };

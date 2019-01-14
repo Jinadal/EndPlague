@@ -1,4 +1,5 @@
 #include "FabricVillage.h"
+#include "PhysicBullet.h"
 
 
 void FabricVillage::loadLevel()
@@ -12,6 +13,8 @@ void FabricVillage::loadLevel()
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
     //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
     BPhysicManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");
+
+    PhysicBullet::getInstance()->createFromFile((char*)"Terrain.bullet");
 
 
     //ADDING A PLAYER 1 x 1 x 2
