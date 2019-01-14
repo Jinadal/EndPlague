@@ -11,6 +11,7 @@ void MenuState::initState()
 {
     type = IGameState::MENU;
     MenuFacade::getInstance()->setMenuBackground();
+    
 }
 void MenuState::update(float dt)
 {

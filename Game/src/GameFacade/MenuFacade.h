@@ -6,7 +6,7 @@ class MenuFacade
 {
     private:
     static MenuFacade* only_instance;
-    IGUIEnvironment* guienv;
+    IGUIEnvironment* env;
     IGUIImage* img;
     public:
 
