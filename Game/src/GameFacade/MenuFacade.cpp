@@ -11,7 +11,8 @@ void MenuFacade::setMenuBackground(){
     button->setImage(RenderIrrlicht::getInstance()->getDriver()->getTexture("res/menu-background.jpg"));
     button1->setImage(RenderIrrlicht::getInstance()->getDriver()->getTexture("res/menu-background.jpg"));
     button2->setImage(RenderIrrlicht::getInstance()->getDriver()->getTexture("res/menu-background.jpg"));
-   // button->setUseAlphaChannel(true);
+
+
 }
 void MenuFacade::clearBackground()
 {
