@@ -13,18 +13,18 @@ Game* Game::only_instance = NULL;
 void Game::run()
 {
     initGame();
-    fabric->loadLevel();
+    //fabric->loadLevel();
    
     while(render->run())
     {
-        InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
+        //InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
         //gameManager->update(render->getFrameDeltaTime());
 
         state->update(render->getFrameDeltaTime());
         render->drawAll();
     }
 
-    delete fabric;
+    //delete fabric;
     //delete gameManager;
     delete render;
 
@@ -33,7 +33,7 @@ void Game::run()
 void Game::initGame()
 {  
     render              = RenderIrrlicht::getInstance();
-    fabric              = new FabricVillage();
+    //fabric              = new FabricVillage();
     //gameManager         = new GameManager();
 
     setState(IGameState::stateType::MENU);

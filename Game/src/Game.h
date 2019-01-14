@@ -2,14 +2,13 @@
 #include "IGameState.h"
 #include <cstddef>
 //#include "GameManager.h"
-#include "FabricVillage.h"
-#include "InputManager.h"
+//#include "FabricVillage.h"
 #include "RenderIrrlicht.h"
 class Game
 {
     private:
         RenderIrrlicht*         render;              
-        FabricVillage*          fabric;  
+        //FabricVillage*          fabric;  
         IGameState* state;
         static Game* only_instance;
                    

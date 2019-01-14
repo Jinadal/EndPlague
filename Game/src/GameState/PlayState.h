@@ -7,13 +7,17 @@
 #include "ShootManager.h"
 #include "CameraManager.h"
 #include "RenderManager.h"
+#include "RenderIrrlicht.h"
 #include "GameResource.h"
 #include "StorageManager.h"
+#include "FabricVillage.h"
 
 class PlayState : public IGameState 
 {
     private:
     static PlayState* only_instance;
+    RenderIrrlicht*         render;              
+    FabricVillage*          fabric;  
     InputManager*           inputmanager        = InputManager::getInstance();
     SpawnManager*           spawnmanager        = SpawnManager::getInstance();
     IAManager*              iamanager           = IAManager::getInstance();
@@ -35,7 +39,7 @@ class PlayState : public IGameState
 
 
     virtual ~PlayState() {}
-    virtual void initState(){ type = IGameState::PLAY; };
+    virtual void initState();
     virtual void update(float dt);
     virtual void clear();
 };

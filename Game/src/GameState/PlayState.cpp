@@ -4,9 +4,17 @@
 #include <SFML/Window.hpp>
 
 PlayState* PlayState::only_instance = NULL;
-
+void PlayState::initState()
+{
+    type = IGameState::PLAY;
+    render              = RenderIrrlicht::getInstance();
+    fabric              = new FabricVillage();
+    fabric->loadLevel();
+}
 void PlayState::update(float dt)
 {
+    InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
+
     InputManager::getInstance()->updateAll(dt);
     SpawnManager::getInstance()->updateAll(dt);
     IAManager::getInstance()->updateAll(dt);
@@ -33,4 +41,8 @@ void PlayState::clear(){
     delete cameramanager;
     delete rendermanager;
     delete gameresource; 
+       
+    delete fabric;
+    delete render;
+
 }
