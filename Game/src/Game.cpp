@@ -4,6 +4,7 @@
 
 #include "BPhysicManager.h"
 #include "MenuState.h"
+#include "PlayState.h"
 #include "PauseState.h"
 #include "EndState.h"
 
@@ -17,14 +18,14 @@ void Game::run()
     while(render->run())
     {
         InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
-        gameManager->update(render->getFrameDeltaTime());
+        //gameManager->update(render->getFrameDeltaTime());
 
-        state->update();
+        state->update(render->getFrameDeltaTime());
         render->drawAll();
     }
 
     delete fabric;
-    delete gameManager;
+    //delete gameManager;
     delete render;
 
 }
@@ -33,7 +34,7 @@ void Game::initGame()
 {  
     render              = RenderIrrlicht::getInstance();
     fabric              = new FabricVillage();
-    gameManager         = new GameManager();
+    //gameManager         = new GameManager();
 
     setState(IGameState::stateType::MENU);
 }
@@ -44,6 +45,9 @@ void Game::setState(IGameState::stateType type)
     {
         case IGameState::stateType::MENU:
             state = MenuState::getInstance();
+            break;
+        case IGameState::stateType::PLAY:
+            state = PlayState::getInstance();
             break;
         case IGameState::stateType::PAUSE:
             state = PauseState::getInstance();

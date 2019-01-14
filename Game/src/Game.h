@@ -1,17 +1,19 @@
 #pragma once
 #include "IGameState.h"
 #include <cstddef>
-#include "GameManager.h"
+//#include "GameManager.h"
 #include "FabricVillage.h"
 #include "InputManager.h"
+#include "RenderIrrlicht.h"
 class Game
 {
     private:
+        RenderIrrlicht*         render;              
+        FabricVillage*          fabric;  
         IGameState* state;
         static Game* only_instance;
-        RenderIrrlicht*         render;              
-        FabricVillage*          fabric;             
-        GameManager*            gameManager;         
+                   
+        //GameManager*            gameManager;         
 
     public:
 
