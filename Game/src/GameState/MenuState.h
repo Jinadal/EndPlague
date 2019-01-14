@@ -16,7 +16,7 @@ class MenuState : public IGameState
     };
 
 
-    virtual ~MenuState() {}
+    virtual ~MenuState() {};
     virtual void initState();
     virtual void update(float dt);
     virtual void clear();

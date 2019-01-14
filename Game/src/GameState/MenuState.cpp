@@ -19,12 +19,12 @@ void MenuState::update(float dt)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
-        MenuFacade::getInstance()->clearBackground();
+        clear();
         Game::getInstance()->setState(IGameState::stateType::PLAY);
     }
 };
 
 void MenuState::clear()
 {
-    
+    MenuFacade::getInstance()->clearBackground();
 };
