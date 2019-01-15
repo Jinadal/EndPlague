@@ -33,6 +33,9 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
     GameObject* go1 = (GameObject*)obj1->getCollisionObject()->getUserPointer();
     GameObject* go2 = (GameObject*)obj2->getCollisionObject()->getUserPointer();
 
+    if(go1->getKill() || go2->getKill())
+        return false;
+
     IAComponent* i_IA = go1->getComponent<IAComponent>();
 
     if(i_IA)

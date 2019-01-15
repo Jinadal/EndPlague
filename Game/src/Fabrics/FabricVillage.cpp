@@ -38,12 +38,12 @@ void FabricVillage::loadLevel()
     
 
     //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
-    //GameObject* spawn = GameResource::getInstance()->createGameObject(10.f, -10.f, -1.f, 0.f);
-    //RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
-    //spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    //SpawnManager::getInstance()->createComponent(spawn, 2.5f, ENEMY_1);
-    //LifeManager::getInstance()->createComponent(spawn, 400.f);
-    //BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
+    GameObject* spawn = GameResource::getInstance()->createGameObject(10.f, -10.f, -1.f, 0.f);
+    RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
+    spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
+    SpawnManager::getInstance()->createComponent(spawn, 2.5f, ENEMY_1);
+    LifeManager::getInstance()->createComponent(spawn, 400.f);
+    BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
 
     
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5
