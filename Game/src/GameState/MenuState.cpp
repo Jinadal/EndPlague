@@ -11,12 +11,12 @@ void MenuState::initState()
 {
     type = IGameState::MENU;
     MenuFacade::getInstance()->setMenuBackground();
-    
+    MenuFacade::getInstance()->createButton(0,210,100,240,"Start");
 }
 void MenuState::update(float dt)
 {
 
-    //std::cout<<"MENU"<<std::endl;
+    //MenuFacade::getInstance()->update();
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {

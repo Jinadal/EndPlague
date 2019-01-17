@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderIrrlicht.h"
 #include "RenderManager.h"
+#include <iostream>
 
 class MenuFacade
 {
@@ -20,6 +21,7 @@ class MenuFacade
 
     virtual ~MenuFacade() {}
     virtual void setMenuBackground();
-    virtual void setButton(){};
+    virtual IGUIButton* createButton(int x,int y,int xx,int xy, int id, const wchar_t *text);
     virtual void clearBackground();
+    virtual void update(){}
 };
