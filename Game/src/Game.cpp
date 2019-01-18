@@ -1,11 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
-#include "GameManager.h"
-#include "FabricVillage.h"
-#include "InputManager.h"
+
 #include "BPhysicManager.h"
 #include "MenuState.h"
+#include "PlayState.h"
 #include "PauseState.h"
 #include "EndState.h"
 
@@ -13,30 +12,30 @@ Game* Game::only_instance = NULL;
 
 void Game::run()
 {
-    RenderIrrlicht*         render              = RenderIrrlicht::getInstance();
-    FabricVillage*          fabric              = new FabricVillage();
-    GameManager*            gameManager         = new GameManager();
-
     initGame();
-    fabric->loadLevel();
+    //fabric->loadLevel();
    
     while(render->run())
     {
-        InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
-        gameManager->update(render->getFrameDeltaTime());
+        //InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
+        //gameManager->update(render->getFrameDeltaTime());
 
-        state->update();
+        state->update(render->getFrameDeltaTime());
         render->drawAll();
     }
 
-    delete fabric;
-    delete gameManager;
+    //delete fabric;
+    //delete gameManager;
     delete render;
 
 }
 
 void Game::initGame()
 {  
+    render              = RenderIrrlicht::getInstance();
+    //fabric              = new FabricVillage();
+    //gameManager         = new GameManager();
+
     setState(IGameState::stateType::MENU);
 }
 
@@ -46,6 +45,9 @@ void Game::setState(IGameState::stateType type)
     {
         case IGameState::stateType::MENU:
             state = MenuState::getInstance();
+            break;
+        case IGameState::stateType::PLAY:
+            state = PlayState::getInstance();
             break;
         case IGameState::stateType::PAUSE:
             state = PauseState::getInstance();

@@ -1,3 +1,5 @@
+#include <iostream>
+
 class Fabric
 {
     public:
@@ -5,4 +7,5 @@ class Fabric
         virtual ~Fabric(){}
 
         virtual void loadLevel() = 0;
+ 
 };
