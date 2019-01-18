@@ -7,7 +7,6 @@ void StorageComponent::itemCatch(ItemComponent* item)
         
     itemDrop();
     applyEffect(item->getType());
-    std::cout<<"Kil?:";
     item->getGameObject()->setKill(true);
 }
 

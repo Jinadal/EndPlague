@@ -3,7 +3,7 @@
 
 bool Nodo::run()
 {
-    std::cout << "Nodo ejecutado \n";
+    //std::cout << "Nodo ejecutado \n";
     return true;
 }
 bool Selector::run(){

@@ -1,6 +1,5 @@
 #include "GameObject.h"
 #include "Component.h"
-#include <iostream>
 
 //Constructor
 GameObject::GameObject(float x, float y, float z, float rz){

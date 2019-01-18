@@ -50,7 +50,7 @@ int main(int argc,char **argv)
 	FSOUND_SetLoopMode(ch2,FSOUND_LOOP_NORMAL);
 
 	
-    std::cout << "press any key to quit" << std::endl;
+    //std::cout << "press any key to quit" << std::endl;
 
 	
     // sit and wait for key press
