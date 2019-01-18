@@ -21,7 +21,7 @@ class MenuFacade
 
     virtual ~MenuFacade() {}
     virtual void setMenuBackground();
-    virtual IGUIButton* createButton(int x,int y,int xx,int xy, int id, const wchar_t *text);
+    virtual IGUIButton* createButton(int x,int y,int xx,int xy, int id);
     virtual void clearBackground();
     virtual void update(){}
 };

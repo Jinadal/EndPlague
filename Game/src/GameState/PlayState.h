@@ -15,6 +15,7 @@
 class PlayState : public IGameState 
 {
     private:
+    bool loaded;
     static PlayState* only_instance;
     RenderIrrlicht*         render;              
     FabricVillage*          fabric;  

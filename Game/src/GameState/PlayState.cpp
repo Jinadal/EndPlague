@@ -2,6 +2,8 @@
 #include "PlayState.h"
 #include <iostream>
 #include <SFML/Window.hpp>
+#include "Game.h"
+
 
 PlayState* PlayState::only_instance = NULL;
 void PlayState::initState()
@@ -9,7 +11,11 @@ void PlayState::initState()
     type = IGameState::PLAY;
     render              = RenderIrrlicht::getInstance();
     fabric              = new FabricVillage();
-    fabric->loadLevel();
+    if(!loaded)
+    {
+        loaded=true;
+        fabric->loadLevel();
+    }
 }
 void PlayState::update(float dt)
 {
@@ -25,11 +31,15 @@ void PlayState::update(float dt)
     GameResource::getInstance()->updateAll();
 
     std::cout<<"PLAY"<<std::endl;
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-        std::cout<<"PLAY"<<std::endl;
+    std::cout<<fabric->playerAlive()<<std::endl;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+        Game::getInstance()->setState(IGameState::stateType::PAUSE);
     
-    
+    if(fabric->playerAlive()==false)
+    {
+        clear();
+        Game::getInstance()->setState(IGameState::stateType::END);
+    }
 }
 
 void PlayState::clear(){
@@ -44,5 +54,7 @@ void PlayState::clear(){
        
     delete fabric;
     delete render;
+
+    loaded=false;
 
 }

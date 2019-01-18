@@ -11,7 +11,7 @@ void MenuState::initState()
 {
     type = IGameState::MENU;
     MenuFacade::getInstance()->setMenuBackground();
-    MenuFacade::getInstance()->createButton(0,210,100,240,"Start");
+    MenuFacade::getInstance()->createButton(0,210,100,240,101);
 }
 void MenuState::update(float dt)
 {

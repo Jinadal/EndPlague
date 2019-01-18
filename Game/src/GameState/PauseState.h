@@ -5,6 +5,7 @@ class PauseState : public IGameState
 {
     private:
     static PauseState* only_instance;
+    
 
     public:
 
@@ -17,7 +18,7 @@ class PauseState : public IGameState
 ;
 
     virtual ~PauseState() {}
-    virtual void initState(){ type = IGameState::PAUSE; };
+    virtual void initState();
     virtual void update(float dt);
     virtual void clear(){};
 };

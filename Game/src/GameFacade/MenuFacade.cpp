@@ -19,8 +19,8 @@ void MenuFacade::setMenuBackground()
 
 
 }
-IGUIButton* MenuFacade::createButton(int x,int y,int xx,int xy, int id, const wchar_t *text){
-    IGUIButton* button = env->addButton(rect<s32>(x,y,xx,xy), 0, id, text);
+IGUIButton* MenuFacade::createButton(int x,int y,int xx,int xy, int id){
+    IGUIButton* button = env->addButton(rect<s32>(x,y,xx,xy), 0, id,  L"New Game");
     button->setImage(RenderIrrlicht::getInstance()->getDriver()->getTexture("res/Inicio.png"));
     return button;
 }
