@@ -15,12 +15,7 @@ void MenuState::initState()
 }
 void MenuState::update(float dt)
 {
-<<<<<<< HEAD
     //std::cout<<"MENU"<<std::endl;
-=======
-
-    //MenuFacade::getInstance()->update();
->>>>>>> State
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
