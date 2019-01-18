@@ -13,7 +13,7 @@ void PauseState::update(float dt)
 {
     std::cout<<"PAUSE"<<std::endl;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
         Game::getInstance()->setState(IGameState::stateType::PLAY);
     }

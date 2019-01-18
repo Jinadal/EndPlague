@@ -11,6 +11,15 @@ void PlayState::initState()
     type = IGameState::PLAY;
     render              = RenderIrrlicht::getInstance();
     fabric              = new FabricVillage();
+    inputmanager        = InputManager::getInstance();
+    spawnmanager        = SpawnManager::getInstance();
+    iamanager           = IAManager::getInstance();
+    bphysicmanager      = BPhysicManager::getInstance();
+    shootmanager        = ShootManager::getInstance();
+    cameramanager       = CameraManager::getInstance();
+    rendermanager       = RenderManager::getInstance();
+    storagemanager      = StorageManager::getInstance();
+    gameresource        = GameResource::getInstance();
     if(!loaded)
     {
         loaded=true;
@@ -20,7 +29,7 @@ void PlayState::initState()
 void PlayState::update(float dt)
 {
     InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
-
+    GameResource::getInstance()->updateAll();
     InputManager::getInstance()->updateAll(dt);
     SpawnManager::getInstance()->updateAll(dt);
     IAManager::getInstance()->updateAll(dt);
@@ -28,14 +37,13 @@ void PlayState::update(float dt)
     ShootManager::getInstance()->updateAll(dt);
     CameraManager::getInstance()->updateAll(dt);
     RenderManager::getInstance()->updateAll(dt);
-    GameResource::getInstance()->updateAll();
 
     std::cout<<"PLAY"<<std::endl;
-    std::cout<<fabric->playerAlive()<<std::endl;
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+ 
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         Game::getInstance()->setState(IGameState::stateType::PAUSE);
     
-    if(fabric->playerAlive()==false)
+    if(IAManager::getInstance()->getPlayer()->getKill())
     {
         clear();
         Game::getInstance()->setState(IGameState::stateType::END);
@@ -43,7 +51,7 @@ void PlayState::update(float dt)
 }
 
 void PlayState::clear(){
-    delete inputmanager;
+    //delete inputmanager;
     delete spawnmanager;
     delete iamanager;
     delete bphysicmanager;
@@ -53,7 +61,7 @@ void PlayState::clear(){
     delete gameresource; 
        
     delete fabric;
-    delete render;
+    //delete render;
 
     loaded=false;
 
