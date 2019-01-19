@@ -30,7 +30,7 @@ void FabricVillage::loadLevel()
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 100.f);
+    LifeManager::getInstance()->createComponent(player, 10000000.f);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -51,7 +51,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(spawn2, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn2->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn2, 2.5f, ENEMY_2);
-    LifeManager::getInstance()->createComponent(spawn2, 10000.f);
+    //LifeManager::getInstance()->createComponent(spawn2, 10000.f);
     BPhysicManager::getInstance()->createComponent(spawn2, 2.f, 2.f, 2.f, 1000000.f, 1);
 
       //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
