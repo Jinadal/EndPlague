@@ -29,8 +29,22 @@ class StorageComponent : public Component{
         void applyEffect(ItemTypes Type);
 
         void setDefaultValues();
-
-        void booster();
-        void melon();
-        void throwable();
+        
+        //DISTANCE WEAPONS
+            //Attack with crossbow
+            void crossbow(); //YES
+            //Attacks throwing axes
+            void throwable(); //YES
+        //MELEE WEAPONS
+            //machete
+            void machete(); //YES
+            //sword
+            void sword(); //YES
+            //peak
+            void peak(); //yes
+        //USABLE ITEMS
+            //Potion
+            void potion(); //YES
+            //Shield
+            void shield();
 };
