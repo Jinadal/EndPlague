@@ -5,12 +5,11 @@ class Waypoint
 {
 
     public:
-        Waypoint(int x, int y, bool ocupado){_x = x; _y = y; _ocupado = ocupado;}
+        Waypoint(int x, int y){_x = x; _y = y;}
 
         virtual ~Waypoint(){}
 
         float _x, _y;
-        bool _ocupado;
 
 };
 
