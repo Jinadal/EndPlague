@@ -8,14 +8,18 @@
 #include "ShootComponent.h"
 
 
+/*
+Salta si el personaje entra a menos de 10 unidades de distancia de portador de la ia
 
+calcula las distancias entre los centros y devuelve true
+*/
 bool IA_Plan_InSight::run()
 {
 
     float dx = main->getX() - owner->getX();
     float dy = main->getY() - owner->getY();
 
-    if(fabs(dx) <= 50  && fabs(dy) <= 10){
+    if(fabs(dx) <= 10  && fabs(dy) <= 10){
         owner->getComponent<ShootComponent>()->shoot();
         ///std::cout << "PERSONAJE DETECTADO!!! \n";
          return true;

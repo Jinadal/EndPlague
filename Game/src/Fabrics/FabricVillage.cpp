@@ -32,7 +32,7 @@ void FabricVillage::loadLevel()
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 100.f);
+    LifeManager::getInstance()->createComponent(player, 10000000.f);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -46,6 +46,34 @@ void FabricVillage::loadLevel()
     SpawnManager::getInstance()->createComponent(spawn, 2.5f, ENEMY_1);
     LifeManager::getInstance()->createComponent(spawn, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
+
+
+    //ADDING A SPAWN2 //EL MESH MIDE 4 x 4 x 4
+    GameObject* spawn2 = GameResource::getInstance()->createGameObject(-20.f, -10.f, -1.f, 0.f);
+    RenderManager::getInstance()->createComponent(spawn2, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
+    spawn2->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
+    SpawnManager::getInstance()->createComponent(spawn2, 2.5f, ENEMY_2);
+    //LifeManager::getInstance()->createComponent(spawn2, 10000.f);
+    BPhysicManager::getInstance()->createComponent(spawn2, 2.f, 2.f, 2.f, 1000000.f, 1);
+
+      //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
+    GameObject* spawn3 = GameResource::getInstance()->createGameObject(10.f, 0.f, -1.f, 0.f);
+    RenderManager::getInstance()->createComponent(spawn3, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
+    spawn3->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
+    SpawnManager::getInstance()->createComponent(spawn3, 2.5f, ENEMY_1);
+    LifeManager::getInstance()->createComponent(spawn3, 400.f);
+    BPhysicManager::getInstance()->createComponent(spawn3, 2.f, 2.f, 2.f, 1000000.f, 1);
+
+
+    //ADDING A SPAWN4 //EL MESH MIDE 4 x 4 x 4
+    GameObject* spawn4 = GameResource::getInstance()->createGameObject(-10.f, 0.f, -1.f, 0.f);
+    RenderManager::getInstance()->createComponent(spawn4, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
+    spawn4->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
+    SpawnManager::getInstance()->createComponent(spawn4, 2.5f, ENEMY_2);
+    LifeManager::getInstance()->createComponent(spawn4, 10000.f);
+    BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 1000000.f, 1);
+
+
 
     
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5

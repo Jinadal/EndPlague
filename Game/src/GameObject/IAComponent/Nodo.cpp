@@ -1,6 +1,9 @@
 #include "Nodo.h"
 #include <iostream>
 
+
+
+
 bool Nodo::run()
 {
     //std::cout << "Nodo ejecutado \n";

@@ -4,7 +4,9 @@
 #include <cmath>
 
 
-
+/*
+Compruba si el jugador esta a su izda, eso es cuando  la diferencia en x da mayor que cero, por eso de que (por algun motivo) la x aumenta hacia la izda
+*/
 bool IA_Seg_CheckXIzd::run()
 {
     float dx = main->getX() - owner->getX();
@@ -16,6 +18,9 @@ bool IA_Seg_CheckXIzd::run()
 
    return false;
 }
+
+//Compruba si el jugador esta a su derecha, eso es cuando la diferencia en x da menor o igual que cero,
+
 
 bool IA_Seg_CheckXDer::run()
 {
@@ -30,6 +35,7 @@ bool IA_Seg_CheckXDer::run()
     return false;
 }
 
+// Lo busca por debajo de el, aqui el eje Y tambien esta invertido
 
 bool IA_Seg_CheckYAbj::run()
 {
@@ -44,6 +50,8 @@ bool IA_Seg_CheckYAbj::run()
    return false;
 }
 
+// Busca la jugador por encima suyo
+
 bool IA_Seg_CheckYArr::run()
 {
     float dy = main->getY() - owner->getY();
@@ -57,6 +65,7 @@ bool IA_Seg_CheckYArr::run()
     return false;
 }
 
+//Según convenencia del guion. Mira si la distancia en x es mayor que en Y para enfatizar mas su recorrido 
 
 bool IA_Seg_DifX::run()
 {
@@ -67,6 +76,7 @@ bool IA_Seg_DifX::run()
     return false;
 }
 
+//Lo mismo que arriba pero al reves
 bool IA_Seg_DifY::run()
 {
     float dx = main->getX() - owner->getX();

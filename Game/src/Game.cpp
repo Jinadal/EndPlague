@@ -7,6 +7,7 @@
 #include "PlayState.h"
 #include "PauseState.h"
 #include "EndState.h"
+#include "Waypoint.h"
 
 Game* Game::only_instance = NULL;
 
