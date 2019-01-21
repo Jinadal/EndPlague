@@ -6,8 +6,8 @@ class Area
     float sx,sy,ix,iy;
 
     public:
-    Area(Waypoint* asociado, float supx, float supy, float infx, float infy){waypoint=asociado;sx=supx;sy=supy;ix=infx;iy=infy;}
-    ~Area(){}
+    Area(float supx, float supy, float infx, float infy){waypoint=new Waypoint((infx-supx)/2,(infy-supy)/2);sx=supx;sy=supy;ix=infx;iy=infy;}
+    virtual ~Area(){delete waypoint;}
 
     bool checkinArea(float pjx, float pjy);
     Waypoint* getWaypoint(){ return waypoint;}

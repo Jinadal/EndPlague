@@ -5,7 +5,7 @@ class Waypoint
 {
 
     public:
-        Waypoint(int x, int y){_x = x; _y = y;}
+        Waypoint(float x, float y){_x = x; _y = y;}
 
         virtual ~Waypoint(){}
 
