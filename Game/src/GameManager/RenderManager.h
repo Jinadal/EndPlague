@@ -1,6 +1,5 @@
 #pragma once
 #include "RenderComponent.h"
-#include "RenderIrrlicht.h"
 #include <vector>
 
 class Manager;

@@ -1,5 +1,6 @@
 
 #include "RenderIrrlicht.h"
+#include <iostream>
 
 RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
 
@@ -94,4 +95,9 @@ float RenderIrrlicht::getCursorY()
                                 );
 
     return outCollisionPoint.Y;
+}
+
+void RenderIrrlicht::drawPoint(float x, float y, float z)
+{
+    smgr->addSphereSceneNode(.3f, 4, 0, -1, vector3df(x, y, z), vector3df(0, 0, 0), vector3df(1,1,1));
 }
