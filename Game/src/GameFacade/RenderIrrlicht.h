@@ -53,4 +53,5 @@ class RenderIrrlicht{
         float getCursorX();
         float getCursorY();
         void isMap(IMeshSceneNode* node){map=node;}
+        void drawPoint(float x, float y, float z);
 };
