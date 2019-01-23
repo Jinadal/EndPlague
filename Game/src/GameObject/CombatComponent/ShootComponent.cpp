@@ -25,3 +25,7 @@ float ShootComponent::getY(){
 float ShootComponent::getRZ(){
     return gameObject->getRZ();
 }
+
+float ShootComponent::getZ(){
+    return gameObject->getZ();
+}

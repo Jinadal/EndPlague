@@ -87,7 +87,7 @@ btDynamicsWorld* PhysicBullet::initWorldPhysics()
     _world = new btDiscreteDynamicsWorld(_dispatcher, _broadphase, _solver, _collisionConfiguration);
 
     //Set gravity to physics in y=-9,8
-    _world->setGravity(btVector3(0,0,9.8));
+    _world->setGravity(btVector3(0,0,98));
 
     //We create the floor of our world
     //createRigidBody(btVector3(0.0f,0.0f,0.0f), btVector3(100.0f,0.5f,100.0f),0.0f);

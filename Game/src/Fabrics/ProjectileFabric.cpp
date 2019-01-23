@@ -2,9 +2,9 @@
 
 #define PI 3.14159265
 
-GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, ProjectileType type)
+GameObject* ProjectileFabric::createProjectile(float x, float y, float z, float rz, ProjectileType type)
 {
-    GameObject* r =  gameresource->createGameObject(x, y, -1.f, rz);
+    GameObject* r =  gameresource->createGameObject(x, y, z, rz);
 
     float fx = projectile_types[type].velocity*(-cos(rz*PI/180 - PI/2));
     float fy = projectile_types[type].velocity*(-sin(rz*PI/180 - PI/2));

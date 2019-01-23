@@ -11,16 +11,16 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
+    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .1f, 0.f, 1);
     BPhysicManager::getInstance()->createComponent(map, (char*)"res/TERRAIN.obj");
 
     //PhysicBullet::getInstance()->createFromFile((char*)"Terrain.bullet");
 
 
     //ADDING A PLAYER 1 x 1 x 2
-    GameObject* player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    GameObject* player = GameResource::getInstance()->createGameObject(4.f, 0.f, -3.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
-    BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
+    BPhysicManager::getInstance()->createComponent(player, .5f, 5.f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
@@ -30,14 +30,14 @@ void FabricVillage::loadLevel()
     IAManager::getInstance()->setPlayer(player);
 
     
-
+    /*
     //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
-    GameObject* spawn = GameResource::getInstance()->createGameObject(10.f, -10.f, -1.f, 0.f);
+    GameObject* spawn = GameResource::getInstance()->createGameObject(-11.f, -11.f, -2.f, -45.f);
     RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    //SpawnManager::getInstance()->createComponent(spawn, 2.5f, ENEMY_1);
+    SpawnManager::getInstance()->createComponent(spawn, 2.5f, ENEMY_1);
     LifeManager::getInstance()->createComponent(spawn, 400.f);
-    BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
+    BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 1);
 
     /*
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5

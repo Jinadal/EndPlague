@@ -20,6 +20,6 @@ class ShootManager : public Manager{
 
         ~ShootManager(){delete fabric; only_instance=NULL;}
         void updateAll(float dt);
-        void createProjectile(float x, float y, float rz, ProjectileType tipo);
+        void createProjectile(float x, float y, float z, float rz, ProjectileType tipo);
         void createComponent(GameObject *owner, float cadencia, float distance, ProjectileType tipo);
 };

@@ -34,6 +34,7 @@ class ShootComponent : public Component{
         bool update(float dt);
         float getX();
         float getY();
+        float getZ();
         float getRZ();
         float getDistance(){return distance;}
 };

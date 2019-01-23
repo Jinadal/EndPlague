@@ -13,14 +13,14 @@ void ShootManager::updateAll(float dt)
         {                                                               //Create gameObject Bullet.
             float x = shooter->getX() + shooter->getDistance() * -cos(-PI/2 + shooter->getRZ()*PI/180);
             float y = shooter->getY() + shooter->getDistance() * -sin(-PI/2 + shooter->getRZ()*PI/180);
-            createProjectile(x, y, shooter->getRZ(), shooter->getType());
+            createProjectile(x, y, shooter->getZ(), shooter->getRZ(), shooter->getType());
         }
     }
 }
 
-void ShootManager::createProjectile(float x, float y, float rz, ProjectileType tipo)
+void ShootManager::createProjectile(float x, float y, float z, float rz, ProjectileType tipo)
 {
-    fabric->createProjectile(x, y, rz, tipo);
+    fabric->createProjectile(x, y, z, rz, tipo);
 }
 
 
