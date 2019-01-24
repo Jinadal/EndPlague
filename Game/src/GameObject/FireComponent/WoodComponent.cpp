@@ -22,10 +22,10 @@ void WoodComponent::setBurning(bool b)
     {
         if(b)//Cambiamos el color a rojo si esta ardiendo
         {
-            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/RED.bmp");
+            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");
         }else//Cambiamos el color a rojo si esta ardiendo
         {
-            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/GEEN.bmp");
+            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
         }
     }
 }

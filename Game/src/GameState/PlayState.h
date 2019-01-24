@@ -10,7 +10,9 @@
 #include "RenderIrrlicht.h"
 #include "GameResource.h"
 #include "StorageManager.h"
+#include "WoodManager.h"
 #include "FabricVillage.h"
+#include "TestFabric.h"
 
 class PlayState : public IGameState 
 {
@@ -18,16 +20,17 @@ class PlayState : public IGameState
     bool loaded;
     static PlayState* only_instance;
     RenderIrrlicht*         render;              
-    FabricVillage*          fabric;  
-    InputManager*           inputmanager        = InputManager::getInstance();
-    SpawnManager*           spawnmanager        = SpawnManager::getInstance();
-    IAManager*              iamanager           = IAManager::getInstance();
-    BPhysicManager*         bphysicmanager      = BPhysicManager::getInstance();
-    ShootManager*           shootmanager        = ShootManager::getInstance();
-    CameraManager*          cameramanager       = CameraManager::getInstance();
-    RenderManager*          rendermanager       = RenderManager::getInstance();
-    StorageManager*         storagemanager      = StorageManager::getInstance();
-    GameResource*           gameresource        = GameResource::getInstance();
+    Fabric*                 fabric;  
+    InputManager*           inputmanager;
+    SpawnManager*           spawnmanager;
+    IAManager*              iamanager;
+    BPhysicManager*         bphysicmanager;
+    ShootManager*           shootmanager;
+    CameraManager*          cameramanager;
+    RenderManager*          rendermanager;
+    StorageManager*         storagemanager;
+    WoodManager*            woodmanager;
+    GameResource*           gameresource;
 
     public:
 
