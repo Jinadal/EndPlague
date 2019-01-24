@@ -14,18 +14,27 @@ void WoodComponent::update(float dt)
     }
 }
 
-
-void WoodComponent::setBurning(bool b)
-{
-    burning = b;
-    if(gameObject->getComponent<RenderComponent>())
+void WoodComponent::setBurning(bool b){
+    burning=b;
+    if(b)//Cambiamos el color a rojo si esta ardiendo
     {
-        if(b)//Cambiamos el color a rojo si esta ardiendo
-        {
-            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");
-        }else//Cambiamos el color a rojo si esta ardiendo
+        gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");
+    }else//Cambiamos el color a rojo si esta ardiendo
+    {
+        gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
+    }
+
+}
+
+void WoodComponent::addBucket()
+{
+    buckets++;
+    if(buckets>=BUCKETS_NEDED){
+        burning = false;
+        buckets = 0;
+        if(gameObject->getComponent<RenderComponent>())
         {
             gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
-        }
+        }     
     }
 }

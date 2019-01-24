@@ -16,7 +16,7 @@ void BucketComponent::dropBucket(WoodComponent* wc)
     {
         if(water)
         {
-            wc->setBurning(false);
+            wc->addBucket();
             water = false;
         }
     }
