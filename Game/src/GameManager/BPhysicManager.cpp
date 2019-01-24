@@ -5,6 +5,9 @@
 #include "StorageComponent.h"
 #include "ItemComponent.h"
 #include "InputComponent.h"
+#include "BucketComponent.h"
+#include "WellComponent.h"
+#include "WoodComponent.h"
 
 BPhysicManager* BPhysicManager::only_instance = NULL;
 
@@ -36,6 +39,12 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
     if(go1->getKill() || go2->getKill())
         return false;
 
+
+
+
+    //--------------------------------------------------------------
+    //----------------------  IA  ----------------------------------
+    //--------------------------------------------------------------
     IAComponent* i_IA = go1->getComponent<IAComponent>();
 
     if(i_IA)
@@ -55,20 +64,35 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
 
     //}
 
-    
+
+    //--------------------------------------------------------------
+    //----------------------DISPARO---------------------------------
+    //--------------------------------------------------------------
     ProjectileComponent* i_projectil = go1->getComponent<ProjectileComponent>();
     ProjectileComponent* j_projectil = go2->getComponent<ProjectileComponent>();
 
     LifeComponent* i_life = go1->getComponent<LifeComponent>();
     LifeComponent* j_life = go2->getComponent<LifeComponent>();
 
-    if(i_projectil)
-        i_projectil->dealDamage(j_life);
+    if(i_projectil){
+        i_projectil->dealDamage(j_life);//Gestionamos la vida
+
+        if(go2->getComponent<WoodComponent>()) //Si colisiona con un GO que se puede quemar, lo quemamos
+            go2->getComponent<WoodComponent>()->setBurning(true);
+    }
+        
     if(j_projectil)
-        j_projectil->dealDamage(i_life);
+    {
+        j_projectil->dealDamage(i_life);//Gestionamos la vida
+
+        if(go1->getComponent<WoodComponent>()) //Si colisiona con un GO que se puede quemar, lo quemamos
+            go1->getComponent<WoodComponent>()->setBurning(true);
+    }
 
 
-    //En el caso de que lo que colisione sea un item
+    //--------------------------------------------------------------
+    //----------------------ITEM------------------------------------
+    //--------------------------------------------------------------
     StorageComponent* i_storage = go1->getComponent<StorageComponent>();
     StorageComponent* j_storage = go2->getComponent<StorageComponent>();
 
@@ -80,6 +104,34 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
 
     if(j_storage && i_item) //Si i es un item
         j_storage->itemCatch(i_item);
+
+
+    
+    //--------------------------------------------------------------
+    //----------------------BUCKET----------------------------------
+    //--------------------------------------------------------------
+    BucketComponent* i_bucket = go1->getComponent<BucketComponent>();
+    BucketComponent* j_bucket = go2->getComponent<BucketComponent>();
+
+    if(i_bucket)
+    {
+        //Primero el pozo
+        i_bucket->fillBucket(go2->getComponent<WellComponent>());
+        //Segundo el spawn
+        i_bucket->dropBucket(go2->getComponent<WoodComponent>());
+    }
+
+    if(j_bucket)
+    {
+        //Primero el pozo
+        j_bucket->fillBucket(go1->getComponent<WellComponent>());
+        //Segundo el spawn
+        j_bucket->dropBucket(go1->getComponent<WoodComponent>());
+    }
+
+
+
+
 
     return false;
 }
