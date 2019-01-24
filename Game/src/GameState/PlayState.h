@@ -11,6 +11,7 @@
 #include "GameResource.h"
 #include "StorageManager.h"
 #include "WoodManager.h"
+#include "LifeManager.h"
 #include "FabricVillage.h"
 #include "TestFabric.h"
 
@@ -30,6 +31,7 @@ class PlayState : public IGameState
     RenderManager*          rendermanager;
     StorageManager*         storagemanager;
     WoodManager*            woodmanager;
+    LifeManager*            lifemanager;
     GameResource*           gameresource;
 
     public:

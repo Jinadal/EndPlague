@@ -13,5 +13,6 @@ void LifeManager::createComponent(GameObject *owner, float l)
 
 void LifeManager::updateAll(float dt)
 {
-    
+    for(std::size_t i= 0 ; i<components.size(); i++)
+        ((LifeComponent*)components[i])->update(dt);
 }

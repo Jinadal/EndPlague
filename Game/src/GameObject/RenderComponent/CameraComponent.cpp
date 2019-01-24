@@ -4,6 +4,7 @@
 void CameraComponent::update(float dt)
 {
 
+
     //Actualize the values of x, y, z || If the player doesnt move farther than dMAX, we dont move the camera
     float dx = x - gameObject->getX();
     float dy = y - gameObject->getY();
@@ -43,7 +44,7 @@ void CameraComponent::update(float dt)
     }
     */
 
-    node->update(x, y-5.f, z-10.f, x, y, z);
+    node->update(x, y-10, z-20.f, x, y, z);
 }
 
 void CameraComponent::setFOV(float fov)

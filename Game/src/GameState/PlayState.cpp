@@ -20,6 +20,7 @@ void PlayState::initState()
     cameramanager       = CameraManager::getInstance();
     rendermanager       = RenderManager::getInstance();
     storagemanager      = StorageManager::getInstance();
+    lifemanager         = LifeManager::getInstance();
     gameresource        = GameResource::getInstance();
     if(!loaded)
     {
@@ -38,10 +39,9 @@ void PlayState::update(float dt)
     ShootManager::getInstance()->updateAll(dt);
     WoodManager::getInstance()->updateAll(dt);
     CameraManager::getInstance()->updateAll(dt);
+    LifeManager::getInstance()->updateAll(dt);
     RenderManager::getInstance()->updateAll(dt);
-
-    std::cout<<"PLAY"<<std::endl;
- 
+    
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         Game::getInstance()->setState(IGameState::stateType::PAUSE);
     

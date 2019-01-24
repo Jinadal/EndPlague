@@ -48,9 +48,12 @@ class EnemyFabric
         BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
 
 
+        int numEnemies;
+
     public:
-        EnemyFabric(){}
+        EnemyFabric(){numEnemies = 0;}
         virtual ~EnemyFabric(){}
 
         GameObject* createEnemy(float x, float y, float z, float rz, EnemyType type);
+        int getNumEnemies(){return numEnemies;}
 };

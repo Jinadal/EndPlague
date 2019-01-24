@@ -4,11 +4,11 @@
 void SpawnComponent::update(float elapsedTime)
 {
     elapsed += elapsedTime;
-    if(elapsed>cadencia)
+    if(elapsed>cadencia && ((SpawnManager*)manager)->canCreate())
     {
         elapsed = 0.f;
 
-        float x = gameObject->getX() + sin(gameObject->getRZ())*distance;
+        float x = gameObject->getX() - sin(gameObject->getRZ())*distance;
         float y = gameObject->getY() + cos(gameObject->getRZ())*distance;
         float z = gameObject->getZ();
         float rz = gameObject->getRZ();

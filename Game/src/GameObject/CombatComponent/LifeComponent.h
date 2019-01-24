@@ -7,7 +7,8 @@ class LifeComponent : public Component{
      private:
         float life;
         float shield;
-
+        bool decreases = false;
+        float elapsedTime = 0.f;
     public:
         //Constructor
         LifeComponent(GameObject* g, Manager* m, float f):Component(g, m){
@@ -26,5 +27,7 @@ class LifeComponent : public Component{
         //Methods
         void looseLife(float d);  //Gets by parametre a int damage from the attacker
         void addLife(float l);
+        void setDecreases(bool d){decreases = d;}
+        void update(float dt);
    
 };
