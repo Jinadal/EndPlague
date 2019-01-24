@@ -36,10 +36,10 @@ void TestFabric::loadLevel()
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
     LifeManager::getInstance()->createComponent(player, 100.f);
+    BucketManager::getInstance()->createComponent(player);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
-    BucketManager::getInstance()->createComponent(player);
     
     
     //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
@@ -47,13 +47,13 @@ void TestFabric::loadLevel()
     RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 1000000.f, 1);
-    WoodManager::getInstance()->createComponent(spawn, 50.f);
+    WoodManager::getInstance()->createComponent(spawn, 100.f);
 
 
     //ADDING A WELL //EL MESH MIDE 4 x 4 x 4
     GameObject* well = GameResource::getInstance()->createGameObject(0.f, 10.f, -1.f, 0.f);
     RenderManager::getInstance()->createComponent(well, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
-    well->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
+    //well->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     BPhysicManager::getInstance()->createComponent(well, 2.f, 2.f, 2.f, 1000000.f, 1);
     WellManager::getInstance()->createComponent(well);
 
