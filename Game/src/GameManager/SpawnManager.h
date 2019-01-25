@@ -2,7 +2,6 @@
 #include "EnemyFabric.h"
 #include "SpawnComponent.h"
 
-#define MAX_ENEMIES 10
 
 class Manager;
 class SpawnManager : public Manager
@@ -25,5 +24,4 @@ class SpawnManager : public Manager
         void createComponent(GameObject* owner, float distance, EnemyType type);
         void createEnemy(float x, float y, float z, float rz, EnemyType type);
         void updateAll(float dt);
-        bool canCreate();
 };

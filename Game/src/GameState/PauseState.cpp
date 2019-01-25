@@ -11,7 +11,6 @@ void PauseState::initState()
 }
 void PauseState::update(float dt)
 {
-    std::cout<<"PAUSE"<<std::endl;
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {

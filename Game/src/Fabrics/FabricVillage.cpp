@@ -10,7 +10,9 @@
 #include "StorageManager.h"
 #include "GameResource.h"
 #include "LifeComponent.h"
-
+#include "WellManager.h"
+#include "WoodManager.h"
+#include "BucketManager.h"
 
 
 void FabricVillage::loadLevel()
@@ -27,18 +29,27 @@ void FabricVillage::loadLevel()
 
 
     //ADDING A PLAYER 1 x 1 x 2
-    GameObject* player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
+    BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 50.f);
+    LifeManager::getInstance()->createComponent(player, 500.f);
     player->getComponent<LifeComponent>()->setDecreases(true);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
     
+
+    //ADDING A WELL //EL MESH MIDE 1 x 1 x 2
+    GameObject* well = GameResource::getInstance()->createGameObject(0.f, -3.f, -1.f, 90.f);
+    RenderManager::getInstance()->createComponent(well, (char*)"res/WELL.obj");//Fachada de render y path de obj
+    well->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");//Path de bmp
+    WellManager::getInstance()->createComponent(well);
+    BPhysicManager::getInstance()->createComponent(well, 1.f, 1.f, 2.f, 0.f, 1);
+
     
 
     //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
@@ -46,8 +57,10 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_1);
-    LifeManager::getInstance()->createComponent(spawn, 400.f);
+    WoodManager::getInstance()->createComponent(spawn, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 1);
+
+
 
 
     //ADDING A SPAWN2 //EL MESH MIDE 4 x 4 x 4

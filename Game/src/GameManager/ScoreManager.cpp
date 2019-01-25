@@ -10,6 +10,7 @@ void ScoreManager::createComponent(GameObject* owner, int score)
     owner->addComponent(components[components.size()-1]);
 }
 
+
 void ScoreManager::applyScore(int score)
 {
     this->score+=score;

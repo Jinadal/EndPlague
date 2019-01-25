@@ -5,11 +5,11 @@
 #include "SpawnManager.h"
 #include <cmath>
 
+#define cadencia 10.f
 
 class SpawnComponent : public Component{
     private:
         float distance;
-        float cadencia = 2.f;
         float elapsed = 0.f;
         EnemyType type = ENEMY_1;
     public:

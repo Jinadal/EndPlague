@@ -12,9 +12,10 @@ class ScoreManager : public Manager
     public:
         static ScoreManager* getInstacne()
         {
-            if (!only_instance) {
+            if (only_instance==NULL) {
                 only_instance = new ScoreManager();
             }
+            
             return only_instance;
         }
         virtual ~ScoreManager(){}
@@ -22,4 +23,6 @@ class ScoreManager : public Manager
         void createComponent(GameObject* owner, int score);
         void updateAll(float dt){}
         void applyScore(int score);
+        int getScore(){return score;};
+        int getEnemies(){return static_cast<int>(components.size());};
 };

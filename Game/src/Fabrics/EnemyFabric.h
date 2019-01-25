@@ -5,6 +5,11 @@
 #include "IAManager.h"
 #include "LifeManager.h"
 #include "ShootManager.h"
+#include "ScoreManager.h"
+
+
+#define MAX_ENEMIES 20
+
 
 enum EnemyType
 {
@@ -46,6 +51,7 @@ class EnemyFabric
         LifeManager*        lifemanager         = LifeManager::getInstance();
         ShootManager*       shootmanager        = ShootManager::getInstance();
         BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
+        ScoreManager*       scoremanager        = ScoreManager::getInstacne();
 
 
         int numEnemies;

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include "Game.h"
+#include "LifeComponent.h"
 
 
 PlayState* PlayState::only_instance = NULL;
@@ -10,6 +11,7 @@ void PlayState::initState()
 {
     type = IGameState::PLAY;
     render              = RenderIrrlicht::getInstance();
+    renderstatictext    = new RenderStaticText();
     fabric              = new FabricVillage();
     //fabric              = new TestFabric();
     inputmanager        = InputManager::getInstance();
@@ -30,6 +32,12 @@ void PlayState::initState()
 }
 void PlayState::update(float dt)
 {
+
+    renderstatictext->updateValues(ScoreManager::getInstacne()->getEnemies(), 
+                                    1.f/dt, 
+                                    ((LifeComponent*)fabric->getPlayer()->getComponent<LifeComponent>())->getLife(),
+                                    ScoreManager::getInstacne()->getScore());
+
     InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
     GameResource::getInstance()->updateAll();
     InputManager::getInstance()->updateAll(dt);
@@ -60,10 +68,13 @@ void PlayState::clear(){
     delete shootmanager;
     delete cameramanager;
     delete rendermanager;
-    delete gameresource; 
-       
+    delete gameresource;
+    delete renderstatictext;
+
+
+
+
     delete fabric;
-    //delete render;
 
     loaded=false;
 

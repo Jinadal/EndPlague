@@ -14,6 +14,9 @@
 #include "LifeManager.h"
 #include "FabricVillage.h"
 #include "TestFabric.h"
+#include "RenderStaticText.h"
+#include "ScoreManager.h"
+
 
 class PlayState : public IGameState 
 {
@@ -33,6 +36,7 @@ class PlayState : public IGameState
     WoodManager*            woodmanager;
     LifeManager*            lifemanager;
     GameResource*           gameresource;
+    RenderStaticText*       renderstatictext;
 
     public:
 

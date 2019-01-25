@@ -1,6 +1,6 @@
 #include "Component.h"
 #define FIRE_DAMMAGE 10.f
-#define BUCKETS_NEDED 10
+#define BUCKETS_NEDED 1
 
 class WoodComponent:public Component
 {
