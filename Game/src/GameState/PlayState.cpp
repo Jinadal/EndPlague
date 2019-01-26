@@ -33,10 +33,10 @@ void PlayState::initState()
 void PlayState::update(float dt)
 {
 
-    renderstatictext->updateValues(ScoreManager::getInstacne()->getEnemies(), 
-                                    1.f/dt, 
-                                    ((LifeComponent*)fabric->getPlayer()->getComponent<LifeComponent>())->getLife(),
-                                    ScoreManager::getInstacne()->getScore());
+    //renderstatictext->updateValues(ScoreManager::getInstacne()->getEnemies(), 
+    //                                1.f/dt, 
+    //                                ((LifeComponent*)fabric->getPlayer()->getComponent<LifeComponent>())->getLife(),
+    //                                ScoreManager::getInstacne()->getScore());
 
     InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
     GameResource::getInstance()->updateAll();
