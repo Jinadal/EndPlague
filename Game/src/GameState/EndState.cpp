@@ -1,7 +1,6 @@
 #include <cstddef>
 #include "EndState.h"
 #include "Game.h"
-#include <iostream>
 #include <SFML/Window.hpp>
 
 EndState* EndState::only_instance = NULL;

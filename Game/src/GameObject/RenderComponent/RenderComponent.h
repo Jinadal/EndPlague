@@ -1,18 +1,15 @@
 #pragma once
 #include "MeshNode.h"
 #include "Component.h"
-#include "GameObject.h"
-#include <iostream>
 
-
+class GameObject;
 class RenderComponent : public Component{
     private:
         MeshNode* node;
-        RenderIrrlicht* render = RenderIrrlicht::getInstance();
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
         RenderComponent(GameObject* g, Manager* m, char s[]) : Component(g, m){
-            node = new MeshNode(render, s);
+            node = new MeshNode(s);
         }
         //Destructor
         virtual ~RenderComponent(){delete node;}
@@ -29,5 +26,5 @@ class RenderComponent : public Component{
         //Sets the mesh
         void setMesh(char s[]);
 
-        void isMap(){render->isMap(node->getMeshSceneNode());}
+        void isMap();
 };

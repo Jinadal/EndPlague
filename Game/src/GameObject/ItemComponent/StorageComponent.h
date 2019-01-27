@@ -1,16 +1,9 @@
 #pragma once
 #include "Component.h"
-#include "GameObject.h"
-#include "ItemComponent.h"
-#include "ShootComponent.h"
-#include "LifeComponent.h"
 #include "ItemFabric.h"
-#include <iostream>
 
-
-
-
-
+class GameObject;
+class ItemComponent;
 class StorageComponent : public Component{
     private:
         ItemTypes itemType = ITEM_0;

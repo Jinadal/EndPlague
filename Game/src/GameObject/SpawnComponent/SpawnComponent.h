@@ -1,17 +1,16 @@
 #pragma once
 #include "Component.h"
-#include "GameObject.h"
 #include "EnemyFabric.h"
-#include "SpawnManager.h"
-#include <cmath>
 
-#define cadencia 10.f
 
+#define SPAWN_CADENCIA 10.f
+
+class GameObject;
 class SpawnComponent : public Component{
     private:
         float distance;
         float elapsed = 0.f;
-        EnemyType type = ENEMY_1;
+        EnemyType type;
     public:
         SpawnComponent(GameObject* owner, Manager* m, float d, EnemyType type) : Component(owner, m)
         {

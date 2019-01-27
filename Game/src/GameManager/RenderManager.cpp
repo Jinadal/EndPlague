@@ -1,5 +1,5 @@
 #include "RenderManager.h"
-
+#include "GameObject.h"
 
 RenderManager* RenderManager::only_instance = NULL;
 

@@ -1,10 +1,7 @@
 #include "CameraComponent.h"
-#include <iostream>
 
 void CameraComponent::update(float dt)
 {
-
-
     //Actualize the values of x, y, z || If the player doesnt move farther than dMAX, we dont move the camera
     float dx = x - gameObject->getX();
     float dy = y - gameObject->getY();

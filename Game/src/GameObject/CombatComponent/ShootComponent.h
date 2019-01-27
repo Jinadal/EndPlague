@@ -1,8 +1,8 @@
 #pragma once
 #include "Component.h"
-#include "GameObject.h"
 #include "ProjectileFabric.h"
 
+class GameObject;
 class ShootComponent : public Component{
     private:
         float           lastShoot;          //Elapsed time since last shoot

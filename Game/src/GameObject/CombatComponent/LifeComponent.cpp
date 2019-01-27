@@ -1,5 +1,5 @@
-#include <LifeComponent.h>
-#include <iostream>
+#include "LifeComponent.h"
+#include "GameObject.h"
 
 void LifeComponent::looseLife(float d){     //Gets by parametre a int damage from the attacker
     life-=(d*(1-shield));                    //Sets decreased life

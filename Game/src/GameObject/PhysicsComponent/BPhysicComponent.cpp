@@ -1,6 +1,7 @@
 #include "BPhysicComponent.h"
-
 #define PI 3.14159265
+
+
 void BPhysicComponent::update()
 {
     btVector3 Point = rbody->getCenterOfMassPosition();

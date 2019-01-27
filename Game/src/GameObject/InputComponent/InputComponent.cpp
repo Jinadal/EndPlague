@@ -1,10 +1,12 @@
 #include "InputComponent.h"
 #include "ShootComponent.h"
+#include "GameObject.h"
+#include "BPhysicComponent.h"
+#include <SFML/Window.hpp>
 
 void InputComponent::update(float cursorX, float cursorY)
 {
     int enX = 0, enY = 0;
-
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         enY+=1;

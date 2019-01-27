@@ -1,6 +1,4 @@
-#include "Manager.h"
 #include "Component.h"
-
 
 class Manager;
 class ScoreComponent:public Component

@@ -1,9 +1,6 @@
 #pragma once
-
 #include <vector>
-#include <memory>
-#include "Component.h"
-#include <iostream>
+
 
 class Component;
 

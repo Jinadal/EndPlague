@@ -1,4 +1,8 @@
 #include "StorageComponent.h"
+#include "GameObject.h"
+#include "ItemComponent.h"
+#include "ShootComponent.h"
+#include "LifeComponent.h"
 
 void StorageComponent::itemCatch(ItemComponent* item)
 {

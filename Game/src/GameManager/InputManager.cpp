@@ -1,5 +1,6 @@
 #include "InputManager.h"
-
+#include "InputComponent.h"
+#include "GameObject.h"
 
 
 InputManager* InputManager::only_instance = NULL;

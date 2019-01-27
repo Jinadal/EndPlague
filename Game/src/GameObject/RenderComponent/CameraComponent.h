@@ -4,6 +4,7 @@
 #include "GameObject.h"
 
 
+class GameObject;
 class CameraComponent : public Component{
     private:
         CameraNode* node;

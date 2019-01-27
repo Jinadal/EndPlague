@@ -9,11 +9,6 @@ void SpawnManager::createComponent(GameObject* owner, float distance, EnemyType 
     owner->addComponent(components[components.size() - 1]);
 }
 
-void SpawnManager::createEnemy(float x, float y, float z, float rz, EnemyType type)
-{
-    fabric->createEnemy(x, y, z, rz, type);
-}
-
 
 void SpawnManager::updateAll(float dt)
 {

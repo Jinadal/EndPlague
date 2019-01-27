@@ -11,8 +11,8 @@ using namespace io;
 using namespace gui;
 
 //Creation of a mesh node, recives the facade an the path of the mesh
-MeshNode::MeshNode(RenderIrrlicht* r,char s[]){
-    render = r;//Assing the facade
+MeshNode::MeshNode(char s[]){
+    render = RenderIrrlicht::getInstance();//Assing the facade
     mesh = render->getSMgr()->getMesh(s); //Gets a mesh
 
     if (!mesh)

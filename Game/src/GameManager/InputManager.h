@@ -1,7 +1,7 @@
 #pragma once
-#include "InputComponent.h"
+#include "Manager.h"
 
-class Manager;
+class GameObject;
 class InputManager : public Manager{
     private:
         InputManager():Manager(){}

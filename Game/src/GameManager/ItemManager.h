@@ -1,10 +1,9 @@
 #pragma once
 #include "GameObject.h"
 #include "ItemFabric.h"
+#include "Manager.h"
 
 class GameObject;
-class Manager;
-
 class ItemManager : public Manager{
     private:
         ItemManager():Manager(){}

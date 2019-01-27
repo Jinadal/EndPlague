@@ -16,16 +16,5 @@ class ItemComponent : public Component{
         //DESTRUCTOR
         ~ItemComponent(){}
 
-        ItemTypes getType(){
-            return Type;
-        }
-
-
-};
-
-enum ItemType {
-    ITEM_NONE, //0
-    ITEM_THROWABLE, //1
-    ITEM_LIFE, //2
-    ITEM_CADENCE //3
+        ItemTypes getType(){return Type;}
 };

@@ -1,4 +1,6 @@
 #include "Component.h"
+
+
 #define FIRE_DAMMAGE 10.f
 #define BUCKETS_NEDED 1
 

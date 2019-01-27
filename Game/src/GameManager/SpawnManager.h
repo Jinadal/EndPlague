@@ -22,6 +22,5 @@ class SpawnManager : public Manager
 
 
         void createComponent(GameObject* owner, float distance, EnemyType type);
-        void createEnemy(float x, float y, float z, float rz, EnemyType type);
         void updateAll(float dt);
 };

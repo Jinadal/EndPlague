@@ -1,6 +1,5 @@
 #include <cstddef>
 #include "PauseState.h"
-#include <iostream>
 #include <SFML/Window.hpp>
 #include "Game.h"
 

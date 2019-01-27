@@ -1,12 +1,7 @@
 #pragma once
-//Headers
 #include "Component.h"
-#include "GameObject.h"
-#include "BPhysicComponent.h"
-#include <iostream>
-#include <SFML/Window.hpp>
 
-
+class GameObject;
 class InputComponent : public Component
 {
 
@@ -17,12 +12,5 @@ class InputComponent : public Component
     
     ~InputComponent(){}
 
-
-
-
     void update(float cursorX, float cursorY);
-
-
-
-    int w_ = 87, a_ = 65, s_ = 83, d_ = 68, space_=32;
 };

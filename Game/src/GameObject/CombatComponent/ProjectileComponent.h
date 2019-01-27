@@ -1,5 +1,4 @@
 #pragma once
-//Headers
 #include "Component.h"
 
 class GameObject;

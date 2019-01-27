@@ -14,7 +14,7 @@ class MeshNode{
     public:
         //Recives de render facade, and de path of the mesh
         //and creates a meshNode
-        MeshNode(RenderIrrlicht* r,char s[]);
+        MeshNode(char s[]);
 
         //Destructor
         ~MeshNode(){

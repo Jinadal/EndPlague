@@ -1,7 +1,6 @@
 #pragma once
 #include "Manager.h"
 
-
 class GameObject;
 class Component{
 
@@ -13,20 +12,14 @@ class Component{
     }
 
     //Destructor
-    virtual ~Component(){
-      manager->removeComponent(this);
-    }
+    virtual ~Component(){manager->removeComponent(this);}
 
     //Getter
-    GameObject* getGameObject() {
-        return gameObject;
-    }
+    GameObject* getGameObject(){return gameObject;}
 
-     Manager* getManager() {
-        return manager;
-    }
+    Manager* getManager(){return manager;}
    
-    protected:
+  protected:
       GameObject* gameObject;
       Manager* manager;
 };

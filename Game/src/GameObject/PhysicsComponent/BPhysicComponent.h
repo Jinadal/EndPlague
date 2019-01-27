@@ -1,7 +1,7 @@
 #pragma once
+#include "Component.h"
 #include "PhysicBullet.h"
 #include "GameObject.h"
-#include <iostream>
 
 class BPhysicComponent : public Component 
 {
