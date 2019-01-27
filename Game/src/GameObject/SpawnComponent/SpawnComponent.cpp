@@ -1,5 +1,5 @@
 #include "SpawnComponent.h"
-#include <iostream>
+#define PI 3.14159
 
 void SpawnComponent::update(float elapsedTime)
 {
@@ -8,9 +8,8 @@ void SpawnComponent::update(float elapsedTime)
     {
         elapsed = 0.f;
 
-
-        float x = gameObject->getX() - sin(gameObject->getRZ())*distance;
-        float y = gameObject->getY() + cos(gameObject->getRZ())*distance;
+        float x = gameObject->getX() -cos(-PI/2 + gameObject->getRZ()*PI/180)*distance;
+        float y = gameObject->getY() -sin(-PI/2 + gameObject->getRZ()*PI/180)*distance;
         float z = gameObject->getZ();
         float rz = gameObject->getRZ();
 

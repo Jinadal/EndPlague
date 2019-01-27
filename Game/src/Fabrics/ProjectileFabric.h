@@ -1,9 +1,6 @@
 #pragma once
-#include "GameResource.h"
-#include "GameObject.h"
-#include "RenderManager.h"
-#include "BPhysicManager.h"
-#include "ProjectileManager.h"
+
+class GameObject;
 
 enum ProjectileType
 {
@@ -23,13 +20,6 @@ struct PType{
 class ProjectileFabric
 {
     private:
-        GameResource*       gameresource        = GameResource::getInstance();
-        RenderManager*      rendermanager       = RenderManager::getInstance();
-        BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
-        ProjectileManager*  projectilemanager   = ProjectileManager::getInstance();
-
-
-
         PType projectile_types[2] = 
         {
             {
