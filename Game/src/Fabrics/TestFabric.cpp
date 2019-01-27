@@ -9,6 +9,7 @@
 #include "RenderManager.h"
 #include "StorageManager.h"
 #include "GameResource.h"
+#include "LifeManager.h"
 #include "BucketManager.h"
 #include "WellManager.h"
 #include "WoodManager.h"

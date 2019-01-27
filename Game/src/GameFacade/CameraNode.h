@@ -13,10 +13,7 @@ class CameraNode{
             node->setAutomaticCulling(EAC_OFF);
         }
 
-        ~CameraNode()
-        {
-            //delete node;
-        }
+        ~CameraNode(){node->remove();}
 
         void update(float x, float y, float z, float rx, float ry, float rz);
         void setFOV(float fov);
