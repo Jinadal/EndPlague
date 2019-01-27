@@ -1,6 +1,7 @@
  
 #include "PhysicBullet.h"
-#include <iostream>
+
+#define PI 3.141592
 
 
 PhysicBullet* PhysicBullet::only_instance = NULL;
@@ -157,4 +158,25 @@ void PhysicBullet::move(btRigidBody* body,int m)
         if(m==3)newTrans.getOrigin() += (btVector3(0, 0, -0.1f));
         if(m==4)newTrans.getOrigin() += (btVector3(0, 0, 0.1f));
     body->getMotionState()->setWorldTransform(newTrans);
+}
+
+void* PhysicBullet::rayTest(float x, float y, float z, float rz)
+{
+
+    float xi = x + 2 * -cos(-PI/2 + rz*PI/180);
+    float yi = y + 2 * -sin(-PI/2 + rz*PI/180);
+    float zi = z;
+    float xf = x + 100 * -cos(-PI/2 + rz*PI/180);
+    float yf = y + 100 * -sin(-PI/2 + rz*PI/180);
+    float zf = z;
+    btVector3 btRayFrom = btVector3(xi, yi, zi);
+    btVector3 btRayTo = btVector3(xf, yf, zf);
+
+    btCollisionWorld::ClosestRayResultCallback rayCallback(btRayFrom,btRayTo);
+    _world->rayTest(btRayFrom, btRayTo, rayCallback);
+    if(rayCallback.hasHit())
+    {
+        return rayCallback.m_collisionObject->getUserPointer();
+    }
+    return NULL;
 }

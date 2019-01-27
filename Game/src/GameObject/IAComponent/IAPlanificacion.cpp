@@ -20,12 +20,19 @@ bool IA_Plan_InSight::run()
     float dy = main->getY() - owner->getY();
 
     if(fabs(dx) <= 10  && fabs(dy) <= 10){
-        owner->getComponent<ShootComponent>()->shoot();
-        ///std::cout << "PERSONAJE DETECTADO!!! \n";
-         return true;
+        if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ())
+            && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()+1)
+            && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()-1))
+        {
+            owner->getComponent<ShootComponent>()->shoot();
+            std::cout<<"Disparo\n";
+            ///std::cout << "PERSONAJE DETECTADO!!! \n";
+        }else{
+            std::cout<<"No disparo\n";
+        }
+        return true;
     }
-
-        //std::cout << "PERSONAJE PERDIDO!!! \n";
+    //std::cout << "PERSONAJE PERDIDO!!! \n";
     return false;
 
 

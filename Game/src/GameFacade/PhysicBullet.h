@@ -34,4 +34,5 @@ class PhysicBullet{
     btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
     void iteration(float d);
     void move(btRigidBody* body,int m);
+    void* rayTest(float x, float y, float z, float rz);
 };
