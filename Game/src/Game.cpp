@@ -1,28 +1,42 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "Game.h"
 
+#include "BPhysicManager.h"
 #include "MenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
 #include "EndState.h"
-#include "RenderIrrlicht.h"
+#include "Waypoint.h"
 
 Game* Game::only_instance = NULL;
 
 void Game::run()
 {
     initGame();
+    //fabric->loadLevel();
    
-    while(RenderIrrlicht::getInstance()->run())
+    while(render->run())
     {
-        state->update(RenderIrrlicht::getInstance()->getFrameDeltaTime());
-        RenderIrrlicht::getInstance()->drawAll();
+        //InputManager::getInstance()->setCursorPosition(render->getCursorX(), render->getCursorY());
+        //gameManager->update(render->getFrameDeltaTime());
+
+        state->update(render->getFrameDeltaTime());
+        render->drawAll();
     }
-    delete RenderIrrlicht::getInstance();
+
+    //delete fabric;
+    //delete gameManager;
+    delete render;
 
 }
 
 void Game::initGame()
 {  
+    render              = RenderIrrlicht::getInstance();
+    //fabric              = new FabricVillage();
+    //gameManager         = new GameManager();
+
     setState(IGameState::stateType::MENU);
 }
 

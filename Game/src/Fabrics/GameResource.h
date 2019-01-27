@@ -1,7 +1,7 @@
 #pragma once
+#include "GameObject.h"
 #include <vector>
 
-class GameObject;
 class GameResource{
     private:
         GameResource(){}

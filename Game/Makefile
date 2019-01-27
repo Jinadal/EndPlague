@@ -60,8 +60,8 @@ define REGLA
 $(1): $(2)
 	@echo Compilando: $(basename $(notdir $(1)))
 	@$(CXX) -g -Wall -o $(1) -c $(2) $(INCLUDES)
-endef
 
+endef
 $(foreach O,$(OBJECTS),$(eval $(call REGLA,$(O),$(subst bin/,src/,$(O:.o=.cpp)))))
 
 

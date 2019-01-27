@@ -36,7 +36,7 @@ void FabricVillage::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 200.f);
+    LifeManager::getInstance()->createComponent(player, 500.f);
     player->getComponent<LifeComponent>()->setDecreases(true);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
@@ -68,15 +68,16 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(spawn2, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn2->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn2, 4.f, ENEMY_2);
-    WoodManager::getInstance()->createComponent(spawn2, 400.f);
+    //LifeManager::getInstance()->createComponent(spawn2, 10000.f);
     BPhysicManager::getInstance()->createComponent(spawn2, 2.f, 2.f, 2.f, 0.f, 1);
+    std::cout<<"Rotacion:"<<spawn2->getRZ()<<"\n";
 
       //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
     GameObject* spawn3 = GameResource::getInstance()->createGameObject(10.f, 0.f, -1.f, 180.f);
     RenderManager::getInstance()->createComponent(spawn3, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn3->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn3, 4.f, ENEMY_1);
-    WoodManager::getInstance()->createComponent(spawn3, 400.f);
+    LifeManager::getInstance()->createComponent(spawn3, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn3, 2.f, 2.f, 2.f, 0.f, 1);
 
 
@@ -85,7 +86,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(spawn4, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn4->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn4, 4.f, ENEMY_2);
-    WoodManager::getInstance()->createComponent(spawn4, 400.f);
+    LifeManager::getInstance()->createComponent(spawn4, 10000.f);
     BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 0.f, 1);
 
 

@@ -1,5 +1,5 @@
 #include "GameResource.h"
-#include "GameObject.h"
+#include <iostream>
 
 GameResource* GameResource::only_instance = NULL;
 

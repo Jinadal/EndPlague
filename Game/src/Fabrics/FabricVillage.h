@@ -2,6 +2,8 @@
 
 
 class FabricVillage : public Fabric{
+    private:
+        
     public:
         FabricVillage():Fabric(){}
         ~FabricVillage(){}

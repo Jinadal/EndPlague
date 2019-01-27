@@ -10,7 +10,7 @@ class ScoreManager : public Manager
         int score;
     
     public:
-        static ScoreManager* getInstance()
+        static ScoreManager* getInstacne()
         {
             if (only_instance==NULL) {
                 only_instance = new ScoreManager();

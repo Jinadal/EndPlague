@@ -1,10 +1,15 @@
 #pragma once
-
+#include "GameResource.h"
+#include "RenderManager.h"
+#include "BPhysicManager.h"
+#include "IAManager.h"
+#include "LifeManager.h"
+#include "ShootManager.h"
+#include "ScoreManager.h"
 
 
 #define MAX_ENEMIES 20
 
-class GameObject;
 
 enum EnemyType
 {
@@ -40,6 +45,14 @@ class EnemyFabric
                 20.f
             },
         };
+        GameResource*       gameresource        = GameResource::getInstance();
+        RenderManager*      rendermanager       = RenderManager::getInstance();
+        IAManager*          iamanager           = IAManager::getInstance();
+        LifeManager*        lifemanager         = LifeManager::getInstance();
+        ShootManager*       shootmanager        = ShootManager::getInstance();
+        BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
+        ScoreManager*       scoremanager        = ScoreManager::getInstacne();
+
 
         int numEnemies;
 

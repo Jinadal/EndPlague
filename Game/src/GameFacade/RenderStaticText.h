@@ -31,16 +31,16 @@ class RenderStaticText
             std::cout<<enemies<<" "<<fps<<" "<<life<<" "<<score<<"\n";
 
 
-            wchar_t* text = (wchar_t*)L"Enemies loaded: ";
+            wchar_t* text = L"Enemies loaded: ";
             this->enemies->setText(text);
 
-            text = (wchar_t*)L"FPS: ";
+            text = L"FPS: ";
             this->fps->setText(text);
 
-            text = (wchar_t*)L"Life: ";
+            text = L"Life: ";
             this->life->setText(text);
 
-            text = (wchar_t*)L"Score: ";
+            text = L"Score: ";
             this->score->setText(text);
         }
 
