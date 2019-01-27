@@ -51,7 +51,7 @@ class EnemyFabric
         LifeManager*        lifemanager         = LifeManager::getInstance();
         ShootManager*       shootmanager        = ShootManager::getInstance();
         BPhysicManager*     bphysicmanager      = BPhysicManager::getInstance();
-        ScoreManager*       scoremanager        = ScoreManager::getInstacne();
+        ScoreManager*       scoremanager        = ScoreManager::getInstance();
 
 
         int numEnemies;

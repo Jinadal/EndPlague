@@ -1,7 +1,7 @@
 #pragma once
-#include "LifeComponent.h"
+#include "Manager.h"
 
-class Manager;
+class GameObject;
 class LifeManager : public Manager{
     private:
         LifeManager():Manager(){}

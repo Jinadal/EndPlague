@@ -1,5 +1,6 @@
 #include "LifeManager.h"
-
+#include "GameObject.h"
+#include "LifeComponent.h"
 
 LifeManager* LifeManager::only_instance = NULL;
 
