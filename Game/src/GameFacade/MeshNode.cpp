@@ -1,5 +1,6 @@
 
 #include "MeshNode.h"
+#include <iostream>
 
 
 using namespace irr;

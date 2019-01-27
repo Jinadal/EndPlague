@@ -5,7 +5,7 @@
 #include "SpawnManager.h"
 #include <cmath>
 
-#define SPAWN_CADENCIA 10.0f
+#define cadencia 10.f
 
 class SpawnComponent : public Component{
     private:

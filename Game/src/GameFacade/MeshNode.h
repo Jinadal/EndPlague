@@ -1,5 +1,7 @@
 #pragma once
 #include "RenderIrrlicht.h"
+#include <iostream>
+
 /*
 Node ony implemented with a AnimatedMesh in Irr
 */

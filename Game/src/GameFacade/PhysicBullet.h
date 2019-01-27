@@ -5,34 +5,34 @@
 
 class PhysicBullet{
     private:
-        static PhysicBullet* only_instance;
-        PhysicBullet(){initWorldPhysics();};
+    static PhysicBullet* only_instance;
+    PhysicBullet(){initWorldPhysics();};
 
-        btBroadphaseInterface*                      _broadphase;
-        btDefaultCollisionConfiguration*            _collisionConfiguration;
-        btCollisionDispatcher*                      _dispatcher;
-        btSequentialImpulseConstraintSolver*        _solver;
-        btDynamicsWorld*                            _world;
-        btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
+    btBroadphaseInterface*                      _broadphase;
+    btDefaultCollisionConfiguration*            _collisionConfiguration;
+    btCollisionDispatcher*                      _dispatcher;
+    btSequentialImpulseConstraintSolver*        _solver;
+    btDynamicsWorld*                            _world;
+    btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
     
     public:
-        
-        virtual ~PhysicBullet();
+    
+    virtual ~PhysicBullet();
 
-        static PhysicBullet* getInstance()
-        {   
-            if(only_instance==NULL)
-            {
-                only_instance = new PhysicBullet();
-            }
-            return only_instance;
+    static PhysicBullet* getInstance()
+    {   
+        if(only_instance==NULL)
+        {
+            only_instance = new PhysicBullet();
         }
+        return only_instance;
+    }
 
-        void removeRigidBody(btRigidBody* rigidbody);
+    void removeRigidBody(btRigidBody* rigidbody);
 
-        btDynamicsWorld* initWorldPhysics();
-        btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
-        void iteration(float d);
-        void move(btRigidBody* body,int m);
-        void* rayTest(float x, float y, float z, float rz);
+    btDynamicsWorld* initWorldPhysics();
+    btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
+    void iteration(float d);
+    void move(btRigidBody* body,int m);
+    void* rayTest(float x, float y, float z, float rz);
 };

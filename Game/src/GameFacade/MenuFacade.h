@@ -1,7 +1,7 @@
 #pragma once
 #include "RenderIrrlicht.h"
 #include "RenderManager.h"
-#include "RenderIrrlicht.h"
+#include <iostream>
 
 class MenuFacade
 {
@@ -12,7 +12,7 @@ class MenuFacade
     public:
 
     static MenuFacade *getInstance(){
-        if(only_instance)
+        if(only_instance == NULL)
             only_instance = new MenuFacade();
             
         return only_instance;

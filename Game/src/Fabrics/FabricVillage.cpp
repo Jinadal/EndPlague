@@ -10,7 +10,6 @@
 #include "StorageManager.h"
 #include "GameResource.h"
 #include "LifeComponent.h"
-#include "LifeManager.h"
 #include "WellManager.h"
 #include "WoodManager.h"
 #include "BucketManager.h"

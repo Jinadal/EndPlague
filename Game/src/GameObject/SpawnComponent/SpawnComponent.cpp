@@ -4,7 +4,7 @@
 void SpawnComponent::update(float elapsedTime)
 {
     elapsed += elapsedTime;
-    if(elapsed>SPAWN_CADENCIA)
+    if(elapsed>cadencia)
     {
         elapsed = 0.f;
 
