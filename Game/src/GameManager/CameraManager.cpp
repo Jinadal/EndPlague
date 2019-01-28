@@ -1,4 +1,4 @@
-
+#include "CameraComponent.h"
 #include "CameraManager.h"
 
 CameraManager* CameraManager::only_instance = NULL;

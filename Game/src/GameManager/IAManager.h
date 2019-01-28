@@ -1,8 +1,7 @@
 #pragma once
-#include <vector>
+#include "Manager.h"
 #include "IAComponent.h"
-
-class Manager;
+class GameObject;
 class IAManager : public Manager{
     private:
         IAManager():Manager(){}

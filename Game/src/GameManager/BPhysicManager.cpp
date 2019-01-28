@@ -8,6 +8,8 @@
 #include "BucketComponent.h"
 #include "WellComponent.h"
 #include "WoodComponent.h"
+#include "GameObject.h"
+#include "BPhysicComponent.h"
 
 BPhysicManager* BPhysicManager::only_instance = NULL;
 

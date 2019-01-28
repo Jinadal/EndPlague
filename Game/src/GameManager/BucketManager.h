@@ -2,7 +2,6 @@
 #include "Manager.h"
 
 class GameObject;
-class Manager;
 class BucketManager : public Manager{
     private:
         BucketManager():Manager(){}

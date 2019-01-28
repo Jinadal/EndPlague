@@ -1,6 +1,7 @@
 
 
 #include "ProjectileFabric.h"
+#include "BPhysicComponent.h"
 
 #define PI 3.14159265
 

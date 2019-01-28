@@ -1,4 +1,6 @@
 #include "EnemyFabric.h"
+#include "BPhysicComponent.h"
+//#include "IAComponent.h"
 
 GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyType type)
 {

@@ -1,7 +1,6 @@
 #pragma once
-#include "CameraComponent.h"
+#include "Manager.h"
 
-class Manager;
 class CameraManager : public Manager{
     private:
         CameraManager():Manager(){}

@@ -1,5 +1,5 @@
 #include "IAManager.h"
-
+#include "IAComponent.h"
 
 IAManager* IAManager::only_instance = NULL;
 

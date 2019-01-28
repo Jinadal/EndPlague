@@ -13,6 +13,7 @@
 #include "WellManager.h"
 #include "WoodManager.h"
 #include "BucketManager.h"
+#include "BPhysicComponent.h"
 
 
 void FabricVillage::loadLevel()

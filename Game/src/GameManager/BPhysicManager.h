@@ -1,12 +1,8 @@
 #pragma once
 #include "PhysicBullet.h"
-#include "BPhysicComponent.h"
-#include "GameObject.h"
+#include "Manager.h"
 
-class Manager;
-//class StorageComponent;
-//class ItemComponent;
-
+class GameObject;
 class BPhysicManager : public Manager
 {
     private:

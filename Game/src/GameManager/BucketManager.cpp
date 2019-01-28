@@ -4,6 +4,7 @@
 
 BucketManager* BucketManager::only_instance = NULL;
 
+
 void BucketManager::createComponent(GameObject* owner)
 {
     components.push_back(new BucketComponent(owner, this));
