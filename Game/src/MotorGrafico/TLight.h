@@ -5,14 +5,15 @@
 class TLight : public TEntity
 {
     private:
-        TColour  intesity;
+        glm::vec4 intensity = glm::vec4(1.0,1.0,1.0,1.0);
+
     public:
         TLight(/* args */);
         ~TLight();
 
         //Get & Set
-        void setIntesity(TColour c);
-        TColour getIntensity(){ return intesity;};
+        void setIntesity(glm::vec4 i);
+        glm::vec4 getIntensity(){ return intensity;};
 
         void beginDraw();
         void endDraw();
