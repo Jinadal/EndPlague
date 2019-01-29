@@ -80,21 +80,24 @@ float RenderIrrlicht::getCursorX()
 
 float RenderIrrlicht::getCursorY()
 {
-     ITriangleSelector*  selector=smgr->createTriangleSelector(map->getMesh(), map);
-    core::vector3df     outCollisionPoint;
-    core::triangle3df   outTriangle;
-    ISceneNode*         outNode=nullptr;
+    if(map)
+    {
+         ITriangleSelector*  selector=smgr->createTriangleSelector(map->getMesh(), map);
+        core::vector3df     outCollisionPoint;
+        core::triangle3df   outTriangle;
+        ISceneNode*         outNode=nullptr;
 
-    ISceneCollisionManager* colmgr = smgr->getSceneCollisionManager();
-    line3d<float> raytrace = colmgr->getRayFromScreenCoordinates(device->getCursorControl()->getPosition(), camera);
-    colmgr->getCollisionPoint(	raytrace,
-                                selector,
-                                outCollisionPoint,
-                                outTriangle,
-                                outNode
-                                );
+        ISceneCollisionManager* colmgr = smgr->getSceneCollisionManager();
+        line3d<float> raytrace = colmgr->getRayFromScreenCoordinates(device->getCursorControl()->getPosition(), camera);
+        colmgr->getCollisionPoint(	raytrace,
+                                    selector,
+                                    outCollisionPoint,
+                                    outTriangle,
+                                    outNode
+                                    );
 
-    return outCollisionPoint.Y;
+        return outCollisionPoint.Y;
+    }
 }
 
 void RenderIrrlicht::drawPoint(float x, float y, float z)
