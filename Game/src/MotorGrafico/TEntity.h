@@ -6,6 +6,6 @@ class TEntity
         TEntity();
         ~TEntity();
 
-        virtual void beginDraw();
-        virtual void endDraw();
+        virtual void beginDraw() = 0;
+        virtual void endDraw() = 0;
 };

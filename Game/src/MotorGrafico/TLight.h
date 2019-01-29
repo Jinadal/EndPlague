@@ -10,8 +10,10 @@ class TLight : public TEntity
         TLight(/* args */);
         ~TLight();
 
+        //Get & Set
         void setIntesity(TColour c);
-        TColour getIntensity();
+        TColour getIntensity(){ return intesity;};
+
         void beginDraw();
         void endDraw();
 };

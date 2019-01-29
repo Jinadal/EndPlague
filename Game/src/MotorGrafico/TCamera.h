@@ -12,9 +12,12 @@ class TCamera : public TEntity
         TCamera();
         ~TCamera();
 
-        void setCameraParametres(float,float,float,float,float,float);
+        //Get & Set
+        void setCameraParametres(float n,float f,float t,float b,float r,float l);
         void setPerspective(){ perspective = true};
+        
         void changeCamera(bool c){ perspective = c};
+        
         void beginDraw();
         void endDraw();
 

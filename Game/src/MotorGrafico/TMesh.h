@@ -11,6 +11,7 @@ class TMesh : public TEntity
         ~TMesh();
 
         void loadMesh(TResource* m){ mesh=m;};
+        TResource getMesh(){ return mesh;};
         void beginDraw();
         void endDraw();
         

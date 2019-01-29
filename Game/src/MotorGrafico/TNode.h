@@ -12,6 +12,11 @@ class TNode
         
         int AddSon(TNode* n);
         int remSon(TNode*n);
+
+        //*********
+        //GET & SET
+        //*********
+
         bool setEntity(TEntity*);
         TEntity *getEntity();
         TNode *getFather();

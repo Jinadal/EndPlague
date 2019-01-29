@@ -5,16 +5,26 @@
 class TTransform : public TEntity
 {
     private:
-        TMatrix4x4 matrix;
+        glm::mat4 matrix;
     public:
         TTransform(/* args */);
         ~TTransform();
 
-        void identity();
-        void load(TMatrix4x4 matrix);
+        //Get & Set
+        void setMatrix(glm::mat4 m){ matrix = m;};
+        glm::mat4 getMatrix(){ return matrix;};
+
+        
+        //Basic Transformations
+        void translate(float x,float y,float z);
+        void rotate(float x,float y,float z,float w);
+        void scale(float x, float y, float z);
+        
+        //Advance Transformations
         void transpose();
-        void translate(float,float,float,float);
-        void rotate(float,float,float,float);
+        void invert();
+        void identity();
+
         void beginDraw();
         void endDraw();
 };
