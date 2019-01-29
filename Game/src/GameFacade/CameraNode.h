@@ -1,7 +1,6 @@
 #pragma once
 #include "RenderIrrlicht.h"
 
-class RenderIrrlicht;
 class CameraNode{
     private:
         ICameraSceneNode* node;

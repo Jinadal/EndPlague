@@ -2,7 +2,6 @@
 #include "Manager.h"
 
 class GameObject;
-class Manager;
 class WoodManager : public Manager{
     private:
         WoodManager():Manager(){}

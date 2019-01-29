@@ -1,6 +1,4 @@
-
 #include "RenderIrrlicht.h"
-#include <iostream>
 
 RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
 

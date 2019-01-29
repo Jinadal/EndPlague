@@ -71,7 +71,6 @@ void FabricVillage::loadLevel()
     SpawnManager::getInstance()->createComponent(spawn2, 4.f, ENEMY_2);
     //LifeManager::getInstance()->createComponent(spawn2, 10000.f);
     BPhysicManager::getInstance()->createComponent(spawn2, 2.f, 2.f, 2.f, 0.f, 1);
-    std::cout<<"Rotacion:"<<spawn2->getRZ()<<"\n";
 
       //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
     GameObject* spawn3 = GameResource::getInstance()->createGameObject(10.f, 0.f, -1.f, 180.f);
