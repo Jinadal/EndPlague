@@ -1,5 +1,6 @@
 #include "SpawnManager.h"
-
+#include "GameObject.h"
+#include "SpawnComponent.h"
 
 SpawnManager* SpawnManager::only_instance = NULL;
 

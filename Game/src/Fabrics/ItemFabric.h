@@ -1,7 +1,6 @@
 #pragma once
-#include "GameObject.h"
 
-
+class GameObject;
 enum ItemTypes
 {
     ITEM_0,

@@ -1,9 +1,8 @@
 #pragma once
 #include "EnemyFabric.h"
-#include "SpawnComponent.h"
+#include "Manager.h"
 
-
-class Manager;
+class SpawnComponent;
 class SpawnManager : public Manager
 {
     private:

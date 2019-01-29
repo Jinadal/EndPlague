@@ -13,6 +13,7 @@
 #include "WellManager.h"
 #include "WoodManager.h"
 #include "BPhysicComponent.h"
+#include "LifeManager.h"
 
 
 

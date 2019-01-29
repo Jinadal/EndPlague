@@ -14,6 +14,7 @@
 #include "WoodManager.h"
 #include "BucketManager.h"
 #include "BPhysicComponent.h"
+#include "LifeManager.h"
 
 
 void FabricVillage::loadLevel()

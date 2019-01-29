@@ -1,5 +1,8 @@
 #include <ShootManager.h>
 #include <ShootComponent.h>
+#include "GameObject.h"
+#include <cmath>
+
 #define PI 3.14159265
 
 ShootManager* ShootManager::only_instance = NULL;

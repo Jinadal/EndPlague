@@ -1,5 +1,5 @@
 #include "ItemFabric.h"
-
+#include "GameObject.h"
 #include "RenderManager.h"
 #include "BPhysicManager.h"
 #include "ItemManager.h"
