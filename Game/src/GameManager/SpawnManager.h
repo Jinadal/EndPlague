@@ -2,7 +2,7 @@
 #include "EnemyFabric.h"
 #include "Manager.h"
 
-class SpawnComponent;
+
 class SpawnManager : public Manager
 {
     private:

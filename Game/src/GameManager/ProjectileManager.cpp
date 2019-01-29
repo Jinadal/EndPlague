@@ -1,4 +1,6 @@
-#include <ProjectileManager.h>
+#include "ProjectileManager.h"
+#include "ProjectileComponent.h"
+#include "GameObject.h"
 
 ProjectileManager* ProjectileManager::only_instance = NULL;
 

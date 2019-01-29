@@ -1,10 +1,7 @@
 #pragma once
-#include "StorageComponent.h"
-#include "GameObject.h"
+#include "Manager.h"
 
 class GameObject;
-class Manager;
-
 class StorageManager : public Manager{
     private:
         StorageManager():Manager(){};

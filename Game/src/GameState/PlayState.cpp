@@ -18,6 +18,7 @@
 #include "FabricVillage.h"
 #include "TestFabric.h"
 #include "ScoreManager.h"
+#include "GameObject.h"
 
 
 PlayState* PlayState::only_instance = NULL;

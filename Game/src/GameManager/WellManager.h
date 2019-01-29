@@ -2,7 +2,6 @@
 #include "Manager.h"
 
 class GameObject;
-class Manager;
 class WellManager : public Manager{
     private:
         WellManager():Manager(){}

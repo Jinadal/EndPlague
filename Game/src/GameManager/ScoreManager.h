@@ -1,6 +1,6 @@
 #pragma once
 #include "Manager.h"
-class Manager;
+
 class GameObject;
 class ScoreManager : public Manager
 {

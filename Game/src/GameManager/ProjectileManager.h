@@ -1,11 +1,8 @@
 #pragma once
 #include <vector>
-#include "ProjectileComponent.h"
-#include "GameObject.h"
-
+#include "Manager.h"
 
 class GameObject;
-class Manager;
 class ProjectileManager : public Manager{
     private:
         ProjectileManager():Manager(){}

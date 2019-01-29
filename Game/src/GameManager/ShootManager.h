@@ -1,8 +1,7 @@
 #pragma once
-#include "ShootComponent.h"
 #include "ProjectileFabric.h"
+#include "Manager.h"
 
-class Manager;
 class ShootManager : public Manager{
     private:
         ShootManager():Manager(){fabric = new ProjectileFabric();}

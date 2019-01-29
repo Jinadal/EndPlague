@@ -1,6 +1,6 @@
 #include "StorageManager.h"
-#include <iostream>
-
+#include "StorageComponent.h"
+#include "GameObject.h"
 
 StorageManager* StorageManager::only_instance = NULL;
 
