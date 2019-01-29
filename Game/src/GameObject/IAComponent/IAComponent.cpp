@@ -5,7 +5,9 @@
 #include "IAPlanificacion.h"
 #include "IAGrafos.h"
 #include "BPhysicComponent.h"
-#include <iostream>
+#include "Nodo.h"
+#include "GameObject.h"
+#include "Waypoint.h"
 
 
 void IAComponent::Initialice(){
@@ -75,7 +77,7 @@ void IAComponent::Initialice(){
 
 
     Selector* nodoRaiz = new Selector();
-    pair<string,Nodo*> pRaiz;
+    std::pair<std::string,Nodo*> pRaiz;
     pRaiz.first= "Raiz";
     pRaiz.second = nodoRaiz;
 
@@ -115,7 +117,7 @@ void IAComponent::Initialice(){
 
 
     Selector* raizIAmov = new Selector();
-    pair<string,Nodo*> p;
+    std::pair<std::string,Nodo*> p;
     p.first= "Movimiento";
     p.second = raizIAmov;
 
@@ -153,7 +155,7 @@ void IAComponent::Initialice(){
 
     Selector* raizIASeg = new Selector();
 
-    pair<string,Nodo*> ps;
+    std::pair<std::string,Nodo*> ps;
     ps.first= "Seguimiento";
     ps.second = raizIASeg;
 

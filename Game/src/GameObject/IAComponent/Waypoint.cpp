@@ -1,6 +1,6 @@
 #include "Waypoint.h"
 #include <cmath>
-#include <iostream>
+#include "Area.h"
 
 void GPS::Initialice()
 {

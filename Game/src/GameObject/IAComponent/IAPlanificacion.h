@@ -1,7 +1,6 @@
 #include "Nodo.h"
-#include "GameObject.h"
 
-
+class GameObject;
 class IA_Plan_InSight : public Nodo
 {
     public:

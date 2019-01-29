@@ -1,12 +1,11 @@
 #pragma once
-#include "Nodo.h"
-#include "Component.h"
-#include "GameObject.h"
 #include <map>
-#include "Waypoint.h"
+#include "Component.h"
 
-using namespace std;
-
+class GameObject;
+class Waypoint;
+class Nodo;
+class Grafo;
 class IAComponent : public Component
 {
 

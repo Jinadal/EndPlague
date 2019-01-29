@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-#include "Area.h"
+
+class Area;
 
 class Waypoint
 {

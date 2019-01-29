@@ -1,12 +1,11 @@
 #include "IAPlanificacion.h"
 #include <cmath>
 #include <ctime> 
-#include <cstdlib> 
-#include <iostream>
+#include <cstdlib>
 #include "IAComponent.h"
 #include "BPhysicComponent.h"
 #include "ShootComponent.h"
-
+#include "GameObject.h"
 
 /*
 Salta si el personaje entra a menos de 10 unidades de distancia de portador de la ia
@@ -25,10 +24,6 @@ bool IA_Plan_InSight::run()
             && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()-1))
         {
             owner->getComponent<ShootComponent>()->shoot();
-            std::cout<<"Disparo\n";
-            ///std::cout << "PERSONAJE DETECTADO!!! \n";
-        }else{
-            std::cout<<"No disparo\n";
         }
         return true;
     }

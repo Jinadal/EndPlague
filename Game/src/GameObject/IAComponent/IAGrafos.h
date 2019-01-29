@@ -1,9 +1,6 @@
 #include "Nodo.h"
-#include "GameObject.h"
-#include "Waypoint.h"
-#include "IAComponent.h"
 
-
+class GameObject;
 class IA_Graf_SetAWaypoint : public Nodo
 {
     public:

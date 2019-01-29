@@ -1,9 +1,6 @@
 #pragma once
 #include <vector>
 
-
-
-
 /*
 Estructura basica del behaviour, todos los tipos de nodo heredan de el
 */

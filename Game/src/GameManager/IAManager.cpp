@@ -1,5 +1,6 @@
 #include "IAManager.h"
 #include "IAComponent.h"
+#include "GameObject.h"
 
 IAManager* IAManager::only_instance = NULL;
 

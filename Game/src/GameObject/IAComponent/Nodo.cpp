@@ -1,7 +1,4 @@
 #include "Nodo.h"
-#include <iostream>
-
-
 
 
 bool Nodo::run()

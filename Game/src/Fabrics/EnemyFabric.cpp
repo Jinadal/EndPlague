@@ -7,6 +7,7 @@
 #include "LifeManager.h"
 #include "ShootManager.h"
 #include "ScoreManager.h"
+#include "IAComponent.h"
 
 
 GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyType type)

@@ -1,6 +1,6 @@
 #include "Nodo.h"
-#include "GameObject.h"
 
+class GameObject;
 class IA_Seg_CheckXIzd : public Nodo
 {
     public:

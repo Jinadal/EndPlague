@@ -1,7 +1,6 @@
 #include "Nodo.h"
-#include "GameObject.h"
 
-
+class GameObject;
 class Pared : public Nodo
 {
     

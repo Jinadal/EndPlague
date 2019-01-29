@@ -1,6 +1,6 @@
 #include "IAMovimiento.h"
 #include "BPhysicComponent.h"
-#include <iostream>
+#include "GameObject.h"
 
 bool Pared::run(){
    // std::cout<< "invoco con ->  " << owner->getComponent<CollisionComponent>() << "\n";

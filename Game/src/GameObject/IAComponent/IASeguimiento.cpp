@@ -1,5 +1,6 @@
 #include "IASeguimiento.h"
 #include "BPhysicComponent.h"
+#include "GameObject.h"
 #include <cmath>
 
 

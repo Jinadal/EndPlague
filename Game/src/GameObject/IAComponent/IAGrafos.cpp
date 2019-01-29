@@ -1,4 +1,7 @@
 #include "IAGrafos.h"
+#include "GameObject.h"
+#include "Waypoint.h"
+#include "IAComponent.h"
 
 
 bool IA_Graf_SetAWaypoint::run()
