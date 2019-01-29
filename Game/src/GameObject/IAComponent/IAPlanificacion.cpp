@@ -19,7 +19,7 @@ bool IA_Plan_InSight::run()
     float dx = main->getX() - owner->getX();
     float dy = main->getY() - owner->getY();
 
-    if(fabs(dx) <= 10  && fabs(dy) <= 10){
+    if(fabs(dx) <= 4  && fabs(dy) <= 4){
         owner->getComponent<ShootComponent>()->shoot();
         ///std::cout << "PERSONAJE DETECTADO!!! \n";
          return true;
@@ -66,4 +66,11 @@ bool IA_Plan_ChangeDirection::run()
 
 return false;
 
+}
+
+bool IA_Plan_HaveWaypoint::run()
+{
+    if(!owner->getComponent<IAComponent>()->hasWaypoint )return true;
+
+    return false;
 }

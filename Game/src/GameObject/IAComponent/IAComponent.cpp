@@ -3,6 +3,7 @@
 #include "IAMovimiento.h"
 #include "IASeguimiento.h"
 #include "IAPlanificacion.h"
+#include "IAGrafos.h"
 #include "BPhysicComponent.h"
 #include <iostream>
 
@@ -61,6 +62,12 @@ void IAComponent::Initialice(){
 
                dx>0? go->  dx<0 go<-              dy>0? go ^     dy<0 go V
   
+
+
+
+
+
+
   */
 
  /////////// MAIN TREE ////////////
@@ -90,6 +97,15 @@ void IAComponent::Initialice(){
 
     IA_Plan_InSight* aRango = new IA_Plan_InSight(gameObject, main);
     decideSeg->addChild(aRango);
+
+    Secuencia* hasAWaypoint = new Secuencia();
+    nodoRaiz->addChild(hasAWaypoint);
+
+    IA_Plan_HaveWaypoint* checkWay = new IA_Plan_HaveWaypoint(gameObject);
+    hasAWaypoint->addChild(checkWay);
+
+    IA_Graf_SetAWaypoint* setWay = new IA_Graf_SetAWaypoint(gameObject);
+    hasAWaypoint->addChild(setWay);
 
 
   ///////////////////////////////////  

@@ -9,6 +9,7 @@ void IAManager::createComponent(GameObject *owner)
 {
     components.push_back(new IAComponent(owner,this, player));
     owner->addComponent(components[components.size()-1]);
+  
 }
 
 void IAManager::updateAll(float dt)

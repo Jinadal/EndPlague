@@ -1,14 +1,19 @@
-#include "Waypoint.h"
+#include <vector>
+class Waypoint;
+
 class Area
 {
     private:
-    Waypoint* waypoint;
+    std::vector<Waypoint*> waypoints;
     float sx,sy,ix,iy;
 
     public:
-    Area(float supx, float supy, float infx, float infy){waypoint=new Waypoint((infx-supx)/2,(infy-supy)/2);sx=supx;sy=supy;ix=infx;iy=infy;}
-    virtual ~Area(){delete waypoint;}
+    Area(float supx, float supy, float infx, float infy){sx=supx;sy=supy;ix=infx;iy=infy;}
+    virtual ~Area(){}
 
     bool checkinArea(float pjx, float pjy);
-    Waypoint* getWaypoint(){ return waypoint;}
+    std::vector<Waypoint*> getWaypoints(){ return waypoints;}
+
+    void addWaypoint(Waypoint* w);
+    
 };
