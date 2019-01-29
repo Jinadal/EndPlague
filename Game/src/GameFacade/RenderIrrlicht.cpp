@@ -59,6 +59,9 @@ float RenderIrrlicht::getFrameDeltaTime()
 
 float RenderIrrlicht::getCursorX()
 {
+    if(!map)
+        return 0.f;
+
     ITriangleSelector*  selector=smgr->createTriangleSelector(map->getMesh(), map);
     core::vector3df     outCollisionPoint;
     core::triangle3df   outTriangle;
@@ -78,7 +81,10 @@ float RenderIrrlicht::getCursorX()
 
 float RenderIrrlicht::getCursorY()
 {
-     ITriangleSelector*  selector=smgr->createTriangleSelector(map->getMesh(), map);
+    if(!map)
+        return 0.f;
+
+    ITriangleSelector*  selector=smgr->createTriangleSelector(map->getMesh(), map);
     core::vector3df     outCollisionPoint;
     core::triangle3df   outTriangle;
     ISceneNode*         outNode=nullptr;
