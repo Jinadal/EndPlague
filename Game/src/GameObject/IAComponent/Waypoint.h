@@ -1,16 +1,16 @@
 #pragma once
 #include <vector>
+#include "Area.h"
 
 class Waypoint
 {
 
     public:
-        Waypoint(int x, int y, bool ocupado){_x = x; _y = y; _ocupado = ocupado;}
+        Waypoint(float x, float y){_x = x; _y = y;}
 
         virtual ~Waypoint(){}
 
         float _x, _y;
-        bool _ocupado;
 
 };
 
@@ -32,6 +32,10 @@ struct Pointrecord {
     float costeactual;
 
 };
+struct pesoPath {
+    float peso;
+    std::vector<Conexion*> path;
+};
 
 class Grafo
 {
@@ -41,18 +45,42 @@ class Grafo
 
         std::vector<Conexion*> _conexiones;
 
-        void Initialice();
+        
 
         Waypoint* getNearestWaypoint(float X, float Y);
         std::vector<Conexion*> getConections(Waypoint* currentWaypoint);
 
-        std::vector<Conexion*> pathfindingDijkstra(Waypoint* currentWaypoint, Waypoint* objetiveWaypoint);
+
+        pesoPath* pathfindingDijkstra(Waypoint* currentWaypoint, Waypoint* objetiveWaypoint);
         Pointrecord* getSmallest(std::vector<Pointrecord*> list);
         Pointrecord* buscar(std::vector<Pointrecord*> list, Waypoint* nodo);
         bool estaEnLaLista(std::vector<Pointrecord*> list, Waypoint* nodo);
 
       
+        void addConexion(Waypoint* w1, Waypoint* w2);
 
 
 };
 
+class GPS
+{
+    private:
+        Grafo* graph;
+        std::vector<Area*> AML;
+        std::vector<Waypoint*> ways;
+
+
+    public: 
+        GPS(){graph = new Grafo();}
+        virtual ~GPS(){ delete graph;}
+
+        void addArea(float xsup, float ysup, float xinf, float yinf);
+        void addWaypoint(float coorX, float coorY);
+        void addWaypointToArea(int a, int w);
+        void addConexionToGraph(int w1, int w2);
+
+        void Initialice();
+
+       std::vector<float> getWay(float xi, float yi, float xf, float yf );
+
+};

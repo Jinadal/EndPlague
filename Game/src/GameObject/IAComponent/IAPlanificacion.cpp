@@ -74,3 +74,10 @@ bool IA_Plan_ChangeDirection::run()
 return false;
 
 }
+
+bool IA_Plan_HaveWaypoint::run()
+{
+    if(!owner->getComponent<IAComponent>()->hasWaypoint )return true;
+
+    return false;
+}

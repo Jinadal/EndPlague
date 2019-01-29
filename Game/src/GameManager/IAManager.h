@@ -1,14 +1,19 @@
 #pragma once
 #include "Manager.h"
 #include "IAComponent.h"
-class GameObject;
+#include "Waypoint.h"
+
+class Manager;
 class IAManager : public Manager{
     private:
-        IAManager():Manager(){}
+        IAManager():Manager(){
+           
+        }
         static IAManager *only_instance;
         GameObject* player;
+       
     public:
-        virtual ~IAManager(){only_instance=NULL;}
+        virtual ~IAManager(){only_instance=NULL; }
         //Constructor Singletone
         static IAManager *getInstance(){
             if(only_instance == NULL){only_instance = new IAManager();}
