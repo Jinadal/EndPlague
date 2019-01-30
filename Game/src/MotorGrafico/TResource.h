@@ -1,3 +1,4 @@
+#pragma once
 class TResource
 {
     protected:
@@ -6,6 +7,9 @@ class TResource
         TResource(){};
         ~TResource();
 
+        virtual bool loadResource() = 0;
+        virtual void draw() = 0;
+
         const char* getName(){ return name;};
-        void setNombre(char* n){ name = n;};
+        void setName(const char* n){ name = n;};
 };

@@ -3,9 +3,10 @@
 class TNode
 {
     private: 
+        TNode*              father;
         TEntity*            entity;
         std::vector<TNode*> child;
-        TNode*              father;
+
     public:
         //Constructors
         TNode();                                                //Node Root
