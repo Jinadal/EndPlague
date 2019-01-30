@@ -1,7 +1,11 @@
 class TResource
 {
+    protected:
+        const char* name;
     public:
-    private:
         TResource(){};
         ~TResource();
+
+        const char* getName(){ return name;};
+        void setNombre(char* n){ name = n;};
 };
