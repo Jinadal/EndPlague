@@ -4,7 +4,7 @@ class TEntity
         /* data */
     public:
         TEntity();
-        ~TEntity();
+        virtual ~TEntity();
 
         virtual void beginDraw() = 0;
         virtual void endDraw() = 0;

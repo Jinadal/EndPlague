@@ -7,19 +7,22 @@ class TNode
         std::vector<TNode*> child;
         TNode*              father;
     public:
-        TNode(){}
+        //Constructors
+        TNode();                                                //Node Root
+        TNode(TNode* f) : father(f) {}                          //Node no entity
+        TNode(TNode* f, TEntity* e) : father(f), entity(e) {}
         ~TNode(){}
         
-        int addChild(TNode* n);
-        int remChild(TNode*n);
-
+        bool addChild(TNode* n);
+        bool remChild(TNode*n);
+        TNode* searchChild(unsigned int n);
         //*********
         //GET & SET
         //*********
 
-        bool setEntity(TEntity*);
-        TEntity *getEntity();
-        TNode *getFather();
+        void setEntity(TEntity* e){ entity = e;};
+        TEntity *getEntity(){ return entity;};
+        TNode *getFather(){ return father;};
         
         void draw(); 
 };
