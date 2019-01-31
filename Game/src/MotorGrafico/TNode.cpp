@@ -17,6 +17,8 @@ bool TNode::remChild(TNode* n)
             //erase returns and iterator to de next position of the deleted
             //node or an exception if its out of range
             child.erase(child.begin()+i);
+            delete child[i]; //release memory
+            child.shrink_to_fit(); //memory adapter to the vector new size
             return true;
         }
     }
