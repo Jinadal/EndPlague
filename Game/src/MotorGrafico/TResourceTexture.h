@@ -6,6 +6,9 @@ class TResourceTexture : public TResource
 private:
     /* data */
 public:
-    TResourceTexture(/* args */);
-    ~TResourceTexture();
+    TResourceTexture(/* args */) = default;
+    ~TResourceTexture() = default;
+
+    bool loadResource(){return false;}; 
+    void draw(){};
 };

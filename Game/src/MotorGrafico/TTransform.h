@@ -17,7 +17,7 @@ class TTransform : public TEntity
         
         //Basic Transformations
         void translate(float x,float y,float z);
-        void rotate(float x,float y,float z,float w);
+        void rotate(float x,float y,float z);
         void scale(float x, float y, float z);
         
         //Advance Transformations

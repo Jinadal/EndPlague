@@ -1,9 +1,8 @@
 #include "TResource.h"
-#include "TResourceMesh.h"
-#include "TResourceMaterial.h"
-#include "TResourceTexture.h"
 #include <vector>
-
+class TResourceMesh;
+class TResourceMaterial;
+class TResourceTexture;
 class TResourceManager
 {
 private:
@@ -17,6 +16,6 @@ public:
     ~TResourceManager();
 
     TResourceMesh* getResourceMesh(const char* name);
-    TResource* getResourceMaterial(char* name);
-    TResource* getResourceTexture(char* name);
+    TResourceMaterial* getResourceMaterial(const char* name);
+    TResourceTexture* getResourceTexture(const char* name);
 };
