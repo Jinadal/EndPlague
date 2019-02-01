@@ -32,8 +32,8 @@ IrrlichtLibraries := -L/usr/include/irrlicht -lIrrlicht
 BulletHome := -I/usr/include/bullet
 BulletLibraries := -L/usr/lib64 -lLinearMath -lBulletDynamics -lBulletCollision
 
-#FmodHome := -Iinclude/fmod
-#FmodLibraries := -Llib -lfmodstudio -lfmod
+FmodHome := -Iinclude/fmod
+FmodLibraries := -Llib -lfmodstudio -lfmod
 
 SfmlHome := -Iusr/include/SFML
 SfmlLibraries := -Llib -lsfml-system -lsfml-window -lsfml-graphics
