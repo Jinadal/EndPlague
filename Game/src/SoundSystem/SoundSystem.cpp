@@ -1,7 +1,5 @@
 #include "SoundSystem.h"
 
-
-
 Implementation::Implementation() {
     mpStudioSystem = NULL;
     CAudioEngine::ErrorCheck(FMOD::Studio::System::create(&mpStudioSystem));
@@ -19,7 +17,7 @@ Implementation::~Implementation() {
 
 
 void Implementation::Update() {
-    vector<ChannelMap::iterator> pStoppedChannels;
+    std::vector<ChannelMap::iterator> pStoppedChannels;
     for (auto it = mChannels.begin(), itEnd = mChannels.end(); it != itEnd; ++it)
     {
         bool bIsPlaying = false;
@@ -80,7 +78,7 @@ void CAudioEngine::UnLoadSound(const std::string& strSoundName)
 }
 
 
-int CAudioEngine::PlaySounds(const string& strSoundName, const Vector3& vPosition, float fVolumedB)
+int CAudioEngine::PlaySounds(const std::string& strSoundName, const Vector3& vPosition, float fVolumedB)
 {
     int nChannelId = sgpImplementation->mnNextChannelId++;
     auto tFoundIt = sgpImplementation->mSounds.find(strSoundName);
@@ -160,7 +158,7 @@ void CAudioEngine::LoadEvent(const std::string& strEventName) {
 }
 
 
-void CAudioEngine::PlayEvent(const string &strEventName) {
+void CAudioEngine::PlayEvent(const std::string &strEventName) {
     auto tFoundit = sgpImplementation->mEvents.find(strEventName);
     if (tFoundit == sgpImplementation->mEvents.end()){
         LoadEvent(strEventName);
@@ -172,7 +170,7 @@ void CAudioEngine::PlayEvent(const string &strEventName) {
 }
 
 
-void CAudioEngine::StopEvent(const string &strEventName, bool bImmediate) {
+void CAudioEngine::StopEvent(const std::string &strEventName, bool bImmediate) {
     auto tFoundIt = sgpImplementation->mEvents.find(strEventName);
     if (tFoundIt == sgpImplementation->mEvents.end())
         return;
@@ -182,7 +180,7 @@ void CAudioEngine::StopEvent(const string &strEventName, bool bImmediate) {
     CAudioEngine::ErrorCheck(tFoundIt->second->stop(eMode));
 }
 
-bool CAudioEngine::IsEventPlaying(const string &strEventName) const {
+bool CAudioEngine::IsEventPlaying(const std::string &strEventName) const {
     auto tFoundIt = sgpImplementation->mEvents.find(strEventName);
     if (tFoundIt == sgpImplementation->mEvents.end())
         return false;
@@ -195,7 +193,7 @@ bool CAudioEngine::IsEventPlaying(const string &strEventName) const {
 }
 
 
-void CAudioEngine::GetEventParameter(const string &strEventName, const string &strParameterName, float* parameter) {
+void CAudioEngine::GetEventParameter(const std::string &strEventName, const std::string &strParameterName, float* parameter) {
     auto tFoundIt = sgpImplementation->mEvents.find(strEventName);
     if (tFoundIt == sgpImplementation->mEvents.end())
         return;
@@ -205,7 +203,7 @@ void CAudioEngine::GetEventParameter(const string &strEventName, const string &s
     CAudioEngine::ErrorCheck(pParameter->getValue(parameter));
 }
 
-void CAudioEngine::SetEventParameter(const string &strEventName, const string &strParameterName, float fValue) {
+void CAudioEngine::SetEventParameter(const std::string &strEventName, const std::string &strParameterName, float fValue) {
     auto tFoundIt = sgpImplementation->mEvents.find(strEventName);
     if (tFoundIt == sgpImplementation->mEvents.end())
         return;
@@ -237,7 +235,7 @@ float  CAudioEngine::VolumeTodB(float volume)
 
 int CAudioEngine::ErrorCheck(FMOD_RESULT result) {
     if (result != FMOD_OK){
-        cout << "FMOD ERROR " << result << endl;
+        //cout << "FMOD ERROR " << result << endl;
         return 1;
     }
     // cout << "FMOD all good" << endl;
