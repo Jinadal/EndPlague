@@ -18,7 +18,7 @@ bool TNode::remChild(TNode* n)
             //node or an exception if its out of range
             child.erase(child.begin()+i);
             delete child[i]; //release memory
-            child.shrink_to_fit(); //memory adapter to the vector new size
+            child.shrink_to_fit(); //memory adapted to the vector new size
             return true;
         }
     }
