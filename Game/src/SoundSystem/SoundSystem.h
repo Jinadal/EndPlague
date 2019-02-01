@@ -43,6 +43,9 @@ struct Implementation {
 
 class CAudioEngine {
 public:
+
+    CAudioEngine(){}
+    virtual ~CAudioEngine(){}
     static void Init();
     static void Update();
     static void Shutdown();
