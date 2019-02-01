@@ -4,9 +4,7 @@
 #include <map>
 #include <vector>
 #include <math.h>
-#include <iostream>
 
-using namespace std;
 
 
 struct Vector3 {
@@ -28,10 +26,10 @@ struct Implementation {
 
     int mnNextChannelId;
 
-    typedef map<string, FMOD::Sound*> SoundMap;
-    typedef map<int, FMOD::Channel*> ChannelMap;
-    typedef map<string, FMOD::Studio::EventInstance*> EventMap;
-    typedef map<string, FMOD::Studio::Bank*> BankMap;
+    typedef std::map<std::string, FMOD::Sound*> SoundMap;
+    typedef std::map<int, FMOD::Channel*> ChannelMap;
+    typedef std::map<std::string, FMOD::Studio::EventInstance*> EventMap;
+    typedef std::map<std::string, FMOD::Studio::Bank*> BankMap;
 
     BankMap mBanks;
     EventMap mEvents;
@@ -51,22 +49,22 @@ public:
     static void Shutdown();
     static int ErrorCheck(FMOD_RESULT result);
 
-    void LoadBank(const string& strBankName, FMOD_STUDIO_LOAD_BANK_FLAGS flags);
-    void LoadEvent(const string& strEventName);
-    void LoadSound(const string& strSoundName, bool b3d = true, bool bLooping = false, bool bStream = false);
-    void UnLoadSound(const string& strSoundName);
+    void LoadBank(const std::string& strBankName, FMOD_STUDIO_LOAD_BANK_FLAGS flags);
+    void LoadEvent(const std::string& strEventName);
+    void LoadSound(const std::string& strSoundName, bool b3d = true, bool bLooping = false, bool bStream = false);
+    void UnLoadSound(const std::string& strSoundName);
     void Set3dListenerAndOrientation(const Vector3& vPos = Vector3{ 0, 0, 0 }, float fVolumedB = 0.0f);
-    int PlaySounds(const string& strSoundName, const Vector3& vPos = Vector3{ 0, 0, 0 }, float fVolumedB = 0.0f);
-    void PlayEvent(const string& strEventName);
+    int PlaySounds(const std::string& strSoundName, const Vector3& vPos = Vector3{ 0, 0, 0 }, float fVolumedB = 0.0f);
+    void PlayEvent(const std::string& strEventName);
     void StopChannel(int nChannelId);
-    void StopEvent(const string& strEventName, bool bImmediate = false);
-    void GetEventParameter(const string& strEventName, const string& strEventParameter, float* parameter);
-    void SetEventParameter(const string& strEventName, const string& strParameterName, float fValue);
+    void StopEvent(const std::string& strEventName, bool bImmediate = false);
+    void GetEventParameter(const std::string& strEventName, const std::string& strEventParameter, float* parameter);
+    void SetEventParameter(const std::string& strEventName, const std::string& strParameterName, float fValue);
     void StopAllChannels();
     void SetChannel3dPosition(int nChannelId, const Vector3& vPosition);
     void SetChannelVolume(int nChannelId, float fVolumedB);
     bool IsPlaying(int nChannelId) const;
-    bool IsEventPlaying(const string& strEventName) const;
+    bool IsEventPlaying(const std::string& strEventName) const;
     float dbToVolume(float db);
     float VolumeTodB(float volume);
     FMOD_VECTOR VectorToFmod(const Vector3& vPosition);
