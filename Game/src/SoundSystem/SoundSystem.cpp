@@ -2,17 +2,17 @@
 
 Implementation::Implementation() {
     mpStudioSystem = NULL;
-    CAudioEngine::ErrorCheck(FMOD::Studio::System::create(&mpStudioSystem));
-    CAudioEngine::ErrorCheck(mpStudioSystem->initialize(32, FMOD_STUDIO_INIT_LIVEUPDATE, FMOD_INIT_PROFILE_ENABLE, NULL));
+   FMOD::Studio::System::create(&mpStudioSystem);
+    mpStudioSystem->initialize(32, FMOD_STUDIO_INIT_LIVEUPDATE, FMOD_INIT_PROFILE_ENABLE, NULL);
 
     mpSystem = NULL;
-    CAudioEngine::ErrorCheck(mpStudioSystem->getLowLevelSystem(&mpSystem));
+    mpStudioSystem->getLowLevelSystem(&mpSystem);
 }
 
 
 Implementation::~Implementation() {
-    CAudioEngine::ErrorCheck(mpStudioSystem->unloadAll());
-    CAudioEngine::ErrorCheck(mpStudioSystem->release());
+   mpStudioSystem->unloadAll();
+    mpStudioSystem->release();
 }
 
 
@@ -31,7 +31,7 @@ void Implementation::Update() {
     {
          mChannels.erase(it);
     }
-    CAudioEngine::ErrorCheck(mpStudioSystem->update());
+    mpStudioSystem->update();
 }
 
 
@@ -58,7 +58,7 @@ void CAudioEngine::LoadSound(const std::string& strSoundName, bool b3d, bool bLo
     eMode |= bStream ? FMOD_CREATESTREAM : FMOD_CREATECOMPRESSEDSAMPLE;
 
     FMOD::Sound* pSound = nullptr;
-    CAudioEngine::ErrorCheck(sgpImplementation->mpSystem->createSound(strSoundName.c_str(), eMode, nullptr, &pSound));
+    sgpImplementation->mpSystem->createSound(strSoundName.c_str(), eMode, nullptr, &pSound);
     if (pSound){
         sgpImplementation->mSounds[strSoundName] = pSound;
     }
@@ -92,17 +92,17 @@ int CAudioEngine::PlaySounds(const std::string& strSoundName, const Vector3& vPo
         }
     }
     FMOD::Channel* pChannel = nullptr;
-    CAudioEngine::ErrorCheck(sgpImplementation->mpSystem->playSound(tFoundIt->second, nullptr, true, &pChannel));
+    sgpImplementation->mpSystem->playSound(tFoundIt->second, nullptr, true, &pChannel);
     if (pChannel)
     {
         FMOD_MODE currMode;
         tFoundIt->second->getMode(&currMode);
         if (currMode & FMOD_3D){
             FMOD_VECTOR position = VectorToFmod(vPosition);
-            CAudioEngine::ErrorCheck(pChannel->set3DAttributes(&position, nullptr));
+            pChannel->set3DAttributes(&position, nullptr);
         }
-        CAudioEngine::ErrorCheck(pChannel->setVolume(dbToVolume(fVolumedB)));
-        CAudioEngine::ErrorCheck(pChannel->setPaused(false));
+        pChannel->setVolume(dbToVolume(fVolumedB));
+        pChannel->setPaused(false);
         sgpImplementation->mChannels[nChannelId] = pChannel;
     }
     return nChannelId;
@@ -116,7 +116,7 @@ void CAudioEngine::SetChannel3dPosition(int nChannelId, const Vector3& vPosition
         return;
 
     FMOD_VECTOR position = VectorToFmod(vPosition);
-    CAudioEngine::ErrorCheck(tFoundIt->second->set3DAttributes(&position, NULL));
+    tFoundIt->second->set3DAttributes(&position, NULL);
 }
 
 void CAudioEngine::SetChannelVolume(int nChannelId, float fVolumedB)
@@ -125,7 +125,7 @@ void CAudioEngine::SetChannelVolume(int nChannelId, float fVolumedB)
     if (tFoundIt == sgpImplementation->mChannels.end())
         return;
 
-    CAudioEngine::ErrorCheck(tFoundIt->second->setVolume(dbToVolume(fVolumedB)));
+    tFoundIt->second->setVolume(dbToVolume(fVolumedB));
 }
 
 
@@ -134,7 +134,7 @@ void CAudioEngine::LoadBank(const std::string& strBankName, FMOD_STUDIO_LOAD_BAN
     if (tFoundIt != sgpImplementation->mBanks.end())
         return;
     FMOD::Studio::Bank* pBank;
-    CAudioEngine::ErrorCheck(sgpImplementation->mpStudioSystem->loadBankFile(strBankName.c_str(), flags, &pBank));
+    sgpImplementation->mpStudioSystem->loadBankFile(strBankName.c_str(), flags, &pBank);
     if (pBank) {
         sgpImplementation->mBanks[strBankName] = pBank;
     }
@@ -147,10 +147,10 @@ void CAudioEngine::LoadEvent(const std::string& strEventName) {
     if (tFoundit != sgpImplementation->mEvents.end())
         return;
     FMOD::Studio::EventDescription* pEventDescription = NULL;
-    CAudioEngine::ErrorCheck(sgpImplementation->mpStudioSystem->getEvent(strEventName.c_str(), &pEventDescription));
+    sgpImplementation->mpStudioSystem->getEvent(strEventName.c_str(), &pEventDescription);
     if (pEventDescription){
         FMOD::Studio::EventInstance* pEventInstance = NULL;
-        CAudioEngine::ErrorCheck(pEventDescription->createInstance(&pEventInstance));
+        pEventDescription->createInstance(&pEventInstance);
         if (pEventInstance){
             sgpImplementation->mEvents[strEventName] = pEventInstance;
         }
@@ -177,7 +177,7 @@ void CAudioEngine::StopEvent(const std::string &strEventName, bool bImmediate) {
 
     FMOD_STUDIO_STOP_MODE eMode;
     eMode = bImmediate ? FMOD_STUDIO_STOP_IMMEDIATE : FMOD_STUDIO_STOP_ALLOWFADEOUT;
-    CAudioEngine::ErrorCheck(tFoundIt->second->stop(eMode));
+    tFoundIt->second->stop(eMode);
 }
 
 bool CAudioEngine::IsEventPlaying(const std::string &strEventName) const {
@@ -199,8 +199,8 @@ void CAudioEngine::GetEventParameter(const std::string &strEventName, const std:
         return;
 
     FMOD::Studio::ParameterInstance* pParameter = NULL;
-    CAudioEngine::ErrorCheck(tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter));
-    CAudioEngine::ErrorCheck(pParameter->getValue(parameter));
+   tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter);
+    pParameter->getValue(parameter);
 }
 
 void CAudioEngine::SetEventParameter(const std::string &strEventName, const std::string &strParameterName, float fValue) {
@@ -209,8 +209,8 @@ void CAudioEngine::SetEventParameter(const std::string &strEventName, const std:
         return;
 
     FMOD::Studio::ParameterInstance* pParameter = NULL;
-    CAudioEngine::ErrorCheck(tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter));
-    CAudioEngine::ErrorCheck(pParameter->setValue(fValue));
+    tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter);
+    pParameter->setValue(fValue);
 }
 
 
