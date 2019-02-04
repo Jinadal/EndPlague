@@ -6,7 +6,11 @@ enum ItemTypes
     ITEM_0,
     ITEM_1,
     ITEM_2,
-    ITEM_3
+    ITEM_3,
+    ITEM_4, 
+    ITEM_5, 
+    ITEM_6,
+    ITEM_7
 };
 
 struct IType{
@@ -21,7 +25,7 @@ struct IType{
 class ItemFabric
 {
     private:
-        IType item_types [4] = 
+        IType item_types [8] = 
         {
             {
                 ITEM_0,
@@ -48,6 +52,34 @@ class ItemFabric
                 (char*)"res/ITEM.obj",
                 (char*)"res/ITEM.bmp", 
                 3.f
+            },
+            {
+                ITEM_4,
+                (char*)"res/ITEM.obj",
+                (char*)"res/ITEM.bmp", 
+                0.f
+
+            },
+            {
+                ITEM_5,
+                (char*)"res/ITEM.obj",
+                (char*)"res/ITEM.bmp", 
+                0.f
+
+            },
+            {
+                ITEM_6,
+                (char*)"res/ITEM.obj",
+                (char*)"res/ITEM.bmp", 
+                0.f
+
+            },
+            {
+                ITEM_7,
+                (char*)"res/ITEM.obj",
+                (char*)"res/ITEM.bmp", 
+                0.f
+
             }
         };
 

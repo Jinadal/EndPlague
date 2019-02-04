@@ -44,11 +44,27 @@ void StorageComponent::applyEffect(ItemTypes Type)
             break;
 
         case ITEM_2:
-            booster();
+            crossbow();
             break;
 
         case ITEM_3:
-            melon();
+            potion();
+            break;
+        
+        case ITEM_4:
+            sword();
+            break;
+
+        case ITEM_5:
+            peak();
+            break;
+
+        case ITEM_6:
+            machete();
+            break;
+
+        case ITEM_7:
+            shield();
             break;
     
         default:
@@ -68,7 +84,7 @@ void StorageComponent::throwable()
 
 }
 
-void StorageComponent::melon()
+void StorageComponent::potion()
 {
     //it gives you life
     if(gameObject->getComponent<LifeComponent>())
@@ -78,7 +94,7 @@ void StorageComponent::melon()
     
 }
 
-void StorageComponent::booster()
+void StorageComponent::crossbow()
 {
     //makes you shoot faster
     if(gameObject->getComponent<ShootComponent>())
@@ -88,3 +104,22 @@ void StorageComponent::booster()
     
 }
 
+void StorageComponent::machete()
+{
+    //Ataque básico cuerpo a cuerpo
+}
+
+void StorageComponent::sword()
+{
+    //++ataque cuerpo a cuerpo
+}
+
+void StorageComponent::peak()
+{
+    //+ataque cuerpo a cuerpo
+}
+
+void StorageComponent::shield()
+{
+    //+% de vida no recuperable
+}
