@@ -3,7 +3,7 @@
 #include "EnemyFabric.h"
 
 
-#define SPAWN_CADENCIA 10.f
+#define SPAWN_CADENCIA 4.f
 
 class GameObject;
 class SpawnComponent : public Component{

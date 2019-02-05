@@ -8,7 +8,7 @@
 #include "ShootManager.h"
 #include "ScoreManager.h"
 #include "IAComponent.h"
-
+#include "DropperManager.h"
 
 GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyType type)
 {
@@ -27,6 +27,7 @@ GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyT
     primero->getComponent<IAComponent>()->Initialice();
     LifeManager::getInstance()->createComponent(primero, enemytypes[type].life);//Vida
     ShootManager::getInstance()->createComponent(primero, .9f, 2.f, PROJECTILE_1);//Cadencia y Tipo
+    DropperManager::getInstance()->createComponent(primero);
 
     return primero;
 }

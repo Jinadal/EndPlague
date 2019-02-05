@@ -31,7 +31,7 @@ void FabricVillage::loadLevel()
 
 
     //ADDING A PLAYER 1 x 1 x 2
-    player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    this->player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
@@ -108,7 +108,6 @@ void FabricVillage::loadLevel()
     BPhysicManager::getInstance()->createComponent(item2, .5f, .5f, .5f, 1.f, 1);
     ItemManager::getInstance()->createComponent(item2, ITEM_2);
     
-
     //Adding an ITEM3
     GameObject* item3 = GameResource::getInstance()->createGameObject(0.f, 9.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
@@ -116,7 +115,4 @@ void FabricVillage::loadLevel()
     BPhysicManager::getInstance()->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
     ItemManager::getInstance()->createComponent(item3, ITEM_3);
     
-
-
-
 }

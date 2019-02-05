@@ -5,6 +5,7 @@ class MenuState : public IGameState
 {
     private:
         static MenuState* only_instance;
+        MenuState():IGameState(){};
 
     public:
 

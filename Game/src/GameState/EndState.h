@@ -5,7 +5,7 @@ class EndState : public IGameState
 {
     private:
     static EndState* only_instance;
-
+    EndState():IGameState(){};
     public:
 
     static EndState *getInstance(){

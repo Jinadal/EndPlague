@@ -5,6 +5,7 @@ class CameraManager : public Manager{
     private:
         CameraManager():Manager(){}
         static CameraManager* only_instance;
+
     public:
         static CameraManager* getInstance(){
             if(only_instance == NULL)

@@ -5,7 +5,7 @@ class PauseState : public IGameState
 {
     private:
     static PauseState* only_instance;
-    
+    PauseState():IGameState(){};
 
     public:
 
