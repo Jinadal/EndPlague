@@ -100,14 +100,14 @@ void IAComponent::Initialice(){
     IA_Plan_InSight* aRango = new IA_Plan_InSight(gameObject, main);
     decideSeg->addChild(aRango);
 
-    Secuencia* hasAWaypoint = new Secuencia();
-    nodoRaiz->addChild(hasAWaypoint);
-
-    IA_Plan_HaveWaypoint* checkWay = new IA_Plan_HaveWaypoint(gameObject);
-    hasAWaypoint->addChild(checkWay);
-
-    IA_Graf_SetAWaypoint* setWay = new IA_Graf_SetAWaypoint(gameObject);
-    hasAWaypoint->addChild(setWay);
+    //Secuencia* hasAWaypoint = new Secuencia();
+    //nodoRaiz->addChild(hasAWaypoint);
+//
+    //IA_Plan_HaveWaypoint* checkWay = new IA_Plan_HaveWaypoint(gameObject);
+    //hasAWaypoint->addChild(checkWay);
+//
+    //IA_Graf_SetAWaypoint* setWay = new IA_Graf_SetAWaypoint(gameObject);
+    //hasAWaypoint->addChild(setWay);
 
 
   ///////////////////////////////////  
