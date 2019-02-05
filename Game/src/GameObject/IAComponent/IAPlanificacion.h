@@ -40,15 +40,3 @@ class IA_Plan_ChangeDirection : public Nodo
 
 };
 
-class IA_Plan_HaveWaypoint : public Nodo
-{
-
-    public:
-
-    IA_Plan_HaveWaypoint(GameObject* o){owner = o;}
-    virtual ~IA_Plan_HaveWaypoint(){}
-
-    bool run() override;
-    GameObject * owner;
-
-};

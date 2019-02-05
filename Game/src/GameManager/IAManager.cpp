@@ -1,11 +1,16 @@
 #include "IAManager.h"
 #include "IAComponent.h"
 #include "GameObject.h"
+#include "Waypoint.h"
 
 IAManager* IAManager::only_instance = NULL;
 
 
-
+IAManager::IAManager():Manager()
+{
+    gps = new GPS();
+    gps->Initialice();
+}
 void IAManager::createComponent(GameObject *owner)
 {
     components.push_back(new IAComponent(owner,this, player));

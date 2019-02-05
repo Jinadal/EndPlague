@@ -82,6 +82,6 @@ class GPS
 
         void Initialice();
 
-       std::vector<float> getWay(float xi, float yi, float xf, float yf );
-
+        std::vector<float> getWay(float xi, float yi, float xf, float yf );
+        std::vector<Area*> getAreas(){return AML;}
 };

@@ -17,7 +17,17 @@ class Component{
     //Getter
     GameObject* getGameObject(){return gameObject;}
 
-    Manager* getManager(){return manager;}
+   // Manager* getManager(){return manager;}
+
+    template<typename T>
+    T* getManager() {
+        
+            if(T* cm = dynamic_cast<T*>(manager)){
+                return cm;
+            }
+          
+        return nullptr;
+    }
    
   protected:
       GameObject* gameObject;

@@ -31,7 +31,7 @@ void FabricVillage::loadLevel()
 
 
     //ADDING A PLAYER 1 x 1 x 2
-    player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    player = GameResource::getInstance()->createGameObject(1.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
@@ -39,7 +39,7 @@ void FabricVillage::loadLevel()
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
     LifeManager::getInstance()->createComponent(player, 100.f);
-    player->getComponent<LifeComponent>()->setDecreases(true);
+    player->getComponent<LifeComponent>()->setDecreases(false);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -63,10 +63,10 @@ void FabricVillage::loadLevel()
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 1);
 
 
-
+/*
 
     //ADDING A SPAWN2 //EL MESH MIDE 4 x 4 x 4
-    GameObject* spawn2 = GameResource::getInstance()->createGameObject(-20.f, -10.f, -1.f, -90.f);
+    GameObject* spawn2 = GameResource::getInstance()->createGameObject(-10.f, -10.f, -1.f, -90.f);
     RenderManager::getInstance()->createComponent(spawn2, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn2->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn2, 4.f, ENEMY_2);
@@ -90,7 +90,7 @@ void FabricVillage::loadLevel()
     LifeManager::getInstance()->createComponent(spawn4, 10000.f);
     BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 0.f, 1);
 
-
+*/
 
     
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5

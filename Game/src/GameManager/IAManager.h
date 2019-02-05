@@ -2,13 +2,13 @@
 #include "Manager.h"
 
 class GameObject;
+class GPS;
 class IAManager : public Manager{
     private:
-        IAManager():Manager(){
-           
-        }
+        IAManager();
         static IAManager *only_instance;
         GameObject* player;
+        GPS* gps;
        
     public:
         virtual ~IAManager(){only_instance=NULL; }
@@ -21,5 +21,5 @@ class IAManager : public Manager{
         void createComponent(GameObject* owner);
         void updateAll(float dt);
         GameObject* getPlayer(){return player;}
-
+        GPS* getGPS(){return gps;}
 };

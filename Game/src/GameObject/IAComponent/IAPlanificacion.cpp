@@ -18,7 +18,7 @@ bool IA_Plan_InSight::run()
     float dx = main->getX() - owner->getX();
     float dy = main->getY() - owner->getY();
 
-    if(fabs(dx) <= 10  && fabs(dy) <= 10){
+    if(fabs(dx) <= 30  && fabs(dy) <= 30){
         if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ())
             && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()+1)
             && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()-1))
@@ -70,9 +70,3 @@ return false;
 
 }
 
-bool IA_Plan_HaveWaypoint::run()
-{
-    if(!owner->getComponent<IAComponent>()->hasWaypoint )return true;
-
-    return false;
-}

@@ -19,7 +19,7 @@ return false;
 bool MoverArriba::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(0,1,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->moveObject(0,1,0,XtoGo,YtoGo);
     owner->getComponent<BPhysicComponent>()->setvMax(5.f);
 
     return true;
@@ -29,7 +29,7 @@ bool MoverArriba::run(){
 bool MoverAbajo::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(0,-1,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->moveObject(0,-1,0,XtoGo,YtoGo);
     owner->getComponent<BPhysicComponent>()->setvMax(5.f);
 
     return true;
@@ -37,7 +37,7 @@ bool MoverAbajo::run(){
 bool MoverIzda::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(-1,0,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->moveObject(-1,0,0,XtoGo,YtoGo);
     owner->getComponent<BPhysicComponent>()->setvMax(5.f);
 
     
@@ -46,7 +46,7 @@ bool MoverIzda::run(){
 bool MoverDcha::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(1,0,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->moveObject(1,0,0,XtoGo,YtoGo);
     owner->getComponent<BPhysicComponent>()->setvMax(5.f);
 
     return true;

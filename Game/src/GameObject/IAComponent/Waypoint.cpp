@@ -5,57 +5,51 @@
 void GPS::Initialice()
 {
 
-    addWaypoint(10,5);
-    addWaypoint(5,10);
-    addWaypoint(10,15);
-    addWaypoint(15,10);
-    addWaypoint(20,15);
+    addWaypoint(0,0);
+   // addWaypoint(5,0);
+    addWaypoint(0,-10);
+    addWaypoint(-7,5);
+   
 
 
 
-    addArea(0,0, 10, 10);
-    addArea(10,0, 20, 10);
-    addArea(0,10, 10, 20);
-    addArea(10,10, 20, 20);
-    addArea(20,10, 30, 20);
+    addArea(-15,5, 0, -5);
+    addArea(0,5, 15, -5);
+    addArea(-15,-5, 0, -15);
+    addArea(0,-5, 15, -15);
+    
 
 
 
     addWaypointToArea(0,0);
-    addWaypointToArea(0,1);
+    addWaypointToArea(0,2);
 
     addWaypointToArea(1,0);
-    addWaypointToArea(1,3);
+  //  addWaypointToArea(1,1);
 
-    addWaypointToArea(2,1);
     addWaypointToArea(2,2);
+    addWaypointToArea(2,1);
 
-    addWaypointToArea(3,2);
-    addWaypointToArea(3,3);
-    addWaypointToArea(3,4);
-
-    addWaypointToArea(4,4);
-
+  //  addWaypointToArea(3,1);
+    addWaypointToArea(3,1);
+ 
 
 
 
-    addConexionToGraph(0,1);
+
+    //addConexionToGraph(0,1);
    // addConexionToGraph(1,0);
 
     addConexionToGraph(1,2);
     //addConexionToGraph(2,1);
 
-    addConexionToGraph(0,3);
+    addConexionToGraph(0,2);
    //addConexionToGraph(3,0);
 
-    addConexionToGraph(2,3);
+    //addConexionToGraph(2,3);
     //addConexionToGraph(3,2);
 
-    addConexionToGraph(2,4);
-    //addConexionToGraph(4,2);
-
-    addConexionToGraph(3,4);
-   // addConexionToGraph(4,3);
+    
 
 /*
     addWaypoint(5,10);
@@ -229,7 +223,7 @@ pesoPath* Grafo::pathfindingDijkstra(Waypoint* startWaypoint, Waypoint* objetive
                    open.push_back(newRecord); 
                    continue;
                 }    
-//AQUI SE LLENA OPEN DE BASURA Y NO SE PORQUE
+
               endRecord->costeactual = endNodeCost;   //we save the last connection with less cost
                endRecord->connection = (*iter);        //most optimal connection at the moment from current point
                 if(!estaEnLaLista(open, endNode))       //we add to open list the new node

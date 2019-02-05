@@ -19,13 +19,14 @@ class MoverArriba : public Nodo
     
     public:
 
-    MoverArriba(GameObject * o, GameObject * m){owner = o; main = m;}
+    MoverArriba(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
     virtual ~MoverArriba(){}
 
     bool run() override;
 
 GameObject * owner;
-GameObject * main;
+float XtoGo;
+float YtoGo;
 
 };
 class MoverIzda : public Nodo
@@ -33,13 +34,14 @@ class MoverIzda : public Nodo
     
     public:
 
-    MoverIzda(GameObject * o, GameObject * m){owner = o;main = m;}
+    MoverIzda(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
     virtual ~MoverIzda(){}
 
     bool run() override;
 
 GameObject * owner;
-GameObject * main;
+float XtoGo;
+float YtoGo;
 };
 
 class MoverDcha : public Nodo
@@ -47,13 +49,14 @@ class MoverDcha : public Nodo
     
     public:
 
-    MoverDcha(GameObject * o, GameObject * m){owner = o; main = m;}
+    MoverDcha(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
     virtual ~MoverDcha(){}
 
     bool run() override;
 
 GameObject * owner;
-GameObject * main;
+float XtoGo;
+float YtoGo;
 };
 
 class MoverAbajo : public Nodo
@@ -61,11 +64,12 @@ class MoverAbajo : public Nodo
     
     public:
 
-    MoverAbajo(GameObject * o, GameObject * m){owner = o; main = m;}
+    MoverAbajo(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
     virtual ~MoverAbajo(){}
 
     bool run() override;
 
 GameObject * owner;
-GameObject * main;
+float XtoGo;
+float YtoGo;
 };

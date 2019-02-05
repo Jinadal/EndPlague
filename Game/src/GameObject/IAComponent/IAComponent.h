@@ -22,10 +22,7 @@ class IAComponent : public Component
     GameObject* main;
 
     bool didIcollide = false;
-    bool hasWaypoint = false;
+    bool onRoute = false;
 
-    Waypoint * waypoint;
-
-    Grafo* grafo;
-
+    std::vector<float> route;
 };
