@@ -7,7 +7,6 @@
 #include "ProjectileManager.h"
 #include "GameObject.h"
 
-
 #define PI 3.14159265
 
 GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, ProjectileType type)

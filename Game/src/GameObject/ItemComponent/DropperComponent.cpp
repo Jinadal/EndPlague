@@ -12,49 +12,36 @@ void DropperComponent::dropItem()
     ItemFabric* fabric = new ItemFabric();
     float p = rand()/(RAND_MAX/(100.f)); 
 
-    if(p<P_ITEM1){
+    if(p<P_POTION){
         fabric->createItem(gameObject->getX(),
                             gameObject->getY(),
                             gameObject->getZ(),
                             gameObject->getRZ(),
-                            ITEM_1);
-    }else if(p<P_ITEM2){
+                            POTION);
+    }else if(p<AXE){
         fabric->createItem(gameObject->getX(),
                             gameObject->getY(),
                             gameObject->getZ(),
                             gameObject->getRZ(),
-                            ITEM_2);
-    }else if(p<P_ITEM3){
+                            AXE);
+    }else if(p<P_PEAK){
         fabric->createItem(gameObject->getX(),
                             gameObject->getY(),
                             gameObject->getZ(),
                             gameObject->getRZ(),
-                            ITEM_3);
-    }else if(p<P_ITEM4){
+                            PEAK);
+    }else if(p<P_CROSSBOW){
         fabric->createItem(gameObject->getX(),
                             gameObject->getY(),
                             gameObject->getZ(),
                             gameObject->getRZ(),
-                            ITEM_4);
-    }else if(p<P_ITEM5){
+                            CROSSBOW);
+    }else if(p<P_SHIELD){
         fabric->createItem(gameObject->getX(),
                             gameObject->getY(),
                             gameObject->getZ(),
                             gameObject->getRZ(),
-                            ITEM_5);
-    }else if(p<P_ITEM6){
-        fabric->createItem(gameObject->getX(),
-                            gameObject->getY(),
-                            gameObject->getZ(),
-                            gameObject->getRZ(),
-                            ITEM_6);
-    }else if(p<P_ITEM7){
-        fabric->createItem(gameObject->getX(),
-                            gameObject->getY(),
-                            gameObject->getZ(),
-                            gameObject->getRZ(),
-                            ITEM_7);
+                            SHIELD);
     }
-
     delete fabric;
 }

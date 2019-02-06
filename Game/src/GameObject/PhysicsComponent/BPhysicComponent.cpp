@@ -1,5 +1,5 @@
 #include "BPhysicComponent.h"
-#define PI 3.14159265
+
 
 
 void BPhysicComponent::update()
@@ -9,10 +9,19 @@ void BPhysicComponent::update()
     gameObject->setY(Point[1]);
     gameObject->setZ(Point[2]);
 
-    btVector3 rotation = rbody->getTotalTorque();
-    gameObject->setRX(rotation[0]);
-    gameObject->setRY(rotation[1]);
-    gameObject->setRZ(rotation[2]);
+    btQuaternion mRotation;
+    btTransform mTransform;
+    mTransform = rbody->getWorldTransform();
+    mRotation = mTransform.getRotation();
+    btScalar yawZ, pitchY, rollX;
+    mRotation.getEulerZYX(yawZ, pitchY, rollX);
+    
+
+	// roll (x-axis rotation)
+	
+    gameObject->setRX(rollX*180/PI);
+    gameObject->setRY(pitchY*180/PI);
+    gameObject->setRZ(yawZ*180/PI);
 
 }
 
@@ -34,6 +43,7 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
     else if(y>0)
         vY = 1;
 
+
     //Comprobar vMax
     float length = sqrt(pow(vX, 2) + pow(vY, 2));
     if(length!=0.f){
@@ -50,7 +60,15 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
     if (rZ < 0)
         rZ += 360;
     rbody->setLinearVelocity(btVector3(vX, vY, z));
-    rbody->applyTorque(btVector3(0, 0, rZ));
+
+    btTransform tr = rbody->getWorldTransform();
+    btQuaternion quat;
+    quat.setEuler(0,0, rZ*PI/180); //or quat.setEulerZYX depending on the ordering you want
+    tr.setRotation(quat);
+
+    rbody->setCenterOfMassTransform(tr);
+
+    //rbody->applyTorque(btVector3(0, 0, rZ));
 }
 
 

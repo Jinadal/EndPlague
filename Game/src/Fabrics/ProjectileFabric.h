@@ -4,8 +4,9 @@ class GameObject;
 
 enum ProjectileType
 {
-    PROJECTILE_1,
-    PROJECTILE_2
+    PARROW,
+    PAXE,
+    PPEAK
 };
 
 struct PType{
@@ -20,20 +21,27 @@ struct PType{
 class ProjectileFabric
 {
     private:
-        PType projectile_types[2] = 
+        PType projectile_types[3] = 
         {
             {
-                PROJECTILE_1,
+                PARROW,
                 (char*)"res/FLECHA.obj",
                 (char*)"res/green.bmp",
                 10.f,
                 10.f
             },
             {
-                PROJECTILE_2,
+                PAXE,
                 (char*)"res/HACHA.obj",
                 (char*)"res/green.bmp",
-                20.f,
+                10.f,
+                50.f
+            },
+            {
+                PPEAK,
+                (char*)"res/HACHA.obj",
+                (char*)"res/green.bmp",
+                10.f,
                 50.f
             }
         };

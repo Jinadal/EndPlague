@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "PhysicBullet.h"
 #include "GameObject.h"
+#define PI 3.14159265
 
 class BPhysicComponent : public Component 
 {
@@ -17,8 +18,13 @@ class BPhysicComponent : public Component
             btVector3 size = btVector3(xsize, ysize, zsize);
 
             rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass, physicType);
-            
-            rbody->applyTorque(btVector3(0, 0, owner->getRZ()));
+
+            btTransform tr = rbody->getWorldTransform();
+            btQuaternion quat;
+            quat.setEulerZYX(0,0, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
+            tr.setRotation(quat);
+
+            rbody->setCenterOfMassTransform(tr);
 
             rbody->setUserPointer((void *)(gameObject));
         }
