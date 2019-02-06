@@ -9,9 +9,10 @@ class LifeManager : public Manager{
         
     public:
         virtual ~LifeManager(){only_instance=NULL;}
-        //Constructor Singletone
         static LifeManager *getInstance(){
-            if(only_instance == NULL){only_instance = new LifeManager();}
+            if(!only_instance)
+                only_instance = new LifeManager();
+
             return only_instance;
         }
 

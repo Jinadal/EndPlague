@@ -9,7 +9,7 @@ class ItemManager : public Manager{
         static ItemManager* only_instance;
     
     public:
-        //CONSTRUCTOR
+        ~ItemManager() {only_instance = NULL;}
         static ItemManager *getInstance(){
             if (only_instance == NULL)
                 only_instance = new ItemManager();
@@ -18,7 +18,6 @@ class ItemManager : public Manager{
         }
 
         //DESTRUCTOR
-        virtual ~ItemManager() {only_instance = NULL;};
         void createComponent(GameObject *owner, ItemTypes type);
         void updateAll(float dt);
 

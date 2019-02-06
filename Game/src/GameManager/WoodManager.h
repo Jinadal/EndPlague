@@ -5,13 +5,13 @@ class GameObject;
 class WoodManager : public Manager{
     private:
         WoodManager():Manager(){}
-
         static WoodManager* only_instance;
     
     public:
-        static WoodManager* getInstance()
-        {
-            if(!only_instance)only_instance=new WoodManager();
+        ~WoodManager(){only_instance = NULL;}
+        static WoodManager* getInstance(){
+            if(!only_instance)
+                only_instance=new WoodManager();
 
             return only_instance;
         }

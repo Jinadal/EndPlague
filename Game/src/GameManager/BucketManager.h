@@ -9,6 +9,7 @@ class BucketManager : public Manager{
         static BucketManager* only_instance;
     
     public:
+        ~BucketManager(){only_instance = NULL;}
         static BucketManager* getInstance()
         {
             if(!only_instance)only_instance=new BucketManager();

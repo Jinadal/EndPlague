@@ -8,9 +8,7 @@ class InputManager : public Manager{
         static InputManager *only_instance;
         float cursorX, cursorY;
     public:
-        virtual ~InputManager(){
-            only_instance=NULL;}
-        //Constructor Singletone
+        ~InputManager(){only_instance=NULL;}
         static InputManager *getInstance(){
             if(only_instance == NULL){only_instance = new InputManager();}
             return only_instance;

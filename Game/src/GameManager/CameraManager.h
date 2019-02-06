@@ -6,15 +6,12 @@ class CameraManager : public Manager{
         CameraManager():Manager(){}
         static CameraManager* only_instance;
     public:
+        ~CameraManager(){only_instance = NULL;}
         static CameraManager* getInstance(){
             if(only_instance == NULL)
                 only_instance = new CameraManager();
             
             return only_instance;
-        }
-
-        ~CameraManager(){
-            only_instance = NULL;
         }
 
         void createComponent(GameObject* go);
