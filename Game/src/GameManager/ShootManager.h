@@ -9,15 +9,14 @@ class ShootManager : public Manager{
         ProjectileFabric* fabric;
 
     public:
-    
+        ~ShootManager(){delete fabric; only_instance=NULL;}
         static ShootManager *getInstance(){         //Pattern Singleton
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new ShootManager();
             
             return only_instance;
         }
 
-        ~ShootManager(){delete fabric; only_instance=NULL;}
         void updateAll(float dt);
         void createProjectile(float x, float y, float rz, ProjectileType tipo);
         void createComponent(GameObject *owner, float cadencia, float distance, ProjectileType tipo);

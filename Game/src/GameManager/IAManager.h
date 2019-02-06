@@ -11,12 +11,13 @@ class IAManager : public Manager{
         GPS* gps;
        
     public:
-        virtual ~IAManager(){only_instance=NULL; }
-        //Constructor Singletone
+        ~IAManager(){only_instance=NULL; }
         static IAManager *getInstance(){
             if(only_instance == NULL){only_instance = new IAManager();}
             return only_instance;
         }
+
+        
         void setPlayer(GameObject* player){this->player = player;}
         void createComponent(GameObject* owner);
         void updateAll(float dt);

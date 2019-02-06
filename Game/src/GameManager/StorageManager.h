@@ -8,15 +8,14 @@ class StorageManager : public Manager{
         static StorageManager* only_instance;
 
     public:
-
+        ~StorageManager() {only_instance = NULL;};
         static StorageManager *getInstance(){
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new StorageManager();
             
             return only_instance;
         }
 
-        virtual ~StorageManager() {only_instance = NULL;};
         void createComponent(GameObject *owner);
         
         void updateAll(float dt);

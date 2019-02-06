@@ -10,15 +10,15 @@ class ScoreManager : public Manager
         int score;
     
     public:
+        ~ScoreManager(){only_instance = NULL;}
         static ScoreManager* getInstance()
         {
-            if (only_instance==NULL) {
+            if (!only_instance) {
                 only_instance = new ScoreManager();
             }
             
             return only_instance;
         }
-        virtual ~ScoreManager(){}
 
         void createComponent(GameObject* owner, int score);
         void updateAll(float dt){}

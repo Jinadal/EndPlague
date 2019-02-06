@@ -38,8 +38,7 @@ void FabricVillage::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 50.f);
-    player->getComponent<LifeComponent>()->setDecreases(true);
+    LifeManager::getInstance()->createComponent(player, 100.f, true);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);

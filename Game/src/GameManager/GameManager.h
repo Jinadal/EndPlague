@@ -5,7 +5,7 @@ class GameManager
         GameManager(){initAll();}
     
     public:
-        ~GameManager(){deleteAll();}
+        ~GameManager(){deleteAll(); only_instance = nullptr;}
         static GameManager* getInstance()
         {
             if(!only_instance)

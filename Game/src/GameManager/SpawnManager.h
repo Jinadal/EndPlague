@@ -13,7 +13,7 @@ class SpawnManager : public Manager
         ~SpawnManager(){delete fabric; only_instance = NULL;};
         static SpawnManager* getInstance()
         {
-            if(only_instance==NULL)
+            if(!only_instance)
                 only_instance = new SpawnManager();
 
             return only_instance;

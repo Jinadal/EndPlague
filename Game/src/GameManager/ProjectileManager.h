@@ -9,15 +9,14 @@ class ProjectileManager : public Manager{
         static ProjectileManager* only_instance;
 
     public:
-        //Constructor
+        ~ProjectileManager(){only_instance=NULL;}
         static ProjectileManager *getInstance(){
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new ProjectileManager();
             
             return only_instance;
         }
 
-        virtual ~ProjectileManager(){only_instance=NULL;}
         void createComponent(GameObject* owner, float damage);
         void updateAll(float dt);
 };

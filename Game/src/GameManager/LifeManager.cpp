@@ -5,9 +5,9 @@
 LifeManager* LifeManager::only_instance = NULL;
 
 
-void LifeManager::createComponent(GameObject *owner, float l)
+void LifeManager::createComponent(GameObject *owner, float life, bool decreases)
 {
-    components.push_back(new LifeComponent(owner, this, l));
+    components.push_back(new LifeComponent(owner, this, life, decreases));
     owner->addComponent(components[components.size()-1]);
 }
 
