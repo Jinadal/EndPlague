@@ -10,9 +10,10 @@ class LifeComponent : public Component{
         float elapsedTime = 0.f;
     public:
         //Constructor
-        LifeComponent(GameObject* g, Manager* m, float f):Component(g, m){
+        LifeComponent(GameObject* g, Manager* m, float f, bool decreases):Component(g, m){
             this->life = f;
             this->shield = 0.f; //El escudo, es n valor entre 0-1 que determina que porcentaje de daño se reduce
+            this->decreases = decreases;
         }
         ~LifeComponent(){}
 

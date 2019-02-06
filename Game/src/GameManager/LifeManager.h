@@ -16,6 +16,6 @@ class LifeManager : public Manager{
             return only_instance;
         }
 
-        void createComponent(GameObject* owner, float l);
+        void createComponent(GameObject* owner, float life, bool decreases = false);
         void updateAll(float dt);
 };
