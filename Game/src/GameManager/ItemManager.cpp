@@ -2,7 +2,7 @@
 #include "ItemComponent.h"
 #include "GameObject.h"
 
-ItemManager* ItemManager::only_instance = NULL;
+ItemManager* ItemManager::only_instance = nullptr;
 
 
 

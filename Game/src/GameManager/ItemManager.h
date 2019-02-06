@@ -9,9 +9,9 @@ class ItemManager : public Manager{
         static ItemManager* only_instance;
     
     public:
-        ~ItemManager() {only_instance = NULL;}
+        ~ItemManager() {only_instance = nullptr;}
         static ItemManager *getInstance(){
-            if (only_instance == NULL)
+            if (!only_instance)
                 only_instance = new ItemManager();
 
             return only_instance;

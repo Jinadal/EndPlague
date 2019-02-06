@@ -1,6 +1,6 @@
 #include "MenuFacade.h"
 
-MenuFacade* MenuFacade::only_instance = NULL;
+MenuFacade* MenuFacade::only_instance = nullptr;
 
 void MenuFacade::setMenuBackground()
 {

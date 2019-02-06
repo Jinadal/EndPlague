@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "WoodComponent.h"
 
-WoodManager* WoodManager::only_instance = NULL;
+WoodManager* WoodManager::only_instance = nullptr;
 
 void WoodManager::createComponent(GameObject* owner, float life)
 {

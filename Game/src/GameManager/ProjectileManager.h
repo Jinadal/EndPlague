@@ -9,7 +9,7 @@ class ProjectileManager : public Manager{
         static ProjectileManager* only_instance;
 
     public:
-        ~ProjectileManager(){only_instance=NULL;}
+        ~ProjectileManager(){only_instance=nullptr;}
         static ProjectileManager *getInstance(){
             if(!only_instance)
                 only_instance = new ProjectileManager();

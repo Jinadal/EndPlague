@@ -8,7 +8,7 @@ class WoodManager : public Manager{
         static WoodManager* only_instance;
     
     public:
-        ~WoodManager(){only_instance = NULL;}
+        ~WoodManager(){only_instance = nullptr;}
         static WoodManager* getInstance(){
             if(!only_instance)
                 only_instance=new WoodManager();

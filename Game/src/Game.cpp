@@ -2,14 +2,13 @@
 #include <stdio.h>
 #include "Game.h"
 #include "RenderIrrlicht.h"
-
 #include "MenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
 #include "EndState.h"
 
 
-Game* Game::only_instance = NULL;
+Game* Game::only_instance = nullptr;
 
 void Game::run()
 {

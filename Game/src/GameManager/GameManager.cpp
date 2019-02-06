@@ -24,7 +24,7 @@
 #include "RenderIrrlicht.h"
 
 
-GameManager* GameManager::only_instance = NULL;
+GameManager* GameManager::only_instance = nullptr;
 
 void GameManager::initAll()
 {

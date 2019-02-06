@@ -8,7 +8,7 @@ class GameObject{
     private:
         float x, y, z, rx, ry, rz;
         std::vector<Component*> components;
-        bool kill=false;
+        bool kill = false;
 
     public:
     GameObject(float x, float y, float z, float rz);

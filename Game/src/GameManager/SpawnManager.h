@@ -10,7 +10,7 @@ class SpawnManager : public Manager
         static SpawnManager* only_instance;
         EnemyFabric* fabric = new EnemyFabric();
     public:
-        ~SpawnManager(){delete fabric; only_instance = NULL;};
+        ~SpawnManager(){delete fabric; only_instance = nullptr;};
         static SpawnManager* getInstance()
         {
             if(!only_instance)

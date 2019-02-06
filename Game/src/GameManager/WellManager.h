@@ -9,7 +9,7 @@ class WellManager : public Manager{
         static WellManager* only_instance;
     
     public:
-        ~WellManager(){only_instance = NULL;}
+        ~WellManager(){only_instance = nullptr;}
         static WellManager* getInstance(){
             if(!only_instance)
                 only_instance=new WellManager();

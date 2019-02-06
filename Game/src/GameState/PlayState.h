@@ -13,7 +13,7 @@ class PlayState : public IGameState
     public:
 
         static PlayState *getInstance(){
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new PlayState();
                 
             return only_instance;

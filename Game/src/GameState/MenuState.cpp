@@ -4,7 +4,7 @@
 #include "Game.h"
 #include <SFML/Window.hpp>
 
-MenuState* MenuState::only_instance = NULL;
+MenuState* MenuState::only_instance = nullptr;
 
 void MenuState::initState()
 {

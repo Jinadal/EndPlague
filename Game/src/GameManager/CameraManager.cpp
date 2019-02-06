@@ -1,7 +1,7 @@
 #include "CameraComponent.h"
 #include "CameraManager.h"
 
-CameraManager* CameraManager::only_instance = NULL;
+CameraManager* CameraManager::only_instance = nullptr;
 
 
 //Updates all the components

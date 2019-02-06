@@ -8,7 +8,7 @@ class DropperManager : public Manager
         static DropperManager* only_instance;
 
     public:
-        ~DropperManager(){only_instance = NULL;}
+        ~DropperManager(){only_instance = nullptr;}
         static DropperManager* getInstance()
         {
             if(!only_instance)

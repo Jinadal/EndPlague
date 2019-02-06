@@ -8,7 +8,7 @@ class LifeManager : public Manager{
         static LifeManager *only_instance;
         
     public:
-        virtual ~LifeManager(){only_instance=NULL;}
+        virtual ~LifeManager(){only_instance=nullptr;}
         static LifeManager *getInstance(){
             if(!only_instance)
                 only_instance = new LifeManager();
