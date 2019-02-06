@@ -10,7 +10,7 @@ class ScoreManager : public Manager
         int score;
     
     public:
-        ~ScoreManager(){only_instance = NULL;}
+        ~ScoreManager(){only_instance = nullptr;}
         static ScoreManager* getInstance()
         {
             if (!only_instance) {

@@ -11,9 +11,9 @@ class IAManager : public Manager{
         GPS* gps;
        
     public:
-        ~IAManager(){only_instance=NULL; }
+        ~IAManager(){only_instance=nullptr; }
         static IAManager *getInstance(){
-            if(only_instance == NULL){only_instance = new IAManager();}
+            if(!only_instance){only_instance = new IAManager();}
             return only_instance;
         }
 

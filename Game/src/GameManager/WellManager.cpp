@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "WellComponent.h"
 
-WellManager* WellManager::only_instance = NULL;
+WellManager* WellManager::only_instance = nullptr;
 
 void WellManager::createComponent(GameObject* owner)
 {

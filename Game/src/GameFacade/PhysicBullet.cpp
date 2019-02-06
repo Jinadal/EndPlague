@@ -3,7 +3,7 @@
 #define PI 3.141592
 
 
-PhysicBullet* PhysicBullet::only_instance = NULL;
+PhysicBullet* PhysicBullet::only_instance = nullptr;
 
 PhysicBullet::~PhysicBullet()
 {

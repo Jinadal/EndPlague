@@ -19,12 +19,10 @@ class PhysicBullet{
     
     virtual ~PhysicBullet();
 
-    static PhysicBullet* getInstance()
-    {   
-        if(only_instance==NULL)
-        {
+    static PhysicBullet* getInstance(){   
+        if(!only_instance)
             only_instance = new PhysicBullet();
-        }
+
         return only_instance;
     }
 

@@ -10,7 +10,7 @@ class PauseState : public IGameState
     public:
 
     static PauseState *getInstance(){
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new PauseState();
             
             return only_instance;

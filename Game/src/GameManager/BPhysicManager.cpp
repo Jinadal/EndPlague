@@ -11,7 +11,7 @@
 #include "GameObject.h"
 #include "BPhysicComponent.h"
 
-BPhysicManager* BPhysicManager::only_instance = NULL;
+BPhysicManager* BPhysicManager::only_instance = nullptr;
 
 void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass, int physicType)
 {

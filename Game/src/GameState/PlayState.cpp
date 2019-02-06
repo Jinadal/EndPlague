@@ -11,7 +11,7 @@
 #include "GameManager.h"
 
 
-PlayState* PlayState::only_instance = NULL;
+PlayState* PlayState::only_instance = nullptr;
 
 void PlayState::initState()
 {

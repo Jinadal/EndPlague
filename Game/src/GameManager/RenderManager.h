@@ -9,7 +9,7 @@ class RenderManager : public Manager{
         static RenderManager* only_instance;
         
     public:
-        ~RenderManager(){only_instance=NULL;}
+        ~RenderManager(){only_instance=nullptr;}
         static RenderManager *getInstance(){
             if(!only_instance)
                 only_instance = new RenderManager();

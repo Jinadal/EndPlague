@@ -10,7 +10,7 @@ class MenuFacade
     public:
 
     static MenuFacade *getInstance(){
-        if(only_instance == NULL)
+        if(!only_instance)
             only_instance = new MenuFacade();
             
         return only_instance;

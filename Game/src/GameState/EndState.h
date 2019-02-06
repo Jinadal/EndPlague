@@ -9,7 +9,7 @@ class EndState : public IGameState
     public:
 
     static EndState *getInstance(){
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new EndState();
             
             return only_instance;

@@ -9,7 +9,7 @@ class MenuState : public IGameState
     public:
 
     static MenuState *getInstance(){
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new MenuState();
                 
             return only_instance;

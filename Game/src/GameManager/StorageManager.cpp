@@ -2,7 +2,7 @@
 #include "StorageComponent.h"
 #include "GameObject.h"
 
-StorageManager* StorageManager::only_instance = NULL;
+StorageManager* StorageManager::only_instance = nullptr;
 
 
 void StorageManager::createComponent(GameObject *owner){

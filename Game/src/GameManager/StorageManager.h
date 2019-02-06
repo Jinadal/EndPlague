@@ -8,7 +8,7 @@ class StorageManager : public Manager{
         static StorageManager* only_instance;
 
     public:
-        ~StorageManager() {only_instance = NULL;};
+        ~StorageManager() {only_instance = nullptr;};
         static StorageManager *getInstance(){
             if(!only_instance)
                 only_instance = new StorageManager();

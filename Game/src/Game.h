@@ -1,6 +1,5 @@
 #pragma once
 #include "IGameState.h"
-#include <cstddef>
 
 class Game
 {
@@ -11,7 +10,7 @@ class Game
     public:
 
         static Game* getInstance(){
-            if(only_instance == NULL)
+            if(!only_instance)
                 only_instance = new Game();
             
             return only_instance;
@@ -19,7 +18,7 @@ class Game
 
         ~Game()
         {
-            only_instance = NULL;
+            only_instance = nullptr;
         }
         void run();
         void setState(IGameState::stateType type);

@@ -9,9 +9,9 @@ class BPhysicManager : public Manager
         static BPhysicManager* only_instance;
         BPhysicManager(){PhysicBullet::getInstance();  gContactAddedCallback = this->callbackFunc;}
     public:
-        ~BPhysicManager(){only_instance = NULL;}
+        ~BPhysicManager(){only_instance = nullptr;}
         static BPhysicManager* getInstance(){
-            if(only_instance==NULL) only_instance = new BPhysicManager();
+            if(!only_instance) only_instance = new BPhysicManager();
 
             return only_instance;
         }

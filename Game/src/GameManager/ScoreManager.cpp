@@ -2,7 +2,7 @@
 #include "ScoreComponent.h"
 #include "GameObject.h"
 
-ScoreManager* ScoreManager::only_instance = NULL;
+ScoreManager* ScoreManager::only_instance = nullptr;
 
 void ScoreManager::createComponent(GameObject* owner, int score)
 {

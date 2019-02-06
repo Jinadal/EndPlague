@@ -9,7 +9,7 @@ class ShootManager : public Manager{
         ProjectileFabric* fabric;
 
     public:
-        ~ShootManager(){delete fabric; only_instance=NULL;}
+        ~ShootManager(){delete fabric; only_instance=nullptr;}
         static ShootManager *getInstance(){         //Pattern Singleton
             if(!only_instance)
                 only_instance = new ShootManager();

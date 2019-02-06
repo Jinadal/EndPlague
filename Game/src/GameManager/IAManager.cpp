@@ -3,7 +3,7 @@
 #include "GameObject.h"
 #include "Waypoint.h"
 
-IAManager* IAManager::only_instance = NULL;
+IAManager* IAManager::only_instance = nullptr;
 
 
 IAManager::IAManager():Manager()

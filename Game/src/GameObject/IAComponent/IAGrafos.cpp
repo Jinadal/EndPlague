@@ -11,7 +11,7 @@
 bool IA_Graf_Checkarea ::run()
 {
 
-   std::vector<Area*> Areas = owner->getComponent<IAComponent>()->getManager<IAManager>()->getGPS()->getAreas();
+   std::vector<Area*> Areas = ((IAManager*)owner->getComponent<IAComponent>()->getManager())->getGPS()->getAreas();
     
 
     int ai=0; 
@@ -42,7 +42,7 @@ bool IA_Graf_Checkarea ::run()
 
 bool IA_Graf_LaunchGPS::run()
 {
-    GPS* gps = owner->getComponent<IAComponent>()->getManager<IAManager>()->getGPS();
+    GPS* gps = ((IAManager*)owner->getComponent<IAComponent>()->getManager())->getGPS();
 
   owner->getComponent<IAComponent>()->route = gps->getWay(owner->getX(),owner->getY(),main->getX(),main->getY());
     
