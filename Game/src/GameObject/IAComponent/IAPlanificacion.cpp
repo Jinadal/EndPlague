@@ -25,6 +25,10 @@ bool IA_Plan_InSight::run()
         {
             owner->getComponent<ShootComponent>()->shoot();
         }
+
+        if(owner->getComponent<IAComponent>()->onRoute)
+            return false;
+        
         return true;
     }
     //std::cout << "PERSONAJE PERDIDO!!! \n";

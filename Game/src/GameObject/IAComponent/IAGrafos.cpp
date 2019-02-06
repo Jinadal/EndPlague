@@ -37,6 +37,10 @@ bool IA_Graf_Checkarea ::run()
         
         return false;
     }
+
+    if(owner->getComponent<IAComponent>()->onRoute)
+    return false;
+
     return true;
 }
 
