@@ -22,7 +22,7 @@ MeshNode::MeshNode(char s[]){
     node = render->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
     //node->setMaterialFlag(EMF_LIGHTING, false);
     //node->setMaterialFlag(EMF_WIREFRAME, true);
-    node->setDebugDataVisible(EDS_BBOX);
+    //node->setDebugDataVisible(EDS_BBOX);
 }
 
 //Changes the mesh of the node to de path

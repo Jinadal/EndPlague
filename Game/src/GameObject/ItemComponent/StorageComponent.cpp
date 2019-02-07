@@ -11,59 +11,44 @@ void StorageComponent::itemCatch(ItemComponent* item)
         
     itemDrop();
     applyEffect(item->getType());
+    itemType = item->getType();
     item->getGameObject()->setKill(true);
 }
 
 void StorageComponent::itemDrop()
 {
-    if(itemType!=ITEM_0)
-    {
-        ItemFabric* fabric = new ItemFabric();
-        fabric->createItem(gameObject->getX()-3.f, gameObject->getY()-3.f, gameObject->getZ(), gameObject->getRZ(), itemType);
+    if(itemType == EMPTY || itemType == POTION || itemType == SHIELD)
+        return;
 
-        this->itemType = ITEM_0;
-        setDefaultValues();
+    ItemFabric* fabric = new ItemFabric();
+    fabric->createItem(gameObject->getX()-3.f, gameObject->getY()-3.f, gameObject->getZ(), gameObject->getRZ(), itemType);
 
-        delete fabric;
-    }
-}
+    this->itemType = EMPTY;
 
-void StorageComponent::setDefaultValues()
-{
-    gameObject->getComponent<ShootComponent>()->setCadencia(1);
-    gameObject->getComponent<ShootComponent>()->setType(PROJECTILE_1);
+    delete fabric;
 }
 
 void StorageComponent::applyEffect(ItemTypes Type)
-{
- itemType = Type;   
+{ 
     switch (Type)
     {
-        case ITEM_1:
-            throwable();
-            break;
-
-        case ITEM_2:
+        case CROSSBOW:
             crossbow();
             break;
 
-        case ITEM_3:
-            potion();
-            break;
-        
-        case ITEM_4:
-            sword();
+        case AXE:
+            axe();
             break;
 
-        case ITEM_5:
+        case POTION:
+            potion();
+            break;
+
+        case PEAK:
             peak();
             break;
 
-        case ITEM_6:
-            machete();
-            break;
-
-        case ITEM_7:
+        case SHIELD:
             shield();
             break;
     
@@ -72,17 +57,6 @@ void StorageComponent::applyEffect(ItemTypes Type)
     }
 }
 
-void StorageComponent::throwable()
-{
-    //you thow only once a powerful weapon
-
-    if(gameObject->getComponent<ShootComponent>())
-    {
-        gameObject->getComponent<ShootComponent>()->setType(PROJECTILE_2);
-    }
-    
-
-}
 
 void StorageComponent::potion()
 {
@@ -100,26 +74,38 @@ void StorageComponent::crossbow()
     if(gameObject->getComponent<ShootComponent>())
     {
         gameObject->getComponent<ShootComponent>()->setCadencia(0.1);
+        gameObject->getComponent<ShootComponent>()->setType(PARROW);
     }
     
 }
 
-void StorageComponent::machete()
-{
-    //Ataque básico cuerpo a cuerpo
-}
-
-void StorageComponent::sword()
-{
-    //++ataque cuerpo a cuerpo
-}
 
 void StorageComponent::peak()
 {
-    //+ataque cuerpo a cuerpo
+    //makes you shoot faster
+    if(gameObject->getComponent<ShootComponent>())
+    {
+        gameObject->getComponent<ShootComponent>()->setCadencia(0.5);
+        gameObject->getComponent<ShootComponent>()->setType(PPEAK);
+    }
 }
 
 void StorageComponent::shield()
 {
-    //+% de vida no recuperable
+    //it gives you life shield
+    if(gameObject->getComponent<LifeComponent>())
+    {
+        gameObject->getComponent<LifeComponent>()->setShield(100);
+    }
+    
+}
+
+void StorageComponent::axe()
+{
+    //makes you shoot faster
+    if(gameObject->getComponent<ShootComponent>())
+    {
+        gameObject->getComponent<ShootComponent>()->setCadencia(0.8);
+        gameObject->getComponent<ShootComponent>()->setType(PAXE);
+    }
 }

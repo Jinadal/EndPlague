@@ -16,7 +16,6 @@
 #include "BPhysicComponent.h"
 #include "LifeManager.h"
 
-
 void FabricVillage::loadLevel()
 {
 
@@ -37,8 +36,8 @@ void FabricVillage::loadLevel()
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
-    ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 100.f, false);
+    ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
+    LifeManager::getInstance()->createComponent(player, 1000.f);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -97,7 +96,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item1, .5f, .5f, .5f, 1.f, 1);
-    ItemManager::getInstance()->createComponent(item1, ITEM_1);
+    ItemManager::getInstance()->createComponent(item1, POTION);
     
     
     //Adding an ITEM2
@@ -105,7 +104,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item2, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item2, .5f, .5f, .5f, 1.f, 1);
-    ItemManager::getInstance()->createComponent(item2, ITEM_2);
+    ItemManager::getInstance()->createComponent(item2, CROSSBOW);
     
 
     //Adding an ITEM3
@@ -113,7 +112,7 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
     //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
     BPhysicManager::getInstance()->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
-    ItemManager::getInstance()->createComponent(item3, ITEM_3);
+    ItemManager::getInstance()->createComponent(item3, AXE);
     
 
 

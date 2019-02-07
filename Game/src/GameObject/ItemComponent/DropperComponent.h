@@ -1,13 +1,11 @@
 #include "Component.h"
 #include "ItemFabric.h"
 
-#define P_ITEM1 100
-#define P_ITEM2 100
-#define P_ITEM3 100
-#define P_ITEM4 100
-#define P_ITEM5 100
-#define P_ITEM6 100
-#define P_ITEM7 100
+#define P_POTION 30
+#define P_AXE 35
+#define P_PEAK 40
+#define P_CROSSBOW 50
+#define P_SHIELD 50
 
 
 

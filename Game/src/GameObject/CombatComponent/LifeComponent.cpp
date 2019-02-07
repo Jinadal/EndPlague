@@ -2,7 +2,12 @@
 #include "GameObject.h"
 
 void LifeComponent::looseLife(float d){     //Gets by parametre a int damage from the attacker
-    life-=(d*(1-shield));                    //Sets decreased life
+    shield -= d;
+    if(shield<0.f)
+    {
+        life += shield; //Sets decreased life
+        shield = 0.f;
+    }
 }
 
 void LifeComponent::addLife(float l){

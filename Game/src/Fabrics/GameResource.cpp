@@ -9,7 +9,7 @@ GameResource::~GameResource()
     {
         delete gameobjects[i];
     }
-    only_instance=NULL;
+    only_instance=nullptr;
 }
 
 GameObject* GameResource::createGameObject(float x, float y, float z, float rz)

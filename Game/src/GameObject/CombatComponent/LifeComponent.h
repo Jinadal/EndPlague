@@ -12,7 +12,7 @@ class LifeComponent : public Component{
         //Constructor
         LifeComponent(GameObject* g, Manager* m, float f, bool decreases):Component(g, m){
             this->life = f;
-            this->shield = 0.f; //El escudo, es n valor entre 0-1 que determina que porcentaje de daño se reduce
+            this->shield = 0.f;
             this->decreases = decreases;
         }
         ~LifeComponent(){}

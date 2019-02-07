@@ -3,21 +3,18 @@
 class GameObject;
 enum ItemTypes
 {
-    ITEM_0,
-    ITEM_1,
-    ITEM_2,
-    ITEM_3,
-    ITEM_4, 
-    ITEM_5, 
-    ITEM_6,
-    ITEM_7
+    EMPTY,
+    CROSSBOW,
+    AXE,
+    PEAK,
+    POTION, 
+    SHIELD,
 };
 
 struct IType{
     ItemTypes type;
     char* mesh;
     char* texture;
-    float Itype;
 };
 
 
@@ -28,58 +25,37 @@ class ItemFabric
         IType item_types [8] = 
         {
             {
-                ITEM_0,
+                EMPTY,
                 (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp", 
-                0.f
+                (char*)"res/ITEM.bmp"
 
             },
             {
-                ITEM_1,
+                CROSSBOW,
                 (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp", 
-                1.f
+                (char*)"res/ITEM.bmp"
 
             },
             {
-                ITEM_2,
+                AXE,
                 (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp",
-                2.f
+                (char*)"res/ITEM.bmp"
             }, 
             {
-                ITEM_3,
+                PEAK,
                 (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp", 
-                3.f
+                (char*)"res/ITEM.bmp"
             },
             {
-                ITEM_4,
+                POTION,
                 (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp", 
-                0.f
+                (char*)"res/ITEM.bmp"
 
             },
             {
-                ITEM_5,
+                SHIELD,
                 (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp", 
-                0.f
-
-            },
-            {
-                ITEM_6,
-                (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp", 
-                0.f
-
-            },
-            {
-                ITEM_7,
-                (char*)"res/ITEM.obj",
-                (char*)"res/ITEM.bmp", 
-                0.f
-
+                (char*)"res/ITEM.bmp"
             }
         };
 
@@ -87,7 +63,7 @@ class ItemFabric
         ItemFabric(){}
         virtual ~ItemFabric(){}
 
-        GameObject* createItem(float x, float y, float z, float rz, ItemTypes type);
+        void createItem(float x, float y, float z, float rz, ItemTypes type);
 };
 
 

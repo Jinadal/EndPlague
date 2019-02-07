@@ -36,7 +36,7 @@ void TestFabric::loadLevel()
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     InputManager::getInstance()->createComponent(player);
-    ShootManager::getInstance()->createComponent(player, .5f, 2.f, PROJECTILE_1);//Cadencia y Tipo
+    ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
     LifeManager::getInstance()->createComponent(player, 100.f);
     BucketManager::getInstance()->createComponent(player);
     CameraManager::getInstance()->createComponent(player);
