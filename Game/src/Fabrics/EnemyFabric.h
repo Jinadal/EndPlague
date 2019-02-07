@@ -27,7 +27,7 @@ class EnemyFabric
             {
                 ENEMY_1,
                 (char*)"res/DOOMIE.obj",
-                (char*)"res/green.bmp",
+                (char*)"res/white.bmp",
                 50.f,
                 1.4f  //Velocidad media andando
             },

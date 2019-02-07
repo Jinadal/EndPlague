@@ -1,6 +1,6 @@
 #include "IASeguimiento.h"
 #include "BPhysicComponent.h"
-#include "GameObject.h"
+#include <iostream>
 #include <cmath>
 
 
@@ -9,10 +9,10 @@ Compruba si el jugador esta a su izda, eso es cuando  la diferencia en x da mayo
 */
 bool IA_Seg_CheckXIzd::run()
 {
-    float dx = XtoGo - owner->getX();
+    float dx = main->getX() - owner->getX();
 
    if(dx > 0){
-     //if(fabs(dx) > 3.f)
+      // if(fabs(dx) > 3.f)
        return true;
    }
 
@@ -24,11 +24,11 @@ bool IA_Seg_CheckXIzd::run()
 
 bool IA_Seg_CheckXDer::run()
 {
-    float dx = XtoGo - owner->getX();
+    float dx = main->getX() - owner->getX();
    
     if(dx <= 0){
        
-      //if(fabs(dx) > 3.f)
+      // if(fabs(dx) > 3.f)
         return true;
     }
 
@@ -39,14 +39,14 @@ bool IA_Seg_CheckXDer::run()
 
 bool IA_Seg_CheckYAbj::run()
 {
-    float dy = YtoGo - owner->getY();
+    float dy = main->getY() - owner->getY();
 
    if(dy > 0){
        
-       //if(fabs(dy) > 3.f)
+      // if(fabs(dy) > 3.f)
        return true;
    }
-    
+
    return false;
 }
 
@@ -54,11 +54,11 @@ bool IA_Seg_CheckYAbj::run()
 
 bool IA_Seg_CheckYArr::run()
 {
-    float dy = YtoGo - owner->getY();
+    float dy = main->getY() - owner->getY();
 
     if(dy <= 0){
 
-       //if(fabs(dy) > 3.f)
+      // if(fabs(dy) > 3.f)
         return true;
     }
 
@@ -69,8 +69,8 @@ bool IA_Seg_CheckYArr::run()
 
 bool IA_Seg_DifX::run()
 {
-    float dx = XtoGo - owner->getX();
-    float dy = YtoGo - owner->getY();
+    float dx = main->getX() - owner->getX();
+    float dy = main->getY() - owner->getY();
     
     if(fabs(dx) >= fabs(dy)) return true;
     return false;
@@ -79,8 +79,8 @@ bool IA_Seg_DifX::run()
 //Lo mismo que arriba pero al reves
 bool IA_Seg_DifY::run()
 {
-    float dx = XtoGo - owner->getX();
-    float dy = YtoGo - owner->getY();
+    float dx = main->getX() - owner->getX();
+    float dy = main->getY() - owner->getY();
     
     if(fabs(dy) > fabs(dx)) return true;
     return false;

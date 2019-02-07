@@ -45,7 +45,7 @@ void FabricVillage::loadLevel()
     
 
     //ADDING A WELL //EL MESH MIDE 1 x 1 x 2
-    GameObject* well = GameResource::getInstance()->createGameObject(0.f, -3.f, -1.f, 90.f);
+    GameObject* well = GameResource::getInstance()->createGameObject(0.f, -13.f, -1.f, 90.f);
     RenderManager::getInstance()->createComponent(well, (char*)"res/WELL.obj");//Fachada de render y path de obj
     well->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");//Path de bmp
     WellManager::getInstance()->createComponent(well);
