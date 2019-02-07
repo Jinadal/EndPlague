@@ -11,7 +11,7 @@ void BPhysicComponent::update()
 
     btQuaternion mRotation;
     btTransform mTransform;
-    mTransform = rbody->getCenerOfMassTransform();
+    mTransform = rbody->getCenterOfMassTransform();
     mRotation = mTransform.getRotation();
     btScalar yawZ, pitchY, rollX;
     mRotation.getEulerZYX(yawZ, pitchY, rollX);
@@ -60,12 +60,12 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
         rZ += 360;
     rbody->setLinearVelocity(btVector3(vX, vY, z));
 
-    btTransform tr = rbody->getCenerOfMassTransform();
+    btTransform tr = rbody->getCenterOfMassTransform();
     btQuaternion quat;
     quat.setEuler(0,0, rZ*PI/180); //or quat.setEulerZYX depending on the ordering you want
     tr.setRotation(quat);
 
-    rbody->setCenerOfMassTransform(tr);
+    rbody->setCenterOfMassTransform(tr);
 
     //rbody->applyTorque(btVector3(0, 0, rZ));
 }

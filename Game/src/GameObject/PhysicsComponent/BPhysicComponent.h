@@ -19,12 +19,12 @@ class BPhysicComponent : public Component
 
             rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass, physicType);
 
-            btTransform tr = rbody->getCenerOfMassTransform();
+            btTransform tr = rbody->getCenterOfMassTransform();
             btQuaternion quat;
             quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRZ()*PI/180, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
             tr.setRotation(quat);
 
-            rbody->setCenerOfMassTransform(tr);
+            rbody->setCenterOfMassTransform(tr);
 
             rbody->setUserPointer((void *)(gameObject));
         }
