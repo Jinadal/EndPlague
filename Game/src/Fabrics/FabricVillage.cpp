@@ -44,7 +44,7 @@ void FabricVillage::loadLevel()
     
 
     //ADDING A WELL //EL MESH MIDE 1 x 1 x 2
-    GameObject* well = GameResource::getInstance()->createGameObject(0.f, -3.f, -1.f, 90.f);
+    GameObject* well = GameResource::getInstance()->createGameObject(0.f, -13.f, -1.f, 90.f);
     RenderManager::getInstance()->createComponent(well, (char*)"res/WELL.obj");//Fachada de render y path de obj
     well->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");//Path de bmp
     WellManager::getInstance()->createComponent(well);
@@ -61,7 +61,7 @@ void FabricVillage::loadLevel()
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 1);
 
 
-
+/*
 
     //ADDING A SPAWN2 //EL MESH MIDE 4 x 4 x 4
     GameObject* spawn2 = GameResource::getInstance()->createGameObject(-10.f, -10.f, -1.f, -90.f);
@@ -88,7 +88,7 @@ void FabricVillage::loadLevel()
     LifeManager::getInstance()->createComponent(spawn4, 10000.f);
     BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 0.f, 1);
 
-
+*/
 
     
     //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5

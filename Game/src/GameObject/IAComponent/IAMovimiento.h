@@ -1,6 +1,7 @@
 #include "Nodo.h"
+#include "GameObject.h"
 
-class GameObject;
+
 class Pared : public Nodo
 {
     
@@ -19,14 +20,13 @@ class MoverArriba : public Nodo
     
     public:
 
-    MoverArriba(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
+    MoverArriba(GameObject * o, GameObject * m){owner = o; main = m;}
     virtual ~MoverArriba(){}
 
     bool run() override;
 
 GameObject * owner;
-float XtoGo;
-float YtoGo;
+GameObject * main;
 
 };
 class MoverIzda : public Nodo
@@ -34,14 +34,13 @@ class MoverIzda : public Nodo
     
     public:
 
-    MoverIzda(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
+    MoverIzda(GameObject * o, GameObject * m){owner = o;main = m;}
     virtual ~MoverIzda(){}
 
     bool run() override;
 
 GameObject * owner;
-float XtoGo;
-float YtoGo;
+GameObject * main;
 };
 
 class MoverDcha : public Nodo
@@ -49,14 +48,13 @@ class MoverDcha : public Nodo
     
     public:
 
-    MoverDcha(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
+    MoverDcha(GameObject * o, GameObject * m){owner = o; main = m;}
     virtual ~MoverDcha(){}
 
     bool run() override;
 
 GameObject * owner;
-float XtoGo;
-float YtoGo;
+GameObject * main;
 };
 
 class MoverAbajo : public Nodo
@@ -64,12 +62,11 @@ class MoverAbajo : public Nodo
     
     public:
 
-    MoverAbajo(GameObject * o, float objetiveX, float objetiveY){owner = o;XtoGo = objetiveX; YtoGo = objetiveY;}
+    MoverAbajo(GameObject * o, GameObject * m){owner = o; main = m;}
     virtual ~MoverAbajo(){}
 
     bool run() override;
 
 GameObject * owner;
-float XtoGo;
-float YtoGo;
+GameObject * main;
 };

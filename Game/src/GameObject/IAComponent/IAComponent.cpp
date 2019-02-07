@@ -116,11 +116,17 @@ void IAComponent::Initialice(){
               hayColl->addChild(plan_changeDirection);
 
 
+        
+      
+        
         Secuencia* seguirRuta = new Secuencia();
         nodoRaiz->addChild(seguirRuta );
 
                 IA_Graf_CheckRuta* checkruta = new IA_Graf_CheckRuta(gameObject);
                 seguirRuta->addChild(checkruta);
+
+                IA_Graf_Checkarea* checkarearute = new IA_Graf_Checkarea(gameObject,main);
+                seguirRuta->addChild(checkarearute);
 
                 IA_Graf_FollowRuta* followruta = new IA_Graf_FollowRuta(gameObject);
                 seguirRuta->addChild(followruta);
@@ -130,8 +136,6 @@ void IAComponent::Initialice(){
 
                 IA_Plan_InSight* aRango = new IA_Plan_InSight(gameObject, main);
                 decideSeg->addChild(aRango);
-
-        
 
 
   ///////////////////////////////////  
@@ -205,7 +209,7 @@ decideSeg->addChild(seguimientoDirecto);
           Secuencia* seg_enX = new Secuencia();
           raizIASeg->addChild(seg_enX);
 
-                IA_Seg_DifX* seg_difenX = new IA_Seg_DifX(gameObject, main->getX(), main->getY());
+                IA_Seg_DifX* seg_difenX = new IA_Seg_DifX(gameObject, main);
                 seg_enX->addChild(seg_difenX);
 
                 Selector* seg_goOnX = new Selector();
@@ -215,20 +219,20 @@ decideSeg->addChild(seguimientoDirecto);
                     Secuencia* seg_XIzq = new Secuencia();
                     seg_goOnX->addChild(seg_XIzq);
 
-                            IA_Seg_CheckXIzd* seg_checkXIzd = new IA_Seg_CheckXIzd(gameObject, main->getX());
+                            IA_Seg_CheckXIzd* seg_checkXIzd = new IA_Seg_CheckXIzd(gameObject, main);
                             seg_XIzq->addChild(seg_checkXIzd);
 
-                            MoverDcha* seg_movDcha = new MoverDcha(gameObject, main->getX(), main->getY());
+                            MoverDcha* seg_movDcha = new MoverDcha(gameObject, main);
                             seg_XIzq->addChild(seg_movDcha);
 
 
                     Secuencia* seg_XDer = new Secuencia();
                     seg_goOnX->addChild(seg_XDer);
 
-                            IA_Seg_CheckXDer* seg_checkXDer = new IA_Seg_CheckXDer(gameObject, main->getX());
+                            IA_Seg_CheckXDer* seg_checkXDer = new IA_Seg_CheckXDer(gameObject, main);
                             seg_XDer->addChild(seg_checkXDer);
 
-                            MoverIzda* seg_movIzda = new MoverIzda(gameObject, main->getX(), main->getY());
+                            MoverIzda* seg_movIzda = new MoverIzda(gameObject,main);
                             seg_XDer->addChild(seg_movIzda);
 
 
@@ -239,7 +243,7 @@ decideSeg->addChild(seguimientoDirecto);
           Secuencia* seg_enY = new Secuencia();
           raizIASeg->addChild(seg_enY);
 
-              IA_Seg_DifY* seg_difenY = new IA_Seg_DifY(gameObject, main->getX(), main->getY());
+              IA_Seg_DifY* seg_difenY = new IA_Seg_DifY(gameObject, main);
               seg_enY->addChild(seg_difenY);
 
               Selector* seg_goOnY = new Selector();
@@ -248,20 +252,20 @@ decideSeg->addChild(seguimientoDirecto);
                     Secuencia* seg_YAbj = new Secuencia();
                     seg_goOnY->addChild(seg_YAbj);
 
-                          IA_Seg_CheckYAbj* seg_checkYAbj = new IA_Seg_CheckYAbj(gameObject, main->getY());
+                          IA_Seg_CheckYAbj* seg_checkYAbj = new IA_Seg_CheckYAbj(gameObject, main);
                           seg_YAbj->addChild(seg_checkYAbj);
 
-                          MoverArriba* seg_movArri = new MoverArriba(gameObject, main->getX(), main->getY());
+                          MoverArriba* seg_movArri = new MoverArriba(gameObject, main);
                           seg_YAbj->addChild(seg_movArri);
 
 
                     Secuencia* seg_YArr = new Secuencia();
                     seg_goOnY->addChild(seg_YArr);
 
-                          IA_Seg_CheckYArr* seg_checkYArr = new IA_Seg_CheckYArr(gameObject, main->getY());
+                          IA_Seg_CheckYArr* seg_checkYArr = new IA_Seg_CheckYArr(gameObject, main);
                           seg_YArr->addChild(seg_checkYArr);
 
-                          MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject, main->getX(), main->getY());
+                          MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject, main);
                           seg_YArr->addChild(seg_movAbjo);
                           
 

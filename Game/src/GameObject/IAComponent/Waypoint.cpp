@@ -8,7 +8,7 @@ void GPS::Initialice()
     addWaypoint(0,0);
    // addWaypoint(5,0);
     addWaypoint(0,-10);
-    addWaypoint(-7,5);
+    addWaypoint(-7,-5);
    
 
 
@@ -168,7 +168,7 @@ pesoPath* Grafo::pathfindingDijkstra(Waypoint* startWaypoint, Waypoint* objetive
 
 
 
-    Pointrecord* startRecord;   //Starting waypoint
+    Pointrecord* startRecord = new Pointrecord();   //Starting waypoint
     Pointrecord* endRecord = new Pointrecord();     //Conection finishing waypoint
     Pointrecord* current;       //Actual waypoint
 

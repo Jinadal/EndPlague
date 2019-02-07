@@ -1,6 +1,6 @@
 #include "IAMovimiento.h"
 #include "BPhysicComponent.h"
-#include "GameObject.h"
+#include <iostream>
 
 bool Pared::run(){
    // std::cout<< "invoco con ->  " << owner->getComponent<CollisionComponent>() << "\n";
@@ -19,8 +19,8 @@ return false;
 bool MoverArriba::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(0,1,0,XtoGo,YtoGo);
-    owner->getComponent<BPhysicComponent>()->setvMax(5.f);
+    owner->getComponent<BPhysicComponent>()->moveObject(0,1,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->setvMax(3.f);
 
     return true;
 }
@@ -29,16 +29,16 @@ bool MoverArriba::run(){
 bool MoverAbajo::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(0,-1,0,XtoGo,YtoGo);
-    owner->getComponent<BPhysicComponent>()->setvMax(5.f);
+    owner->getComponent<BPhysicComponent>()->moveObject(0,-1,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->setvMax(3.f);
 
     return true;
 }
 bool MoverIzda::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(-1,0,0,XtoGo,YtoGo);
-    owner->getComponent<BPhysicComponent>()->setvMax(5.f);
+    owner->getComponent<BPhysicComponent>()->moveObject(-1,0,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->setvMax(3.f);
 
     
     return true;
@@ -46,8 +46,8 @@ bool MoverIzda::run(){
 bool MoverDcha::run(){
 
 
-    owner->getComponent<BPhysicComponent>()->moveObject(1,0,0,XtoGo,YtoGo);
-    owner->getComponent<BPhysicComponent>()->setvMax(5.f);
+    owner->getComponent<BPhysicComponent>()->moveObject(1,0,0,main->getX(),main->getY());
+    owner->getComponent<BPhysicComponent>()->setvMax(3.f);
 
     return true;
 }

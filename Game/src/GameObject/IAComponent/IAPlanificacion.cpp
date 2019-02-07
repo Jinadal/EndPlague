@@ -6,6 +6,7 @@
 #include "BPhysicComponent.h"
 #include "ShootComponent.h"
 #include "GameObject.h"
+#include "RenderComponent.h"
 
 /*
 Salta si el personaje entra a menos de 10 unidades de distancia de portador de la ia
@@ -18,14 +19,22 @@ bool IA_Plan_InSight::run()
     float dx = main->getX() - owner->getX();
     float dy = main->getY() - owner->getY();
 
+// && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()+1)
+       //     && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()-1)
+
     if(fabs(dx) <= 30  && fabs(dy) <= 30){
         if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ())
-            && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()+1)
-            && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()-1))
+           )
         {
             owner->getComponent<ShootComponent>()->shoot();
         }
+
+        //if(owner->getComponent<IAComponent>()->onRoute){
+         //   return false;
+       // }else{
+            owner->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");
         return true;
+      //  }
     }
     //std::cout << "PERSONAJE PERDIDO!!! \n";
     return false;
