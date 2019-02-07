@@ -21,10 +21,10 @@ class BPhysicComponent : public Component
 
             btTransform tr = rbody->getWorldTransform();
             btQuaternion quat;
-            quat.setEulerZYX(0,0, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
+            quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRZ()*PI/180, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
             tr.setRotation(quat);
 
-            rbody->setCenterOfMassTransform(tr);
+            rbody->setWorldTransform(tr);
 
             rbody->setUserPointer((void *)(gameObject));
         }

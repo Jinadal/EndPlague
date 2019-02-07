@@ -16,7 +16,6 @@ void BPhysicComponent::update()
     btScalar yawZ, pitchY, rollX;
     mRotation.getEulerZYX(yawZ, pitchY, rollX);
     
-
 	// roll (x-axis rotation)
 	
     gameObject->setRX(rollX*180/PI);
@@ -66,7 +65,7 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
     quat.setEuler(0,0, rZ*PI/180); //or quat.setEulerZYX depending on the ordering you want
     tr.setRotation(quat);
 
-    rbody->setCenterOfMassTransform(tr);
+    rbody->setWorldTransform(tr);
 
     //rbody->applyTorque(btVector3(0, 0, rZ));
 }
