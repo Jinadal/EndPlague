@@ -1,4 +1,3 @@
-#include "TResource.h"
 
 class TResource;
 class TResourceMaterial : public TResource

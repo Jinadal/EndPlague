@@ -1,15 +1,16 @@
-#include "TEntity.h"
 #include <GL/glew.h>
+#include "TEntity.h"
 
+class TEntity;
 class TCamera : public TEntity
 {
     private:
         //Parallel or perspective; true == persective, false == parallel
-        bool perspective:
-        float near, far, top, bot, right, left;
+        bool perspective = false;
+        float near = 1.0f, far = 1.0f, top = 1.0f, bot = 1.0f, right = 1.0f, left = 1.0f;
     public:
-        TCamera();
-        ~TCamera();
+        TCamera(){}
+        ~TCamera(){}
 
         //Get & Set
         void setCameraParametres(float n,float f,float t,float b,float r,float l);

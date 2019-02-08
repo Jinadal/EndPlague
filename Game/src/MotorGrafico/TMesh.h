@@ -1,22 +1,22 @@
-#include "TEntity.h"
-#include "TResource.h"
+
 #include <GL/glew.h>
 #include <glm/ext.hpp>
-
-
+#include "TEntity.h"
+#include <iostream>
+class TResource;
 class TMesh : public TEntity
 {
     private:
         TResource* mesh;
     public:
-        TMesh(/* args */);
-        ~TMesh();
+        TMesh(){}
+        ~TMesh(){}
 
         //Get & Set
         void setMesh(TResource* m){ mesh = m;};
         TResource* getMesh(){ return mesh;};
 
-        void beginDraw();
-        void endDraw(){};
+        void beginDraw(){}
+        void endDraw(){}
         
 };

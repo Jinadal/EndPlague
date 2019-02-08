@@ -1,5 +1,6 @@
-#include "TResource.h"
 #include <vector>
+
+class TResource;
 class TResourceMesh;
 class TResourceMaterial;
 class TResourceTexture;

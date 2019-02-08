@@ -10,6 +10,6 @@ class TResource
         virtual bool loadResource() = 0;
         virtual void draw() = 0;
 
-        const char* getName(){ return name;};
-        void setName(const char* n){ name = n;};
+        virtual const char* getName(){ return name;};
+        virtual void setName(const char* n){ name = n;};
 };

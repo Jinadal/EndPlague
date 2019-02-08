@@ -12,7 +12,7 @@ class TLight : public TEntity
         ~TLight();
 
         //Get & Set
-        void setIntesity(glm::vec4 i);
+        void setIntesity(glm::vec4 i){ intensity = i;};
         glm::vec4 getIntensity(){ return intensity;};
 
         void beginDraw();
