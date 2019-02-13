@@ -1,7 +1,7 @@
+#pragma once
 #include <GL/glew.h>
 #include "TEntity.h"
 
-class TEntity;
 class TCamera : public TEntity
 {
     private:
@@ -18,7 +18,7 @@ class TCamera : public TEntity
         
         void changeCamera(bool c){ perspective = c;};
         
-        void beginDraw();
-        void endDraw();
+        void beginDraw(){}
+        void endDraw(){}
 
 };

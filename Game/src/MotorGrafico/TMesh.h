@@ -1,8 +1,8 @@
 
-#include <GL/glew.h>
-#include <glm/ext.hpp>
-#include "TEntity.h"
+
 #include <iostream>
+
+class TEntity;
 class TResource;
 class TMesh : public TEntity
 {

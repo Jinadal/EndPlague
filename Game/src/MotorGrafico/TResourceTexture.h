@@ -1,14 +1,16 @@
-#include "TResource.h"
+#include <GL/glew.h>
+#include <SFML/Graphics.hpp>
 
 class TResource;
 class TResourceTexture : public TResource
 {
 private:
-    /* data */
+    GLuint textureID;
+
 public:
     TResourceTexture(/* args */) = default;
     ~TResourceTexture() = default;
 
-    bool loadResource(){return false;}; 
+    bool loadResource(); 
     void draw(){};
 };

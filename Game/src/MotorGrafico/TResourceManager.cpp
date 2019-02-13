@@ -36,19 +36,21 @@ TResourceMaterial* TResourceManager::getResourceMaterial(const char* name)
 
     for(unsigned int i=0; i<material.size() && found==false; i++)
     {
-        if(strcmp(name,material[i]->getName())==0)
+        if(strcmp(name,material[i]->getName())==0)  // 0 = we've found a coincidence
         {
             found = true;
             res = material[i];
         }
-        if(res == NULL)
-        {
+    }
+    //No res coincidence loaded before
+    if(res == NULL)                             
+    {
         res = new TResourceMaterial();
-            res->setName(name);
-            if(res->loadResource())
-            {
-                material.push_back(res);
-            }
+        res->setName(name);
+        if(res->loadResource())
+        {
+            //Load in vector for futures researches
+            material.push_back(res);
         }
     }
     return res;

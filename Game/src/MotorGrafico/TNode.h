@@ -21,7 +21,7 @@ class TNode
         bool remChild(TNode* n);
         bool popChild(TNode* n);
         TNode* searchChild(unsigned int n);
-        void killBranch();
+        //void killBranch();
 
         //*********
         //GET & SET

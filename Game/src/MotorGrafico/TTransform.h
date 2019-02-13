@@ -1,14 +1,15 @@
-#include "TEntity.h"
+#pragma once
 #include <GL/glew.h>
 #include <glm/ext.hpp>
+#include "TEntity.h"
 
 class TTransform : public TEntity
 {
     private:
         glm::mat4 matrix;
     public:
-        TTransform(/* args */);
-        ~TTransform();
+        TTransform(){}
+        ~TTransform(){}
 
         //Get & Set
         void setMatrix(glm::mat4 m){ matrix = m;};
