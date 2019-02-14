@@ -32,7 +32,7 @@ bool IA_Plan_InSight::run()
         //if(owner->getComponent<IAComponent>()->onRoute){
          //   return false;
        // }else{
-            owner->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");
+            
         return true;
       //  }
     }

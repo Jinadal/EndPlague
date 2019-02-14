@@ -45,10 +45,10 @@ class IA_Graf_FollowRuta : public Nodo
 {
     public:
 
-    IA_Graf_FollowRuta(GameObject* o){owner = o;}
+    IA_Graf_FollowRuta(GameObject* o, float dist){owner = o; distancia = dist;}
     virtual ~IA_Graf_FollowRuta(){}
 
     bool run() override;
     GameObject * owner;    
-
+    float distancia = .5f;
 };

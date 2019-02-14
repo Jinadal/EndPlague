@@ -14,7 +14,7 @@ class IAComponent : public Component
     IAComponent(GameObject * owner, Manager * m, GameObject* main): Component(owner, m), main(main){}
     ~IAComponent(){}
 
-    void Initialice();
+    void Initialice(int mode);
     void run();
 
     std::map<std::string,Nodo*> mapa;
@@ -25,4 +25,8 @@ class IAComponent : public Component
     bool onRoute = false;
 
     std::vector<float> route;
+
+    GameObject* spawnOnFire;
+    GameObject* pozoObjetivo;
+
 };
