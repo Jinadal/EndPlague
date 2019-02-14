@@ -1,7 +1,8 @@
 #include "RenderIrrlicht.h"
 
 RenderIrrlicht::RenderIrrlicht(){
-    device = createDevice( video::EDT_OPENGL, dimension2d<u32>(1920, 1080));
+    device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
+			false, false, false, 0);
 
     if (!device)
         return;
