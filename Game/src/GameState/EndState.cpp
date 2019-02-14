@@ -3,8 +3,6 @@
 #include "Game.h"
 #include <SFML/Window.hpp>
 
-EndState* EndState::only_instance = nullptr;
-
 void EndState::update(float dt)
 {
 

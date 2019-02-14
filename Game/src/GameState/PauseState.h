@@ -4,18 +4,14 @@
 class PauseState : public IGameState 
 {
     private:
-    static PauseState* only_instance;
-    
-
+        PauseState(){}
     public:
 
-    static PauseState *getInstance(){
-            if(!only_instance)
-                only_instance = new PauseState();
-            
-            return only_instance;
-        }
-;
+    static PauseState* getInstance(){
+        static PauseState only_instance;
+        return &only_instance;
+    }
+    
 
     virtual ~PauseState() {}
     virtual void initState();

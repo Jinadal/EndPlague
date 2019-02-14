@@ -11,12 +11,24 @@
 #include "GameObject.h"
 #include "BPhysicComponent.h"
 
-BPhysicManager* BPhysicManager::only_instance = nullptr;
-
 void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass, int physicType)
 {
     components.push_back(new BPhysicComponent(owner, this, xsize, ysize, zsize, mass, physicType));
     owner->addComponent(components[components.size()-1]);
+}
+void BPhysicManager::createComponent(GameObject* owner, char* filename)
+{
+    components.push_back(new BPhysicComponent(owner, this, filename));
+    owner->addComponent(components[components.size()-1]);
+}
+
+void BPhysicManager::clear()
+{
+    components.clear();
+}
+void BPhysicManager::init()
+{
+    PhysicBullet::getInstance();
 }
 
 
@@ -27,6 +39,8 @@ void BPhysicManager::updateAll(float dt){
     }
     PhysicBullet::getInstance()->iteration(dt);
 }
+
+
 //Callback which registers and shows in terminal the colliding objects
 //Parametres are standars of the bullet engine, no need of thinking much about them
 //Need to add the next to lines to main or world init
@@ -40,8 +54,6 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
 
     if(go1->getKill() || go2->getKill())
         return false;
-
-
 
 
     //--------------------------------------------------------------

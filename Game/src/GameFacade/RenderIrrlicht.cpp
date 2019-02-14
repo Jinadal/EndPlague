@@ -1,16 +1,14 @@
 #include "RenderIrrlicht.h"
 
-RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
-
 RenderIrrlicht::RenderIrrlicht(){
-    device = createDevice( video::EDT_OPENGL, dimension2d<u32>(1920, 1080), 16,
-    false, false, false, 0);
+    device = createDevice( video::EDT_OPENGL, dimension2d<u32>(1920, 1080));
 
     if (!device)
         return;
 
     device->setWindowCaption(L"Screams In Goblin");
-
+    
+    device->getLogger()->setLogLevel(ELL_ERROR);
 
     driver = device->getVideoDriver();
     smgr = device->getSceneManager();
@@ -19,11 +17,9 @@ RenderIrrlicht::RenderIrrlicht(){
     smgr->addLightSceneNode(0, core::vector3df(10,0,-100),
     video::SColorf(1.0f,1.0f,1.0f,1.0f), 1000.0f);
 
- 
-
-
-
     then = device->getTimer()->getTime();
+
+
 }
 
 

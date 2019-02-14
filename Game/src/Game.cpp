@@ -7,9 +7,6 @@
 #include "PauseState.h"
 #include "EndState.h"
 
-
-Game* Game::only_instance = nullptr;
-
 void Game::run()
 {
     initGame();
@@ -19,7 +16,6 @@ void Game::run()
         state->update(RenderIrrlicht::getInstance()->getFrameDeltaTime());
         RenderIrrlicht::getInstance()->drawAll();
     }
-    delete RenderIrrlicht::getInstance();
 }
 
 void Game::initGame()

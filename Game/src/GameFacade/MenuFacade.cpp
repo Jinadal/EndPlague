@@ -1,7 +1,5 @@
 #include "MenuFacade.h"
 
-MenuFacade* MenuFacade::only_instance = nullptr;
-
 void MenuFacade::setMenuBackground()
 {
     env = RenderIrrlicht::getInstance()->getGUIEnv();

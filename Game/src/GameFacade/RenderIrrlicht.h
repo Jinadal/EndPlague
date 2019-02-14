@@ -11,8 +11,6 @@ using namespace gui;
 
 class RenderIrrlicht{
     private:
-        static RenderIrrlicht* only_instance;
-
         RenderIrrlicht();
 
         IrrlichtDevice* device;
@@ -27,13 +25,11 @@ class RenderIrrlicht{
         f32 frameDeltaTime;
     public:
         
-        virtual ~RenderIrrlicht(){only_instance=nullptr;}
         static RenderIrrlicht* getInstance(){
-            if(!only_instance){
-                only_instance = new RenderIrrlicht();
-            }
-            return only_instance;
+            static RenderIrrlicht only_instance;
+            return &only_instance;
         }
+        
 
         //Geters
         IrrlichtDevice* getDevice(){return device;}

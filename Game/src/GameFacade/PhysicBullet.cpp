@@ -1,11 +1,9 @@
 #include "PhysicBullet.h"
+#include <btBulletWorldImporter.h>
 
 #define PI 3.141592
 
-
-PhysicBullet* PhysicBullet::only_instance = nullptr;
-
-PhysicBullet::~PhysicBullet()
+void PhysicBullet::clear()
 {
     int i;
 	for (i=_world->getNumCollisionObjects()-1; i>=0 ;i--)
@@ -63,7 +61,7 @@ void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
     delete rigidbody;
 }
 
-btDynamicsWorld* PhysicBullet::initWorldPhysics()
+void PhysicBullet::init()
 {
     //Initialize the scene where the physics take part. It defines how collision are going to take part and resolved.
 
@@ -87,11 +85,6 @@ btDynamicsWorld* PhysicBullet::initWorldPhysics()
 
     //Set gravity to physics in y=-9,8
     _world->setGravity(btVector3(0,0,9.8));
-
-    //We create the floor of our world
-    //createRigidBody(btVector3(0.0f,0.0f,0.0f), btVector3(100.0f,0.5f,100.0f),0.0f);
-
-    return _world;
 }
 
 btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVector3 &scale, btScalar mass, int physicType)
@@ -178,4 +171,17 @@ void* PhysicBullet::rayTest(float x, float y, float z, float rz)
         return rayCallback.m_collisionObject->getUserPointer();
     }
     return NULL;
+}
+
+
+
+btRigidBody* PhysicBullet::createFromFile(char* filename)
+{
+    btBulletWorldImporter* fileLoader = new btBulletWorldImporter(_world);
+    fileLoader->loadFile(filename);
+    btCollisionObject* obj = fileLoader->getRigidBodyByIndex(0);
+    btRigidBody* rbody = btRigidBody::upcast(obj);
+    rbody->getCollisionShape()->setLocalScaling(btVector3(-1, 1, 1));
+    _world->setGravity(btVector3(0,0, 9.8));
+    return rbody;
 }

@@ -6,15 +6,12 @@ class GameObject;
 class ProjectileManager : public Manager{
     private:
         ProjectileManager():Manager(){}
-        static ProjectileManager* only_instance;
 
     public:
-        ~ProjectileManager(){only_instance=nullptr;}
-        static ProjectileManager *getInstance(){
-            if(!only_instance)
-                only_instance = new ProjectileManager();
-            
-            return only_instance;
+        ~ProjectileManager(){}
+        static ProjectileManager* getInstance(){
+            static ProjectileManager only_instance;
+            return &only_instance;
         }
 
         void createComponent(GameObject* owner, float damage);

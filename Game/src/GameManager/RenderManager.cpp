@@ -1,8 +1,6 @@
 #include "RenderManager.h"
 #include "GameObject.h"
 
-RenderManager* RenderManager::only_instance = nullptr;
-
 //Updates all the components
 void RenderManager::updateAll(float dt){
     for(std::size_t i = 0; i<components.size(); i++)

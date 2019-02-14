@@ -3,7 +3,7 @@
 #include <SFML/Window.hpp>
 #include "Game.h"
 
-PauseState* PauseState::only_instance = nullptr;
+
 void PauseState::initState()
 {
     type = IGameState::PAUSE;

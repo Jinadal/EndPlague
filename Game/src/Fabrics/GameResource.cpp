@@ -1,15 +1,13 @@
 #include "GameResource.h"
 #include "GameObject.h"
 
-GameResource* GameResource::only_instance = NULL;
-
-GameResource::~GameResource()
+void GameResource::clear()
 {
     for(std::size_t i = 0; i<gameobjects.size(); i++)
     {
         delete gameobjects[i];
     }
-    only_instance=nullptr;
+    gameobjects.clear();
 }
 
 GameObject* GameResource::createGameObject(float x, float y, float z, float rz)

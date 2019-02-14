@@ -1,6 +1,36 @@
 #include "BPhysicComponent.h"
 
 
+BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, float xsize, float ysize, float zsize, float mass, int physicType) : Component(owner, manager)
+{
+    btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());
+    btVector3 size = btVector3(xsize, ysize, zsize);
+
+    rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass, physicType);
+
+    btTransform tr = rbody->getCenterOfMassTransform();
+    btQuaternion quat;
+    quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRZ()*PI/180, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
+    tr.setRotation(quat);
+
+    rbody->setCenterOfMassTransform(tr);
+
+    rbody->setUserPointer((void *)(gameObject));
+}
+
+BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, char* filename) : Component(owner, manager)
+{
+    rbody = PhysicBullet::getInstance()->createFromFile(filename);
+
+    //---------------- Esta Parte esta por valorar-------------
+        btTransform tr = rbody->getCenterOfMassTransform();
+        btQuaternion quat;
+        quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRZ()*PI/180, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
+        tr.setRotation(quat);
+        rbody->setCenterOfMassTransform(tr);
+
+    rbody->setUserPointer((void *)(gameObject));
+}
 
 void BPhysicComponent::update()
 {
@@ -16,7 +46,6 @@ void BPhysicComponent::update()
     btScalar yawZ, pitchY, rollX;
     mRotation.getEulerZYX(yawZ, pitchY, rollX);
     
-	// roll (x-axis rotation)
 	
     gameObject->setRX(rollX*180/PI);
     gameObject->setRY(pitchY*180/PI);
@@ -67,7 +96,6 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
 
     rbody->setCenterOfMassTransform(tr);
 
-    //rbody->applyTorque(btVector3(0, 0, rZ));
 }
 
 

@@ -5,7 +5,6 @@
 
 #define PI 3.14159265
 
-ShootManager* ShootManager::only_instance = nullptr;
 
 void ShootManager::updateAll(float dt)
 {                                                                       //Checks which component has SHOOTED getting the boolean shooted, if true, creates a projectile and 

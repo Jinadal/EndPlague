@@ -24,8 +24,6 @@
 #include "RenderIrrlicht.h"
 
 
-GameManager* GameManager::only_instance = nullptr;
-
 void GameManager::initAll()
 {
     GameResource::getInstance();
@@ -48,27 +46,9 @@ void GameManager::initAll()
     WoodManager::getInstance();
 }
 
-void GameManager::deleteAll()
+void GameManager::clear()
 {
-    delete GameResource::getInstance();
-
-    delete BPhysicManager::getInstance();
-    delete BucketManager::getInstance();
-    delete CameraManager::getInstance();
-    delete DropperManager::getInstance();
-    delete IAManager::getInstance();
-    delete InputManager::getInstance();
-    delete ItemManager::getInstance();
-    delete LifeManager::getInstance();
-    delete ProjectileManager::getInstance();
-    delete RenderManager::getInstance();
-    delete ScoreManager::getInstance();
-    delete ShootManager::getInstance();
-    delete SpawnManager::getInstance();
-    delete StorageManager::getInstance();
-    delete WellManager::getInstance();
-    delete WoodManager::getInstance();
-
+    GameResource::getInstance()->clear();
 }
 
 void GameManager::updateAll(float dt)

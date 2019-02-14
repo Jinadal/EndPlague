@@ -5,16 +5,12 @@ class GameObject;
 class BucketManager : public Manager{
     private:
         BucketManager():Manager(){}
-
-        static BucketManager* only_instance;
     
     public:
-        ~BucketManager(){only_instance = nullptr;}
-        static BucketManager* getInstance()
-        {
-            if(!only_instance)only_instance=new BucketManager();
-
-            return only_instance;
+        ~BucketManager(){}
+        static BucketManager* getInstance(){
+            static BucketManager only_instance;
+            return &only_instance;
         }
 
         void createComponent(GameObject* owner);

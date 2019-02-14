@@ -29,8 +29,8 @@ DIRS := $(subst src,bin,$(wildcard src/. src/*/. src/*/*/.))
 IrrlichtHome := -I/usr/include/irrlicht -lIrrlicht
 IrrlichtLibraries := -L/usr/include/irrlicht -lIrrlicht
 
-BulletHome := -I/usr/include/bullet
-BulletLibraries := -L/usr/lib64 -lLinearMath -lBulletDynamics -lBulletCollision
+BulletHome := -I/usr/include/bullet -I/usr/include/bullet/BulletWorldImporter -I/usr/include/bullet/BulletFileLoader
+BulletLibraries := -L/usr/lib64 -lLinearMath -lBulletDynamics -lBulletCollision -lBulletWorldImporter
 
 #FmodHome := -Iinclude/fmod
 #FmodLibraries := -Llib -lfmodstudio -lfmod

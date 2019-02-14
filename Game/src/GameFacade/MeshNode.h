@@ -5,7 +5,6 @@ Node ony implemented with a AnimatedMesh in Irr
 */
 class MeshNode{
     private:
-        RenderIrrlicht* render;//Irrlich facade
         IMesh* mesh;//Mesh of the node
         IMeshSceneNode* node;//Node
 
