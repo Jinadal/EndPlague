@@ -8,7 +8,7 @@ MeshNode::MeshNode(char s[]){
     if (mesh)
     {
         node = RenderIrrlicht::getInstance()->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
-        //node->setMaterialFlag(EMF_LIGHTING, true);
+        node->setMaterialFlag(EMF_LIGHTING, true);
         //node->setMaterialFlag(EMF_WIREFRAME, true);
         //node->setDebugDataVisible(EDS_BBOX);
     }

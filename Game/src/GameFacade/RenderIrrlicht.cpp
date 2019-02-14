@@ -1,6 +1,8 @@
 #include "RenderIrrlicht.h"
 
 RenderIrrlicht::RenderIrrlicht(){
+    //We need to use video::EDT_SOFTWARE!!
+    //BUT we only can see the map with EDT:OPENGL!
     device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
 			false, false, false, 0);
 
