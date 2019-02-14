@@ -24,10 +24,10 @@ void FabricVillage::loadLevel()
 
     //ADDING A MAP 700 x 700 x 1
     GameObject* map = GameResource::getInstance()->createGameObject(0.f, 0.f, 0.f, 0.f);
-    RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_Final_E.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_Final_E.bullet");
+    BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.bullet");
     //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
 
     //ADDING A PLAYER 1 x 1 x 2
@@ -38,7 +38,7 @@ void FabricVillage::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 100.f, true);
+    LifeManager::getInstance()->createComponent(player, 1000.f, true);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);

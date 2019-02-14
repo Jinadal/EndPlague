@@ -172,6 +172,6 @@ btRigidBody* PhysicBullet::createFromFile(char* filename)
     btCollisionObject* obj = fileLoader->getRigidBodyByIndex(0);
     btRigidBody* rbody = btRigidBody::upcast(obj);
     rbody->getCollisionShape()->setLocalScaling(btVector3(-1, 1, 1));
-    _world->setGravity(btVector3(0,0, 98));
+    _world->setGravity(btVector3(0,0, 9.8));
     return rbody;
 }
