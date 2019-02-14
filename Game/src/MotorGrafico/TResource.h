@@ -5,7 +5,7 @@ class TResource
         const char* name;
     public:
         TResource(){};
-        ~TResource();
+        virtual ~TResource(){};
 
         virtual bool loadResource() = 0;
         virtual void draw() = 0;

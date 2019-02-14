@@ -3,6 +3,27 @@
 #include "TResourceMaterial.h"
 #include "TResourceTexture.h"
 #include <string.h>
+#include <iostream>
+TResourceManager::~TResourceManager()
+{
+    unsigned int i;
+    for(i = 0; i < mesh.size(); i++)
+    {
+        mesh[i] = nullptr;
+    }
+    for(i = 0; i < material.size(); i++)
+    {
+        material[i] = nullptr;
+    }
+    for(i = 0; i < texture.size(); i++)
+    {
+        delete texture[i];
+    }
+    mesh.clear();
+    material.clear();
+    texture.clear();
+}
+
 
 TResourceMesh* TResourceManager::getResourceMesh(const char* name)
 {
@@ -16,14 +37,18 @@ TResourceMesh* TResourceManager::getResourceMesh(const char* name)
             found = true;
             res = mesh[i];
         }
-        if(res == NULL)
+    }
+    if(res == NULL)
+    {
+    res = new TResourceMesh();
+        res->setName(name);
+        if(res->loadResource())
         {
-        res = new TResourceMesh();
-            res->setName(name);
-            if(res->loadResource())
-            {
-                mesh.push_back(res);
-            }
+            mesh.push_back(res);
+        }
+        else
+        {
+            delete res;
         }
     }
     return res;
@@ -52,13 +77,17 @@ TResourceMaterial* TResourceManager::getResourceMaterial(const char* name)
             //Load in vector for futures researches
             material.push_back(res);
         }
+        else
+        {
+            delete res;
+        }
     }
     return res;
 }
 
 TResourceTexture* TResourceManager::getResourceTexture(const char* name)
 {
-    TResourceTexture* res = NULL;
+    TResourceTexture* res = nullptr;
     bool found = false; //We must read the resource as less as possible
 
     for(unsigned int i=0; i<texture.size() && found==false; i++)
@@ -68,14 +97,18 @@ TResourceTexture* TResourceManager::getResourceTexture(const char* name)
             found = true;
             res = texture[i];
         }
-        if(res == NULL)
-        {
+    }
+    if(res == nullptr)
+    {
         res = new TResourceTexture();
-            res->setName(name);
-            if(res->loadResource())
-            {
-                texture.push_back(res);
-            }
+        res->setName(name);
+        if(res->loadResource())
+        {
+            texture.push_back(res);
+        }
+        else
+        {
+            delete res;
         }
     }
     return res;

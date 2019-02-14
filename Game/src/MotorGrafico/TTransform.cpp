@@ -46,12 +46,12 @@ void TTransform::beginDraw()
     
 
     glm::mat4& model = modelMatrix();
-    std::cout << "Im matrix from model : " <<glm::to_string(model) << std::endl;
+    //std::cout << "Im matrix from model : " <<glm::to_string(model) << std::endl;
 
     stackMatrix().push(model);
     model = matrix * model;
-    std::cout << "Im matrix from matrix : " <<glm::to_string(matrix) << std::endl;
-    std::cout << "Im matrix from model : " <<glm::to_string(model) << std::endl;
+    //std::cout << "Im matrix from matrix : " <<glm::to_string(matrix) << std::endl;
+    //std::cout << "Im matrix from model : " <<glm::to_string(model) << std::endl;
 
 }
 

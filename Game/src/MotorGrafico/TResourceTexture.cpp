@@ -1,11 +1,10 @@
-#include "TResource.h"
 #include "TResourceTexture.h"
-
+#include <iostream>
 bool TResourceTexture::loadResource()
 {
     //Image residing in normal ram allows it to be manipulated freely.
     sf::Image* texture = new sf::Image();
-
+    bool aux = false;
     if(texture->loadFromFile(name))
     {
         //generate an OpenGL texture object.
@@ -22,8 +21,8 @@ bool TResourceTexture::loadResource()
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-        delete texture;
-        return true;
+        aux = true;
     }
-    return false;
+    delete texture;
+    return aux;
 }

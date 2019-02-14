@@ -1,5 +1,5 @@
 #include <vector>
-
+#include <iostream>
 class TResource;
 class TResourceMesh;
 class TResourceMaterial;
@@ -13,7 +13,7 @@ private:
 
 
 public:
-    TResourceManager(/* args */);
+    TResourceManager(/* args */){}
     ~TResourceManager();
 
     TResourceMesh* getResourceMesh(const char* name);
