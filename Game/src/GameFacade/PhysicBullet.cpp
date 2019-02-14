@@ -138,18 +138,8 @@ void PhysicBullet::iteration(float delta)
     //Update the objects in the world based on the step parametres of time
     //Parametres = stepSimulation(btScalar timeStep,int maxSubSteps=1,btScalar fixedTimeStep=btScalar(1.)/btScalar(60.));
     //timeStep is the time passed after last simulation.
-    _world->stepSimulation(delta);
+    _world->stepSimulation(delta*50);
 
-}
-void PhysicBullet::move(btRigidBody* body,int m)
-{
-    btTransform newTrans;
-    body->getMotionState()->getWorldTransform(newTrans);
-        if(m==1)newTrans.getOrigin() += (btVector3(-0.1f, 0, 0));
-        if(m==2)newTrans.getOrigin() += (btVector3(0.1f, 0, 0));
-        if(m==3)newTrans.getOrigin() += (btVector3(0, 0, -0.1f));
-        if(m==4)newTrans.getOrigin() += (btVector3(0, 0, 0.1f));
-    body->getMotionState()->setWorldTransform(newTrans);
 }
 
 void* PhysicBullet::rayTest(float x, float y, float z, float rz)
@@ -182,6 +172,6 @@ btRigidBody* PhysicBullet::createFromFile(char* filename)
     btCollisionObject* obj = fileLoader->getRigidBodyByIndex(0);
     btRigidBody* rbody = btRigidBody::upcast(obj);
     rbody->getCollisionShape()->setLocalScaling(btVector3(-1, 1, 1));
-    _world->setGravity(btVector3(0,0, 9.8));
+    _world->setGravity(btVector3(0,0, 98));
     return rbody;
 }
