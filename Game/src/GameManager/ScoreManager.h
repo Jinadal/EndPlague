@@ -20,5 +20,6 @@ class ScoreManager : public Manager
         void updateAll(float dt){}
         void applyScore(int score);
         int getScore(){return score;};
+        int resetScore();
         int getEnemies(){return static_cast<int>(components.size());};
 };
