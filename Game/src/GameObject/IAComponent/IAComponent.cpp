@@ -8,9 +8,10 @@
 #include "Nodo.h"
 #include "GameObject.h"
 #include "Waypoint.h"
+#include "IAFire.h"
 
 
-void IAComponent::Initialice(){
+void IAComponent::Initialice(int mode){
 
 
 
@@ -38,19 +39,6 @@ void IAComponent::Initialice(){
 
 
 
-  
-
-
-    //Movimiento
-
-  
-  raiz(sel)
-  |       \
-  |         \
-  sec        moveRight
-  |   \
-  |     \
-  pared?  moveUP
 
 
   //Seguimiento personaje
@@ -96,7 +84,8 @@ void IAComponent::Initialice(){
 
  /////////// MAIN TREE ////////////
 
-
+if(!mode)
+{
 
     Selector* nodoRaiz = new Selector();
     std::pair<std::string,Nodo*> pRaiz;
@@ -128,7 +117,7 @@ void IAComponent::Initialice(){
                 IA_Graf_Checkarea* checkarearute = new IA_Graf_Checkarea(gameObject,main);
                 seguirRuta->addChild(checkarearute);
 
-                IA_Graf_FollowRuta* followruta = new IA_Graf_FollowRuta(gameObject);
+                IA_Graf_FollowRuta* followruta = new IA_Graf_FollowRuta(gameObject, .6f);
                 seguirRuta->addChild(followruta);
 
         Secuencia* decideSeg = new Secuencia();
@@ -141,185 +130,171 @@ void IAComponent::Initialice(){
   ///////////////////////////////////  
 
 
-
-/*
-
-    Selector* raizIAmov = new Selector();
-    std::pair<std::string,Nodo*> p;
-    p.first= "Movimiento";
-    p.second = raizIAmov;
-
-    mapa.insert(p);
-
-   
-
-    Secuencia * pared_arriba = new Secuencia();
-    raizIAmov->addChild(pared_arriba);
-
-    //MoverIzda* movelft1 = new MoverIzda(gameObject);
-    //pared_arriba->addChild(movelft1);
-
-
-    Pared* pared = new Pared(gameObject);
-    pared_arriba->addChild(pared);
-
-
-   // MoverDcha* movedcha = new MoverDcha(gameObject);
-   // pared_arriba->addChild(movedcha);
-
-    MoverArriba* moveup = new MoverArriba(gameObject, main);
-    pared_arriba->addChild(moveup);
-
-
-
-    MoverIzda* movelft = new MoverIzda(gameObject, main);
-    raizIAmov->addChild(movelft);
-
-    
-*/
-
 //SEGUIMIENTO 3
 
-Selector* seguimientoDirecto = new Selector();
-decideSeg->addChild(seguimientoDirecto);
+                Selector* seguimientoDirecto = new Selector();
+                decideSeg->addChild(seguimientoDirecto);
 
-        Secuencia* otraArea = new Secuencia();
-        seguimientoDirecto->addChild(otraArea);
+                        Secuencia* otraArea = new Secuencia();
+                        seguimientoDirecto->addChild(otraArea);
 
-              IA_Graf_Checkarea* checkarea = new IA_Graf_Checkarea(gameObject,main);
-              otraArea->addChild(checkarea);
+                            IA_Graf_Checkarea* checkarea = new IA_Graf_Checkarea(gameObject,main);
+                            otraArea->addChild(checkarea);
 
-              IA_Graf_LaunchGPS* GPS = new IA_Graf_LaunchGPS(gameObject, main);
-              otraArea->addChild(GPS);
+                            IA_Graf_LaunchGPS* GPS = new IA_Graf_LaunchGPS(gameObject, main);
+                            otraArea->addChild(GPS);
 
-        // ---------------------------------
+                        // ---------------------------------
 
-        Selector* raizIASeg = new Selector();
+                        Selector* raizIASeg = new Selector();
 
-        std::pair<std::string,Nodo*> ps;
-        ps.first= "Seguimiento";
-        ps.second = raizIASeg;
+                        std::pair<std::string,Nodo*> ps;
+                        ps.first= "Seguimiento";
+                        ps.second = raizIASeg;
 
-        mapa.insert(ps);
-        seguimientoDirecto->addChild(raizIASeg);
-
-    
-
-
-          Secuencia* seg_enX = new Secuencia();
-          raizIASeg->addChild(seg_enX);
-
-                IA_Seg_DifX* seg_difenX = new IA_Seg_DifX(gameObject, main);
-                seg_enX->addChild(seg_difenX);
-
-                Selector* seg_goOnX = new Selector();
-                seg_enX->addChild(seg_goOnX);
-
-
-                    Secuencia* seg_XIzq = new Secuencia();
-                    seg_goOnX->addChild(seg_XIzq);
-
-                            IA_Seg_CheckXIzd* seg_checkXIzd = new IA_Seg_CheckXIzd(gameObject, main);
-                            seg_XIzq->addChild(seg_checkXIzd);
-
-                            MoverDcha* seg_movDcha = new MoverDcha(gameObject, main);
-                            seg_XIzq->addChild(seg_movDcha);
-
-
-                    Secuencia* seg_XDer = new Secuencia();
-                    seg_goOnX->addChild(seg_XDer);
-
-                            IA_Seg_CheckXDer* seg_checkXDer = new IA_Seg_CheckXDer(gameObject, main);
-                            seg_XDer->addChild(seg_checkXDer);
-
-                            MoverIzda* seg_movIzda = new MoverIzda(gameObject,main);
-                            seg_XDer->addChild(seg_movIzda);
-
+                        mapa.insert(ps);
+                        seguimientoDirecto->addChild(raizIASeg);
 
                     
 
 
+                        Secuencia* seg_enX = new Secuencia();
+                        raizIASeg->addChild(seg_enX);
 
-          Secuencia* seg_enY = new Secuencia();
-          raizIASeg->addChild(seg_enY);
+                                IA_Seg_DifX* seg_difenX = new IA_Seg_DifX(gameObject, main);
+                                seg_enX->addChild(seg_difenX);
 
-              IA_Seg_DifY* seg_difenY = new IA_Seg_DifY(gameObject, main);
-              seg_enY->addChild(seg_difenY);
-
-              Selector* seg_goOnY = new Selector();
-              seg_enY->addChild(seg_goOnY);
-
-                    Secuencia* seg_YAbj = new Secuencia();
-                    seg_goOnY->addChild(seg_YAbj);
-
-                          IA_Seg_CheckYAbj* seg_checkYAbj = new IA_Seg_CheckYAbj(gameObject, main);
-                          seg_YAbj->addChild(seg_checkYAbj);
-
-                          MoverArriba* seg_movArri = new MoverArriba(gameObject, main);
-                          seg_YAbj->addChild(seg_movArri);
+                                Selector* seg_goOnX = new Selector();
+                                seg_enX->addChild(seg_goOnX);
 
 
-                    Secuencia* seg_YArr = new Secuencia();
-                    seg_goOnY->addChild(seg_YArr);
+                                    Secuencia* seg_XIzq = new Secuencia();
+                                    seg_goOnX->addChild(seg_XIzq);
 
-                          IA_Seg_CheckYArr* seg_checkYArr = new IA_Seg_CheckYArr(gameObject, main);
-                          seg_YArr->addChild(seg_checkYArr);
+                                            IA_Seg_CheckXIzd* seg_checkXIzd = new IA_Seg_CheckXIzd(gameObject, main);
+                                            seg_XIzq->addChild(seg_checkXIzd);
 
-                          MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject, main);
-                          seg_YArr->addChild(seg_movAbjo);
-                          
+                                            MoverDcha* seg_movDcha = new MoverDcha(gameObject, main);
+                                            seg_XIzq->addChild(seg_movDcha);
 
 
+                                    Secuencia* seg_XDer = new Secuencia();
+                                    seg_goOnX->addChild(seg_XDer);
+
+                                            IA_Seg_CheckXDer* seg_checkXDer = new IA_Seg_CheckXDer(gameObject, main);
+                                            seg_XDer->addChild(seg_checkXDer);
+
+                                            MoverIzda* seg_movIzda = new MoverIzda(gameObject,main);
+                                            seg_XDer->addChild(seg_movIzda);
+
+
+                                    
+
+
+
+                        Secuencia* seg_enY = new Secuencia();
+                        raizIASeg->addChild(seg_enY);
+
+                            IA_Seg_DifY* seg_difenY = new IA_Seg_DifY(gameObject, main);
+                            seg_enY->addChild(seg_difenY);
+
+                            Selector* seg_goOnY = new Selector();
+                            seg_enY->addChild(seg_goOnY);
+
+                                    Secuencia* seg_YAbj = new Secuencia();
+                                    seg_goOnY->addChild(seg_YAbj);
+
+                                        IA_Seg_CheckYAbj* seg_checkYAbj = new IA_Seg_CheckYAbj(gameObject, main);
+                                        seg_YAbj->addChild(seg_checkYAbj);
+
+                                        MoverArriba* seg_movArri = new MoverArriba(gameObject, main);
+                                        seg_YAbj->addChild(seg_movArri);
+
+
+                                    Secuencia* seg_YArr = new Secuencia();
+                                    seg_goOnY->addChild(seg_YArr);
+
+                                        IA_Seg_CheckYArr* seg_checkYArr = new IA_Seg_CheckYArr(gameObject, main);
+                                        seg_YArr->addChild(seg_checkYArr);
+
+                                        MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject, main);
+                                        seg_YArr->addChild(seg_movAbjo);
+                                        
+}
+
+if(mode)
+{
+    Selector* nodoRaiz2 = new Selector();
+    std::pair<std::string,Nodo*> pRaiz2;
+    pRaiz2.first= "Raiz";
+    pRaiz2.second = nodoRaiz2;
+
+    mapa.insert(pRaiz2);
+
+
+        Secuencia* hayColl2 = new Secuencia();
+        nodoRaiz2->addChild(hayColl2);
+
+              IA_Plan_DidICollide* plan_didIcollide2 = new IA_Plan_DidICollide(gameObject);
+              hayColl2->addChild(plan_didIcollide2);
+
+              IA_Plan_ChangeDirection* plan_changeDirection2 = new IA_Plan_ChangeDirection(gameObject);
+              hayColl2->addChild(plan_changeDirection2);
+
+
+        
+      
+        
+        Secuencia* seguirRuta2 = new Secuencia();
+        nodoRaiz2->addChild(seguirRuta2 );
+
+                IA_Graf_CheckRuta* checkruta2 = new IA_Graf_CheckRuta(gameObject);
+                seguirRuta2->addChild(checkruta2);
+
+                IA_Graf_Checkarea* checkarearute2 = new IA_Graf_Checkarea(gameObject,main);
+                seguirRuta2->addChild(checkarearute2);
+
+                Selector* pozoOCasa = new Selector();
+                seguirRuta2->addChild(pozoOCasa);
+
+                    Secuencia* aPozo = new Secuencia();
+                    pozoOCasa->addChild(aPozo);
+
+                        IA_Fire_haveWater* haveWaterP = new IA_Fire_haveWater(gameObject);
+                        aPozo->addChild(haveWaterP);
+
+                        IA_Graf_FollowRuta* followruta2 = new IA_Graf_FollowRuta(gameObject, 1.2F);
+                        aPozo->addChild(followruta2);
+
+                    IA_Graf_FollowRuta* followruta3 = new IA_Graf_FollowRuta(gameObject, 3.1F);
+                    pozoOCasa->addChild(followruta3);
+
+        Secuencia* seeFire = new Secuencia();
+        nodoRaiz2->addChild(seeFire);
+
+                IA_Fire_seefire* onFire = new IA_Fire_seefire(gameObject);
+                seeFire->addChild(onFire);
+
+                Selector* wellOrSpawn = new Selector();
+                seeFire->addChild(wellOrSpawn);
+
+                    Secuencia* toWell = new Secuencia();
+                    wellOrSpawn->addChild(toWell);
                     
+                        IA_Fire_haveWater* haveWater = new IA_Fire_haveWater(gameObject);
+                        toWell->addChild(haveWater);
 
-/*
+                        IA_Fire_searchWell* buscarPozo = new IA_Fire_searchWell(gameObject);
+                        toWell->addChild(buscarPozo);
 
-    Selector* xgeneral = new Selector();
-    raizIASeg->addChild(xgeneral);
+                        IA_Fire_GPStoWell* AlPozo = new IA_Fire_GPStoWell(gameObject);
+                        toWell->addChild(AlPozo);
 
-      Selector* ygeneral = new Selector();
-    raizIASeg->addChild(ygeneral);
+                    IA_Fire_GPStoSpawn* AlSpawn = new IA_Fire_GPStoSpawn(gameObject);
+                    wellOrSpawn->addChild(AlSpawn);
+}
 
-
-    Secuencia* enx = new Secuencia();
-    xgeneral->addChild(enx);
-    
-    Secuencia* enxwid = new Secuencia();
-    xgeneral->addChild(enxwid);
-
-    Secuencia* eny = new Secuencia();
-    ygeneral->addChild(eny);
-
-        Secuencia* enyhei = new Secuencia();
-    ygeneral->addChild(enyhei);
-
-
-
-    CheckX* checkx = new CheckX(gameObject, main);
-    enx->addChild(checkx);
-
-    MoverDcha* xmd = new MoverDcha(gameObject);
-    enx->addChild(xmd);
-
-    CheckXwid* checkxwid = new CheckXwid(gameObject,main);
-    enxwid->addChild(checkxwid);
-
-    MoverIzda* xmi = new MoverIzda(gameObject);
-    enxwid-> addChild(xmi);
-
-    CheckY* checky = new CheckY(gameObject,main);
-    eny->addChild(checky);
-
-    MoverAbajo* ymab = new MoverAbajo(gameObject);
-    eny->addChild(ymab);
-
-      CheckYhei* checkyhei = new CheckYhei(gameObject,main);
-    enyhei->addChild(checkyhei);
-
-    MoverArriba* ymar = new MoverArriba(gameObject);
-    enyhei->addChild(ymar);
-
-    */
+            
 }
 
 void IAComponent::run(){

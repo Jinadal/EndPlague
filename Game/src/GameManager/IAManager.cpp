@@ -35,6 +35,5 @@ void IAManager::clear()
 {
     components.clear();
     delete gps;
-    gps = new GPS();
-    gps->Initialice();
+  
 }
