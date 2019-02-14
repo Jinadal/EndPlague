@@ -13,6 +13,5 @@ void ItemFabric::createItem(float x, float y, float z, float rz, ItemTypes type)
     BPhysicManager::getInstance()->createComponent(r, .5f, .5f, .5, 10.f, 1);
     //bphysicmanager->getComponent<BPhysicComponent>()->applyForce(10.f);
     ItemManager::getInstance()->createComponent(r, type);
-
 }
 

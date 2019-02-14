@@ -36,7 +36,7 @@ void FabricVillage::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 10.f, true);
+    LifeManager::getInstance()->createComponent(player, 1000.f, true);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -84,26 +84,9 @@ void FabricVillage::loadLevel()
     LifeManager::getInstance()->createComponent(spawn4, 10000.f);
     BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 0.f, 1);
 
-    //Adding an ITEM1 //EL MESH MIDE .5 x .5 x .5
-    GameObject* item1 = GameResource::getInstance()->createGameObject(0.f, 3.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
-    RenderManager::getInstance()->createComponent(item1, (char*)"res/ITEM.obj");//Fachada de render y path de obj
-    item1->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");//Path de bmp
-    BPhysicManager::getInstance()->createComponent(item1, .5f, .5f, .5f, 1.f, 1);
-    ItemManager::getInstance()->createComponent(item1, POTION);
-    
-    
-    //Adding an ITEM2
-    GameObject* item2 = GameResource::getInstance()->createGameObject(0.f, 6.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
-    RenderManager::getInstance()->createComponent(item2, (char*)"res/ITEM.obj");//Fachada de render y path de obj
-    //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
-    BPhysicManager::getInstance()->createComponent(item2, .5f, .5f, .5f, 1.f, 1);
-    ItemManager::getInstance()->createComponent(item2, CROSSBOW);
-    
+    ItemFabric fabric;
 
-    //Adding an ITEM3
-    GameObject* item3 = GameResource::getInstance()->createGameObject(0.f, 9.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
-    RenderManager::getInstance()->createComponent(item3, (char*)"res/ITEM.obj");//Fachada de render y path de obj
-    //item2->getComponent<RenderComponent>()->setTexture((char*) "");//Path de bmp
-    BPhysicManager::getInstance()->createComponent(item3, .5f, .5f, .5f, 1.f, 1);    
-    ItemManager::getInstance()->createComponent(item3, AXE);
+    fabric.createItem(0.f, 3.f, -1.f, 0.f, POTION);
+    fabric.createItem(0.f, 6.f, -1.f, 0.f, CROSSBOW);
+    fabric.createItem(0.f, 9.f, -1.f, 0.f, AXE);
 }
