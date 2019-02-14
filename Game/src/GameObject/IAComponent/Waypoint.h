@@ -42,7 +42,14 @@ class Grafo
 {
     public:
         Grafo(){}
-        virtual ~Grafo(){}
+        virtual ~Grafo(){
+            for(std::vector<Conexion*>::iterator iter = _conexiones.begin(); iter!=_conexiones.end(); iter++){
+
+                delete *iter;
+            }
+            _conexiones.clear();
+                 
+        }
 
         std::vector<Conexion*> _conexiones;
 
@@ -73,7 +80,7 @@ class GPS
 
     public: 
         GPS(){graph = new Grafo();}
-        virtual ~GPS(){ delete graph;}
+        virtual ~GPS(){ Clear();}
 
         void addArea(float xsup, float ysup, float xinf, float yinf);
         void addWaypoint(float coorX, float coorY);
@@ -81,7 +88,7 @@ class GPS
         void addConexionToGraph(int w1, int w2);
 
         void Initialice();
-
+        void Clear();
         std::vector<float> getWay(float xi, float yi, float xf, float yf );
         std::vector<Area*> getAreas(){return AML;}
 };

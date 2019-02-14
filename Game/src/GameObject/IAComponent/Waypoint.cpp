@@ -255,6 +255,11 @@ pesoPath* Grafo::pathfindingDijkstra(Waypoint* startWaypoint, Waypoint* objetive
         current = buscar(closed,current->connection->origen);
     }
     pesopath->path = path;
+
+
+    delete startRecord;
+    delete endRecord;
+
     return pesopath;
 }
 
@@ -309,6 +314,7 @@ void Grafo::addConexion(Waypoint* w1, Waypoint* w2)
     _conexiones.push_back(new Conexion(w2,w1,peso));
 
 }
+//Si falla la ia con los ways, mira aqui arriba por que he quitado el NEW
 
 
 void GPS::addArea(float xsup, float ysup, float xinf, float yinf)
@@ -405,3 +411,21 @@ std::vector<float> GPS::getWay(float xi, float yi, float xf, float yf )
     return returno;
 }
 
+void GPS::Clear()
+{
+    for(std::vector<Area*>::iterator iter = AML.begin(); iter!=AML.end(); iter++){
+
+        delete *iter;
+
+    }
+    AML.clear();
+
+    for(std::vector<Waypoint*>::iterator iter = ways.begin(); iter!=ways.end(); iter++){
+    
+        delete *iter;
+
+    }
+    ways.clear();
+
+    delete graph;
+}
