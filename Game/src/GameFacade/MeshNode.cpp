@@ -5,15 +5,13 @@
 MeshNode::MeshNode(char s[]){
     mesh = RenderIrrlicht::getInstance()->getSMgr()->getMesh(s); //Gets a mesh
 
-    if (!mesh)
+    if (mesh)
     {
-        RenderIrrlicht::getInstance()->getDevice()->drop();
-        return;
+        node = RenderIrrlicht::getInstance()->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
+        //node->setMaterialFlag(EMF_LIGHTING, true);
+        //node->setMaterialFlag(EMF_WIREFRAME, true);
+        //node->setDebugDataVisible(EDS_BBOX);
     }
-    node = RenderIrrlicht::getInstance()->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
-    //node->setMaterialFlag(EMF_LIGHTING, true);
-    //node->setMaterialFlag(EMF_WIREFRAME, true);
-    //node->setDebugDataVisible(EDS_BBOX);
 }
 
 //Changes the mesh of the node to de path

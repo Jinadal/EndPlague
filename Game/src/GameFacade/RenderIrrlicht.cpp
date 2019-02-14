@@ -19,8 +19,6 @@ RenderIrrlicht::RenderIrrlicht(){
     video::SColorf(1.0f,1.0f,1.0f,1.0f), 1000.0f);
 
     then = device->getTimer()->getTime();
-
-
 }
 
 
@@ -35,6 +33,7 @@ void RenderIrrlicht::drawAll()
 
     smgr->drawAll();
     guienv->drawAll();
+
     driver->endScene();
 }
 
@@ -73,6 +72,7 @@ float RenderIrrlicht::getCursorX()
                                 outNode
                                 );
 
+    selector->drop();
     return outCollisionPoint.X;
 }
 
@@ -95,10 +95,6 @@ float RenderIrrlicht::getCursorY()
                                 outNode
                                 );
 
+    selector->drop();
     return outCollisionPoint.Y;
-}
-
-void RenderIrrlicht::drawPoint(float x, float y, float z)
-{
-    smgr->addSphereSceneNode(.3f, 4, 0, -1, vector3df(x, y, z), vector3df(0, 0, 0), vector3df(1,1,1));
 }
