@@ -2,8 +2,6 @@
 #include "GameObject.h"
 #include "BucketComponent.h"
 
-BucketManager* BucketManager::only_instance = nullptr;
-
 
 void BucketManager::createComponent(GameObject* owner)
 {

@@ -11,7 +11,7 @@ class Manager{
         Manager(){}
 
         //Destructor
-        virtual ~Manager(){components.clear();}
+        virtual ~Manager(){clear();}
 
         virtual void updateAll(float dt) = 0;
 
@@ -24,5 +24,9 @@ class Manager{
                     break;
                 }
             }
+        }
+
+        void clear(){
+            components.clear();
         }
 };

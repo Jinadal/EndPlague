@@ -1,19 +1,16 @@
 class GameManager
 {
     private:
-        static GameManager* only_instance;
+    
         GameManager(){initAll();}
     
     public:
-        ~GameManager(){deleteAll(); only_instance = nullptr;}
-        static GameManager* getInstance()
-        {
-            if(!only_instance)
-                only_instance = new GameManager();
-
-            return only_instance;
+        ~GameManager(){clear();}
+        static GameManager* getInstance(){
+            static GameManager only_instance;
+            return &only_instance;
         }
         void initAll();
-        void deleteAll();
+        void clear();
         void updateAll(float dt);
 };

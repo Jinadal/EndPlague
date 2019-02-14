@@ -6,15 +6,12 @@ class Manager;
 class RenderManager : public Manager{
     private:
         RenderManager():Manager(){}
-        static RenderManager* only_instance;
         
     public:
-        ~RenderManager(){only_instance=nullptr;}
-        static RenderManager *getInstance(){
-            if(!only_instance)
-                only_instance = new RenderManager();
-            
-            return only_instance;
+        ~RenderManager(){}
+        static RenderManager* getInstance(){
+            static RenderManager only_instance;
+            return &only_instance;
         }
 
         

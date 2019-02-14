@@ -22,14 +22,13 @@ void FabricVillage::loadLevel()
 {
 
 
-     //ADDING A MAP 700 x 700 x 1
+    //ADDING A MAP 700 x 700 x 1
     GameObject* map = GameResource::getInstance()->createGameObject(0.f, 0.f, 0.f, 0.f);
-    RenderManager::getInstance()->createComponent(map, (char*)"res/SUELO.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_Final_E.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
-
-
+    BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_Final_E.bullet");
+    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
 
     //ADDING A PLAYER 1 x 1 x 2
     player = GameResource::getInstance()->createGameObject(1.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
@@ -39,7 +38,7 @@ void FabricVillage::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 1000.f);
+    LifeManager::getInstance()->createComponent(player, 1000.f, false);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -78,7 +77,7 @@ void FabricVillage::loadLevel()
 
     BuildtRecord::getInstance()->addSpawn(spawn2);
 
-      //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
+    //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
     GameObject* spawn3 = GameResource::getInstance()->createGameObject(10.f, 0.f, -1.f, 180.f);
     RenderManager::getInstance()->createComponent(spawn3, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn3->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
@@ -128,4 +127,7 @@ void FabricVillage::loadLevel()
 
 
 
+    fabric.createItem(0.f, 3.f, -1.f, 0.f, POTION);
+    fabric.createItem(0.f, 6.f, -1.f, 0.f, CROSSBOW);
+    fabric.createItem(0.f, 9.f, -1.f, 0.f, AXE);
 }

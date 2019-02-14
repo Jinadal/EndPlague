@@ -6,21 +6,15 @@ class Fabric;
 class PlayState : public IGameState 
 {
     private:
-        bool loaded;
-        static PlayState* only_instance;  
+        bool loaded; 
         PlayState(){}         
         Fabric* fabric;
     public:
 
-        static PlayState *getInstance(){
-            if(!only_instance)
-                only_instance = new PlayState();
-                
-            return only_instance;
-        };
-
-
-        virtual ~PlayState() {}
+         static PlayState* getInstance(){
+            static PlayState only_instance;
+            return &only_instance;
+        }
         virtual void initState();
         virtual void update(float dt);
         virtual void clear();

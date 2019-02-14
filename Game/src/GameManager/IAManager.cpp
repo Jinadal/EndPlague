@@ -3,14 +3,7 @@
 #include "GameObject.h"
 #include "Waypoint.h"
 
-IAManager* IAManager::only_instance = nullptr;
 
-
-IAManager::IAManager():Manager()
-{
-    gps = new GPS();
-    gps->Initialice();
-}
 void IAManager::createComponent(GameObject *owner)
 {
     components.push_back(new IAComponent(owner,this, player));
@@ -29,4 +22,19 @@ void IAManager::updateAll(float dt)
         }
     }
  
+}
+
+
+void IAManager::init()
+{
+    gps = new GPS();
+    gps->Initialice();
+}
+
+void IAManager::clear()
+{
+    components.clear();
+    delete gps;
+    gps = new GPS();
+    gps->Initialice();
 }

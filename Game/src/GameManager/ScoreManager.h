@@ -5,21 +5,17 @@ class GameObject;
 class ScoreManager : public Manager
 {
     private:
-        static ScoreManager* only_instance;
         ScoreManager():Manager(){score = 0.f;}
         int score;
     
     public:
-        ~ScoreManager(){only_instance = nullptr;}
-        static ScoreManager* getInstance()
-        {
-            if (!only_instance) {
-                only_instance = new ScoreManager();
-            }
-            
-            return only_instance;
+        ~ScoreManager(){clear();}
+        static ScoreManager* getInstance(){
+            static ScoreManager only_instance;
+            return &only_instance;
         }
 
+        void clear(){components.clear(); score = 0.f;}
         void createComponent(GameObject* owner, int score);
         void updateAll(float dt){}
         void applyScore(int score);

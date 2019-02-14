@@ -2,8 +2,6 @@
 #include "ProjectileComponent.h"
 #include "GameObject.h"
 
-ProjectileManager* ProjectileManager::only_instance = nullptr;
-
 
 void ProjectileManager::createComponent(GameObject *owner, float damage)
 {

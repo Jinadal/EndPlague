@@ -2,7 +2,6 @@
 #include "GameObject.h"
 #include "DropperComponent.h"
 
-DropperManager* DropperManager::only_instance = nullptr;
 
 void DropperManager::createComponent(GameObject* owner)
 {

@@ -10,9 +10,6 @@
 
 #include "GameManager.h"
 
-
-PlayState* PlayState::only_instance = nullptr;
-
 void PlayState::initState()
 {
     type = IGameState::PLAY;
@@ -41,8 +38,7 @@ void PlayState::update(float dt)
 }
 
 void PlayState::clear(){
-    //delete inputmanager;
-    delete GameManager::getInstance();
+    GameManager::getInstance()->clear();
 
 
     delete fabric;

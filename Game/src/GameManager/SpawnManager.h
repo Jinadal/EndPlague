@@ -7,18 +7,13 @@ class SpawnManager : public Manager
 {
     private:
         SpawnManager(){};
-        static SpawnManager* only_instance;
         EnemyFabric* fabric = new EnemyFabric();
     public:
-        ~SpawnManager(){delete fabric; only_instance = nullptr;};
-        static SpawnManager* getInstance()
-        {
-            if(!only_instance)
-                only_instance = new SpawnManager();
-
-            return only_instance;
+        ~SpawnManager(){delete fabric;}
+        static SpawnManager* getInstance(){
+            static SpawnManager only_instance;
+            return &only_instance;
         }
-
 
         void createComponent(GameObject* owner, float distance, EnemyType type);
         void updateAll(float dt);

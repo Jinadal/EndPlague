@@ -4,17 +4,15 @@
 class MenuFacade
 {
     private:
-    static MenuFacade* only_instance;
-    IGUIEnvironment* env;
-    IGUIImage* img;
+        IGUIEnvironment* env;
+        IGUIImage* img;
+        MenuFacade(){};
     public:
-
-    static MenuFacade *getInstance(){
-        if(!only_instance)
-            only_instance = new MenuFacade();
-            
-        return only_instance;
-    };
+    static MenuFacade* getInstance(){
+        static MenuFacade only_instance;
+        return &only_instance;
+    }
+    
 
 
     virtual ~MenuFacade() {}

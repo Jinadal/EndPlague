@@ -4,17 +4,15 @@
 class EndState : public IGameState 
 {
     private:
-    static EndState* only_instance;
+        EndState(){}
 
     public:
 
-    static EndState *getInstance(){
-            if(!only_instance)
-                only_instance = new EndState();
-            
-            return only_instance;
-        }
-;
+    static EndState* getInstance(){
+        static EndState only_instance;
+        return &only_instance;
+    }
+        
 
     virtual ~EndState() {}
     virtual void initState(){ type = IGameState::END; };

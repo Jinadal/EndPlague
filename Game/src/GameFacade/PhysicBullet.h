@@ -1,36 +1,35 @@
 #pragma once 
 #include <btBulletDynamicsCommon.h>
 
-
-
 class PhysicBullet{
     private:
-    static PhysicBullet* only_instance;
-    PhysicBullet(){initWorldPhysics();};
+        PhysicBullet(){init();};
 
-    btBroadphaseInterface*                      _broadphase;
-    btDefaultCollisionConfiguration*            _collisionConfiguration;
-    btCollisionDispatcher*                      _dispatcher;
-    btSequentialImpulseConstraintSolver*        _solver;
-    btDynamicsWorld*                            _world;
-    btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
-    
+        btBroadphaseInterface*                      _broadphase;
+        btDefaultCollisionConfiguration*            _collisionConfiguration;
+        btCollisionDispatcher*                      _dispatcher;
+        btSequentialImpulseConstraintSolver*        _solver;
+        btDynamicsWorld*                            _world;
+        btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
+        
     public:
     
-    virtual ~PhysicBullet();
+        virtual ~PhysicBullet(){clear();};
 
-    static PhysicBullet* getInstance(){   
-        if(!only_instance)
-            only_instance = new PhysicBullet();
+        static PhysicBullet* getInstance(){
+            static PhysicBullet only_instance;
+            return &only_instance;
+        }
+    
 
-        return only_instance;
-    }
+        void removeRigidBody(btRigidBody* rigidbody);
 
-    void removeRigidBody(btRigidBody* rigidbody);
-
-    btDynamicsWorld* initWorldPhysics();
-    btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
-    void iteration(float d);
-    void move(btRigidBody* body,int m);
-    void* rayTest(float x, float y, float z, float rz);
+        
+        btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
+        btRigidBody* createFromFile(char* filename);
+        void iteration(float d);
+        void move(btRigidBody* body,int m);
+        void* rayTest(float x, float y, float z, float rz);
+        void init();
+        void clear();
 };

@@ -1,16 +1,17 @@
 #include "RenderIrrlicht.h"
 
-RenderIrrlicht* RenderIrrlicht::only_instance=NULL;
-
 RenderIrrlicht::RenderIrrlicht(){
-    device = createDevice( video::EDT_OPENGL, dimension2d<u32>(1920, 1080), 16,
-    false, false, false, 0);
+    //We need to use video::EDT_SOFTWARE!!
+    //BUT we only can see the map with EDT:OPENGL!
+    device = createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
+			false, false, false, 0);
 
     if (!device)
         return;
 
     device->setWindowCaption(L"Screams In Goblin");
-
+    
+    device->getLogger()->setLogLevel(ELL_ERROR);
 
     driver = device->getVideoDriver();
     smgr = device->getSceneManager();
@@ -18,10 +19,6 @@ RenderIrrlicht::RenderIrrlicht(){
 
     smgr->addLightSceneNode(0, core::vector3df(10,0,-100),
     video::SColorf(1.0f,1.0f,1.0f,1.0f), 1000.0f);
-
- 
-
-
 
     then = device->getTimer()->getTime();
 }
@@ -38,6 +35,7 @@ void RenderIrrlicht::drawAll()
 
     smgr->drawAll();
     guienv->drawAll();
+
     driver->endScene();
 }
 
@@ -76,6 +74,7 @@ float RenderIrrlicht::getCursorX()
                                 outNode
                                 );
 
+    selector->drop();
     return outCollisionPoint.X;
 }
 
@@ -98,10 +97,6 @@ float RenderIrrlicht::getCursorY()
                                 outNode
                                 );
 
+    selector->drop();
     return outCollisionPoint.Y;
-}
-
-void RenderIrrlicht::drawPoint(float x, float y, float z)
-{
-    smgr->addSphereSceneNode(.3f, 4, 0, -1, vector3df(x, y, z), vector3df(0, 0, 0), vector3df(1,1,1));
 }

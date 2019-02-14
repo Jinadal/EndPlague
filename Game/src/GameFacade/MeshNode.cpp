@@ -1,33 +1,22 @@
 
 #include "MeshNode.h"
 
-
-using namespace irr;
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
-
 //Creation of a mesh node, recives the facade an the path of the mesh
 MeshNode::MeshNode(char s[]){
-    render = RenderIrrlicht::getInstance();//Assing the facade
-    mesh = render->getSMgr()->getMesh(s); //Gets a mesh
+    mesh = RenderIrrlicht::getInstance()->getSMgr()->getMesh(s); //Gets a mesh
 
-    if (!mesh)
+    if (mesh)
     {
-        render->getDevice()->drop();
-        return;
+        node = RenderIrrlicht::getInstance()->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
+        node->setMaterialFlag(EMF_LIGHTING, true);
+        //node->setMaterialFlag(EMF_WIREFRAME, true);
+        //node->setDebugDataVisible(EDS_BBOX);
     }
-    node = render->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
-    //node->setMaterialFlag(EMF_LIGHTING, false);
-    //node->setMaterialFlag(EMF_WIREFRAME, true);
-    //node->setDebugDataVisible(EDS_BBOX);
 }
 
 //Changes the mesh of the node to de path
 void MeshNode::setMesh(char s[]){
-    mesh = render->getSMgr()->getMesh(s);//Gets a new mesh
+    mesh = RenderIrrlicht::getInstance()->getSMgr()->getMesh(s);//Gets a new mesh
 
     if (!mesh)
     {
@@ -56,5 +45,5 @@ void MeshNode::setVisible(bool b){
 
 //Changes the texture of the node to the new path
 void MeshNode::setTexture(char* s){
-    node->setMaterialTexture( 0, render->getDriver()->getTexture(s) );
+    node->setMaterialTexture( 0, RenderIrrlicht::getInstance()->getDriver()->getTexture(s) );
 }

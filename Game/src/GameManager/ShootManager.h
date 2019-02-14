@@ -5,16 +5,14 @@
 class ShootManager : public Manager{
     private:
         ShootManager():Manager(){fabric = new ProjectileFabric();}
-        static ShootManager* only_instance;
         ProjectileFabric* fabric;
 
     public:
-        ~ShootManager(){delete fabric; only_instance=nullptr;}
-        static ShootManager *getInstance(){         //Pattern Singleton
-            if(!only_instance)
-                only_instance = new ShootManager();
-            
-            return only_instance;
+        ~ShootManager(){delete fabric;}
+        
+        static ShootManager* getInstance(){
+            static ShootManager only_instance;
+            return &only_instance;
         }
 
         void updateAll(float dt);

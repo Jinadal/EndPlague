@@ -3,8 +3,6 @@
 #include "GameObject.h"
 
 
-InputManager* InputManager::only_instance = nullptr;
-
 
 void InputManager::createComponent(GameObject *owner)
 {

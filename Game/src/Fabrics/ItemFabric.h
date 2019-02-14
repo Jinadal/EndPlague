@@ -43,18 +43,18 @@ class ItemFabric
             }, 
             {
                 PEAK,
-                (char*)"res/ITEM.obj",
+                (char*)"res/Espada.obj",
                 (char*)"res/ITEM.bmp"
             },
             {
                 POTION,
-                (char*)"res/ITEM.obj",
+                (char*)"res/Pocion.obj",
                 (char*)"res/ITEM.bmp"
 
             },
             {
                 SHIELD,
-                (char*)"res/ITEM.obj",
+                (char*)"res/Escudo.obj",
                 (char*)"res/ITEM.bmp"
             }
         };

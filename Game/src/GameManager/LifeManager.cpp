@@ -2,9 +2,6 @@
 #include "GameObject.h"
 #include "LifeComponent.h"
 
-LifeManager* LifeManager::only_instance = nullptr;
-
-
 void LifeManager::createComponent(GameObject *owner, float life, bool decreases)
 {
     components.push_back(new LifeComponent(owner, this, life, decreases));
