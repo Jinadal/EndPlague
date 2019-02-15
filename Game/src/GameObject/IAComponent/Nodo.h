@@ -10,11 +10,11 @@ class Nodo{
     public:
 
         Nodo(){}
-        virtual ~Nodo(){}
+        virtual ~Nodo(){clear();}
 
         std::vector<Nodo*> children;
 
-        
+        void clear();
         virtual bool run();
         void addChild(Nodo* child){
             children.push_back(child);

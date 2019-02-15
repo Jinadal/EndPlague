@@ -1,8 +1,15 @@
 #include "Nodo.h"
 
+void Nodo::clear()
+{
+    for(size_t i =0; i<children.size(); i++)
+        delete children[i];
 
+    children.clear();
+}
 bool Nodo::run()
 {
+
     //std::cout << "Nodo ejecutado \n";
     return true;
 }

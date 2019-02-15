@@ -11,6 +11,8 @@
 #include "IAFire.h"
 
 
+#include <iostream>
+
 void IAComponent::Initialice(int mode){
 
 
@@ -311,5 +313,23 @@ if(!mapa.find("Raiz")->second->run()){
   mapa.find("Seguimiento")->second->run();
 
      */ 
+}
+
+void IAComponent::Clear()
+{
+      
+
+    for(size_t it = 0; it < mapa.size(); it++)
+    {
+        std::cout<<"Borro un nodo del mapa" << it->first << "\n";
+
+        delete mapa[it]->second;
+        delete mapa[it];
+
+    }//borrar el mapa 
+    
+    
+    
+    mapa.clear();
 }
 

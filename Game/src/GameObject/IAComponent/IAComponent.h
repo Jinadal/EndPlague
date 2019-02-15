@@ -12,10 +12,11 @@ class IAComponent : public Component
     public:
 
     IAComponent(GameObject * owner, Manager * m, GameObject* main): Component(owner, m), main(main){}
-    ~IAComponent(){}
+    ~IAComponent(){Clear();}
 
     void Initialice(int mode);
     void run();
+    void Clear();
 
     std::map<std::string,Nodo*> mapa;
 
