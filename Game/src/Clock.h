@@ -1,5 +1,4 @@
 #include <chrono>
-#include <iostream>
 #define FPS 60
 
 class Clock
@@ -24,29 +23,20 @@ Clock::Clock()
 
 float Clock::getElapsedTime()
 {
-
-    std::cout<<"Elapsed: "<<elapsedTime.count()<<"\n";
     return elapsedTime.count();
 };
 
 bool Clock::canContinue()
 {
-    if(toReset)
-        elapsedTime = lastTime - lastTime;
-
     std::chrono::time_point<std::chrono::high_resolution_clock> currentTime = std::chrono::high_resolution_clock::now();
 
-    elapsedTime += currentTime - lastTime;
+    elapsedTime = currentTime - lastTime;
 
     double minTime = 1.0/FPS;
     if(elapsedTime.count() > minTime)
     {
-        std::cout<<"Continue\n";
-        toReset = true;
         lastTime = currentTime;
         return true;
     }
-
-    lastTime = currentTime;
     return false;
 };

@@ -6,15 +6,21 @@
 #include "PlayState.h"
 #include "PauseState.h"
 #include "EndState.h"
+#include "Clock.h"
+
 
 void Game::run()
 {
     initGame();
-   
+
+    Clock clock;
     while(RenderIrrlicht::getInstance()->run())
     {
-        state->update(RenderIrrlicht::getInstance()->getFrameDeltaTime());
-        RenderIrrlicht::getInstance()->drawAll();
+        if(clock.canContinue())
+        {
+            state->update(clock.getElapsedTime());
+            RenderIrrlicht::getInstance()->drawAll();
+        }
     }
 }
 
