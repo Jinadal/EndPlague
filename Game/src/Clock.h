@@ -6,7 +6,6 @@ class Clock
     private:
         std::chrono::duration<double>  elapsedTime; //The elapsed time on a single iteration
         std::chrono::time_point<std::chrono::high_resolution_clock> lastTime; //The elapsed time amounted
-        bool toReset = false;
     public:
         Clock();
         float getElapsedTime();
@@ -17,7 +16,6 @@ class Clock
 
 Clock::Clock()
 {
-    toReset = false;
     lastTime = std::chrono::high_resolution_clock::now();
 };
 
