@@ -16,7 +16,7 @@ bool IA_Fire_seefire::run()
 
   for(std::vector<GameObject*>::iterator iter = spawns.begin(); iter!=spawns.end(); iter++)
   {
-    if((*iter)->getComponent<WoodComponent>()->getBurning())
+    if((*iter) && (*iter)->getComponent<WoodComponent>() && (*iter)->getComponent<WoodComponent>()->getBurning())
     {
         owner->getComponent<IAComponent>()->spawnOnFire = *iter;
         return true;

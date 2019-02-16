@@ -3,7 +3,7 @@
 RenderIrrlicht::RenderIrrlicht(){
     //We need to use video::EDT_SOFTWARE!!
     //BUT we only can see the map with EDT:OPENGL!
-    device = createDevice( video::EDT_OPENGL, dimension2d<u32>(640, 480), 16,
+    device = createDevice( video::EDT_OPENGL, dimension2d<u32>(1366, 768), 16,
 			false, false, false, 0);
 
     if (!device)

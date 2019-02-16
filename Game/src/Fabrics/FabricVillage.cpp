@@ -52,52 +52,25 @@ void FabricVillage::loadLevel()
     BPhysicManager::getInstance()->createComponent(well, .5f, .5f, .5f, 0.f, 1);
 
     BuildtRecord::getInstance()->addPozo(well);
-    
 
-    //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
-    GameObject* spawn = GameResource::getInstance()->createGameObject(10.f, -10.f, -1.f, 90.f);
+    for(size_t i = 0; i<spawns.size(); i++)
+        spawn(spawns[i]._x, spawns[i]._y, spawns[i]._rz, spawns[i].type);
+    
+}
+
+
+
+void FabricVillage::spawn(float x, float y, float rz, bool type)
+{
+    GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -1.f, -rz);
     RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_1);
+    if(type){
+        SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_1);
+    }else{
+        SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_2);
+    }
     WoodManager::getInstance()->createComponent(spawn, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 0);
     BuildtRecord::getInstance()->addSpawn(spawn);
-
-
-
-    //ADDING A SPAWN2 //EL MESH MIDE 4 x 4 x 4
-    GameObject* spawn2 = GameResource::getInstance()->createGameObject(-10.f, -10.f, -1.f, -90.f);
-    RenderManager::getInstance()->createComponent(spawn2, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
-    spawn2->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    SpawnManager::getInstance()->createComponent(spawn2, 4.f, ENEMY_2);
-    WoodManager::getInstance()->createComponent(spawn2, 400.f);
-    BPhysicManager::getInstance()->createComponent(spawn2, 2.f, 2.f, 2.f, 0.f, 0);
-    BuildtRecord::getInstance()->addSpawn(spawn2);
-
-
-    //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
-    GameObject* spawn3 = GameResource::getInstance()->createGameObject(10.f, 0.f, -1.f, 180.f);
-    RenderManager::getInstance()->createComponent(spawn3, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
-    spawn3->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    SpawnManager::getInstance()->createComponent(spawn3, 4.f, ENEMY_1);
-    WoodManager::getInstance()->createComponent(spawn3, 400.f);
-    BPhysicManager::getInstance()->createComponent(spawn3, 2.f, 2.f, 2.f, 0.f, 0);
-    BuildtRecord::getInstance()->addSpawn(spawn3);
-
-    //ADDING A SPAWN4 //EL MESH MIDE 4 x 4 x 4
-    GameObject* spawn4 = GameResource::getInstance()->createGameObject(-10.f, 0.f, -1.f, -135.f);
-    RenderManager::getInstance()->createComponent(spawn4, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
-    spawn4->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
-    SpawnManager::getInstance()->createComponent(spawn4, 4.f, ENEMY_2);
-    WoodManager::getInstance()->createComponent(spawn4, 400.f);
-    BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 0.f, 0);
-    BuildtRecord::getInstance()->addSpawn(spawn4);
-
-
-
-    ItemFabric fabric;
-
-    fabric.createItem(0.f, 3.f, -1.f, 0.f, POTION);
-    fabric.createItem(0.f, 6.f, -1.f, 0.f, CROSSBOW);
-    fabric.createItem(0.f, 9.f, -1.f, 0.f, AXE);
 }
