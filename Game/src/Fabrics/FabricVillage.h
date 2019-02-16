@@ -9,8 +9,22 @@ struct Position
     bool type;
 };
 
+std::vector<Position> wells{
+    {13.f, 1.7f, 0.f, true},
+    {19.3f, 29.8f, 0.f, true},
+    {-3.6f, -27.5f, 0.f, true},
+    {-17.5f, -44.5f, 0.f, true},
+    {-19.5f, -18.5f, 0.f, true},
+    {31.2f, -20.7f, 0.f, true},
+    {29.8f, -37.5f, 0.f, true},
+    {45.8f, -7.5f, 0.f, true},
+    {39.1f, 17.3f, 0.f, true},
+    {26.9f, 33.4f, 0.f, true},
+    {46.7f, 34.3f, 0.f, true},
+    {37.9f, 46.4f, 0.f, true},
+};
 std::vector<Position> spawns{
-    {-24.7f, -46.1f, 0.f, true},//Este
+    {-24.7f, -46.1f, 0.f, true},
     {-1.1f, -45.7f, 90.f, true},
     {45.8f, -46.0f, 270.f, true},
     {14.9f, -39.0f, 180.f, true},
@@ -32,8 +46,8 @@ std::vector<Position> spawns{
     {28.2f, 23.8f, 0.f, true},
     {38.f, 23.5f, 90.f, true},
     {-4.7f, 30.7f, 270.f, true},
-    {-23.f, 45.5f, 180.f, true},
-    {-24.f, 45.f, 180.f, true}, //ESTE?
+    {-32.f, 45.5f, 180.f, true},
+    {-24.f, 45.f, 180.f, true},
     {20.3f, 44.6f, 270.f, true},
     {27.6f, 45.6f, 180.f, true},
     {45.6f, 45.9f, 180.f, true}
@@ -46,6 +60,7 @@ class FabricVillage : public Fabric{
         FabricVillage():Fabric(){}
         ~FabricVillage(){}
         void spawn(float x, float y, float rz, bool type);
+        void well(float x, float y, float rz, bool type);
         void loadLevel();
 };
 
@@ -73,7 +88,4 @@ class BuildtRecord
 
         void addSpawn(GameObject* spawn){spawns.push_back(spawn);}
         void addPozo(GameObject* pozo){pozos.push_back(pozo);}
-
-       
-      
 };

@@ -30,8 +30,9 @@ void FabricVillage::loadLevel()
     BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.bullet");
     //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
 
+
     //ADDING A PLAYER 1 x 1 x 2
-    player = GameResource::getInstance()->createGameObject(1.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    player = GameResource::getInstance()->createGameObject(-40.f, -46.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
@@ -44,14 +45,10 @@ void FabricVillage::loadLevel()
     IAManager::getInstance()->setPlayer(player);
     
 
-    //ADDING A WELL //EL MESH MIDE 1 x 1 x 2
-    GameObject* well = GameResource::getInstance()->createGameObject(0.f, -13.f, -1.f, 90.f);
-    RenderManager::getInstance()->createComponent(well, (char*)"res/WELL.obj");//Fachada de render y path de obj
-    well->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");//Path de bmp
-    WellManager::getInstance()->createComponent(well);
-    BPhysicManager::getInstance()->createComponent(well, .5f, .5f, .5f, 0.f, 1);
 
-    BuildtRecord::getInstance()->addPozo(well);
+    for(size_t i = 0; i<wells.size(); i++)
+        well(wells[i]._x, wells[i]._y, wells[i]._rz, wells[i].type);
+
 
     for(size_t i = 0; i<spawns.size(); i++)
         spawn(spawns[i]._x, spawns[i]._y, spawns[i]._rz, spawns[i].type);
@@ -63,8 +60,8 @@ void FabricVillage::loadLevel()
 void FabricVillage::spawn(float x, float y, float rz, bool type)
 {
     GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -1.f, -rz);
-    RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
-    spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
+    RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");
+    spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");
     if(type){
         SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_1);
     }else{
@@ -73,4 +70,14 @@ void FabricVillage::spawn(float x, float y, float rz, bool type)
     WoodManager::getInstance()->createComponent(spawn, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 0);
     BuildtRecord::getInstance()->addSpawn(spawn);
+}
+
+void FabricVillage::well(float x, float y, float rz, bool type)
+{
+    GameObject* well = GameResource::getInstance()->createGameObject(x, y, -1.f, rz);
+    RenderManager::getInstance()->createComponent(well, (char*)"res/WELL.obj");//Fachada de render y path de obj
+    well->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");//Path de bmp
+    WellManager::getInstance()->createComponent(well);
+    BPhysicManager::getInstance()->createComponent(well, .5f, .5f, .5f, 0.f, 1);
+    BuildtRecord::getInstance()->addPozo(well);
 }
