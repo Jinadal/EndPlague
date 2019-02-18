@@ -6,6 +6,7 @@
 #include <iostream>
 TResourceManager::~TResourceManager()
 {
+    //We must clean all of the vector of
     unsigned int i;
     for(i = 0; i < mesh.size(); i++)
     {

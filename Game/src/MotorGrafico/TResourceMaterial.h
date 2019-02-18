@@ -1,12 +1,13 @@
+#pragma once
+#include "TResource.h"
 
-class TResource;
 class TResourceMaterial : public TResource
 {
 private:
     /* data */
 public:
-    TResourceMaterial() = default;
-    ~TResourceMaterial() = default;
+    TResourceMaterial(){}
+    ~TResourceMaterial(){}
 
     bool loadResource(){return false;}; 
     void draw(){};
