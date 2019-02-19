@@ -15,4 +15,5 @@ class WoodManager : public Manager{
 
         void createComponent(GameObject* owner, float life);
         void updateAll(float dt);
+         std::vector<Component*> getSpawns();
 };

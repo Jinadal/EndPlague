@@ -22,7 +22,7 @@ bool IA_Plan_InSight::run()
 // && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()+1)
        //     && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()-1)
 
-    if(fabs(dx) <= 30  && fabs(dy) <= 30){
+    if(fabs(dx) <= 15  && fabs(dy) <= 15){
         if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ())
            )
         {

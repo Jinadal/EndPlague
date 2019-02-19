@@ -29,14 +29,14 @@ class EnemyFabric
                 (char*)"res/DOOMIE.obj",
                 (char*)"res/red.bmp",
                 200.f,
-                10.f  //Velocidad media andando
+                3.f  //Velocidad media andando
             },
             {
                 ENEMY_2,
                 (char*)"res/DOOMIE.obj",
                 (char*)"res/green.bmp",
                 100.f,
-                10.f
+                3.f
             },
         };
 

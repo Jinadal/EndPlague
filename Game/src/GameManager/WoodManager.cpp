@@ -15,3 +15,8 @@ void WoodManager::updateAll(float dt)
         ((WoodComponent*)components[i])->update(dt);
     }
 }
+
+ std::vector<Component*> WoodManager::getSpawns()
+ {
+     return components;
+ }

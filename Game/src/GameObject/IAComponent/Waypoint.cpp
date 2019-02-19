@@ -27,7 +27,7 @@ void GPS::Initialice()
     addArea(-27,49, 24, 13);
     addArea(-28,13, 3, -10);
     addArea(-28,-10, 11, -49);
-    addArea(3,12, 24, -9);
+    addArea(3,13, 24, -9);
     addArea(24,49, 49, 19);
     addArea(24,20, 49, -10);
     addArea(11,-10, 49, -35);
@@ -38,21 +38,35 @@ void GPS::Initialice()
 
 
     addWaypointToArea(0,0);
+
+    addWaypointToArea(1,0);
     addWaypointToArea(1,1);
+    addWaypointToArea(1,2);
     addWaypointToArea(1,3);
+
     addWaypointToArea(2,3);
     addWaypointToArea(2,4);
+
     addWaypointToArea(3,1);
+
     addWaypointToArea(4,6);
+    addWaypointToArea(4,7);
     addWaypointToArea(4,8);
+
     addWaypointToArea(5,4);
     addWaypointToArea(5,5);
+
     addWaypointToArea(6,12);
+
     addWaypointToArea(7,10);
     addWaypointToArea(7,12);
+
     addWaypointToArea(8,5);
     addWaypointToArea(8,6);
+    addWaypointToArea(8,9);
     addWaypointToArea(8,10);
+    addWaypointToArea(8,11);
+
     addWaypointToArea(9,8);
     addWaypointToArea(9,11);
 
@@ -62,6 +76,8 @@ void GPS::Initialice()
 
 
     addConexionToGraph(0,1);
+    addConexionToGraph(0,3);
+
     addConexionToGraph(1,2);
     addConexionToGraph(2,3);
     addConexionToGraph(3,4);

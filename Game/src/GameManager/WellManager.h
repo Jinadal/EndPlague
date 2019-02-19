@@ -15,4 +15,5 @@ class WellManager : public Manager{
 
         void createComponent(GameObject* owner);
         void updateAll(float dt){};
+        std::vector<Component*> getWells();
 };
