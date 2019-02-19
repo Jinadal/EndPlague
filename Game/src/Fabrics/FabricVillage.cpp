@@ -101,7 +101,7 @@ void FabricVillage::loadLevel()
     
 }
 
-*/
+
 
 void FabricVillage::spawn(float x, float y, float rz, bool type)
 {
