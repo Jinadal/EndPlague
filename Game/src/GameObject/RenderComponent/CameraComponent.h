@@ -8,7 +8,7 @@ class GameObject;
 class CameraComponent : public Component{
     private:
         CameraNode* node;
-        float x, y, z, dMAX=50.f, v=1.f;
+        float x, y, z, dMAX=50.f, v=10.f;
         float rz;
 
     public:
