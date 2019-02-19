@@ -13,7 +13,7 @@ void PauseState::update(float dt)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        Game::getInstance()->setState(IGameState::stateType::PLAY);
+        //Game::getInstance()->setState(IGameState::stateType::PLAY);
     }
     
 }

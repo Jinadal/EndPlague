@@ -61,12 +61,12 @@ void PlayState::update(float dt)
     RenderManager::getInstance()->updateAll(dt);
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-        Game::getInstance()->setState(IGameState::stateType::PAUSE);
+       //Game::getInstance()->setState(IGameState::stateType::PAUSE);
     
     if(IAManager::getInstance()->getPlayer()->getKill())
     {
         clear();
-        Game::getInstance()->setState(IGameState::stateType::END);
+        //Game::getInstance()->setState(IGameState::stateType::END);
     }
 }
 
