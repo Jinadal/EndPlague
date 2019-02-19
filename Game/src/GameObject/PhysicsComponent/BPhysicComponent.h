@@ -9,7 +9,7 @@ class BPhysicComponent : public Component
     private:
         btRigidBody* rbody;
         float tx = 0.f, ty = 0.f;
-        float vMax=10.f;
+        float vMax=3.f;
     public:
         ~BPhysicComponent(){PhysicBullet::getInstance()->removeRigidBody(rbody);};
         BPhysicComponent(GameObject* owner, 

@@ -6,19 +6,25 @@
 #include "Waypoint.h"
 #include "IAManager.h"
 #include "WoodComponent.h"
+#include "WoodManager.h"
 #include "Fabric.h"
 #include "BucketComponent.h"
+#include "WellManager.h"
+#include "WellComponent.h"
+
+
 
 bool IA_Fire_seefire::run()
 {
   
-  std::vector<GameObject*> spawns = BuildtRecord::getInstance()->getSpawns();
+  std::vector<Component*> spawns = WoodManager::getInstance()->getSpawns();
 
-  for(std::vector<GameObject*>::iterator iter = spawns.begin(); iter!=spawns.end(); iter++)
+  for(std::vector<Component*>::iterator iter = spawns.begin(); iter!=spawns.end(); iter++)
   {
-    if((*iter) && (*iter)->getComponent<WoodComponent>() && (*iter)->getComponent<WoodComponent>()->getBurning())
+      
+    if(((WoodComponent*) (*iter))->getBurning())
     {
-        owner->getComponent<IAComponent>()->spawnOnFire = *iter;
+        owner->getComponent<IAComponent>()->spawnOnFire = (*iter)->getGameObject();
         return true;
     }
   }
@@ -29,16 +35,17 @@ bool IA_Fire_seefire::run()
 bool IA_Fire_searchWell::run()
 {
   
-  std::vector<GameObject*> wells = BuildtRecord::getInstance()->getPozos();
+  std::vector<Component*> wells = WellManager::getInstance()->getWells();
   float dfinal = 1000000;
   GameObject* well;
-  for(std::vector<GameObject*>::iterator iter = wells.begin(); iter!=wells.end(); iter++)
+  for(std::vector<Component*>::iterator iter = wells.begin(); iter!=wells.end(); iter++)
   {
-    float d = round(sqrt(pow((*iter)->getX() - owner->getX(),2) + pow((*iter)->getY() - owner->getY(),2)));
+    GameObject* obj = ((WellComponent*)(*iter))->getGameObject();
+    float d = round(sqrt(pow(obj->getX() - owner->getX(),2) + pow(obj->getY() - owner->getY(),2)));
     if(d<dfinal)
     {
        dfinal = d;
-       well = *iter;
+       well = obj;
     }
   }
 

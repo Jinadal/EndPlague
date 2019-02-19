@@ -141,79 +141,15 @@ if(!mode)
 
                         // ---------------------------------
 
-                        Selector* raizIASeg = new Selector();
+                        IA_Seg_ToPlayer* raizIASeg = new IA_Seg_ToPlayer(gameObject, main);
 
-                        std::pair<std::string,Nodo*> ps;
-                        ps.first= "Seguimiento";
-                        ps.second = raizIASeg;
-
-                        mapa.insert(ps);
                         seguimientoDirecto->addChild(raizIASeg);
 
                     
 
-
-                        Secuencia* seg_enX = new Secuencia();
-                        raizIASeg->addChild(seg_enX);
-
-                                IA_Seg_DifX* seg_difenX = new IA_Seg_DifX(gameObject, main);
-                                seg_enX->addChild(seg_difenX);
-
-                                Selector* seg_goOnX = new Selector();
-                                seg_enX->addChild(seg_goOnX);
-
-
-                                    Secuencia* seg_XIzq = new Secuencia();
-                                    seg_goOnX->addChild(seg_XIzq);
-
-                                            IA_Seg_CheckXIzd* seg_checkXIzd = new IA_Seg_CheckXIzd(gameObject, main);
-                                            seg_XIzq->addChild(seg_checkXIzd);
-
-                                            MoverDcha* seg_movDcha = new MoverDcha(gameObject, main);
-                                            seg_XIzq->addChild(seg_movDcha);
-
-
-                                    Secuencia* seg_XDer = new Secuencia();
-                                    seg_goOnX->addChild(seg_XDer);
-
-                                            IA_Seg_CheckXDer* seg_checkXDer = new IA_Seg_CheckXDer(gameObject, main);
-                                            seg_XDer->addChild(seg_checkXDer);
-
-                                            MoverIzda* seg_movIzda = new MoverIzda(gameObject,main);
-                                            seg_XDer->addChild(seg_movIzda);
-
-
-                                    
-
-
-
-                        Secuencia* seg_enY = new Secuencia();
-                        raizIASeg->addChild(seg_enY);
-
-                            IA_Seg_DifY* seg_difenY = new IA_Seg_DifY(gameObject, main);
-                            seg_enY->addChild(seg_difenY);
-
-                            Selector* seg_goOnY = new Selector();
-                            seg_enY->addChild(seg_goOnY);
-
-                                    Secuencia* seg_YAbj = new Secuencia();
-                                    seg_goOnY->addChild(seg_YAbj);
-
-                                        IA_Seg_CheckYAbj* seg_checkYAbj = new IA_Seg_CheckYAbj(gameObject, main);
-                                        seg_YAbj->addChild(seg_checkYAbj);
-
-                                        MoverArriba* seg_movArri = new MoverArriba(gameObject, main);
-                                        seg_YAbj->addChild(seg_movArri);
-
-
-                                    Secuencia* seg_YArr = new Secuencia();
-                                    seg_goOnY->addChild(seg_YArr);
-
-                                        IA_Seg_CheckYArr* seg_checkYArr = new IA_Seg_CheckYArr(gameObject, main);
-                                        seg_YArr->addChild(seg_checkYArr);
-
-                                        MoverAbajo* seg_movAbjo = new MoverAbajo(gameObject, main);
-                                        seg_YArr->addChild(seg_movAbjo);
+    MoveNone* movenone = new MoveNone(gameObject);
+    nodoRaiz->addChild(movenone);
+                        
                                         
 }
 
@@ -224,20 +160,7 @@ if(mode)
     pRaiz2.first= "Raiz";
     pRaiz2.second = nodoRaiz2;
 
-    mapa.insert(pRaiz2);
-
-
-        Secuencia* hayColl2 = new Secuencia();
-        nodoRaiz2->addChild(hayColl2);
-
-              IA_Plan_DidICollide* plan_didIcollide2 = new IA_Plan_DidICollide(gameObject);
-              hayColl2->addChild(plan_didIcollide2);
-
-              IA_Plan_ChangeDirection* plan_changeDirection2 = new IA_Plan_ChangeDirection(gameObject);
-              hayColl2->addChild(plan_changeDirection2);
-
-
-        
+    mapa.insert(pRaiz2);       
       
         
         Secuencia* seguirRuta2 = new Secuencia();
@@ -287,6 +210,11 @@ if(mode)
 
                     IA_Fire_GPStoSpawn* AlSpawn = new IA_Fire_GPStoSpawn(gameObject);
                     wellOrSpawn->addChild(AlSpawn);
+
+        
+        MoveNone* movenone2 = new MoveNone(gameObject);
+        nodoRaiz2->addChild(movenone2);
+                        
 }
 
             

@@ -16,7 +16,7 @@
 #include "BPhysicComponent.h"
 #include "LifeManager.h"
 
-BuildtRecord* BuildtRecord::only_instance = nullptr;
+
 
 
 std::vector<Position> loc_wells{
@@ -34,15 +34,15 @@ std::vector<Position> loc_wells{
     {37.9f, 46.4f, 0.f, true},
 };
 std::vector<Position> loc_spawns{
-    {-24.7f, -46.1f, 0.f, true},
+    {-24.7f, -46.1f, 0.f, false},
     {-1.1f, -45.7f, 90.f, true},
     {45.8f, -46.0f, 270.f, true},
-    {14.9f, -39.0f, 180.f, true},
+    {14.9f, -39.0f, 180.f, false},
     {-10.5f, -34.7f, 0.f, true},
     {14.8f, -31.4f, 0.f, true},
     {31.3f, -26.f, 270.f, true},
     {-32.f, -22.6f, 270.f, true},
-    {-24.f, -14.2f, 180.f, true},
+    {-24.f, -14.2f, 180.f, false},
     {-17.6f, -14.f, 90.f, true},
     {15.1f, -13.7f, 180.f, true},
     {45.7f, -14.2f, 270.f, true},
@@ -50,14 +50,14 @@ std::vector<Position> loc_spawns{
     {8.2f, -4.6f, 0.f, true},
     {27.6f, -5.7f, 90.f, true},
     {-45.6f, 4.f, 90.f, true},
-    {-0.4f, 8.4f, 270.f, true},
-    {19.7f, 16.f, 270.f, true},
+    {-0.4f, 8.4f, 270.f, false},
+    {19.7f, 16.f, 270.f, false},
     {27.9f, 16.7f, 90.f, true},
     {28.2f, 23.8f, 0.f, true},
     {38.f, 23.5f, 90.f, true},
     {-4.7f, 30.7f, 270.f, true},
     {-32.f, 45.5f, 180.f, true},
-    {-24.f, 45.f, 180.f, true},
+    {-24.f, 45.f, 180.f, false},
     {20.3f, 44.6f, 270.f, true},
     {27.6f, 45.6f, 180.f, true},
     {45.6f, 45.9f, 180.f, true}
@@ -85,7 +85,7 @@ void FabricVillage::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 1000.f, true);
+    LifeManager::getInstance()->createComponent(player, 1000.f, false);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -115,7 +115,7 @@ void FabricVillage::spawn(float x, float y, float rz, bool type)
     }
     WoodManager::getInstance()->createComponent(spawn, 400.f);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 0);
-    BuildtRecord::getInstance()->addSpawn(spawn);
+   
 }
 
 void FabricVillage::well(float x, float y, float rz, bool type)
@@ -125,5 +125,5 @@ void FabricVillage::well(float x, float y, float rz, bool type)
     well->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");//Path de bmp
     WellManager::getInstance()->createComponent(well);
     BPhysicManager::getInstance()->createComponent(well, .5f, .5f, .5f, 0.f, 1);
-    BuildtRecord::getInstance()->addPozo(well);
+    
 }
