@@ -1,19 +1,21 @@
 #pragma once
 #include "Component.h"
 #include "EnemyFabric.h"
+#include <cstdlib>
 
 
-#define SPAWN_CADENCIA 10.f
+#define SPAWN_CADENCIA 5.f
 
 class GameObject;
 class SpawnComponent : public Component{
     private:
         float distance;
-        float elapsed = 0.f;
+        float elapsed;
         EnemyType type;
     public:
         SpawnComponent(GameObject* owner, Manager* m, float d, EnemyType type) : Component(owner, m)
         {
+            elapsed = static_cast <float> (rand()) / static_cast <float> (SPAWN_CADENCIA);
             distance = d;
             this->type = type;
         }
