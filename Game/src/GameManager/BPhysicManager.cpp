@@ -91,7 +91,7 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
     if(i_projectil && !go2->getComponent<ItemComponent>()){
         i_projectil->dealDamage(j_life);//Gestionamos la vida
 
-        if(go2->getComponent<WoodComponent>()) //Si colisiona con un GO que se puede quemar, lo quemamos
+        if(go2->getComponent<WoodComponent>() && go2->getComponent<WoodComponent>()->getTeam()!=i_projectil->getTeam()) //Si colisiona con un GO que se puede quemar, lo quemamos
             go2->getComponent<WoodComponent>()->setBurning(true);
     }
         
@@ -99,7 +99,7 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
     {
         j_projectil->dealDamage(i_life);//Gestionamos la vida
 
-        if(go1->getComponent<WoodComponent>()) //Si colisiona con un GO que se puede quemar, lo quemamos
+        if(go1->getComponent<WoodComponent>() && go1->getComponent<WoodComponent>()->getTeam()!=j_projectil->getTeam()) //Si colisiona con un GO que se puede quemar, lo quemamos
             go1->getComponent<WoodComponent>()->setBurning(true);
     }
 

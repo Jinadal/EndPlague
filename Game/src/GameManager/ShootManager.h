@@ -16,6 +16,6 @@ class ShootManager : public Manager{
         }
 
         void updateAll(float dt);
-        void createProjectile(float x, float y, float rz, ProjectileType tipo);
-        void createComponent(GameObject *owner, float cadencia, float distance, ProjectileType tipo);
+        void createProjectile(float x, float y, float rz, ProjectileType tipo, int team = 1);
+        void createComponent(GameObject *owner, float cadencia, float distance, ProjectileType tipo, int team = 1);
 };

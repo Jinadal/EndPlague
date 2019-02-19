@@ -84,8 +84,8 @@ void FabricVillage::loadLevel()
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
-    ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 1000.f, false);
+    ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK, 2);//Cadencia y Tipo
+    LifeManager::getInstance()->createComponent(player, 1000.f, 2, false);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);

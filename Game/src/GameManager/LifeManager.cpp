@@ -2,9 +2,9 @@
 #include "GameObject.h"
 #include "LifeComponent.h"
 
-void LifeManager::createComponent(GameObject *owner, float life, bool decreases)
+void LifeManager::createComponent(GameObject *owner, float life, int team, bool decreases)
 {
-    components.push_back(new LifeComponent(owner, this, life, decreases));
+    components.push_back(new LifeComponent(owner, this, life, decreases, team));
     owner->addComponent(components[components.size()-1]);
 }
 

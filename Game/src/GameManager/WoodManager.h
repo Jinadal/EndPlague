@@ -13,7 +13,7 @@ class WoodManager : public Manager{
             return &only_instance;
         }
 
-        void createComponent(GameObject* owner, float life);
+        void createComponent(GameObject* owner, float life, int team = 1);
         void updateAll(float dt);
          std::vector<Component*> getSpawns();
 };

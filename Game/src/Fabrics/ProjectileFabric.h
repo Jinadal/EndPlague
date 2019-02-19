@@ -50,5 +50,5 @@ class ProjectileFabric
         ProjectileFabric(){}
         virtual ~ProjectileFabric(){}
 
-        GameObject* createProjectile(float x, float y, float rz, ProjectileType type);
+        GameObject* createProjectile(float x, float y, float rz, ProjectileType type, int team = 1);
 };

@@ -26,7 +26,6 @@ void WoodComponent::setBurning(bool b){
 
 }
 
-
 void WoodComponent::addBucket()
 {
     buckets++;

@@ -17,6 +17,7 @@ bool ShootComponent::update(float dt){  //Ads the elapsed time to las shoot
     return false;
 }
 
+
 float ShootComponent::getX(){return gameObject->getX();}
 
 float ShootComponent::getY(){
