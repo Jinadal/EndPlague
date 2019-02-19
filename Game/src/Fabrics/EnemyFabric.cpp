@@ -32,6 +32,5 @@ GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyT
     if(type == ENEMY_2) 
         BucketManager::getInstance()->createComponent(primero);
    
-
     return primero;
 }

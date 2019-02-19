@@ -10,7 +10,7 @@ BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, float xs
 
     btTransform tr = rbody->getCenterOfMassTransform();
     btQuaternion quat;
-    quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRZ()*PI/180, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
+    quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRY()*PI/180, owner->getRX()*PI/180); //or quat.setEulerZYX depending on the ordering you want
     tr.setRotation(quat);
 
     rbody->setCenterOfMassTransform(tr);
@@ -25,7 +25,7 @@ BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, char* fi
     //---------------- Esta Parte esta por valorar-------------
         btTransform tr = rbody->getCenterOfMassTransform();
         btQuaternion quat;
-        quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRZ()*PI/180, owner->getRZ()*PI/180); //or quat.setEulerZYX depending on the ordering you want
+        quat.setEulerZYX(owner->getRZ()*PI/180,owner->getRY()*PI/180, owner->getRX()*PI/180); //or quat.setEulerZYX depending on the ordering you want
         tr.setRotation(quat);
         rbody->setCenterOfMassTransform(tr);
 
@@ -91,7 +91,7 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
 
     btTransform tr = rbody->getCenterOfMassTransform();
     btQuaternion quat;
-    quat.setEuler(0,0, rZ*PI/180); //or quat.setEulerZYX depending on the ordering you want
+    quat.setEulerZYX(rZ*PI/180,0, 0); //or quat.setEulerZYX depending on the ordering you want
     tr.setRotation(quat);
 
     rbody->setCenterOfMassTransform(tr);
@@ -102,4 +102,23 @@ void BPhysicComponent::moveObject(float x, float y, float z, float tx, float ty)
 void BPhysicComponent::setVelocity(float x, float y, float z)
 {
     rbody->setLinearVelocity( btVector3(x, y, z) );
+}
+
+
+void BPhysicComponent::setVelocity(float rz, bool adRot)
+{
+
+    float x = vMax * (- cos(rz*PI/180 - PI/2));
+    float y = vMax * (- sin(rz*PI/180 - PI/2)); 
+
+    rbody->setLinearVelocity( btVector3(x, y, 0) );
+    
+    if( adRot)
+    {
+        btTransform tr = rbody->getCenterOfMassTransform();
+        btQuaternion quat;
+        quat.setEulerZYX(rz*PI/180,0, 0); //or quat.setEulerZYX depending on the ordering you want
+        tr.setRotation(quat);
+        rbody->setCenterOfMassTransform(tr);
+    }
 }

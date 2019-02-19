@@ -97,14 +97,7 @@ if(!mode)
     mapa.insert(pRaiz);
 
 
-        Secuencia* hayColl = new Secuencia();
-        nodoRaiz->addChild(hayColl);
-
-              IA_Plan_DidICollide* plan_didIcollide = new IA_Plan_DidICollide(gameObject);
-              hayColl->addChild(plan_didIcollide);
-
-              IA_Plan_ChangeDirection* plan_changeDirection = new IA_Plan_ChangeDirection(gameObject);
-              hayColl->addChild(plan_changeDirection);
+       
 
 
         
@@ -321,10 +314,7 @@ void IAComponent::Clear()
 
     for(size_t it = 0; it < mapa.size(); it++)
     {
-        std::cout<<"Borro un nodo del mapa" << it->first << "\n";
-
-        delete mapa[it]->second;
-        delete mapa[it];
+       
 
     }//borrar el mapa 
     

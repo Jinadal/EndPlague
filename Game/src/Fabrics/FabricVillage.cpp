@@ -24,11 +24,11 @@ void FabricVillage::loadLevel()
 
     //ADDING A MAP 700 x 700 x 1
     GameObject* map = GameResource::getInstance()->createGameObject(0.f, 0.f, 0.f, 0.f);
-    RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_Final_E.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-   // BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_Final_E.bullet");
-    BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
+    BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.bullet");
+    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
 
     //ADDING A PLAYER 1 x 1 x 2
     player = GameResource::getInstance()->createGameObject(1.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
@@ -38,7 +38,7 @@ void FabricVillage::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     InputManager::getInstance()->createComponent(player);
     ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 1000.f, false);
+    LifeManager::getInstance()->createComponent(player, 1000.f, true);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -55,37 +55,33 @@ void FabricVillage::loadLevel()
     
 
     //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
-    GameObject* spawn = GameResource::getInstance()->createGameObject(10.f, -10.f, -1.f, 90.f);
+    GameObject* spawn = GameResource::getInstance()->createGameObject(12.9f, 5.f, -1.f, 180.f);
     RenderManager::getInstance()->createComponent(spawn, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_1);
     WoodManager::getInstance()->createComponent(spawn, 400.f);
-    BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 1);
-
+    BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 0);
     BuildtRecord::getInstance()->addSpawn(spawn);
 
 
-
+/*
     //ADDING A SPAWN2 //EL MESH MIDE 4 x 4 x 4
     GameObject* spawn2 = GameResource::getInstance()->createGameObject(-10.f, -10.f, -1.f, -90.f);
     RenderManager::getInstance()->createComponent(spawn2, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn2->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn2, 4.f, ENEMY_2);
-    //LifeManager::getInstance()->createComponent(spawn2, 10000.f);
-    BPhysicManager::getInstance()->createComponent(spawn2, 2.f, 2.f, 2.f, 0.f, 1);
     WoodManager::getInstance()->createComponent(spawn2, 400.f);
-
+    BPhysicManager::getInstance()->createComponent(spawn2, 2.f, 2.f, 2.f, 0.f, 0);
     BuildtRecord::getInstance()->addSpawn(spawn2);
+
 
     //ADDING A SPAW3 //EL MESH MIDE 4 x 4 x 4
     GameObject* spawn3 = GameResource::getInstance()->createGameObject(10.f, 0.f, -1.f, 180.f);
     RenderManager::getInstance()->createComponent(spawn3, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn3->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn3, 4.f, ENEMY_1);
-    LifeManager::getInstance()->createComponent(spawn3, 400.f);
-    BPhysicManager::getInstance()->createComponent(spawn3, 2.f, 2.f, 2.f, 0.f, 1);
     WoodManager::getInstance()->createComponent(spawn3, 400.f);
-
+    BPhysicManager::getInstance()->createComponent(spawn3, 2.f, 2.f, 2.f, 0.f, 0);
     BuildtRecord::getInstance()->addSpawn(spawn3);
 
     //ADDING A SPAWN4 //EL MESH MIDE 4 x 4 x 4
@@ -93,13 +89,11 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(spawn4, (char*)"res/SPAWN.obj");//Fachada de render y path de obj
     spawn4->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");//Path de bmp
     SpawnManager::getInstance()->createComponent(spawn4, 4.f, ENEMY_2);
-    LifeManager::getInstance()->createComponent(spawn4, 10000.f);
-    BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 0.f, 1);
     WoodManager::getInstance()->createComponent(spawn4, 400.f);
-
+    BPhysicManager::getInstance()->createComponent(spawn4, 2.f, 2.f, 2.f, 0.f, 0);
     BuildtRecord::getInstance()->addSpawn(spawn4);
 
-
+*/
 
     ItemFabric fabric;
 

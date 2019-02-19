@@ -8,6 +8,7 @@
 #include "BPhysicComponent.h"
 #include "RenderComponent.h"
 
+#define PI 3.1416
 
 bool IA_Graf_Checkarea ::run()
 {
@@ -80,52 +81,24 @@ bool IA_Graf_FollowRuta::run()
 
     float nextX = *iter;
 
-    //ruta.erase(iter);
     iter++;
 
     float nextY = *iter;
 
-    //ruta.erase(iter);
+    float rZ = atan2(owner->getY() - nextY, owner->getX() - nextX);
+    rZ += PI/2.0;
+    rZ = rZ * 180/PI;
+    if (rZ < 0)
+        rZ += 360;
 
 
-
-    float dx = nextX - owner->getX();
-    float dy = nextY - owner->getY();
-        
-    if(fabs(dx) >= fabs(dy)) 
-    {
-        if(dx > 0)
-        {
-            owner->getComponent<BPhysicComponent>()->moveObject(1,0,0,nextX,nextY);
-            owner->getComponent<BPhysicComponent>()->setvMax(3.f);
-            
-
-        }else{
-
-            owner->getComponent<BPhysicComponent>()->moveObject(-1,0,0,nextX,nextY);
-            owner->getComponent<BPhysicComponent>()->setvMax(3.f);
-            
-        }
-
-    }else{
-
-        if(dy > 0)
-        {
-            owner->getComponent<BPhysicComponent>()->moveObject(0,1,0,nextX,nextY);
-            owner->getComponent<BPhysicComponent>()->setvMax(3.f);
-        
+    owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
 
 
-        }else{
+    float d = sqrt(pow(nextX - owner->getX(),2) + pow(nextY - owner->getY(), 2));
+   
 
-            owner->getComponent<BPhysicComponent>()->moveObject(0,-1,0,nextX,nextY);
-            owner->getComponent<BPhysicComponent>()->setvMax(3.f);
-            
-        }
-
-    }
-
-    if(round(fabs(dx)) < distancia &&round(fabs(dy)) < distancia )
+    if(round(fabs(d)) < distancia  )
     {
         int tam = ruta.size();
         if(tam == 2){

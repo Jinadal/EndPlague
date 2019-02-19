@@ -1,7 +1,7 @@
 #include "SpawnComponent.h"
 #include "GameObject.h"
 #include <cmath>
-
+#define PI 3.1416
 
 void SpawnComponent::update(float elapsedTime)
 {
@@ -11,8 +11,8 @@ void SpawnComponent::update(float elapsedTime)
         elapsed = 0.f;
       
 
-        float x = gameObject->getX() - sin(gameObject->getRZ())*distance;
-        float y = gameObject->getY() + cos(gameObject->getRZ())*distance;
+        float x = gameObject->getX() - cos(gameObject->getRZ()*PI/180 - PI/2)*distance;
+        float y = gameObject->getY() - sin(gameObject->getRZ()*PI/180 - PI/2)*distance;
         float z = gameObject->getZ();
         float rz = gameObject->getRZ();
 

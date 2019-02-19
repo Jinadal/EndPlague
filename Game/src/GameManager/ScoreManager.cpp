@@ -14,3 +14,10 @@ void ScoreManager::applyScore(int score)
 {
     this->score+=score;
 }
+
+int ScoreManager::resetScore()
+{
+    int sa = score;
+    score = 0;
+    return sa;
+}

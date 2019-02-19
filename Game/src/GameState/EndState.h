@@ -14,8 +14,8 @@ class EndState : public IGameState
     }
         
 
-    virtual ~EndState() {}
-    virtual void initState(){ type = IGameState::END; };
-    virtual void update(float dt);
-    virtual void clear(){};
+    ~EndState() {}
+    void initState();
+    void update(float dt);
+    void clear(){};
 };

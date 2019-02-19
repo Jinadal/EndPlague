@@ -5,100 +5,86 @@
 void GPS::Initialice()
 {
 
-    addWaypoint(0,0);
-   // addWaypoint(5,0);
-    addWaypoint(0,-10);
-    addWaypoint(-7,-5);
+    addWaypoint(-38.7 ,-26);
+    addWaypoint(-28,1);
+    addWaypoint(-33,15.7);
+    addWaypoint(-28,28);
+    addWaypoint(12.9,12.5);
+    addWaypoint(20.9,-9.8);
+    addWaypoint(11.4,-22.7);
+    addWaypoint(4.6,-34.9);
+    addWaypoint(11.5,-47);
+    addWaypoint(28.8,-14.6);
+    addWaypoint(36.7,-9.8);
+    addWaypoint(46.7,-35.54);
+    addWaypoint(46.8,19.9);
    
 
 
 
-    addArea(-15,5, 0, -5);
-    addArea(0,5, 15, -5);
-    addArea(-15,-5, 0, -15);
-    addArea(0,-5, 15, -15);
+    addArea(-49,26, -28, -49);
+    addArea(-49,49, -28, -26);
+    addArea(-27,49, 24, 13);
+    addArea(-28,13, 3, -10);
+    addArea(-28,-10, 11, -49);
+    addArea(3,12, 24, -9);
+    addArea(24,49, 49, 19);
+    addArea(24,20, 49, -10);
+    addArea(11,-10, 49, -35);
+    addArea(11,-35, 49, -49);
+
     
 
 
 
     addWaypointToArea(0,0);
-    addWaypointToArea(0,2);
-
-    addWaypointToArea(1,0);
-  //  addWaypointToArea(1,1);
-
-    addWaypointToArea(2,2);
-    addWaypointToArea(2,1);
-
-  //  addWaypointToArea(3,1);
+    addWaypointToArea(1,1);
+    addWaypointToArea(1,3);
+    addWaypointToArea(2,3);
+    addWaypointToArea(2,4);
     addWaypointToArea(3,1);
- 
+    addWaypointToArea(4,6);
+    addWaypointToArea(4,8);
+    addWaypointToArea(5,4);
+    addWaypointToArea(5,5);
+    addWaypointToArea(6,12);
+    addWaypointToArea(7,10);
+    addWaypointToArea(7,12);
+    addWaypointToArea(8,5);
+    addWaypointToArea(8,6);
+    addWaypointToArea(8,10);
+    addWaypointToArea(9,8);
+    addWaypointToArea(9,11);
 
 
 
 
-    //addConexionToGraph(0,1);
-   // addConexionToGraph(1,0);
 
+
+    addConexionToGraph(0,1);
     addConexionToGraph(1,2);
-    //addConexionToGraph(2,1);
+    addConexionToGraph(2,3);
+    addConexionToGraph(3,4);
+    addConexionToGraph(4,5);
+    addConexionToGraph(5,6);
+    addConexionToGraph(5,9);
+    addConexionToGraph(5,11);
+    addConexionToGraph(6,10);
+    addConexionToGraph(6,11);
+    addConexionToGraph(6,7);
+    addConexionToGraph(7,8);
+    addConexionToGraph(8,11);
+    addConexionToGraph(9,10);
+    addConexionToGraph(10,11);
+    addConexionToGraph(10,12);
 
-    addConexionToGraph(0,2);
-   //addConexionToGraph(3,0);
-
-    //addConexionToGraph(2,3);
-    //addConexionToGraph(3,2);
-
-    
-
-/*
-    addWaypoint(5,10);
-    addWaypoint(10,15);
-    addWaypoint(15,10);
-    addWaypoint(20,15);
-
-
-    addArea(0,0, 10, 10);
-    addArea(10,0, 20, 10);
-    addArea(0,10, 10, 20);
-    addArea(10,10, 20, 20);
-    addArea(20,10, 30, 20);
-    
-    addWaypointToArea(0,0);
    
-    addWaypointToArea(1,2);
+
     
 
-    addWaypointToArea(2,0);
-    addWaypointToArea(2,1);
-
- 
-    addWaypointToArea(3,1);
-    addWaypointToArea(3,2);
-    addWaypointToArea(3,3);
-
-    addWaypointToArea(4,3);
-
-
-
-
-    addConexionToGraph(0,1, 1);
-    addConexionToGraph(1,0, 1);
-
-    addConexionToGraph(1,2, 1);
-    addConexionToGraph(2,1, 1);
-
-    addConexionToGraph(1,3, 1);
-    addConexionToGraph(3,1, 1);
-
-
-
-    addConexionToGraph(2,3, 1);
-    addConexionToGraph(3,2, 1);
-
  
 
-*/
+
     
 }
 
