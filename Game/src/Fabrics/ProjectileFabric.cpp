@@ -16,7 +16,7 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
    // float fx = projectile_types[type].velocity*(-cos(rz*PI/180 - PI/2));
    // float fy = projectile_types[type].velocity*(-sin(rz*PI/180 - PI/2));
    // float fz = 0.f;
-    BPhysicManager::getInstance()->createComponent(r, .7f, .2f, .2f, 10.f, 0);
+    BPhysicManager::getInstance()->createComponent(r, .1f, .1f, .1f, 10.f, 0);
     r->getComponent<BPhysicComponent>()->setvMax(projectile_types[type].velocity);
     r->getComponent<BPhysicComponent>()->setVelocity(rz);
     r->getComponent<BPhysicComponent>()->setGravity(0.f,0.f,0.f);
