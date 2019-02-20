@@ -3,7 +3,7 @@
 #include <SFML/Window.hpp>
 #include "Game.h"
 #include "InputManager.h"
-#include "IAManager.h"
+#include "GameResource.h"
 #include "RenderIrrlicht.h"
 #include "FabricVillage.h"
 #include "GameObject.h"
@@ -30,7 +30,7 @@ void PlayState::update(float dt)
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         Game::getInstance()->setState(IGameState::stateType::PAUSE);
     
-    if(IAManager::getInstance()->getPlayer() && IAManager::getInstance()->getPlayer()->getKill())
+    if(GameResource::getInstance()->getPlayer() && GameResource::getInstance()->getPlayer()->getKill())
     {
         clear();
         Game::getInstance()->setState(IGameState::stateType::END);

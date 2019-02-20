@@ -78,7 +78,7 @@ void FabricVillage::loadLevel()
 
 
     //ADDING A PLAYER 1 x 1 x 2
-    player = GameResource::getInstance()->createGameObject(-40.f, -46.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    player = GameResource::getInstance()->createPlayer(-40.f, -46.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
@@ -88,7 +88,6 @@ void FabricVillage::loadLevel()
     LifeManager::getInstance()->createComponent(player, 1000.f, 2, false);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
-    IAManager::getInstance()->setPlayer(player);
     
 
 

@@ -2,18 +2,18 @@
 #include "IAComponent.h"
 #include "GameObject.h"
 #include "Waypoint.h"
-
+#include "GameResource.h"
 
 void IAManager::createComponent(GameObject *owner)
 {
-    components.push_back(new IAComponent(owner,this, player));
+    components.push_back(new IAComponent(owner,this, GameResource::getInstance()->getPlayer()));
     owner->addComponent(components[components.size()-1]);
   
 }
 
 void IAManager::updateAll(float dt)
 {
-    if(player)
+    if(GameResource::getInstance()->getPlayer())
     {
         std::vector<Component*>::iterator iter;
         for(iter = components.begin(); iter!=components.end(); iter ++)

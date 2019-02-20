@@ -31,7 +31,7 @@ void TestFabric::loadLevel()
 
 
     //ADDING A PLAYER 1 x 1 x 2
-    GameObject* player = GameResource::getInstance()->createGameObject(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    GameObject* player = GameResource::getInstance()->createPlayer(0.f, 0.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(7.f);
@@ -41,7 +41,6 @@ void TestFabric::loadLevel()
     BucketManager::getInstance()->createComponent(player);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
-    IAManager::getInstance()->setPlayer(player);
     
     
     //ADDING A SPAWN //EL MESH MIDE 4 x 4 x 4
