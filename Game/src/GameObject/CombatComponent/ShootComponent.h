@@ -10,16 +10,18 @@ class ShootComponent : public Component{
         ProjectileType  type;               //Kind of bullet o create
         float           distance;           //Distance of the canon
         bool            wantsShoot;
+        int team;
     
     public:
 
         //Constructor
-        ShootComponent(GameObject* g, Manager* m, float cadencia, float distance, ProjectileType type):Component(g, m){
+        ShootComponent(GameObject* g, Manager* m, float cadencia, float distance, ProjectileType type, int team = 1):Component(g, m){
             wantsShoot = false;
             lastShoot = 0.f;
             this->cadencia = cadencia;
             this->distance = distance;
             this->type = type;
+            this->team  = team;
         }
         ~ShootComponent(){}
         //Getters&&Setters
@@ -36,4 +38,5 @@ class ShootComponent : public Component{
         float getY();
         float getRZ();
         float getDistance(){return distance;}
+        int getTeam(){return team;}
 };

@@ -8,12 +8,14 @@ class LifeComponent : public Component{
         float shield;
         bool decreases = false;
         float elapsedTime = 0.f;
+        int team;
     public:
         //Constructor
-        LifeComponent(GameObject* g, Manager* m, float f, bool decreases):Component(g, m){
+        LifeComponent(GameObject* g, Manager* m, float f, bool decreases, int team):Component(g, m){
             this->life = f;
             this->shield = 0.f;
             this->decreases = decreases;
+            this->team = team;
         }
         ~LifeComponent(){}
 
@@ -22,6 +24,7 @@ class LifeComponent : public Component{
         void setLife(float l) {life = l;}
         float getShield(){return shield;}
         void setShield(float s){shield=s;}
+        int getTeam(){return team;}
 
 
         //Methods

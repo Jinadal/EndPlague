@@ -14,6 +14,6 @@ class ProjectileManager : public Manager{
             return &only_instance;
         }
 
-        void createComponent(GameObject* owner, float damage);
+        void createComponent(GameObject* owner, float damage, int team = 1);
         void updateAll(float dt);
 };

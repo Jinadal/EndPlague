@@ -2,9 +2,9 @@
 #include "GameObject.h"
 #include "WoodComponent.h"
 
-void WoodManager::createComponent(GameObject* owner, float life)
+void WoodManager::createComponent(GameObject* owner, float life, int team)
 {
-    components.push_back(new WoodComponent(owner, this, life));
+    components.push_back(new WoodComponent(owner, this, life, team));
     owner->addComponent(components[components.size()-1]);
 }
 

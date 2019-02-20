@@ -15,19 +15,19 @@ void ShootManager::updateAll(float dt)
         {                                                               //Create gameObject Bullet.
             float x = shooter->getX() + shooter->getDistance() * -cos(-PI/2 + shooter->getRZ()*PI/180);
             float y = shooter->getY() + shooter->getDistance() * -sin(-PI/2 + shooter->getRZ()*PI/180);
-            createProjectile(x, y, shooter->getRZ(), shooter->getType());
+            createProjectile(x, y, shooter->getRZ(), shooter->getType(), shooter->getTeam());
         }
     }
 }
 
-void ShootManager::createProjectile(float x, float y, float rz, ProjectileType tipo)
+void ShootManager::createProjectile(float x, float y, float rz, ProjectileType tipo, int team)
 {
-    fabric->createProjectile(x, y, rz, tipo);
+    fabric->createProjectile(x, y, rz, tipo, team);
 }
 
 
-void ShootManager::createComponent(GameObject *owner, float cadencia, float distance, ProjectileType tipo)
+void ShootManager::createComponent(GameObject *owner, float cadencia, float distance, ProjectileType tipo, int team)
 {
-    components.push_back(new ShootComponent(owner, this, cadencia, distance, tipo));
+    components.push_back(new ShootComponent(owner, this, cadencia, distance, tipo, team));
     owner->addComponent(components[components.size()-1]);
 }
