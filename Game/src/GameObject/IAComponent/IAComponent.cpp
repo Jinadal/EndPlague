@@ -169,9 +169,6 @@ if(mode)
                 IA_Graf_CheckRuta* checkruta2 = new IA_Graf_CheckRuta(gameObject);
                 seguirRuta2->addChild(checkruta2);
 
-                IA_Graf_Checkarea* checkarearute2 = new IA_Graf_Checkarea(gameObject,main);
-                seguirRuta2->addChild(checkarearute2);
-
                 Selector* pozoOCasa = new Selector();
                 seguirRuta2->addChild(pozoOCasa);
 
@@ -240,9 +237,9 @@ void IAComponent::Clear()
 {
       
 
-    for(size_t it = 0; it < mapa.size(); it++)
+    for(std::map<std::string, Nodo*>::iterator it = mapa.begin(); it != mapa.end(); it++)
     {
-       
+       delete it->second;
 
     }//borrar el mapa 
     

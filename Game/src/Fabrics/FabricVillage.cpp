@@ -73,8 +73,8 @@ void FabricVillage::loadLevel()
     RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.bullet");
-    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
+    //BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.bullet");
+    BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
 
 
     //ADDING A PLAYER 1 x 1 x 2
