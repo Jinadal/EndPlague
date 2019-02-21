@@ -59,3 +59,15 @@ class IA_Fire_haveWater : public Nodo
        
     
 };
+
+class IA_fire_StillOnFire : public Nodo
+{
+    public: 
+        IA_fire_StillOnFire(GameObject* o){owner = o;}
+        virtual ~IA_fire_StillOnFire(){}
+
+        bool run() override;
+        GameObject * owner;
+       
+    
+};

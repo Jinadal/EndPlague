@@ -97,11 +97,6 @@ if(!mode)
     mapa.insert(pRaiz);
 
 
-       
-
-
-        
-      
         
         Secuencia* seguirRuta = new Secuencia();
         nodoRaiz->addChild(seguirRuta );
@@ -178,8 +173,14 @@ if(mode)
                         IA_Fire_haveWater* haveWaterP = new IA_Fire_haveWater(gameObject);
                         aPozo->addChild(haveWaterP);
 
-                        IA_Graf_FollowRuta* followruta2 = new IA_Graf_FollowRuta(gameObject, 1.2F);
+                        IA_fire_StillOnFire* stillonfire = new IA_fire_StillOnFire(gameObject);
+                        aPozo->addChild(stillonfire);
+
+                        IA_Graf_FollowRuta* followruta2 = new IA_Graf_FollowRuta(gameObject, 3.1F);
                         aPozo->addChild(followruta2);
+
+                    IA_fire_StillOnFire* stillonfire2 = new IA_fire_StillOnFire(gameObject);
+                    pozoOCasa->addChild(stillonfire2);
 
                     IA_Graf_FollowRuta* followruta3 = new IA_Graf_FollowRuta(gameObject, 3.1F);
                     pozoOCasa->addChild(followruta3);

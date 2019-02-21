@@ -19,6 +19,6 @@ void SpawnComponent::update(float elapsedTime)
         EnemyFabric* f = new EnemyFabric();
         f->createEnemy(x, y, z, rz, type);
         delete f;
-    }
+    } 
 }
 

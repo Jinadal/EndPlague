@@ -23,6 +23,7 @@ class BPhysicComponent : public Component
         void update();
         void moveObject(float x, float y, float z, float tx, float ty);
         void setvMax(float v){vMax = v;};
+        float getvMax(){return vMax;};
         void setVelocity(float x, float y, float z);
         void setVelocity(float rz, bool adRot = false);
         void setGravity(float x,float y,float z){rbody->setGravity(btVector3(x, y, z));};
