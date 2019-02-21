@@ -1,8 +1,8 @@
 #include "Component.h"
 
 
-#define FIRE_DAMMAGE 10.f
-#define BUCKETS_NEDED 1
+const float FIRE_DAMMAGE = 10.f;
+const int BUCKETS_NEDED = 5;
 
 class WoodComponent:public Component
 {

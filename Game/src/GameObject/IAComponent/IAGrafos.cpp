@@ -94,7 +94,8 @@ bool IA_Graf_FollowRuta::run()
 
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
 
-
+    float vel = owner->getComponent<BPhysicComponent>()->getvMax();
+    if(vel == 0.f) owner->getComponent<BPhysicComponent>()->setvMax(5.f);
     float d = sqrt(pow(nextX - owner->getX(),2) + pow(nextY - owner->getY(), 2));
    
 

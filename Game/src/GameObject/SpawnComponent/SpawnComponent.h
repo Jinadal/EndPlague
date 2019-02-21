@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 
-#define SPAWN_CADENCIA 5.f
+#define SPAWN_CADENCIA 10.f
 
 class GameObject;
 class SpawnComponent : public Component{
