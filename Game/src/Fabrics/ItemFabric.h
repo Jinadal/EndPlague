@@ -32,7 +32,7 @@ class ItemFabric
             },
             {
                 CROSSBOW,
-                (char*)"res/ITEM.obj",
+                (char*)"res/Crossbow.obj",
                 (char*)"res/ITEM.bmp"
 
             },
@@ -43,12 +43,12 @@ class ItemFabric
             }, 
             {
                 PEAK,
-                (char*)"res/Espada.obj",
+                (char*)"res/Peak.obj",
                 (char*)"res/ITEM.bmp"
             },
             {
                 POTION,
-                (char*)"res/Pocion.obj",
+                (char*)"res/Potion.obj",
                 (char*)"res/ITEM.bmp"
 
             },

@@ -10,7 +10,7 @@
 #include "WoodComponent.h"
 #include "GameObject.h"
 #include "BPhysicComponent.h"
-
+ 
 void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass, int physicType)
 {
     components.push_back(new BPhysicComponent(owner, this, xsize, ysize, zsize, mass, physicType));
