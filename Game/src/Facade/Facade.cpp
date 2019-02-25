@@ -1,29 +1,14 @@
 #include "Facade.h"
 #include <iostream>
-
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-const char *vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
-const char *fragmentShaderSource = "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-    "}\n\0";
-
-void Facade::initWindow()
+GLFWwindow* Facade::initWindow()
 {
    
-
 
     // glfw: initialize and configure
     // ------------------------------
@@ -43,79 +28,21 @@ void Facade::initWindow()
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-     GLenum res = glewInit();
-    if (res != GLEW_OK)
-    {
-        fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
-    }
-     float vertices[] = {
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.0f,  0.5f, 0.0f
-    };  
-    unsigned int indices[] = {  // note that we start from 0!
-        0, 1, 3,  // first Triangle
-        1, 2, 3   // second Triangle
-    };
-    unsigned int VBO, VAO;
-    glGenBuffers(1, &VBO);  
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);  
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    Position = glm::vec4(aPos.x, aPos.y, aPos.z, 1.0);
-    vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-
-    shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-
-    glUseProgram(shaderProgram);
-
-
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);  
-
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);  
-
-
-
-    glGenVertexArrays(1, &VAO); 
-
-    glBindVertexArray(VAO);
-    // 2. copy our vertices array in a buffer for OpenGL to use
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    // 3. then set our vertex attributes pointers
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);  
-    
-    while (!glfwWindowShouldClose(window))
-    {
-
-        // render
-        // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        glUseProgram(shaderProgram);
-    glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
-
-    // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
-    glfwTerminate();
+    return window;
+}
+bool Facade::openWindow(GLFWwindow* w)
+{
+    return !glfwWindowShouldClose(w);
 }
 
+void Facade::clear(GLFWwindow* w)
+{
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glfwSwapBuffers(w);
+    glfwPollEvents();
+}
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void Facade::processInput(GLFWwindow *window)
@@ -133,10 +60,79 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
-void Facade::drawTriangle()
+//We create all the branch with the 3 transformations in the order ROT - SCA - TRANS
+TNode* Facade::createNodeMesh(TNode* f, glm::vec3 v, const char* m)
 {
-   
-    
+    if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
+    {
+        TNode* nodeRST = createBranch(f,v);
 
-   
+        //Mesh Leaf
+        TMesh* mesh = new TMesh();
+        TResourceMesh* rm = manager->getResourceMesh(m);
+        mesh->setMesh((TResource*) rm);
+        TNode* nodeMesh = new TNode(nodeRST,mesh);
+        nodeRST->addChild(nodeMesh);
+
+        return nodeMesh;
+    }
+    return nullptr;
+}
+
+TNode* Facade::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
+{
+    if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
+    {
+        TNode* nodeRST = createBranch(f,v);
+
+        //light Leaf
+        TLight* l = new TLight();
+        l->setIntesity(i);
+        l->setActivated(true);
+        TNode* nodeLight = new TNode(nodeRST, l);
+        nodeRST->addChild(nodeLight);
+
+        return nodeLight;
+    }
+    return nullptr;
+}
+TNode* Facade::createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff,float t,float b,float r,float l)
+{
+    if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
+    {
+        TNode* nodeRST = createBranch(f,v);
+
+        //light Leaf
+        TCamera* c = new TCamera();
+        c->setCameraParametres( n, ff, t, b, r, l);
+        TNode* nodeCamera = new TNode(nodeRST, c);
+        nodeRST->addChild(nodeCamera);
+
+        return nodeCamera;
+    }
+    return nullptr;
+}
+
+TNode* Facade::createBranch(TNode* f, glm::vec3 v)
+{
+    //Rotation node
+    TTransform* tr = new TTransform();
+    tr->identity();
+    TNode* nodeRot = new TNode(f, tr);
+    f->addChild(nodeRot);
+    
+    //Scale node
+    TTransform* ts = new TTransform();
+    ts->identity();
+    TNode* nodeSca = new TNode(nodeRot, ts);
+    nodeRot->addChild(nodeSca);
+
+    //Translation node
+    TTransform* tt = new TTransform();
+    tt->identity();
+    tt->translate(v.x,v.y,v.z);
+    TNode* nodeTrans = new TNode(nodeSca, tt);
+    nodeSca->addChild(nodeTrans);
+
+    return nodeTrans;
 }

@@ -5,22 +5,29 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "../MotorGrafico/TNode.h"
+#include "../MotorGrafico/TCamera.h"
+#include "../MotorGrafico/TLight.h"
+#include "../MotorGrafico/TMesh.h"
+#include "../MotorGrafico/TTransform.h"
+#include "../MotorGrafico/TResourceManager.h"
+
 class Facade
 {
-    private:
-        bool play = true;
-
-        glm::vec3 aPos;
-        glm::vec4 Position;
-
-        GLuint vertexShader;
-        GLuint fragmentShader;
-        GLuint shaderProgram;
-        
+    private: 
+        TNode* scene;
+        TResourceManager* manager;
     public:
-        void initWindow();
+        GLFWwindow* initWindow();
+        bool openWindow(GLFWwindow* w);
         void processInput(GLFWwindow *window);
-        void shutDown(){ play = false;};
-        bool getPlay(){ return play;};
-        void drawTriangle();
+        void clear(GLFWwindow* w);
+
+        //TREE METHODS
+        TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
+        TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
+        TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff,float t,float b,float r,float l);
+
+
+        TNode* createBranch(TNode* f, glm::vec3 v);
 };
