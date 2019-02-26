@@ -2,12 +2,13 @@
 #include <stdio.h>
 #include "Game.h"
 #include "RenderIrrlicht.h"
+#include "Clock.h"
 #include "MenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
 #include "EndState.h"
-#include "Clock.h"
-
+#include "IntroState.h"
+#include "DialogueState.h"
 
 void Game::run()
 {
@@ -26,7 +27,7 @@ void Game::run()
 
 void Game::initGame()
 {  
-    setState(IGameState::stateType::MENU);
+    setState(IGameState::stateType::INTRO);
 }
 
 void Game::setState(IGameState::stateType type)
@@ -44,6 +45,12 @@ void Game::setState(IGameState::stateType type)
             break;
         case IGameState::stateType::END:
             state = EndState::getInstance();
+            break;
+        case IGameState::stateType::INTRO:
+            state = IntroState::getInstance();
+            break;
+        case IGameState::stateType::DIALOGUE:
+            state = DialogueState::getInstance();
             break;
     }
     state->initState();

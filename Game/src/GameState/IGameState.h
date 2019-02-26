@@ -9,7 +9,9 @@ public:
         MENU,
         PLAY,
         PAUSE,
-        END
+        END,
+        INTRO,
+        DIALOGUE
     };
 
     virtual ~IGameState() {};

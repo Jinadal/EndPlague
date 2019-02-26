@@ -1,0 +1,30 @@
+#include <cstddef>
+#include "IntroState.h"
+#include "Game.h"
+#include <SFML/Window.hpp>
+
+void IntroState::initState(){
+    //RenderIrrlicht::getInstance()->loadIntro();
+};
+
+void IntroState::clear(){
+    //RenderIrrlicht::getInstance()->closeIntro();
+};
+
+void IntroState::update(float dt){
+    delta+=dt;
+    if(delta>videoDuration)
+    {
+        delta = 0;
+        clear();
+        Game::getInstance()->setState(IGameState::stateType::MENU);
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
+        delta = 0;
+        clear();
+        Game::getInstance()->setState(IGameState::stateType::MENU);
+    }
+    
+}

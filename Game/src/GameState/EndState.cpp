@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include "ScoreManager.h"
 #include <iostream>
+#include "HUD.h"
 
 void EndState::update(float dt)
 {
@@ -13,6 +14,6 @@ void EndState::update(float dt)
 }
 
 void EndState::initState(){
-    std::cout<<"Puntuacion final: "<<ScoreManager::getInstance()->resetScore()<<"\n";
+    std::cout<<"Puntuacion final: "<<HUD::getInstance()->getScore()<<"\n";
     type = IGameState::END; 
 };

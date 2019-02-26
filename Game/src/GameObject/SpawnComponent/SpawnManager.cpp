@@ -9,7 +9,6 @@ void SpawnManager::createComponent(GameObject* owner, float distance, EnemyType 
     owner->addComponent(components[components.size() - 1]);
 }
 
-
 void SpawnManager::updateAll(float dt)
 {
     for(std::size_t i = 0; i<components.size(); i++)

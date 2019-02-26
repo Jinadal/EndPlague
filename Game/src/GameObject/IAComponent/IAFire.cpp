@@ -105,7 +105,7 @@ bool IA_Fire_haveWater::run()
 bool IA_fire_StillOnFire::run()
 {
  
-  if( owner->getComponent<IAComponent>()->spawnOnFire->getComponent<WoodComponent>()->getBurning())
+  if(owner->getComponent<IAComponent>()->spawnOnFire->getComponent<WoodComponent>() && owner->getComponent<IAComponent>()->spawnOnFire->getComponent<WoodComponent>()->getBurning())
     return false;
 
   owner->getComponent<IAComponent>()->onRoute = false;
