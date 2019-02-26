@@ -142,14 +142,14 @@ void PhysicBullet::iteration(float delta)
 
 }
 
-void* PhysicBullet::rayTest(float x, float y, float z, float rz)
+void* PhysicBullet::rayTest(float x, float y, float z, float rz, float distance)
 {
 
     float xi = x + 2 * -cos(-PI/2 + rz*PI/180);
     float yi = y + 2 * -sin(-PI/2 + rz*PI/180);
     float zi = z;
-    float xf = x + 100 * -cos(-PI/2 + rz*PI/180);
-    float yf = y + 100 * -sin(-PI/2 + rz*PI/180);
+    float xf = x + distance * -cos(-PI/2 + rz*PI/180);
+    float yf = y + distance * -sin(-PI/2 + rz*PI/180);
     float zf = z;
     btVector3 btRayFrom = btVector3(xi, yi, zi);
     btVector3 btRayTo = btVector3(xf, yf, zf);
