@@ -15,7 +15,12 @@ GameObject* GameResource::createGameObject(float x, float y, float z, float rz)
     gameobjects.push_back(new GameObject(x, y, z, rz));
     return gameobjects[gameobjects.size() - 1];
 }
-
+GameObject* GameResource::createPlayer(float x, float y, float z, float rz)
+{
+    gameobjects.push_back(new GameObject(x, y, z, rz));
+    player = gameobjects[gameobjects.size() - 1]; 
+    return gameobjects[gameobjects.size() - 1];
+}
 void GameResource::updateAll()
 {
     std::vector<GameObject*>::iterator it = gameobjects.begin();

@@ -22,6 +22,7 @@
 
 #include "GameResource.h"
 #include "RenderIrrlicht.h"
+#include "HUD.h"
 
 
 void GameManager::initAll()
@@ -44,17 +45,20 @@ void GameManager::initAll()
     StorageManager::getInstance();
     WellManager::getInstance();
     WoodManager::getInstance();
+
+    HUD::getInstance();
 }
 
 void GameManager::clear()
 {
     GameResource::getInstance()->clear();
+    ScoreManager::getInstance()->resetScore();
 }
 
 void GameManager::updateAll(float dt)
 {
     InputManager::getInstance()->setCursorPosition(RenderIrrlicht::getInstance()->getCursorX(), RenderIrrlicht::getInstance()->getCursorY());
-    
+    HUD::getInstance()->update(dt);
     GameResource::getInstance()->updateAll();
     
     InputManager::getInstance()->updateAll(dt);
@@ -66,7 +70,6 @@ void GameManager::updateAll(float dt)
     CameraManager::getInstance()->updateAll(dt);
     LifeManager::getInstance()->updateAll(dt);
     RenderManager::getInstance()->updateAll(dt);
-
 
     //USELESS
     //BucketManager::getInstance()->updateAll(dt);

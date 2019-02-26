@@ -17,4 +17,5 @@ class SpawnManager : public Manager
 
         void createComponent(GameObject* owner, float distance, EnemyType type);
         void updateAll(float dt);
+        int getNumSpawns(){return components.size();}
 };
