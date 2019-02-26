@@ -1,5 +1,6 @@
 
 #include "IAComponent.h"
+#include "IAManager.h"
 #include "IAMovimiento.h"
 #include "IASeguimiento.h"
 #include "IAPlanificacion.h"
@@ -9,6 +10,7 @@
 #include "GameObject.h"
 #include "Waypoint.h"
 #include "IAFire.h"
+#include "Area.h"
 
 
 #include <iostream>
@@ -209,7 +211,22 @@ if(mode)
                     IA_Fire_GPStoSpawn* AlSpawn = new IA_Fire_GPStoSpawn(gameObject);
                     wellOrSpawn->addChild(AlSpawn);
 
-        
+        Selector* patrulla = new Selector();
+        nodoRaiz2->addChild(patrulla);
+
+                    Secuencia* amipatrolling = new Secuencia();
+                    patrulla->addChild(amipatrolling);
+                        IA_Graf_CheckPatrolling* checkpatrolling = new IA_Graf_CheckPatrolling(gameObject);
+                        amipatrolling->addChild(checkpatrolling);
+
+                        IA_Graf_FollowPatrol* patrullar = new IA_Graf_FollowPatrol(gameObject);
+                        amipatrolling->addChild(patrullar);
+
+
+                IA_Graf_GoPatrol* setPatrulla = new IA_Graf_GoPatrol(gameObject);
+                patrulla->addChild(setPatrulla);
+
+
         MoveNone* movenone2 = new MoveNone(gameObject);
         nodoRaiz2->addChild(movenone2);
                         
@@ -249,3 +266,58 @@ void IAComponent::Clear()
     mapa.clear();
 }
 
+void IAComponent::setPatrollingRoute(GameObject* owner)
+{
+   std::vector<Area*> AML = ((IAManager*)manager)->getGPS()->getAreas();
+    int ai = 0;
+    for (std::size_t i = 0; i< AML.size(); i++)
+    {
+        if(AML[i]->checkinArea(owner->getX(), owner->getY()))
+        {
+            ai = i;
+        }
+
+    }
+
+    if(ai == 0){
+        patrollingRoute = {-45, 10, -35, -20 };
+        currentpatrollingRoute = patrollingRoute;
+
+    }
+     if(ai == 1){
+        patrollingRoute = {-45, 30, -35, 20 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 2){ // Seguir Poniedo puntos de ruta de patrulla
+        patrollingRoute = {-20, 30, 10, 20 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 3){
+        patrollingRoute = {-20, 5, 0, 30 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 4){
+        patrollingRoute = {0, -30, 5, -30 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 5){
+        patrollingRoute = {15, 10, 20, 0 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 6){
+        patrollingRoute = {30,30, 40, 40 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 7){
+        patrollingRoute = {30, 0, 40, 0 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 8){
+        patrollingRoute = {30, -20, 25, -20 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+     if(ai == 9){
+        patrollingRoute = {40, -40, 40, -45 };
+        currentpatrollingRoute = patrollingRoute;
+    }
+}

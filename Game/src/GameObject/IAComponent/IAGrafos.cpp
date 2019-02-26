@@ -124,3 +124,82 @@ bool IA_Graf_FollowRuta::run()
 
     return true;
 }
+
+
+
+bool IA_Graf_FollowPatrol::run()
+{
+
+    std::vector<float> ruta = owner->getComponent<IAComponent>()->currentpatrollingRoute;
+
+
+    std::vector<float>::iterator iter = ruta.begin();
+
+    float nextX = *iter;
+
+    iter++;
+
+    float nextY = *iter;
+
+    float rZ = atan2(owner->getY() - nextY, owner->getX() - nextX);
+    rZ += PI/2.0;
+    rZ = rZ * 180/PI;
+    if (rZ < 0)
+        rZ += 360;
+
+
+    owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
+
+    float vel = owner->getComponent<BPhysicComponent>()->getvMax();
+    if(vel == 0.f) owner->getComponent<BPhysicComponent>()->setvMax(5.f);
+    float d = sqrt(pow(nextX - owner->getX(),2) + pow(nextY - owner->getY(), 2));
+   
+
+    if(round(fabs(d)) < .6F  )
+    {
+        int tam = ruta.size();
+        if(tam == 2){
+            iter++;
+            iter--;
+        }
+        ruta.erase(iter);
+        iter--;
+        ruta.erase(iter);
+        
+        iter = ruta.begin();
+    owner->getComponent<IAComponent>()->currentpatrollingRoute = ruta;
+
+    }
+
+
+    if(ruta.empty()){
+       
+         owner->getComponent<IAComponent>()->currentpatrollingRoute =  owner->getComponent<IAComponent>()->patrollingRoute;
+
+    }
+
+
+    return true;
+}
+
+
+
+bool IA_Graf_CheckPatrolling::run()
+{
+
+    if(owner->getComponent<IAComponent>()->onPatrol){
+   
+        return true;
+    }
+
+    return false;
+}
+
+bool IA_Graf_GoPatrol::run()
+{
+
+    owner->getComponent<IAComponent>()->onPatrol = true;
+   
+        return true;
+    
+}

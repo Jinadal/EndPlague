@@ -21,9 +21,8 @@ void GPS::Initialice()
    
 
 
-
     addArea(-49,26, -28, -49);
-    addArea(-49,49, -28, -26);
+    addArea(-49,49, -28, 26);
     addArea(-27,49, 24, 13);
     addArea(-28,13, 3, -10);
     addArea(-28,-10, 11, -49);
