@@ -142,6 +142,21 @@ if(!mode)
 
                         seguimientoDirecto->addChild(raizIASeg);
 
+    Selector* patrullaa = new Selector();
+    nodoRaiz->addChild(patrullaa);
+
+                    Secuencia* amipatrollinga = new Secuencia();
+                    patrullaa->addChild(amipatrollinga);
+                        IA_Graf_CheckPatrolling* checkpatrollinga = new IA_Graf_CheckPatrolling(gameObject);
+                        amipatrollinga->addChild(checkpatrollinga);
+
+                        IA_Graf_FollowPatrol* patrullara = new IA_Graf_FollowPatrol(gameObject);
+                        amipatrollinga->addChild(patrullara);
+
+
+                IA_Graf_GoPatrol* setPatrullaa = new IA_Graf_GoPatrol(gameObject);
+                patrullaa->addChild(setPatrullaa);
+
                     
 
     MoveNone* movenone = new MoveNone(gameObject);
