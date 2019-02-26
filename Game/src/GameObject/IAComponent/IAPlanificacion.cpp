@@ -7,6 +7,7 @@
 #include "ShootComponent.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#define PI 3.141592
 
 /*
 Salta si el personaje entra a menos de 10 unidades de distancia de portador de la ia
@@ -16,30 +17,65 @@ calcula las distancias entre los centros y devuelve true
 bool IA_Plan_InSight::run()
 {
 
-    float dx = main->getX() - owner->getX();
-    float dy = main->getY() - owner->getY();
+  //  float dx = main->getX() - owner->getX();
+  //  float dy = main->getY() - owner->getY();
 
 // && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()+1)
        //     && main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ()-1)
 
-    if(fabs(dx) <= 15  && fabs(dy) <= 15){
-        if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ())
-           )
-        {
-            owner->getComponent<ShootComponent>()->shoot();
-        }
+    //if(fabs(dx) <= 15  && fabs(dy) <= 15){
+       // if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),owner->getRZ())
+    //      )
+     //   {
+         //   owner->getComponent<ShootComponent>()->shoot();
+        
 
         //if(owner->getComponent<IAComponent>()->onRoute){
          //   return false;
        // }else{
-            
-        return true;
+     ///   return true;
+     //   }
       //  }
-    }
+   // }
     //std::cout << "PERSONAJE PERDIDO!!! \n";
-    return false;
+  //  return false;
+
+      float d = round(sqrt(pow(main->getX() - owner->getX(),2) + pow(main->getY() - owner->getY(),2)));
+      if(d<15)
+      {
 
 
+            float Ax = owner->getX();
+            float Ay = owner->getY();
+
+            float Bx = Ax  -cos((owner->getRZ()-60)*PI/180 - PI/2) * 30;
+            float By = Ay  -sin((owner->getRZ()-60)*PI/180 - PI/2) * 30;
+
+            float Cx = Ax -cos((owner->getRZ()+60)*PI/180 - PI/2) * 30;
+            float Cy = Ay -sin((owner->getRZ()+60)*PI/180 - PI/2) * 30;
+
+            float s1 = Cy - Ay;
+			float s2 = Cx - Ax;
+			float s3 = By - Ay;
+			float s4 = main->getY() - Ay;
+
+			float w1 = (Ax * s1 + s4 * s2 - main->getX()* s1) / (s3 * s2 - (Bx-Ax) * s1);
+            float w2 = (s4- w1 * s3) / s1;
+
+           if(w1 >= 0 && w2 >= 0 && (w1 + w2) <= 1){
+               if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),main->getX(),main->getY(), main->getZ())){
+                owner->getComponent<ShootComponent>()->shoot();
+                 return true;
+               }
+            }
+
+               
+
+
+      }
+           return false;
+
+      
 }
 
 bool IA_Plan_DidICollide::run()

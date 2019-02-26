@@ -52,3 +52,40 @@ class IA_Graf_FollowRuta : public Nodo
     GameObject * owner;    
     float distancia = .5f;
 };
+
+
+class IA_Graf_FollowPatrol : public Nodo
+{
+    public:
+
+    IA_Graf_FollowPatrol(GameObject* o){owner = o;}
+    virtual ~IA_Graf_FollowPatrol(){}
+
+    bool run() override;
+    GameObject * owner;    
+};
+
+class IA_Graf_CheckPatrolling : public Nodo
+{
+    public:
+
+    IA_Graf_CheckPatrolling(GameObject* o){owner = o;}
+    virtual ~IA_Graf_CheckPatrolling(){}
+
+    bool run() override;
+    GameObject * owner;    
+
+};
+
+
+class IA_Graf_GoPatrol : public Nodo
+{
+    public:
+
+    IA_Graf_GoPatrol(GameObject* o){owner = o;}
+    virtual ~IA_Graf_GoPatrol(){}
+
+    bool run() override;
+    GameObject * owner;    
+
+};

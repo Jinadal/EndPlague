@@ -163,7 +163,19 @@ void* PhysicBullet::rayTest(float x, float y, float z, float rz, float distance)
     return NULL;
 }
 
+void* PhysicBullet::rayTest(float xi, float yi, float zi, float xf, float yf, float zf)
+{
+    btVector3 btRayFrom = btVector3(xi, yi, zi);
+    btVector3 btRayTo = btVector3(xf, yf, zf);
 
+    btCollisionWorld::ClosestRayResultCallback rayCallback(btRayFrom,btRayTo);
+    _world->rayTest(btRayFrom, btRayTo, rayCallback);
+    if(rayCallback.hasHit())
+    {
+        return rayCallback.m_collisionObject->getUserPointer();
+    }
+    return NULL;
+}
 
 btRigidBody* PhysicBullet::createFromFile(char* filename)
 {

@@ -29,6 +29,7 @@ class PhysicBullet{
         btRigidBody* createFromFile(char* filename);
         void iteration(float d);
         void* rayTest(float x, float y, float z, float rz, float distance = 100.f);
+        void* rayTest(float xi, float yi, float zi, float xf, float yf, float zf);
         void init();
         void clear();
 };

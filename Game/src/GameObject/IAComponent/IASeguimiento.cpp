@@ -13,9 +13,9 @@ bool IA_Seg_ToPlayer::run()
     rZ = rZ * 180/PI;
     if (rZ < 0)
         rZ += 360;
-    owner->getComponent<BPhysicComponent>()->setvMax(5.f);
+    owner->getComponent<BPhysicComponent>()->setvMax(3.f);
 
-    owner->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");
+    owner->getComponent<RenderComponent>()->setTexture((char*)"res/yelow.bmp");
 
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
     return true;
