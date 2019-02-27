@@ -39,8 +39,8 @@ class ProjectileFabric
             },
             {
                 PPEAK,
-                (char*)"res/HACHA.obj",
-                (char*)"res/green.bmp",
+                (char*)"res/PEAK.obj",
+                (char*)"res/PEAK.bmp",
                 10.f,
                 50.f
             }

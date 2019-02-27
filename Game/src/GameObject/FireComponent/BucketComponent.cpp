@@ -14,7 +14,7 @@ void BucketComponent::fillBucket(WellComponent* wc)
 
 void BucketComponent::dropBucket(WoodComponent* wc)
 {
-    if(wc)
+    if(wc && wc->getBurning())
     {
         if(water)
         {
