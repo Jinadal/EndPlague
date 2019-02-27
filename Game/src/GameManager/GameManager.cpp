@@ -33,6 +33,7 @@ void GameManager::initAll()
     BucketManager::getInstance();
     CameraManager::getInstance();
     DropperManager::getInstance();
+    WoodManager::getInstance();
     IAManager::getInstance();
     InputManager::getInstance();
     ItemManager::getInstance();
@@ -44,7 +45,6 @@ void GameManager::initAll()
     SpawnManager::getInstance();
     StorageManager::getInstance();
     WellManager::getInstance();
-    WoodManager::getInstance();
 
     HUD::getInstance();
 }

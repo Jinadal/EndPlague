@@ -229,6 +229,15 @@ if(mode)
         Selector* patrulla = new Selector();
         nodoRaiz2->addChild(patrulla);
 
+
+                    Secuencia* areapatrol = new Secuencia();
+                    patrulla->addChild(areapatrol);
+                        IA_Graf_CheckareaPatrol* difarea = new IA_Graf_CheckareaPatrol(gameObject);
+                        areapatrol->addChild(difarea);
+                        
+                        IA_Graf_LaunchGPSToPatrol* gpstopatrol = new IA_Graf_LaunchGPSToPatrol(gameObject);
+                        areapatrol->addChild(gpstopatrol);
+
                     Secuencia* amipatrolling = new Secuencia();
                     patrulla->addChild(amipatrolling);
                         IA_Graf_CheckPatrolling* checkpatrolling = new IA_Graf_CheckPatrolling(gameObject);
