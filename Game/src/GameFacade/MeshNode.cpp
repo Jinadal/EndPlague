@@ -9,6 +9,7 @@ MeshNode::MeshNode(char s[]){
     {
         node = RenderIrrlicht::getInstance()->getSMgr()->addMeshSceneNode(mesh);//Adds the mesh to the node
         node->setMaterialFlag(EMF_LIGHTING, true);
+        node->setAutomaticCulling( EAC_BOX ); 
         //node->setMaterialFlag(EMF_WIREFRAME, true);
         //node->setDebugDataVisible(EDS_BBOX);
     }
