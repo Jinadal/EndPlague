@@ -65,8 +65,8 @@ void HUDRenderFacade::init()
     width = (float)original.Width * sw;
     height = (float)original.Height * sh;
 
-    x = sw * 610.f;
-    y = sh * 1000.f;
+    x = sw * 600.f;
+    y = sh * 905.f;
 
     shield = env->addImage(texture ,position2d<int>(x, y));
     shield->setScaleImage(true);
@@ -106,10 +106,10 @@ void HUDRenderFacade::updateValues(float life, float shield, float fps, int scor
 
 
     original = this->shield->getImage()->getOriginalSize();
-    width = (float)(original.Width * sw)*(shield/1000.f);
+    width = (float)(original.Width * sw)*(shield/100.f);
     height = (float)original.Height * sh;
-    x = sw * 610.f;
-    y = sh * 1000.f;
+    x = sw * 600.f;
+    y = sh * 905.f;
     this->shield->setRelativePosition(core::rect<s32>(x, y, width+x, height+y));
     this->shield->setMaxSize(irr::core::dimension2du(width, height));
     this->shield->setMinSize(irr::core::dimension2du(width, height));
