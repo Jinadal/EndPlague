@@ -71,3 +71,15 @@ class IA_fire_StillOnFire : public Nodo
        
     
 };
+
+class IA_Fire_HaveSpawn : public Nodo
+{
+    public: 
+        IA_Fire_HaveSpawn(GameObject* o){owner = o;}
+        virtual ~IA_Fire_HaveSpawn(){}
+
+        bool run() override;
+        GameObject * owner;
+       
+    
+};

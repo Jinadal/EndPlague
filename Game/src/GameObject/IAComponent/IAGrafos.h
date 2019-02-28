@@ -89,3 +89,29 @@ class IA_Graf_GoPatrol : public Nodo
     GameObject * owner;    
 
 };
+
+class IA_Graf_LaunchGPSToPatrol : public Nodo
+{
+    public:
+
+    IA_Graf_LaunchGPSToPatrol(GameObject* o){owner = o;}
+    virtual ~IA_Graf_LaunchGPSToPatrol(){}
+
+    bool run() override;
+    GameObject * owner;    
+
+};
+
+
+
+class IA_Graf_CheckareaPatrol : public Nodo
+{
+    public:
+
+   IA_Graf_CheckareaPatrol(GameObject* o){owner = o;}
+    virtual ~IA_Graf_CheckareaPatrol(){}
+
+    bool run() override;
+    GameObject * owner;    
+
+};

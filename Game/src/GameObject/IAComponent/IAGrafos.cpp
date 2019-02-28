@@ -98,7 +98,12 @@ bool IA_Graf_FollowRuta::run()
     if(vel == 0.f) owner->getComponent<BPhysicComponent>()->setvMax(5.f);
     float d = sqrt(pow(nextX - owner->getX(),2) + pow(nextY - owner->getY(), 2));
    
-
+    if( ruta.size() != 2)
+    {
+         distancia = .6F;
+    }else{
+        distancia = 3.1F;
+    }
     if(round(fabs(d)) < distancia  )
     {
         int tam = ruta.size();
@@ -202,4 +207,76 @@ bool IA_Graf_GoPatrol::run()
    
         return true;
     
+}
+
+
+bool IA_Graf_LaunchGPSToPatrol::run()
+{
+    GPS* gps = ((IAManager*)owner->getComponent<IAComponent>()->getManager())->getGPS();
+
+    std::vector<float> ruta = owner->getComponent<IAComponent>()->patrollingRoute;
+
+    std::vector<float>::iterator iter = ruta.begin();
+
+    float nextX = *iter;
+
+    iter++;
+
+    float nextY = *iter;
+
+  owner->getComponent<IAComponent>()->route = gps->getWay(owner->getX(),owner->getY(),nextX,nextY);
+    
+     owner->getComponent<IAComponent>()->onRoute = true;
+    
+    return true;
+}
+
+
+
+bool IA_Graf_CheckareaPatrol::run()
+{
+
+   std::vector<Area*> Areas = ((IAManager*)owner->getComponent<IAComponent>()->getManager())->getGPS()->getAreas();
+    
+     std::vector<float> ruta = owner->getComponent<IAComponent>()->patrollingRoute;
+
+    std::vector<float>::iterator iter = ruta.begin();
+
+    float nextX = *iter;
+
+    iter++;
+
+    float nextY = *iter;
+    int ai=0; 
+    int af=0;
+    for (std::size_t i = 0; i< Areas.size(); i++)
+    {
+        if(Areas[i]->checkinArea(owner->getX(),owner->getY()))
+        {
+            ai = i;
+        }
+
+        if(Areas[i]->checkinArea(nextX,nextY))
+        {
+
+            af = i;
+        }
+
+    }
+
+    if(af == ai)
+    {
+        if(owner->getComponent<IAComponent>()->onRoute){
+            owner->getComponent<IAComponent>()->onRoute = false;
+           
+        }
+        
+        return false;
+    }
+
+   // if(owner->getComponent<IAComponent>()->onRoute)
+    //return false;
+   
+
+    return true;
 }

@@ -59,8 +59,8 @@ std::vector<Position> loc_spawns{
     {-32.f, 45.5f, 180.f, true},
     {-24.f, 45.f, 180.f, false},
     {20.3f, 44.6f, 270.f, true},
-    {27.6f, 45.6f, 180.f, true},
-    {45.6f, 45.9f, 180.f, true}
+    {27.6f, 45.6f, 180.f, false},
+    {45.6f, 45.9f, 180.f, false}
 };
 
 

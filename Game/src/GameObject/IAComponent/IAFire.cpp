@@ -104,12 +104,31 @@ bool IA_Fire_haveWater::run()
 
 bool IA_fire_StillOnFire::run()
 {
+
+  GameObject* spawn =  owner->getComponent<IAComponent>()->spawnOnFire;
+
+
+  std::vector<Component*> spawns = WoodManager::getInstance()->getSpawns();
+  
+  bool ok = false;
+  for(std::vector<Component*>::iterator iter = spawns.begin(); iter!=spawns.end(); iter++)
+  {
+    if(((WellComponent*)(*iter))->getGameObject() == spawn) ok= true;
+  }
  
-  if(owner->getComponent<IAComponent>()->spawnOnFire->getComponent<WoodComponent>() && owner->getComponent<IAComponent>()->spawnOnFire->getComponent<WoodComponent>()->getBurning())
+  if(ok && owner->getComponent<IAComponent>()->spawnOnFire->getComponent<WoodComponent>()->getBurning())
     return false;
 
   owner->getComponent<IAComponent>()->onRoute = false;
   owner->getComponent<IAComponent>()->spawnOnFire = nullptr;
     
   return true;
+}
+
+bool IA_Fire_HaveSpawn::run()
+{
+
+  if( owner->getComponent<IAComponent>()->spawnOnFire) return true;
+
+  return false;
 }
