@@ -19,6 +19,8 @@ void PlayState::initState()
         fabric = new FabricVillage();
         loaded=true;
         fabric->loadLevel();
+
+        GameManager::getInstance()->initAll();
     }
 }
 

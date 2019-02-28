@@ -1,6 +1,11 @@
+#pragma once
+#include "HUDRenderFacade.h"
+
+
 class HUD
 {
     private:
+        HUDRenderFacade* facade;
         float life;
         int numSpawns;
         int score;
@@ -8,6 +13,7 @@ class HUD
         bool berserk;
         float fps;
         HUD(){};
+        
     public:
         static HUD* getInstance()
         {
@@ -17,4 +23,7 @@ class HUD
 
         void update(float dt);
         int getScore(){return score;}
+        void init(){facade = new HUDRenderFacade();}
+        void clear(){delete facade;}
+
 };

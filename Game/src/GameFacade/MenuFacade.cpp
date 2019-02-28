@@ -3,10 +3,8 @@
 void MenuFacade::setMenuBackground()
 {
     env = RenderIrrlicht::getInstance()->getGUIEnv();
-    ITexture* texture = RenderIrrlicht::getInstance()->getDriver()->getTexture("res/Fondo.png");
+    ITexture* texture = RenderIrrlicht::getInstance()->getDriver()->getTexture("res/sprites/Fondo.png");
     dimension2d<u32> original = texture->getOriginalSize();
-    
-
     
     float screenWidth = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Width;
     float screenHeight = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Height;

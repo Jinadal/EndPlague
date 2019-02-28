@@ -1,11 +1,11 @@
 #include "Component.h"
 #include "ItemFabric.h"
 
-#define P_POTION 30
-#define P_AXE 35
-#define P_PEAK 40
-#define P_CROSSBOW 50
-#define P_SHIELD 50
+const int P_POTION      = 30;
+const int P_AXE         = 35;
+const int P_PEAK        = 40;
+const int P_CROSSBOW    = 50;
+const int P_SHIELD      = 80;
 
 
 

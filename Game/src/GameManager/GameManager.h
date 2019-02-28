@@ -2,7 +2,7 @@ class GameManager
 {
     private:
     
-        GameManager(){initAll();}
+        GameManager(){}
     
     public:
         ~GameManager(){clear();}

@@ -23,7 +23,7 @@
 #include "GameResource.h"
 #include "RenderIrrlicht.h"
 #include "HUD.h"
-
+#include <iostream>
 
 void GameManager::initAll()
 {
@@ -46,11 +46,12 @@ void GameManager::initAll()
     WellManager::getInstance();
     WoodManager::getInstance();
 
-    HUD::getInstance();
+    HUD::getInstance()->init();
 }
 
 void GameManager::clear()
 {
+    HUD::getInstance()->clear();
     GameResource::getInstance()->clear();
     ScoreManager::getInstance()->resetScore();
 }
