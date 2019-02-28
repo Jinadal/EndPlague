@@ -124,3 +124,11 @@ bool IA_fire_StillOnFire::run()
     
   return true;
 }
+
+bool IA_Fire_HaveSpawn::run()
+{
+
+  if( owner->getComponent<IAComponent>()->spawnOnFire) return true;
+
+  return false;
+}

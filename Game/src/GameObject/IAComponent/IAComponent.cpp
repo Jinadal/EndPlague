@@ -181,6 +181,8 @@ if(mode)
                 IA_Graf_CheckRuta* checkruta2 = new IA_Graf_CheckRuta(gameObject);
                 seguirRuta2->addChild(checkruta2);
 
+
+                
                 Selector* pozoOCasa = new Selector();
                 seguirRuta2->addChild(pozoOCasa);
 
@@ -195,9 +197,14 @@ if(mode)
 
                         IA_Graf_FollowRuta* followruta2 = new IA_Graf_FollowRuta(gameObject, 3.1F);
                         aPozo->addChild(followruta2);
+                    
 
-                    IA_fire_StillOnFire* stillonfire2 = new IA_fire_StillOnFire(gameObject);
-                    pozoOCasa->addChild(stillonfire2);
+                    Secuencia* checkspawn = new Secuencia();
+                    pozoOCasa->addChild(checkspawn);
+                        IA_Fire_HaveSpawn* havespawn = new IA_Fire_HaveSpawn(gameObject);
+                        checkspawn->addChild(havespawn);
+                        IA_fire_StillOnFire* stillonfire2 = new IA_fire_StillOnFire(gameObject);
+                        checkspawn->addChild(stillonfire2);
 
                     IA_Graf_FollowRuta* followruta3 = new IA_Graf_FollowRuta(gameObject, 3.1F);
                     pozoOCasa->addChild(followruta3);

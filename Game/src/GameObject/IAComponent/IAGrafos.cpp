@@ -214,7 +214,7 @@ bool IA_Graf_LaunchGPSToPatrol::run()
 {
     GPS* gps = ((IAManager*)owner->getComponent<IAComponent>()->getManager())->getGPS();
 
-    std::vector<float> ruta = owner->getComponent<IAComponent>()->currentpatrollingRoute;
+    std::vector<float> ruta = owner->getComponent<IAComponent>()->patrollingRoute;
 
     std::vector<float>::iterator iter = ruta.begin();
 
@@ -238,7 +238,7 @@ bool IA_Graf_CheckareaPatrol::run()
 
    std::vector<Area*> Areas = ((IAManager*)owner->getComponent<IAComponent>()->getManager())->getGPS()->getAreas();
     
-     std::vector<float> ruta = owner->getComponent<IAComponent>()->currentpatrollingRoute;
+     std::vector<float> ruta = owner->getComponent<IAComponent>()->patrollingRoute;
 
     std::vector<float>::iterator iter = ruta.begin();
 
