@@ -41,7 +41,7 @@ void CameraComponent::update(float dt)
     }
     */
 
-    node->update(x, y-(5.f * zoom), z-(50.f * zoom), x, y, z);
+    node->update(x, y-(5.f * zoom), z-(10.f * zoom), x, y, z);
 }
 
 void CameraComponent::setFOV(float fov)
