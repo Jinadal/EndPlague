@@ -29,7 +29,7 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- PHYSICS --------------
-        const bool      RENDER_ENGINE           = false;     //If true Irrlicht, else LOTTO
+        const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else LOTTO
 
 
 
@@ -114,9 +114,9 @@ namespace gv
 //#####################################################################
 
     const float     SPAWN_CADENCIA          = 3.f;
-    const int       MAX_ENEMIES             = 80;
-    const int       MIN_ENEMIES             = 20;  //NOT USED -TODO-
-    const int       ENEMIES_PER_SPAWN       = 4;   //NOT USED -TODO-
+    const int       MAX_ENEMIES             = 80;  //NOT USED
+    const int       MIN_ENEMIES             = 20;  
+    const int       ENEMIES_PER_SPAWN       = 4;
 
 
     //---------- WOOD AND FIRE -----------

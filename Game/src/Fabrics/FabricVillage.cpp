@@ -96,11 +96,11 @@ void FabricVillage::loadLevel()
         well(loc_wells[i]._x, loc_wells[i]._y, loc_wells[i]._rz, loc_wells[i].type);
 
 
-    for(size_t i = 0; i<loc_spawns.size(); i++)
+    //for(size_t i = 0; i<loc_spawns.size(); i++)sdwadswadd
+    for(size_t i = 0; i<1; i++)
         spawn(loc_spawns[i]._x, loc_spawns[i]._y, loc_spawns[i]._rz, loc_spawns[i].type);
     
 }
-
 
 
 void FabricVillage::spawn(float x, float y, float rz, bool type)

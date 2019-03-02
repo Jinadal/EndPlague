@@ -10,12 +10,16 @@
 #include "IAComponent.h"
 #include "DropperManager.h"
 #include "BucketManager.h"
+#include "SpawnManager.h"
 
 GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyType type)
 {
-    if(ScoreManager::getInstance()->getEnemies()>gv::MAX_ENEMIES)
-        return NULL;
-
+    int nsp = SpawnManager::getInstance()->getNumSpawns()*gv::ENEMIES_PER_SPAWN;
+    int nen = ScoreManager::getInstance()->getEnemies();
+    
+    if(nsp <= nen && gv::MIN_ENEMIES<=nen)
+        return nullptr;
+    
     
     //ADDING A ENEMY
     GameObject* primero = GameResource::getInstance()->createGameObject(x, y, z, rz);//Creates a new GO on x, y, z, rz

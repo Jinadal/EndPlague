@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "InputManager.h"
 #include "IAManager.h"
+#include "SpawnManager.h"
 #include "FabricVillage.h"
 #include "GameObject.h"
 
@@ -32,6 +33,11 @@ void PlayState::update(float dt)
         Game::getInstance()->setState(IGameState::stateType::PAUSE);
     
     if(IAManager::getInstance()->getPlayer() && IAManager::getInstance()->getPlayer()->getKill())
+    {
+        clear();
+        Game::getInstance()->setState(IGameState::stateType::END);
+    }
+    if(SpawnManager::getInstance()->getNumSpawns()<=0)
     {
         clear();
         Game::getInstance()->setState(IGameState::stateType::END);
