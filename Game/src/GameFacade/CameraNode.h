@@ -5,12 +5,7 @@ class CameraNode{
     private:
         ICameraSceneNode* node;
     public:
-        CameraNode()
-        {
-            node = RenderIrrlicht::getInstance()->getSMgr()->addCameraSceneNode(0, vector3df(0,0,0), vector3df(0,0,0));
-            RenderIrrlicht::getInstance()->setCamera(node);
-            node->setAutomaticCulling(EAC_OFF);
-        }
+        CameraNode(ICameraSceneNode* node){this->node = node;}
 
         ~CameraNode()
         {

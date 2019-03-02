@@ -106,7 +106,7 @@ void HUDRenderFacade::updateValues(float life, float shield, float fps, int scor
 
 
     original = this->shield->getImage()->getOriginalSize();
-    width = (float)(original.Width * sw)*(shield/100.f);
+    width = (float)(original.Width * sw)*(shield/400.f);
     height = (float)original.Height * sh;
     x = sw * 600.f;
     y = sh * 905.f;

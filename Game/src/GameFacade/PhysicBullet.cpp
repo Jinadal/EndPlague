@@ -1,5 +1,6 @@
 #include "PhysicBullet.h"
 #include <btBulletWorldImporter.h>
+#include "GameValues.h"
 
 #define PI 3.141592
 
@@ -84,7 +85,7 @@ void PhysicBullet::init()
     _world = new btDiscreteDynamicsWorld(_dispatcher, _broadphase, _solver, _collisionConfiguration);
 
     //Set gravity to physics in y=-9,8
-    _world->setGravity(btVector3(0,0,9.8));
+    _world->setGravity(btVector3(0,0,gv::PHYSICS_GRAVITY));
 }
 
 btRigidBody* PhysicBullet::createRigidBody(const btVector3 &initPos, const btVector3 &scale, btScalar mass, int physicType)
@@ -138,7 +139,7 @@ void PhysicBullet::iteration(float delta)
     //Update the objects in the world based on the step parametres of time
     //Parametres = stepSimulation(btScalar timeStep,int maxSubSteps=1,btScalar fixedTimeStep=btScalar(1.)/btScalar(60.));
     //timeStep is the time passed after last simulation.
-    _world->stepSimulation(delta*50);
+    _world->stepSimulation(delta*gv::PHYSICS_VELOCITY);
 
 }
 
@@ -184,6 +185,6 @@ btRigidBody* PhysicBullet::createFromFile(char* filename)
     btCollisionObject* obj = fileLoader->getRigidBodyByIndex(0);
     btRigidBody* rbody = btRigidBody::upcast(obj);
     rbody->getCollisionShape()->setLocalScaling(btVector3(-1, 1, 1));
-    _world->setGravity(btVector3(0,0, 9.8));
+    _world->setGravity(btVector3(0,0, gv::PHYSICS_GRAVITY));
     return rbody;
 }

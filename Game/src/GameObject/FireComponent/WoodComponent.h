@@ -1,9 +1,5 @@
 #include "Component.h"
 
-
-const float FIRE_DAMMAGE = 10.f;
-const int BUCKETS_NEDED = 5;
-
 class WoodComponent:public Component
 {
     private:

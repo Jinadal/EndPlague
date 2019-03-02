@@ -1,6 +1,6 @@
 #pragma once
 #include <irrlicht.h>
-
+#include "IRender.h"
 //Temporal
 using namespace irr;
 using namespace core;
@@ -9,7 +9,9 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-class RenderIrrlicht{
+class MeshNode;
+class CameraNode;
+class RenderIrrlicht : public IRender{
     private:
         RenderIrrlicht();
 
@@ -20,9 +22,6 @@ class RenderIrrlicht{
 
         ICameraSceneNode* camera;
         IMeshSceneNode* map;
-
-        u32 then;
-        f32 frameDeltaTime;
     public:
         
         static RenderIrrlicht* getInstance(){
@@ -31,23 +30,39 @@ class RenderIrrlicht{
         }
         
 
-        //Geters
-        IrrlichtDevice* getDevice(){return device;}
-        IVideoDriver* getDriver(){return driver;}
-        ISceneManager* getSMgr(){return smgr;}
-        IGUIEnvironment* getGUIEnv(){return guienv;}
-        void setCamera(ICameraSceneNode* node){camera=node;}
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+//---------- - - - - - - COMMON FUNCTIONS - - - - - - - - - ----------------
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------          
 
         //Draws all the scene, better at the end of loop
         void drawAll();
-        //Returns true if cotinues the loo
+
+        //Returns true if cotinues the loop
         bool run();
+
         //Closes the device
         void drop();
-        //Returns the time betwen las loop and now
-        float getFrameDeltaTime();
+
+        //Returns the position x, y of the cursor
         float getCursorX();
         float getCursorY();
+
+        //Creates mesh and camera
+        MeshNode* createMesh(char* s);
+        CameraNode* createCamera();
+
+
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+//---------- - - - - - - SPECIFIC FUNCTIONS - - - - - - - - - --------------
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------  
+
+        ITexture* getTexture(char* s);
+        IVideoDriver* getDriver(){return driver;}
+        IGUIEnvironment* getGUIEnv(){return guienv;}
+        //Sets the map
         void isMap(IMeshSceneNode* node){map=node;}
-        void drawPoint(float x, float y, float z);
 };

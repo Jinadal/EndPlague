@@ -4,14 +4,14 @@ void MenuFacade::setMenuBackground()
 {
     env = RenderIrrlicht::getInstance()->getGUIEnv();
     ITexture* texture = RenderIrrlicht::getInstance()->getDriver()->getTexture("res/sprites/Fondo.png");
-    dimension2d<u32> original = texture->getOriginalSize();
+    //dimension2d<u32> original = texture->getOriginalSize();
     
     float screenWidth = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Width;
     float screenHeight = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Height;
     
 
-    float sx = (float)(screenWidth / (float)original.Width);
-    float sy = (float)(screenHeight / (float)original.Height);
+    //float sx = (float)(screenWidth / (float)original.Width);
+    //float sy = (float)(screenHeight / (float)original.Height);
 
     img = env->addImage(texture ,position2d<int>(0,0));
     img->setScaleImage(true);

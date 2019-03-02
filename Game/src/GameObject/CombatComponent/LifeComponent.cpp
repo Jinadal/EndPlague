@@ -1,5 +1,6 @@
 #include "LifeComponent.h"
 #include "GameObject.h"
+#include "GameValues.h"
 
 void LifeComponent::looseLife(float d){     //Gets by parametre a int damage from the attacker
     shield -= d;
@@ -28,6 +29,6 @@ void LifeComponent::update(float dt)
     if(elapsedTime>1.f)
     {
         elapsedTime = 0.f;
-        life-=10.f;
+        life-=gv::PLAYER_LIFE_DECREASE;
     }
 }

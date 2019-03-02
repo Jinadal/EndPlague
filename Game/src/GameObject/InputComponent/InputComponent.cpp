@@ -4,6 +4,7 @@
 #include "BPhysicComponent.h"
 #include "CameraComponent.h"
 #include <SFML/Window.hpp>
+#include "GameValues.h"
 
 void InputComponent::update(float cursorX, float cursorY)
 {
@@ -31,12 +32,12 @@ void InputComponent::update(float cursorX, float cursorY)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
         if(gameObject->getComponent<CameraComponent>())
-        gameObject->getComponent<CameraComponent>()->setZoom(.005f);
+        gameObject->getComponent<CameraComponent>()->setZoom(gv::CAMERA_ZOOM_VEL);
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
         if(gameObject->getComponent<CameraComponent>())
-        gameObject->getComponent<CameraComponent>()->setZoom(-.005f);
+        gameObject->getComponent<CameraComponent>()->setZoom(gv::CAMERA_ZOOM_VEL);
     }
     
 

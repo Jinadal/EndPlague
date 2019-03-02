@@ -5,21 +5,17 @@ Node ony implemented with a AnimatedMesh in Irr
 */
 class MeshNode{
     private:
-        IMesh* mesh;//Mesh of the node
         IMeshSceneNode* node;//Node
 
     public:
         //Recives de render facade, and de path of the mesh
         //and creates a meshNode
-        MeshNode(char s[]);
+        MeshNode(IMeshSceneNode* node);
 
         //Destructor
         ~MeshNode(){
           node->remove();
         }
-        
-        //Changes the mesh of the node to de path
-        void setMesh(char s[]);
 
         //Changes the position of the node
         void setPosition(float x, float y, float z);
@@ -31,8 +27,8 @@ class MeshNode{
         void setVisible(bool b);
         
         //Changes the texture of the node to the new path
-        void setTexture(char s[]);
+        void setTexture(char* s);
 
-        IMeshSceneNode* getMeshSceneNode(){return node;}
+        void isMap();
 
 };

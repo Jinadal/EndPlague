@@ -1,4 +1,7 @@
 #include "RenderIrrlicht.h"
+#include "MeshNode.h"
+#include "CameraNode.h"
+
 
 RenderIrrlicht::RenderIrrlicht(){
     //We need to use video::EDT_SOFTWARE!!
@@ -19,18 +22,11 @@ RenderIrrlicht::RenderIrrlicht(){
 
     smgr->addLightSceneNode(0, core::vector3df(10,0,-100),
     video::SColorf(1.0f,1.0f,1.0f,1.0f), 1000.0f);
-
-    then = device->getTimer()->getTime();
 }
 
 
 void RenderIrrlicht::drawAll()
 {
-    // Work out a frame delta time.
-    const u32 now = device->getTimer()->getTime();
-    frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
-    then = now;
-
     driver->beginScene(true, true, SColor(255,100,100,100));
 
     smgr->drawAll();
@@ -47,11 +43,6 @@ bool RenderIrrlicht::run()
 void RenderIrrlicht::drop()
 {
     device->drop();
-}
-
-float RenderIrrlicht::getFrameDeltaTime()
-{
-    return frameDeltaTime;
 }
 
 
@@ -99,4 +90,34 @@ float RenderIrrlicht::getCursorY()
 
     selector->drop();
     return outCollisionPoint.Y;
+}
+
+
+MeshNode* RenderIrrlicht::createMesh(char* s)
+{
+    IMesh* mesh = smgr->getMesh(s); //Gets a mesh
+    IMeshSceneNode* node = nullptr;
+    if (mesh)
+    {
+        node = smgr->addMeshSceneNode(mesh);//Adds the mesh to the node
+        node->setMaterialFlag(EMF_LIGHTING, true);
+        node->setAutomaticCulling( EAC_BOX ); 
+        //node->setMaterialFlag(EMF_WIREFRAME, true);
+        //node->setDebugDataVisible(EDS_BBOX);
+    }
+
+    return new MeshNode(node);
+}
+
+CameraNode* RenderIrrlicht::createCamera()
+{
+    ICameraSceneNode* node = smgr->addCameraSceneNode(0, vector3df(0,0,0), vector3df(0,0,0));
+    camera = node;
+    node->setAutomaticCulling(EAC_OCC_QUERY);
+    return new CameraNode(node);
+}
+
+ITexture* RenderIrrlicht::getTexture(char* s)
+{
+    return driver->getTexture(s);
 }

@@ -1,15 +1,23 @@
 #include "SpawnComponent.h"
 #include "GameObject.h"
 #include <cmath>
+#include "GameValues.h"
 #define PI 3.1416
+
+SpawnComponent::SpawnComponent(GameObject* owner, Manager* m, float d, EnemyType type) : Component(owner, m)
+{
+    elapsed = static_cast <float> (rand()) / static_cast <float> (gv::SPAWN_CADENCIA);
+    distance = d;
+    this->type = type;
+}
+
 
 void SpawnComponent::update(float elapsedTime)
 {
     elapsed += elapsedTime;
-    if(elapsed>SPAWN_CADENCIA)
+    if(elapsed>gv::SPAWN_CADENCIA)
     {
         elapsed = 0.f;
-      
 
         float x = gameObject->getX() - cos(gameObject->getRZ()*PI/180 - PI/2)*distance;
         float y = gameObject->getY() - sin(gameObject->getRZ()*PI/180 - PI/2)*distance;

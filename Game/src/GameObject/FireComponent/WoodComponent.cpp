@@ -1,12 +1,13 @@
 #include "WoodComponent.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "GameValues.h"
 
 void WoodComponent::update(float dt)
 {
     if(burning)
     {
-        life-=(dt*FIRE_DAMMAGE);
+        life-=(dt*gv::FIRE_DAMMAGE);
     }
     if(life<0.f)
     {
@@ -29,7 +30,7 @@ void WoodComponent::setBurning(bool b){
 void WoodComponent::addBucket()
 {
     buckets++;
-    if(buckets>=BUCKETS_NEDED){
+    if(buckets>=gv::BUCKETS_NEDED){
         burning = false;
         buckets = 0;
         if(gameObject->getComponent<RenderComponent>())
