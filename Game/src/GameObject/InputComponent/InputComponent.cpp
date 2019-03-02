@@ -37,7 +37,7 @@ void InputComponent::update(float cursorX, float cursorY)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
         if(gameObject->getComponent<CameraComponent>())
-        gameObject->getComponent<CameraComponent>()->setZoom(gv::CAMERA_ZOOM_VEL);
+        gameObject->getComponent<CameraComponent>()->setZoom(-gv::CAMERA_ZOOM_VEL);
     }
     
 

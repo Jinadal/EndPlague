@@ -15,6 +15,7 @@
 #include "BucketManager.h"
 #include "BPhysicComponent.h"
 #include "LifeManager.h"
+#include "GameValues.h"
 
 
 
@@ -81,11 +82,10 @@ void FabricVillage::loadLevel()
     player = GameResource::getInstance()->createPlayer(-40.f, -46.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
-    player->getComponent<BPhysicComponent>()->setvMax(7.f);
-    BucketManager::getInstance()->createComponent(player);
+    player->getComponent<BPhysicComponent>()->setvMax(gv::PLAYER_VELOCITY);
     InputManager::getInstance()->createComponent(player);
-    ShootManager::getInstance()->createComponent(player, .5f, 2.f, PPEAK, 2);//Cadencia y Tipo
-    LifeManager::getInstance()->createComponent(player, 1000.f, 2, true);
+    ShootManager::getInstance()->createComponent(player, gv::PLAYER_STRT_CADENCE, 2.f, (ProjectileType)gv::PLAYER_STRT_WEAPON, 2);//Cadencia y Tipo
+    LifeManager::getInstance()->createComponent(player, gv::PLAYER_LIFE, 2, true);
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
@@ -116,7 +116,7 @@ void FabricVillage::spawn(float x, float y, float rz, bool type)
         spawn->getComponent<RenderComponent>()->setTexture((char*)"res/SPAWN.bmp");
         SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_2);
     }
-    WoodManager::getInstance()->createComponent(spawn, 400.f);
+    WoodManager::getInstance()->createComponent(spawn, gv::SPAWN_LIFE);
     BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 0);
    
 }

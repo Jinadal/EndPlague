@@ -1,4 +1,5 @@
 #include "HUDRenderFacade.h"
+#include "GameValues.h"
 #include <iostream>
 
 
@@ -96,7 +97,7 @@ void HUDRenderFacade::updateValues(float life, float shield, float fps, int scor
 
 
     original = this->life->getImage()->getOriginalSize();
-    width = (float)(original.Width * sw)*(life/1000.f);
+    width = (float)(original.Width * sw)*(life/gv::PLAYER_LIFE);
     height = (float)original.Height * sh;
     x = sw * 477.f;
     y = sh * 961.f;
@@ -106,7 +107,7 @@ void HUDRenderFacade::updateValues(float life, float shield, float fps, int scor
 
 
     original = this->shield->getImage()->getOriginalSize();
-    width = (float)(original.Width * sw)*(shield/400.f);
+    width = (float)(original.Width * sw)*(shield/gv::SHIELD_VALUE);
     height = (float)original.Height * sh;
     x = sw * 600.f;
     y = sh * 905.f;
