@@ -146,8 +146,8 @@ bool IA_Graf_FollowPatrol::run()
     float nextY = *iter;
 
     float rZ = atan2(owner->getY() - nextY, owner->getX() - nextX);
-    rZ += PI/2.0;
-    rZ = rZ * 180/PI;
+    rZ += M_PI/2.0;
+    rZ = rZ * 180/M_PI;
     if (rZ < 0)
         rZ += 360;
 

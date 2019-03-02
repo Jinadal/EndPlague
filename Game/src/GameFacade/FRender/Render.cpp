@@ -1,6 +1,7 @@
 #include "Render.h"
 #include "GameValues.h"
 #include "IRRRender.h"
+#include "LOTRender.h"
 
 
 Render::Render(){
@@ -9,7 +10,7 @@ Render::Render(){
         render = IRRRender::getInstance();
     }else
     {
-        render = IRRRender::getInstance();
+        render = LOTRender::getInstance();
     }
 }
 
