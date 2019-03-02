@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include <cmath>
 #include "GameValues.h"
-#define PI 3.1416
+const float PI = 3.1416;
 
 SpawnComponent::SpawnComponent(GameObject* owner, Manager* m, float d, EnemyType type) : Component(owner, m)
 {

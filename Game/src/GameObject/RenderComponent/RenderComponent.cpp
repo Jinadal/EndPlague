@@ -1,5 +1,4 @@
 #include "RenderComponent.h"
-#include "RenderIrrlicht.h"
 #include "GameObject.h"
 
 void RenderComponent::update(){

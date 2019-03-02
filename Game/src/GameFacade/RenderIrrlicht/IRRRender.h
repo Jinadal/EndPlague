@@ -2,9 +2,9 @@
 #include <irrlicht.h>
 #include "FRender.h"
 
-class RenderIrrlicht : public FRender{
+class IRRRender : public FRender{
     private:
-        RenderIrrlicht();
+        IRRRender();
 
         irr::IrrlichtDevice* device;
         irr::video::IVideoDriver* driver;
@@ -15,8 +15,8 @@ class RenderIrrlicht : public FRender{
         irr::scene::IMeshSceneNode* map;
     public:
         
-        static RenderIrrlicht* getInstance(){
-            static RenderIrrlicht only_instance;
+        static IRRRender* getInstance(){
+            static IRRRender only_instance;
             return &only_instance;
         }
         

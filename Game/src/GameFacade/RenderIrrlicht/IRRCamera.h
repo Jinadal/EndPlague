@@ -1,5 +1,5 @@
 #pragma once
-#include "RenderIrrlicht.h"
+#include "IRRRender.h"
 #include "FCamera.h"
 
 class IRRCamera : public FCamera{

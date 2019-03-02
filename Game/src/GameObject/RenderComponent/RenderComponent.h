@@ -1,7 +1,7 @@
 #pragma once
 #include "FMesh.h"
 #include "Component.h"
-#include "RenderIrrlicht.h"
+#include "Render.h"
 
 class GameObject;
 class RenderComponent : public Component{
@@ -10,7 +10,7 @@ class RenderComponent : public Component{
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
         RenderComponent(GameObject* g, Manager* m, char* s) : Component(g, m){
-            node = RenderIrrlicht::getInstance()->createMesh(s);
+            node = Render::getInstance()->createMesh(s);
         }
         //Destructor
         virtual ~RenderComponent(){delete node;}

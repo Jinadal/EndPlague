@@ -2,12 +2,12 @@
 
 void MenuFacade::setMenuBackground()
 {
-    env = RenderIrrlicht::getInstance()->getGUIEnv();
-    irr::video::ITexture* texture = RenderIrrlicht::getInstance()->getDriver()->getTexture("res/sprites/Fondo.png");
+    env = IRRRender::getInstance()->getGUIEnv();
+    irr::video::ITexture* texture = IRRRender::getInstance()->getDriver()->getTexture("res/sprites/Fondo.png");
     //dimension2d<u32> original = texture->getOriginalSize();
     
-    float screenWidth = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Width;
-    float screenHeight = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Height;
+    float screenWidth = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Width;
+    float screenHeight = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Height;
     
 
     //float sx = (float)(screenWidth / (float)original.Width);
@@ -31,7 +31,7 @@ void MenuFacade::setMenuBackground()
 }
 irr::gui::IGUIButton* MenuFacade::createButton(int x,int y,int xx,int xy, int id){
     irr::gui::IGUIButton* button = env->addButton(irr::core::rect<irr::s32>(x,y,xx,xy), 0, id,  L"New Game");
-    button->setImage(RenderIrrlicht::getInstance()->getDriver()->getTexture("res/Inicio.png"));
+    button->setImage(IRRRender::getInstance()->getDriver()->getTexture("res/Inicio.png"));
     return button;
 }
 void MenuFacade::clearBackground()

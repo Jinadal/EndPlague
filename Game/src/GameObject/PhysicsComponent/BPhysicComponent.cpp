@@ -1,5 +1,5 @@
 #include "BPhysicComponent.h"
-
+#define PI 3.14159265
 
 BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, float xsize, float ysize, float zsize, float mass, int physicType) : Component(owner, manager)
 {

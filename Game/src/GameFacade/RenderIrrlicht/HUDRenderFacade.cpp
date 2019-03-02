@@ -8,14 +8,14 @@ void HUDRenderFacade::init()
     //////////////////////////////////////////////////
     //============== GET ENVOIRMERNT =================
     //////////////////////////////////////////////////
-    env = RenderIrrlicht::getInstance()->getGUIEnv();
+    env = IRRRender::getInstance()->getGUIEnv();
 
     //////////////////////////////////////////////////
     //===============   GET SCALE   ==================
     //////////////////////////////////////////////////
 
-    float screenWidth = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Width;
-    float screenHeight = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Height;
+    float screenWidth = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Width;
+    float screenHeight = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Height;
     float sh = (float)(screenHeight / 1086.f);
     float sw = (float)(screenWidth / 1930.f);
 
@@ -23,7 +23,7 @@ void HUDRenderFacade::init()
     //============= GET HUD BACKGROUND ===============
     //////////////////////////////////////////////////
 
-    irr::video::ITexture* texture = RenderIrrlicht::getInstance()->getDriver()->getTexture("res/sprites/FondoHUD.png");
+    irr::video::ITexture* texture = IRRRender::getInstance()->getDriver()->getTexture("res/sprites/FondoHUD.png");
     irr::core::dimension2d<irr::u32> original = texture->getOriginalSize();
 
     float width = (float)original.Width * sw;
@@ -44,7 +44,7 @@ void HUDRenderFacade::init()
     //===============   GET HUD LIFE   ===============
     //////////////////////////////////////////////////
 
-    texture = RenderIrrlicht::getInstance()->getDriver()->getTexture("res/sprites/VidaHUD.png");
+    texture = IRRRender::getInstance()->getDriver()->getTexture("res/sprites/VidaHUD.png");
     original = texture->getOriginalSize();
     width = (float)original.Width * sw;
     height = (float)original.Height * sh;
@@ -60,7 +60,7 @@ void HUDRenderFacade::init()
     //==============   GET HUD SHIELD  ===============
     //////////////////////////////////////////////////
 
-    texture = RenderIrrlicht::getInstance()->getDriver()->getTexture("res/sprites/EscudoHUD.png");
+    texture = IRRRender::getInstance()->getDriver()->getTexture("res/sprites/EscudoHUD.png");
     original = texture->getOriginalSize();
 
     width = (float)original.Width * sw;
@@ -79,8 +79,8 @@ void HUDRenderFacade::init()
 void HUDRenderFacade::updateValues(float life, float shield, float fps, int score, int spawns, int weapon)
 {
 
-    float screenWidth = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Width;
-    float screenHeight = (float)RenderIrrlicht::getInstance()->getDriver()->getScreenSize().Height;
+    float screenWidth = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Width;
+    float screenHeight = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Height;
     float sh = (float)(screenHeight / 1086.f);
     float sw = (float)(screenWidth / 1930.f);
 

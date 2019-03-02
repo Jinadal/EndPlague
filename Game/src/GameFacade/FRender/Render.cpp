@@ -1,15 +1,15 @@
 #include "Render.h"
 #include "GameValues.h"
-#include "RenderIrrlicht.h"
+#include "IRRRender.h"
 
 
 Render::Render(){
     if(gv::RENDER_ENGINE)
     {
-        render = RenderIrrlicht::getInstance();
+        render = IRRRender::getInstance();
     }else
     {
-        render = RenderIrrlicht::getInstance();
+        render = IRRRender::getInstance();
     }
 }
 

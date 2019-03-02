@@ -4,7 +4,6 @@
 #include "Game.h"
 #include "InputManager.h"
 #include "IAManager.h"
-#include "RenderIrrlicht.h"
 #include "FabricVillage.h"
 #include "GameObject.h"
 

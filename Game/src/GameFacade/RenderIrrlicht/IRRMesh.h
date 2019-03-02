@@ -1,5 +1,5 @@
 #pragma once
-#include "RenderIrrlicht.h"
+#include "IRRRender.h"
 #include "FMesh.h"
 /*
 Node ony implemented with a AnimatedMesh in Irr

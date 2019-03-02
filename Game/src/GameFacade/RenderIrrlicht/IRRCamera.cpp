@@ -1,5 +1,4 @@
 #include "IRRCamera.h"
-#include "RenderIrrlicht.h"
 
 
 void IRRCamera::update(float x, float y, float z, float rx, float ry, float rz)

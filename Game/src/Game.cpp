@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
-#include "RenderIrrlicht.h"
+#include "Render.h"
 #include "Clock.h"
 #include "MenuState.h"
 #include "PlayState.h"
@@ -15,12 +15,12 @@ void Game::run()
     initGame();
 
     Clock clock;
-    while(RenderIrrlicht::getInstance()->run())
+    while(Render::getInstance()->run())
     {
         if(clock.canContinue())
         {
             state->update(clock.getElapsedTime());
-            RenderIrrlicht::getInstance()->drawAll();
+            Render::getInstance()->drawAll();
         }
     }
 }

@@ -31,10 +31,10 @@ void IRRMesh::setVisible(bool b)
 //Changes the texture of the node to the new path
 void IRRMesh::setTexture(char* s)
 {
-   node->setMaterialTexture( 0, RenderIrrlicht::getInstance()->getTexture(s) );
+   node->setMaterialTexture( 0, IRRRender::getInstance()->getTexture(s) );
 }
 
 void IRRMesh::isMap()
 {
-    RenderIrrlicht::getInstance()->isMap(node);
+    IRRRender::getInstance()->isMap(node);
 }

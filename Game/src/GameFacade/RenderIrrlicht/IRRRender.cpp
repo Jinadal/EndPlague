@@ -1,8 +1,8 @@
-#include "RenderIrrlicht.h"
+#include "IRRRender.h"
 #include "IRRCamera.h"
 #include "IRRMesh.h"
 
-RenderIrrlicht::RenderIrrlicht(){
+IRRRender::IRRRender(){
     //We need to use video::EDT_SOFTWARE!!
     //BUT we only can see the map with EDT:OPENGL!
     device = irr::createDevice( irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1366, 768), 16,
@@ -24,7 +24,7 @@ RenderIrrlicht::RenderIrrlicht(){
 }
 
 
-void RenderIrrlicht::drawAll()
+void IRRRender::drawAll()
 {
     driver->beginScene(true, true, irr::video::SColor(255,100,100,100));
 
@@ -34,18 +34,18 @@ void RenderIrrlicht::drawAll()
     driver->endScene();
 }
 
-bool RenderIrrlicht::run()
+bool IRRRender::run()
 {
     return device->run();
 }
 
-void RenderIrrlicht::drop()
+void IRRRender::drop()
 {
     device->drop();
 }
 
 
-float RenderIrrlicht::getCursorX()
+float IRRRender::getCursorX()
 {
     if(!map)
         return 0.f;
@@ -68,7 +68,7 @@ float RenderIrrlicht::getCursorX()
     return outCollisionPoint.X;
 }
 
-float RenderIrrlicht::getCursorY()
+float IRRRender::getCursorY()
 {
     if(!map)
         return 0.f;
@@ -92,7 +92,7 @@ float RenderIrrlicht::getCursorY()
 }
 
 
-FMesh* RenderIrrlicht::createMesh(char* s)
+FMesh* IRRRender::createMesh(char* s)
 {
     irr::scene::IMesh* mesh = smgr->getMesh(s); //Gets a mesh
     irr::scene::IMeshSceneNode* node = nullptr;
@@ -108,7 +108,7 @@ FMesh* RenderIrrlicht::createMesh(char* s)
     return new IRRMesh(node);
 }
 
-FCamera* RenderIrrlicht::createCamera()
+FCamera* IRRRender::createCamera()
 {
     irr::scene::ICameraSceneNode* node = smgr->addCameraSceneNode(0, irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
     camera = node;
@@ -116,7 +116,7 @@ FCamera* RenderIrrlicht::createCamera()
     return new IRRCamera(node);
 }
 
-irr::video::ITexture* RenderIrrlicht::getTexture(char* s)
+irr::video::ITexture* IRRRender::getTexture(char* s)
 {
     return driver->getTexture(s);
 }

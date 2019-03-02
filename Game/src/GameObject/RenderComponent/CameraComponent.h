@@ -1,6 +1,6 @@
 #pragma once
 #include "FCamera.h"
-#include "RenderIrrlicht.h"
+#include "Render.h"
 #include "Component.h"
 #include "GameObject.h"
 
@@ -14,7 +14,7 @@ class CameraComponent : public Component{
     public:
         CameraComponent(GameObject* parent, Manager* m) : Component(parent, m)
         {
-            node = RenderIrrlicht::getInstance()->createCamera();
+            node = Render::getInstance()->createCamera();
             x = parent->getX();
             y = parent->getY();
             z = parent->getZ();
