@@ -1,7 +1,7 @@
 #include "Render.h"
+#include "LOTRender.h"
 #include "GameValues.h"
 #include "IRRRender.h"
-#include "LOTRender.h"
 
 
 Render::Render(){
