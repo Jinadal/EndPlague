@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include/irrlicht"
+                "/usr/include/irrlicht",
+                "/usr/include/bullet/BulletDynamics"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
