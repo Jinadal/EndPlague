@@ -1,0 +1,33 @@
+#pragma once
+#include "FRender.h"
+
+class Render
+{
+    private:
+        FRender* render;
+        Render();
+    public:
+        static Render* getInstance()
+        {
+            static Render only_instance;
+            return &only_instance;
+        }
+
+        ~Render(){}
+        //Draws all the scene, better at the end of loop
+        void drawAll();
+
+        //Returns true if cotinues the loop
+        bool run();
+
+        //Closes the device
+        void drop();
+
+        //Returns the position x, y of the cursor
+        float getCursorX();
+        float getCursorY();
+
+        //Creates mesh and camera
+        FMesh* createMesh(char* s);
+        FCamera* createCamera();
+};

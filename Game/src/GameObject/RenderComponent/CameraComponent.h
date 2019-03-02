@@ -1,5 +1,5 @@
 #pragma once
-#include "CameraNode.h"
+#include "FCamera.h"
 #include "RenderIrrlicht.h"
 #include "Component.h"
 #include "GameObject.h"
@@ -7,7 +7,7 @@
 class GameObject;
 class CameraComponent : public Component{
     private:
-        CameraNode* node;
+        FCamera* node;
         float x, y, z;
         float rz;
         float zoom = 1.f;
@@ -27,7 +27,7 @@ class CameraComponent : public Component{
         }
 
         void update(float dt);
-        void setFOV(f32 fov);
+        void setFOV(float fov);
         void setZoom(float dt);
 
 };

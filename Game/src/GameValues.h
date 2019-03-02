@@ -28,6 +28,8 @@ namespace gv
         const float     PROJECTILE_GRAVITY      = 1.f;      //ONLY projectiles gravity 0.f
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
+    //------------- PHYSICS --------------
+        const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else LOTTO
 
 
 

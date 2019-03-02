@@ -10,7 +10,7 @@ CXX = g++
 #CXX = clang++
 
 #GETTING ALL .CPP
-SOURCES := $(subst src/,,$(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp))
+SOURCES := $(subst src/,,$(wildcard src/*.cpp src/*/*.cpp src/*/*/*.cpp src/*/*/*/*.cpp))
 
 #ALL .H
 HEADERS := $(subst .cpp,.h,$(SOURCES))
