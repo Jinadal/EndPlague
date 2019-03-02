@@ -43,7 +43,8 @@ class IRRRender : public FRender{
         //Creates mesh and camera
         FMesh* createMesh(char* s);
         FCamera* createCamera();
-
+        FHUD* createHUD();
+        FMenu* getMenu();
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------

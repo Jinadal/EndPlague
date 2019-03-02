@@ -1,6 +1,8 @@
 #include "IRRRender.h"
 #include "IRRCamera.h"
 #include "IRRMesh.h"
+#include "IRRMenu.h"
+#include "IRRHUD.h"
 
 IRRRender::IRRRender(){
     //We need to use video::EDT_SOFTWARE!!
@@ -119,4 +121,15 @@ FCamera* IRRRender::createCamera()
 irr::video::ITexture* IRRRender::getTexture(char* s)
 {
     return driver->getTexture(s);
+}
+
+
+FMenu* IRRRender::getMenu()
+{
+    return IRRMenu::getInstance();
+}
+
+FHUD* IRRRender::createHUD()
+{
+    return new IRRHUD();
 }

@@ -1,8 +1,7 @@
 #include "Render.h"
 #include "LOTRender.h"
-#include "GameValues.h"
 #include "IRRRender.h"
-
+#include "GameValues.h"
 
 Render::Render(){
     if(gv::RENDER_ENGINE)
@@ -25,3 +24,5 @@ float Render::getCursorY(){return render->getCursorY();}
 
 FMesh* Render::createMesh(char* s){return render->createMesh(s);}
 FCamera* Render::createCamera(){return render->createCamera();}
+FHUD* Render::createHUD(){return render->createHUD();}
+FMenu* Render::getMenu(){return render->getMenu();}

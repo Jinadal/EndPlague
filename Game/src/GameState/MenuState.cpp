@@ -1,14 +1,14 @@
 #include <cstddef>
 #include "MenuState.h"
-#include "MenuFacade.h"
+#include "Render.h"
+#include "FMenu.h"
 #include "Game.h"
 #include <SFML/Window.hpp>
 
 void MenuState::initState()
 {
     type = IGameState::MENU;
-    MenuFacade::getInstance()->setMenuBackground();
-    MenuFacade::getInstance()->createButton(0,210,100,240,101);
+    Render::getInstance()->getMenu()->setMenuBackground();
 }
 
 void MenuState::update(float dt)
@@ -23,5 +23,5 @@ void MenuState::update(float dt)
 
 void MenuState::clear()
 {
-    MenuFacade::getInstance()->clearBackground();
+    Render::getInstance()->getMenu()->clearBackground();
 };

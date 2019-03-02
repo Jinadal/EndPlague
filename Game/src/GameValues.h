@@ -29,7 +29,7 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- PHYSICS --------------
-        const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else LOTTO
+        const bool      RENDER_ENGINE           = false;     //If true Irrlicht, else LOTTO
 
 
 

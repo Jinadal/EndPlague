@@ -1,11 +1,12 @@
 #pragma once
-#include "HUDRenderFacade.h"
+#include "Render.h"
+#include "FHUD.h"
 
 
 class HUD
 {
     private:
-        HUDRenderFacade* facade;
+        FHUD* facade;
         float life;
         int numSpawns;
         int score;
@@ -23,7 +24,7 @@ class HUD
 
         void update(float dt);
         int getScore(){return score;}
-        void init(){facade = new HUDRenderFacade();}
+        void init(){facade = Render::getInstance()->createHUD();}
         void clear(){delete facade;}
 
 };

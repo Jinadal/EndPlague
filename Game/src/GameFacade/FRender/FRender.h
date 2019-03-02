@@ -1,6 +1,8 @@
 #pragma once
 class FMesh;
 class FCamera;
+class FHUD;
+class FMenu;
 class FRender
 {
     protected:
@@ -23,4 +25,6 @@ class FRender
         //Creates mesh and camera
         virtual FMesh* createMesh(char* s) = 0;
         virtual FCamera* createCamera() = 0;
+        virtual FHUD* createHUD() = 0;
+        virtual FMenu* getMenu() = 0;
 };

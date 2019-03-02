@@ -1,6 +1,8 @@
 #include "LOTRender.h"
 #include "LOTMesh.h"
 #include "LOTCamera.h"
+#include "LOTHUD.h"
+#include "LOTMenu.h"
 
 void LOTRender::drawAll()
 {
@@ -35,4 +37,14 @@ FMesh* LOTRender::createMesh(char* s)
 FCamera* LOTRender::createCamera()
 {
     return new LOTCamera();
+}
+
+FHUD* LOTRender::createHUD()
+{
+    return new LOTHUD();
+}
+
+FMenu* LOTRender::getMenu()
+{
+    return LOTMenu::getInstance();
 }

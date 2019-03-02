@@ -1,6 +1,7 @@
 #pragma once
 
-class FCamera{
+class FCamera
+{
     public:
         FCamera(){};
         virtual ~FCamera(){};
