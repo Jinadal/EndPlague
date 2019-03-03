@@ -30,6 +30,6 @@ class Render
         //Creates mesh and camera
         FMesh* createMesh(char* s);
         FCamera* createCamera();
-        FHUD* createHUD();
+        FHUD* getHUD();
         FMenu* getMenu();
 };

@@ -25,6 +25,6 @@ class FRender
         //Creates mesh and camera
         virtual FMesh* createMesh(char* s) = 0;
         virtual FCamera* createCamera() = 0;
-        virtual FHUD* createHUD() = 0;
+        virtual FHUD* getHUD() = 0;
         virtual FMenu* getMenu() = 0;
 };

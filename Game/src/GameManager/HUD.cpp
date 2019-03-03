@@ -5,7 +5,6 @@
 #include "SpawnManager.h"
 #include "ScoreManager.h"
 
-
 void HUD::update(float dt)
 {
     float shield=0.f;
@@ -19,5 +18,5 @@ void HUD::update(float dt)
     numSpawns = SpawnManager::getInstance()->getNumSpawns();
 
 
-    facade->updateValues(life, shield,1/dt, score, numSpawns, 1);
+    Render::getInstance()->getHUD()->updateValues(life, shield,1/dt, score, numSpawns, 1);
 }

@@ -36,8 +36,7 @@ void PlayState::update(float dt)
     {
         clear();
         Game::getInstance()->setState(IGameState::stateType::END);
-    }
-    if(SpawnManager::getInstance()->getNumSpawns()<=0)
+    }else if(SpawnManager::getInstance()->getNumSpawns()<=0)
     {
         clear();
         Game::getInstance()->setState(IGameState::stateType::END);

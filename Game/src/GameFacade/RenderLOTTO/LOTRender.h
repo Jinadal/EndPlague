@@ -24,6 +24,6 @@ class LOTRender : public FRender{
         float getCursorY();
         FMesh* createMesh(char* s);
         FCamera* createCamera();
-        FHUD* createHUD();
+        FHUD* getHUD();
         FMenu* getMenu();
 };

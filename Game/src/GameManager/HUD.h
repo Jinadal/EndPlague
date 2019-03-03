@@ -24,7 +24,7 @@ class HUD
 
         void update(float dt);
         int getScore(){return score;}
-        void init(){facade = Render::getInstance()->createHUD();}
-        void clear(){delete facade;}
+        void init(){Render::getInstance()->getHUD()->init();}
+        void clear(){Render::getInstance()->getHUD()->clear();}
 
 };

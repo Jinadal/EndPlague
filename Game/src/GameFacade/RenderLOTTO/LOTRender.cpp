@@ -39,9 +39,9 @@ FCamera* LOTRender::createCamera()
     return new LOTCamera();
 }
 
-FHUD* LOTRender::createHUD()
+FHUD* LOTRender::getHUD()
 {
-    return new LOTHUD();
+    return LOTHUD::getInstance();
 }
 
 FMenu* LOTRender::getMenu()

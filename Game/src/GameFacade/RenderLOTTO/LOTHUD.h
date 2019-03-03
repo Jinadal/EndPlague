@@ -3,8 +3,17 @@
 
 class LOTHUD : public FHUD
 {
-    public:
+    private:
         LOTHUD() : FHUD(){}
+
+    public:
+
+        static LOTHUD* getInstance()
+        {
+            static LOTHUD only_instance;
+            return &only_instance;
+        }
+
         ~LOTHUD(){}
         void init();
         void clear();

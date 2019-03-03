@@ -24,5 +24,5 @@ float Render::getCursorY(){return render->getCursorY();}
 
 FMesh* Render::createMesh(char* s){return render->createMesh(s);}
 FCamera* Render::createCamera(){return render->createCamera();}
-FHUD* Render::createHUD(){return render->createHUD();}
+FHUD* Render::getHUD(){return render->getHUD();}
 FMenu* Render::getMenu(){return render->getMenu();}

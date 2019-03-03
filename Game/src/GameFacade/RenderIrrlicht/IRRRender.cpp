@@ -129,7 +129,7 @@ FMenu* IRRRender::getMenu()
     return IRRMenu::getInstance();
 }
 
-FHUD* IRRRender::createHUD()
+FHUD* IRRRender::getHUD()
 {
-    return new IRRHUD();
+    return IRRHUD::getInstance();
 }

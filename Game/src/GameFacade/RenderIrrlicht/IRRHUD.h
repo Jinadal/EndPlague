@@ -10,11 +10,17 @@ class IRRHUD : public FHUD
         irr::gui::IGUIImage* background;
         irr::gui::IGUIImage* life;
         irr::gui::IGUIImage* shield;
-
+        
+        IRRHUD() : FHUD(){}
     public:
-        IRRHUD() : FHUD() { init(); }
 
         ~IRRHUD(){clear();}
+
+        static IRRHUD* getInstance()
+        {
+            static IRRHUD only_instance;
+            return &only_instance;
+        }
 
         void init();
         void clear();
