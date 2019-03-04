@@ -2,9 +2,17 @@
 #include <iostream>
 #include "TEntity.h"
 
+TNode::TNode()
+{
+    father = nullptr;
+    entity = nullptr;
+}
+
 //If we delete a node we will delete all of his childs
 TNode::~TNode()
 {
+    if(entity != nullptr)
+        delete entity;
     for(unsigned int i=0; i<child.size();i++)
     {
         delete child[i];
@@ -21,7 +29,6 @@ bool TNode::addChild(TNode* n)
         std::cout<<"Meto en el padre :"<<getId()<<" el hijo que es : "<<n->getId()<<std::endl;
         child.push_back(n);
     }
-    std::cout<<"entro"<<std::endl;
     return true;
 }
 
@@ -90,7 +97,7 @@ TNode* TNode::searchChild(unsigned int n)
 //Draws the tree of nodes in inorder
 void TNode::draw()
 {
-    std::cout<<"/////////////"<<getId()<<"//////////////"<<std::endl;
+    //std::cout<<"/////////////"<<getId()<<"//////////////"<<std::endl;
 
     if(entity)
     {

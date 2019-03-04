@@ -1,29 +1,25 @@
 
 #include "TResource.h"
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
 #include <iostream>
 #include <vector>
 
-#include <GL/glew.h>
-#include <glm/ext.hpp>
 
 class TResourceMesh : public TResource
 {
 private:
     std::vector<TResourceMesh*> meshes;
-    
 
-    //VBO Buffer handler
-    GLuint* VBO;
-    //IBO Buffer handler
-    GLuint IBO;
+    GLuint *buffer, *faces, *b;
+    GLuint  VAO;
+    GLfloat* textures;
+    int bsize;
+
 public:
-    TResourceMesh() = default;
-    ~TResourceMesh() = default;
+    TResourceMesh(){};
+    ~TResourceMesh();
 
-    void loadMesh(aiMesh* m);
+    void loadMesh(aiMesh* m, int n);
     bool loadResource();
-    void draw(){};
+    void draw();
 };
+

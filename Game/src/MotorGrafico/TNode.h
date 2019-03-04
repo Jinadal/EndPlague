@@ -11,7 +11,7 @@ class TNode
 
     public:
         //Constructors
-        TNode() {}                                      //Node Root
+        TNode();                                      //Node Root
         TNode(TNode* f) : father(f) {father = f;}       //Node no entity
         TNode(TNode* f, TEntity* e) : father(f), entity(e) { father = f; entity = e;}
         ~TNode();

@@ -2,6 +2,8 @@
 #include "TResourceMesh.h"
 #include "TResourceMaterial.h"
 #include "TResourceTexture.h"
+#include "TResourceShader.h"
+
 #include <string.h>
 #include <iostream>
 TResourceManager::~TResourceManager()
@@ -10,7 +12,7 @@ TResourceManager::~TResourceManager()
     unsigned int i;
     for(i = 0; i < mesh.size(); i++)
     {
-        mesh[i] = nullptr;
+        delete mesh[i];
     }
     for(i = 0; i < material.size(); i++)
     {
@@ -25,10 +27,39 @@ TResourceManager::~TResourceManager()
     texture.clear();
 }
 
+TResourceShader* TResourceManager::getResourceShader(const char* name, GLenum type)
+{
+    TResourceShader* res = nullptr;
+    bool found = false; //We must read the resource as less as possible
+
+    for(unsigned int i=0; i<shader.size() && found==false; i++)
+    {
+        if(strcmp(name,shader[i]->getName())==0)
+        {
+            found = true;
+            res = shader[i];
+        }
+    }
+    if(res == nullptr)
+    {
+        res = new TResourceShader();
+        res->setName(name);
+        res->setType(type);
+        if(res->loadResource())
+        {
+            shader.push_back(res);
+        }
+        else
+        {
+            delete res;
+        }
+    }
+    return res;
+}
 
 TResourceMesh* TResourceManager::getResourceMesh(const char* name)
 {
-    TResourceMesh* res = NULL;
+    TResourceMesh* res = nullptr;
     bool found = false; //We must read the resource as less as possible
 
     for(unsigned int i=0; i<mesh.size() && found==false; i++)
@@ -39,9 +70,9 @@ TResourceMesh* TResourceManager::getResourceMesh(const char* name)
             res = mesh[i];
         }
     }
-    if(res == NULL)
+    if(res == nullptr)
     {
-    res = new TResourceMesh();
+        res = new TResourceMesh();
         res->setName(name);
         if(res->loadResource())
         {
@@ -57,7 +88,7 @@ TResourceMesh* TResourceManager::getResourceMesh(const char* name)
 
 TResourceMaterial* TResourceManager::getResourceMaterial(const char* name)
 {
-    TResourceMaterial* res = NULL;
+    TResourceMaterial* res = nullptr;
     bool found = false; //We must read the resource as less as possible
 
     for(unsigned int i=0; i<material.size() && found==false; i++)
@@ -69,7 +100,7 @@ TResourceMaterial* TResourceManager::getResourceMaterial(const char* name)
         }
     }
     //No res coincidence loaded before
-    if(res == NULL)                             
+    if(res == nullptr)                             
     {
         res = new TResourceMaterial();
         res->setName(name);

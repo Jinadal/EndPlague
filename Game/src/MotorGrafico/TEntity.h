@@ -3,11 +3,13 @@
 #include <stack>
 #include <GL/glew.h>
 #include <glm/ext.hpp>
-
+#include <iostream>
 class TEntity
 {
-    private:
-        //static glm::mat4* matrix;
+    protected:
+        static GLuint viewID;
+        static GLuint projectionID;
+        static GLuint modelID;
     public:
         TEntity(){}
         virtual ~TEntity(){}
@@ -15,6 +17,13 @@ class TEntity
         virtual void beginDraw() = 0;
         virtual void endDraw() = 0;
 
+        static void setviewID(GLuint v){ viewID = v;};
+        static void setprojectionID(GLuint p){ projectionID = p;};
+        static void setmodelID(GLuint m){ modelID = m;};
+
+        static GLuint getModelID(){ return modelID;};
+        static GLuint getViewID(){ return viewID;};
+        static GLuint getProjectionID(){ return projectionID;};
 
     //Static matrix in order to make the unique and global to their childs
     static glm::mat4& modelMatrix() 

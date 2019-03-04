@@ -1,8 +1,8 @@
-
-
 #include <iostream>
+#include <GL/glew.h>
+#include "TEntity.h"
+#include "TResource.h"
 
-class TEntity;
 class TResource;
 class TMesh : public TEntity
 {
@@ -16,7 +16,7 @@ class TMesh : public TEntity
         void setMesh(TResource* m){ mesh = m;};
         TResource* getMesh(){ return mesh;};
 
-        void beginDraw(){}
+        void beginDraw();
         void endDraw(){}
         
 };
