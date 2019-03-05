@@ -35,13 +35,19 @@ BulletLibraries := -L/usr/lib64 -lLinearMath -lBulletDynamics -lBulletCollision 
 #FmodHome := -Iinclude/fmod
 #FmodLibraries := -Llib -lfmodstudio -lfmod
 
-SfmlHome := -Iusr/include/SFML
+SfmlHome := -I/usr/include/SFML
 SfmlLibraries := -Llib -lsfml-system -lsfml-window -lsfml-graphics
 
+OpenGLHome := -I/usr/include/OpenGL
+OpenGLLibraries := -lGL -lGLU -lglut -lGLEW -lglfw -lX11
+
+
+AssimpHome := -I/usr/include/cmake/assimp-4.1
+AssimpLibraries := -lassimp
 
 #INCLUDES && LIBRAIES
-INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) $(FmodHome) $(BulletHome) $(IrrlichtHome) $(SfmlHome) -I/usr/X11R6/include
-LIBRAIES := $(SfmlLibraries) $(FmodLibraries) $(IrrlichtLibraries) $(BulletLibraries) 
+INCLUDES := $(addprefix -I,$(wildcard src/. src/*/. src/*/*/.)) $(FmodHome) $(BulletHome) $(IrrlichtHome) $(SfmlHome) $(OpenGLHome) $(AssimpHome) -I/usr/X11R6/include
+LIBRAIES := $(SfmlLibraries) $(FmodLibraries) $(IrrlichtLibraries) $(BulletLibraries) $(OpenGLLibraries) $(AssimpLibraries)
 
 
 default:
@@ -75,7 +81,7 @@ all:
 clear:
 	@rm -f $(OBJECTS)
 	
-#n es el numero de nucleos con los que ejecutar
+#n es el numero de nucleos con los que ejecutar make n=numero nucleos supra : make n=12 supra
 supra:
 	$(MAKE) clear
 	$(MAKE) -j${n} -s

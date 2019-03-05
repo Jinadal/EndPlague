@@ -1,4 +1,4 @@
-#include "FabricVillage.h"
+#include "FabricMine.h"
 #include "InputManager.h"
 #include "ItemManager.h"
 #include "SpawnManager.h"
@@ -9,78 +9,38 @@
 #include "RenderManager.h"
 #include "StorageManager.h"
 #include "GameResource.h"
-#include "LifeComponent.h"
+#include "BucketManager.h"
 #include "WellManager.h"
 #include "WoodManager.h"
-#include "BucketManager.h"
 #include "BPhysicComponent.h"
 #include "LifeManager.h"
 #include "GameValues.h"
 #include <iostream>
 
 
+namespace mine{
+std::vector<Position> loc_wells{
+    {0.f, 10.f, 0.f, true},
+};
+std::vector<Position> loc_spawns{
+    {0.f, -10.f, 0.f, false},
+};
 
-namespace village
-{
-
-
-    std::vector<Position> loc_wells{
-        {13.f, 1.7f, 0.f, true},
-        {19.3f, 29.8f, 0.f, true},
-        {-3.6f, -27.5f, 0.f, true},
-        {-17.5f, -44.5f, 0.f, true},
-        {-19.5f, -18.5f, 0.f, true},
-        {31.2f, -20.7f, 0.f, true},
-        {29.8f, -37.5f, 0.f, true},
-        {45.8f, -7.5f, 0.f, true},
-        {39.1f, 17.3f, 0.f, true},
-        {26.9f, 33.4f, 0.f, true},
-        {46.7f, 34.3f, 0.f, true},
-        {37.9f, 46.4f, 0.f, true},
-    };
-    std::vector<Position> loc_spawns{
-        {-24.7f, -46.1f, 0.f, false},
-        {-1.1f, -45.7f, 90.f, true},
-        {45.8f, -46.0f, 270.f, true},
-        {14.9f, -39.0f, 180.f, false},
-        {-10.5f, -34.7f, 0.f, true},
-        {14.8f, -31.4f, 0.f, true},
-        {31.3f, -26.f, 270.f, true},
-        {-32.f, -22.6f, 270.f, true},
-        {-24.f, -14.2f, 180.f, false},
-        {-17.6f, -14.f, 90.f, true},
-        {15.1f, -13.7f, 180.f, true},
-        {45.7f, -14.2f, 270.f, true},
-        {-0.9f, -5.6f, 270.f, true},
-        {8.2f, -4.6f, 0.f, true},
-        {27.6f, -5.7f, 90.f, true},
-        {-45.6f, 4.f, 90.f, true},
-        {-0.4f, 8.4f, 270.f, false},
-        {19.7f, 16.f, 270.f, false},
-        {27.9f, 16.7f, 90.f, true},
-        {28.2f, 23.8f, 0.f, true},
-        {38.f, 23.5f, 90.f, true},
-        {-4.7f, 30.7f, 270.f, true},
-        {-32.f, 45.5f, 180.f, true},
-        {-24.f, 45.f, 180.f, false},
-        {20.3f, 44.6f, 270.f, true},
-        {27.6f, 45.6f, 180.f, false},
-        {45.6f, 45.9f, 180.f, false}
-    };
 }
 
 
-void FabricVillage::loadLevel()
+
+void FabricMine::loadLevel()
 {
 
 
-    //ADDING A MAP 700 x 700 x 1
+     //ADDING A MAP 700 x 700 x 1
     GameObject* map = GameResource::getInstance()->createGameObject(0.f, 0.f, 0.f, 0.f);
-    RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(map, (char*)"res/SUELO.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.bullet");
-    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
+    BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 0.f, 1);
+
 
 
     //ADDING A PLAYER 1 x 1 x 2
@@ -95,21 +55,22 @@ void FabricVillage::loadLevel()
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
     
-
-
-    for(size_t i = 0; i<village::loc_wells.size(); i++)
-        well(village::loc_wells[i]._x, village::loc_wells[i]._y, village::loc_wells[i]._rz, village::loc_wells[i].type);
-
-
-    for(size_t i = 0; i<village::loc_spawns.size(); i++)
-        spawn(village::loc_spawns[i]._x, village::loc_spawns[i]._y, village::loc_spawns[i]._rz, village::loc_spawns[i].type);
     
-    std::cout<<"VillageLoaded!\n";
+    for(size_t i = 0; i<mine::loc_wells.size(); i++)
+        well(mine::loc_wells[i]._x, mine::loc_wells[i]._y, mine::loc_wells[i]._rz, mine::loc_wells[i].type);
+
+
+    for(size_t i = 0; i<mine::loc_spawns.size(); i++)
+        spawn(mine::loc_spawns[i]._x, mine::loc_spawns[i]._y, mine::loc_spawns[i]._rz, mine::loc_spawns[i].type);
+    
+
+    std::cout<<"MineLoaded!\n";
 
 }
 
 
-void FabricVillage::spawn(float x, float y, float rz, bool type)
+
+void FabricMine::spawn(float x, float y, float rz, bool type)
 {
     GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -1.f, -rz);
     
@@ -127,7 +88,7 @@ void FabricVillage::spawn(float x, float y, float rz, bool type)
    
 }
 
-void FabricVillage::well(float x, float y, float rz, bool type)
+void FabricMine::well(float x, float y, float rz, bool type)
 {
     GameObject* well = GameResource::getInstance()->createGameObject(x, y, -1.f, rz);
     RenderManager::getInstance()->createComponent(well, (char*)"res/WELL.obj");//Fachada de render y path de obj

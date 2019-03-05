@@ -1,14 +1,6 @@
 #include "Fabric.h"
 #include <vector>
 
-struct Position
-{
-    float _x;
-    float _y;
-    float _rz;
-    bool type;
-};
-
 class FabricVillage : public Fabric{
     private:
         

@@ -5,10 +5,10 @@
 #include "InputManager.h"
 #include "IAManager.h"
 #include "SpawnManager.h"
-#include "FabricVillage.h"
 #include "GameObject.h"
-
 #include "GameManager.h"
+
+
 
 void PlayState::initState()
 {
@@ -16,9 +16,12 @@ void PlayState::initState()
 
     if(!loaded)
     {
-        fabric = new FabricVillage();
         loaded=true;
-        fabric->loadLevel();
+
+        if(level>=fabrics.size())
+            level = 0;
+
+        fabrics[level]->loadLevel();
 
         GameManager::getInstance()->initAll();
     }
@@ -39,16 +42,20 @@ void PlayState::update(float dt)
     }else if(SpawnManager::getInstance()->getNumSpawns()<=0)
     {
         clear();
-        Game::getInstance()->setState(IGameState::stateType::END);
+        if(level<fabrics.size())
+        {
+            initState();
+        }else
+        {
+            level = 0;
+            Game::getInstance()->setState(IGameState::stateType::END);
+        }
     }
 }
 
 void PlayState::clear(){
     GameManager::getInstance()->clear();
-
-
-    delete fabric;
-
+    level++;
     loaded=false;
 
 }

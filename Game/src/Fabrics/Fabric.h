@@ -12,3 +12,11 @@ class Fabric
         GameObject* getPlayer(){return player;}
  
 };
+
+struct Position
+{
+    float _x;
+    float _y;
+    float _rz;
+    bool type;
+};
