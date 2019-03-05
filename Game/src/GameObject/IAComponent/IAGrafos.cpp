@@ -100,7 +100,7 @@ bool IA_Graf_FollowRuta::run()
    
     if( ruta.size() != 2)
     {
-         distancia = .6F;
+         distancia = .5F;
     }else{
         distancia = 3.1F;
     }

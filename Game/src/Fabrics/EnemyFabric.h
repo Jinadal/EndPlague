@@ -36,7 +36,7 @@ class EnemyFabric
                 (char*)"res/DOOMIE.obj",
                 (char*)"res/green.bmp",
                 100.f,
-                3.f
+                6.f
             },
         };
 
