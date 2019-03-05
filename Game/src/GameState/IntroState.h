@@ -1,9 +1,6 @@
 #pragma once
 #include "IGameState.h"
 
-//const char* videoPath = "";
-const float videoDuration = 3.f; //seg
-
 class IntroState : public IGameState 
 {
     private:

@@ -1,5 +1,4 @@
 #include "RenderComponent.h"
-#include "RenderIrrlicht.h"
 #include "GameObject.h"
 
 void RenderComponent::update(){
@@ -20,11 +19,8 @@ void RenderComponent::setVisible(bool h){
 void RenderComponent::setTexture(char s[]){
     node->setTexture(s);
 }
-void RenderComponent::setMesh(char s[]){
-    node->setMesh(s);
-}
 
 void RenderComponent::isMap()
 {
-    RenderIrrlicht::getInstance()->isMap(node->getMeshSceneNode());
+    node->isMap();
 }

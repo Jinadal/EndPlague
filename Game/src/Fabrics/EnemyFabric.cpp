@@ -10,12 +10,16 @@
 #include "IAComponent.h"
 #include "DropperManager.h"
 #include "BucketManager.h"
+#include "SpawnManager.h"
 
 GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyType type)
 {
-    if(ScoreManager::getInstance()->getEnemies()>MAX_ENEMIES)
-        return NULL;
-
+    int nsp = SpawnManager::getInstance()->getNumSpawns()*gv::ENEMIES_PER_SPAWN;
+    int nen = ScoreManager::getInstance()->getEnemies();
+    
+    if(nsp <= nen && gv::MIN_ENEMIES<=nen)
+        return nullptr;
+    
     
     //ADDING A ENEMY
     GameObject* primero = GameResource::getInstance()->createGameObject(x, y, z, rz);//Creates a new GO on x, y, z, rz
@@ -23,11 +27,11 @@ GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyT
     primero->getComponent<RenderComponent>()->setTexture(enemytypes[type].texture);//Path de bmp
     BPhysicManager::getInstance()->createComponent(primero, .5f, .5f, 1.f, 100.f, 0);
     primero->getComponent<BPhysicComponent>()->setvMax(enemytypes[type].vMax);
-    ScoreManager::getInstance()->createComponent(primero, 10);
+    ScoreManager::getInstance()->createComponent(primero, gv::ENEMY_SCORE);
     IAManager::getInstance()->createComponent(primero);
     type == ENEMY_1 ?  primero->getComponent<IAComponent>()->Initialice(0) :  primero->getComponent<IAComponent>()->Initialice(1);
     LifeManager::getInstance()->createComponent(primero, enemytypes[type].life);//Vida
-    ShootManager::getInstance()->createComponent(primero, .9f, 2.f, PAXE);//Cadencia y Tipo
+    ShootManager::getInstance()->createComponent(primero, gv::ENEMY_CADENCE, 2.f, (ProjectileType)gv::ENEMY_WEAPON);//Cadencia y Tipo
     DropperManager::getInstance()->createComponent(primero);
     if(type == ENEMY_2) 
         BucketManager::getInstance()->createComponent(primero);

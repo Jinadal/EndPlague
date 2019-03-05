@@ -1,22 +1,20 @@
 #pragma once
-#include "CameraNode.h"
+#include "FCamera.h"
+#include "Render.h"
 #include "Component.h"
 #include "GameObject.h"
-
-const float MIN_ZOOM = .8f;
-const float MAX_ZOOM = 1.2f;
 
 class GameObject;
 class CameraComponent : public Component{
     private:
-        CameraNode* node;
-        float x, y, z, dMAX=50.f, v=10.f;
+        FCamera* node;
+        float x, y, z;
         float rz;
         float zoom = 1.f;
     public:
         CameraComponent(GameObject* parent, Manager* m) : Component(parent, m)
         {
-            node = new CameraNode();
+            node = Render::getInstance()->createCamera();
             x = parent->getX();
             y = parent->getY();
             z = parent->getZ();
@@ -29,7 +27,7 @@ class CameraComponent : public Component{
         }
 
         void update(float dt);
-        void setFOV(f32 fov);
+        void setFOV(float fov);
         void setZoom(float dt);
 
 };

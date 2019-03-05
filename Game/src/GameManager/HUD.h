@@ -1,6 +1,12 @@
+#pragma once
+#include "Render.h"
+#include "FHUD.h"
+
+
 class HUD
 {
     private:
+        FHUD* facade;
         float life;
         int numSpawns;
         int score;
@@ -8,6 +14,7 @@ class HUD
         bool berserk;
         float fps;
         HUD(){};
+        
     public:
         static HUD* getInstance()
         {
@@ -17,4 +24,7 @@ class HUD
 
         void update(float dt);
         int getScore(){return score;}
+        void init(){Render::getInstance()->getHUD()->init();}
+        void clear(){Render::getInstance()->getHUD()->clear();}
+
 };

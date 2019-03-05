@@ -2,6 +2,7 @@
 #include "IntroState.h"
 #include "Game.h"
 #include <SFML/Window.hpp>
+#include "GameValues.h"
 
 void IntroState::initState(){
     //RenderIrrlicht::getInstance()->loadIntro();
@@ -13,7 +14,7 @@ void IntroState::clear(){
 
 void IntroState::update(float dt){
     delta+=dt;
-    if(delta>videoDuration)
+    if(delta>gv::INTRO_DURATION)
     {
         delta = 0;
         clear();

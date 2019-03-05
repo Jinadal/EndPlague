@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 
+const float PI  = 3.14159265359f;
 
 bool IA_Seg_ToPlayer::run()
 {

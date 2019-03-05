@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "PhysicBullet.h"
 #include "GameObject.h"
-#define PI 3.14159265
+
 
 class BPhysicComponent : public Component 
 {

@@ -1,5 +1,5 @@
 #include <chrono>
-#define FPS 60
+#include "GameValues.h"
 
 class Clock
 {
@@ -30,7 +30,7 @@ bool Clock::canContinue()
 
     elapsedTime = currentTime - lastTime;
 
-    double minTime = 1.0/FPS;
+    double minTime = 1.0/gv::CLOCK_FPS;
     if(elapsedTime.count() > minTime)
     {
         lastTime = currentTime;

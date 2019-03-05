@@ -1,8 +1,7 @@
 #pragma once
+#include "GameValues.h"
 
 class GameObject;
-
-#define MAX_ENEMIES 20
 
 
 enum EnemyType
@@ -28,25 +27,21 @@ class EnemyFabric
                 ENEMY_1,
                 (char*)"res/DOOMIE.obj",
                 (char*)"res/red.bmp",
-                200.f,
-                3.f  //Velocidad media andando
+                gv::ENEMY_1_LIFE,
+                gv::ENEMY_1_VELOCITY
             },
             {
                 ENEMY_2,
                 (char*)"res/DOOMIE.obj",
                 (char*)"res/green.bmp",
-                100.f,
-                6.f
+                gv::ENEMY_2_LIFE,
+                gv::ENEMY_2_VELOCITY
             },
         };
 
-
-        int numEnemies;
-
     public:
-        EnemyFabric(){numEnemies = 0;}
+        EnemyFabric(){}
         virtual ~EnemyFabric(){}
 
         GameObject* createEnemy(float x, float y, float z, float rz, EnemyType type);
-        int getNumEnemies(){return numEnemies;}
 };

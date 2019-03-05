@@ -1,4 +1,6 @@
 #include "CameraComponent.h"
+#include "GameValues.h"
+
 
 void CameraComponent::update(float dt)
 {
@@ -7,41 +9,14 @@ void CameraComponent::update(float dt)
     float dy = y - gameObject->getY();
 
     //Smooth movement
-    float vx = - dx * v;
-    float vy = - dy * v;
+    float vx = - dx * gv::CAMERA_VELOCITY;
+    float vy = - dy * gv::CAMERA_VELOCITY;
 
     x += vx*dt; 
     y += vy*dt;
     z = gameObject->getZ();
 
-    //If we want the player on the middle 
-    /*   
-    if(abs(dx)>dMAX)
-    {
-        if(x<gameObject->getX())
-        {
-            x=gameObject->getX()-dMAX;
-        }
-        else if(x>gameObject->getX())
-        {
-            x=gameObject->getX()+dMAX;
-        }
-    }
-
-    if(abs(dy)>dMAX)
-    {
-        if(y<gameObject->getY())
-        {
-            y=gameObject->getY()-dMAX;
-        }
-        else if(y>gameObject->getY())
-        {
-            y=gameObject->getY()+dMAX;
-        }
-    }
-    */
-
-    node->update(x, y-(5.f * zoom), z-(10.f * zoom), x, y, z);
+    node->update(x, y-(gv::CAMERA_DY * zoom), z-(gv::CAMERA_DZ * zoom), x, y, z);
 }
 
 void CameraComponent::setFOV(float fov)
@@ -53,9 +28,9 @@ void CameraComponent::setZoom(float dt)
 {
     zoom += dt;
 
-    if(zoom<MIN_ZOOM)
-        zoom = MIN_ZOOM;
+    if(zoom<gv::CAMERA_MIN_ZOOM)
+        zoom = gv::CAMERA_MIN_ZOOM;
     
-    if(zoom>MAX_ZOOM)
-        zoom = MAX_ZOOM;
+    if(zoom>gv::CAMERA_MAX_ZOOM)
+        zoom = gv::CAMERA_MAX_ZOOM;
 }

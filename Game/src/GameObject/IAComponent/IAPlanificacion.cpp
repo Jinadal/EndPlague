@@ -7,7 +7,6 @@
 #include "ShootComponent.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
-#define PI 3.141592
 
 /*
 Salta si el personaje entra a menos de 10 unidades de distancia de portador de la ia
@@ -48,11 +47,11 @@ bool IA_Plan_InSight::run()
             float Ax = owner->getX();
             float Ay = owner->getY();
 
-            float Bx = Ax  -cos((owner->getRZ()-60)*PI/180 - PI/2) * 30;
-            float By = Ay  -sin((owner->getRZ()-60)*PI/180 - PI/2) * 30;
+            float Bx = Ax  -cos((owner->getRZ()-60)*M_PI/180 - M_PI/2) * 30;
+            float By = Ay  -sin((owner->getRZ()-60)*M_PI/180 - M_PI/2) * 30;
 
-            float Cx = Ax -cos((owner->getRZ()+60)*PI/180 - PI/2) * 30;
-            float Cy = Ay -sin((owner->getRZ()+60)*PI/180 - PI/2) * 30;
+            float Cx = Ax -cos((owner->getRZ()+60)*M_PI/180 - M_PI/2) * 30;
+            float Cy = Ay -sin((owner->getRZ()+60)*M_PI/180 - M_PI/2) * 30;
 
             float s1 = Cy - Ay;
 			float s2 = Cx - Ax;

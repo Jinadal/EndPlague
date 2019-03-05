@@ -4,7 +4,7 @@
 #include "Game.h"
 #include "InputManager.h"
 #include "IAManager.h"
-#include "RenderIrrlicht.h"
+#include "SpawnManager.h"
 #include "FabricVillage.h"
 #include "GameObject.h"
 
@@ -19,6 +19,8 @@ void PlayState::initState()
         fabric = new FabricVillage();
         loaded=true;
         fabric->loadLevel();
+
+        GameManager::getInstance()->initAll();
     }
 }
 
@@ -31,6 +33,10 @@ void PlayState::update(float dt)
         Game::getInstance()->setState(IGameState::stateType::PAUSE);
     
     if(IAManager::getInstance()->getPlayer() && IAManager::getInstance()->getPlayer()->getKill())
+    {
+        clear();
+        Game::getInstance()->setState(IGameState::stateType::END);
+    }else if(SpawnManager::getInstance()->getNumSpawns()<=0)
     {
         clear();
         Game::getInstance()->setState(IGameState::stateType::END);

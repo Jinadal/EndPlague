@@ -12,9 +12,12 @@
 
 void HUD::update(float dt)
 {
+    float shield=0.f;
     GameObject* p = GameResource::getInstance()->getPlayer();
-    if(p && p->getComponent<LifeComponent>())
+    if(p && p->getComponent<LifeComponent>()){
         life = p->getComponent<LifeComponent>()->getLife();
+        shield = p->getComponent<LifeComponent>()->getShield();
+    }
     
     score = ScoreManager::getInstance()->getScore();
     numSpawns = SpawnManager::getInstance()->getNumSpawns();

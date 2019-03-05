@@ -7,7 +7,7 @@ void RenderManager::updateAll(float dt){
         ((RenderComponent*)components[i])->update();
 }
 
-void RenderManager::createComponent(GameObject *owner, char path[]){
+void RenderManager::createComponent(GameObject *owner, char* path){
     components.push_back(new RenderComponent(owner, this, path));
     owner->addComponent(components[components.size()-1]);
 }

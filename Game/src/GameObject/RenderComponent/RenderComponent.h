@@ -1,15 +1,16 @@
 #pragma once
-#include "MeshNode.h"
+#include "FMesh.h"
 #include "Component.h"
+#include "Render.h"
 
 class GameObject;
 class RenderComponent : public Component{
     private:
-        MeshNode* node;
+        FMesh* node;
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
-        RenderComponent(GameObject* g, Manager* m, char s[]) : Component(g, m){
-            node = new MeshNode(s);
+        RenderComponent(GameObject* g, Manager* m, char* s) : Component(g, m){
+            node = Render::getInstance()->createMesh(s);
         }
         //Destructor
         virtual ~RenderComponent(){delete node;}
@@ -22,9 +23,6 @@ class RenderComponent : public Component{
 
         //Sets the texture
         void setTexture(char s[]);
-
-        //Sets the mesh
-        void setMesh(char s[]);
 
         void isMap();
 };

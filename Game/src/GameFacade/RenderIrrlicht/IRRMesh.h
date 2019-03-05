@@ -1,25 +1,22 @@
 #pragma once
-#include "RenderIrrlicht.h"
+#include "IRRRender.h"
+#include "FMesh.h"
 /*
 Node ony implemented with a AnimatedMesh in Irr
 */
-class MeshNode{
+class IRRMesh : public FMesh{
     private:
-        IMesh* mesh;//Mesh of the node
-        IMeshSceneNode* node;//Node
+        irr::scene::IMeshSceneNode* node;//Node
 
     public:
         //Recives de render facade, and de path of the mesh
         //and creates a meshNode
-        MeshNode(char s[]);
+        IRRMesh(irr::scene::IMeshSceneNode* node);
 
         //Destructor
-        ~MeshNode(){
+        ~IRRMesh(){
           node->remove();
         }
-        
-        //Changes the mesh of the node to de path
-        void setMesh(char s[]);
 
         //Changes the position of the node
         void setPosition(float x, float y, float z);
@@ -31,8 +28,8 @@ class MeshNode{
         void setVisible(bool b);
         
         //Changes the texture of the node to the new path
-        void setTexture(char s[]);
+        void setTexture(char* s);
 
-        IMeshSceneNode* getMeshSceneNode(){return node;}
+        void isMap();
 
 };

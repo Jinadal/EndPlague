@@ -21,9 +21,9 @@
 #include "WoodManager.h"
 
 #include "GameResource.h"
-#include "RenderIrrlicht.h"
+#include "Render.h"
 #include "HUD.h"
-
+#include <iostream>
 
 void GameManager::initAll()
 {
@@ -46,18 +46,19 @@ void GameManager::initAll()
     StorageManager::getInstance();
     WellManager::getInstance();
 
-    HUD::getInstance();
+    HUD::getInstance()->init();
 }
 
 void GameManager::clear()
 {
+    HUD::getInstance()->clear();
     GameResource::getInstance()->clear();
     ScoreManager::getInstance()->resetScore();
 }
 
 void GameManager::updateAll(float dt)
 {
-    InputManager::getInstance()->setCursorPosition(RenderIrrlicht::getInstance()->getCursorX(), RenderIrrlicht::getInstance()->getCursorY());
+    InputManager::getInstance()->setCursorPosition(Render::getInstance()->getCursorX(), Render::getInstance()->getCursorY());
     HUD::getInstance()->update(dt);
     GameResource::getInstance()->updateAll();
     

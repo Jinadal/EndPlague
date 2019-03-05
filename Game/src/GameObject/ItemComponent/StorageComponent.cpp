@@ -3,6 +3,7 @@
 #include "ItemComponent.h"
 #include "ShootComponent.h"
 #include "LifeComponent.h"
+#include "GameValues.h"
 
 void StorageComponent::itemCatch(ItemComponent* item)
 {
@@ -63,7 +64,7 @@ void StorageComponent::potion()
     //it gives you life
     if(gameObject->getComponent<LifeComponent>())
     {
-        gameObject->getComponent<LifeComponent>()->addLife(50);
+        gameObject->getComponent<LifeComponent>()->addLife(gv::POTION_VALUE);
     }
     
 }
@@ -73,7 +74,7 @@ void StorageComponent::crossbow()
     //makes you shoot faster
     if(gameObject->getComponent<ShootComponent>())
     {
-        gameObject->getComponent<ShootComponent>()->setCadencia(0.1);
+        gameObject->getComponent<ShootComponent>()->setCadencia(gv::CROSSBOW_CADENCE);
         gameObject->getComponent<ShootComponent>()->setType(PARROW);
     }
     
@@ -85,7 +86,7 @@ void StorageComponent::peak()
     //makes you shoot faster
     if(gameObject->getComponent<ShootComponent>())
     {
-        gameObject->getComponent<ShootComponent>()->setCadencia(0.5);
+        gameObject->getComponent<ShootComponent>()->setCadencia(gv::PEAK_CADENCE);
         gameObject->getComponent<ShootComponent>()->setType(PPEAK);
     }
 }
@@ -95,7 +96,7 @@ void StorageComponent::shield()
     //it gives you life shield
     if(gameObject->getComponent<LifeComponent>())
     {
-        gameObject->getComponent<LifeComponent>()->setShield(100);
+        gameObject->getComponent<LifeComponent>()->setShield(gv::SHIELD_VALUE);
     }
     
 }
@@ -105,7 +106,7 @@ void StorageComponent::axe()
     //makes you shoot faster
     if(gameObject->getComponent<ShootComponent>())
     {
-        gameObject->getComponent<ShootComponent>()->setCadencia(0.8);
+        gameObject->getComponent<ShootComponent>()->setCadencia(gv::AXE_CADENCE);
         gameObject->getComponent<ShootComponent>()->setType(PAXE);
     }
 }

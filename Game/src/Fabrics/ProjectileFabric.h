@@ -1,5 +1,5 @@
 #pragma once
-
+#include "GameValues.h"
 class GameObject;
 
 enum ProjectileType
@@ -27,22 +27,22 @@ class ProjectileFabric
                 PARROW,
                 (char*)"res/FLECHA.obj",
                 (char*)"res/green.bmp",
-                10.f,
-                10.f
+                gv::ARROW_VELOCITY,
+                gv::ARROW_DAMAGE
             },
             {
                 PAXE,
                 (char*)"res/HACHA.obj",
                 (char*)"res/green.bmp",
-                10.f,
-                50.f
+                gv::AXE_VELOCITY,
+                gv::AXE_DAMAGE
             },
             {
                 PPEAK,
                 (char*)"res/PEAK.obj",
                 (char*)"res/PEAK.bmp",
-                10.f,
-                50.f
+                gv::PEAK_VELOCITY,
+                gv::PEAK_DAMAGE                
             }
         };
 
