@@ -77,5 +77,5 @@ clear:
 
 supra:
 	$(MAKE) clear
-	$(MAKE) -j12 -s
+	$(MAKE) @-j4 -s
 
