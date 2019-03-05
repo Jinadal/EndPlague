@@ -48,4 +48,6 @@ void HUD::update(float dt)
     std::cout<<"  Spawns: "<<numSpawns<<"\n";
     std::cout<<"  FPS: "<<1/dt<<"\n";
     std::cout<<"==========================\n";
+
+    Render::getInstance()->getHUD()->updateValues(life, shield,1/dt, score, numSpawns, 1);
 }
