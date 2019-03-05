@@ -8,6 +8,7 @@
 #include "BPhysicComponent.h"
 #include "RenderComponent.h"
 
+#define PI 3.1416
 
 bool IA_Graf_Checkarea ::run()
 {
@@ -85,8 +86,8 @@ bool IA_Graf_FollowRuta::run()
     float nextY = *iter;
 
     float rZ = atan2(owner->getY() - nextY, owner->getX() - nextX);
-    rZ += M_PI/2.0;
-    rZ = rZ * 180/M_PI;
+    rZ += PI/2.0;
+    rZ = rZ * 180/PI;
     if (rZ < 0)
         rZ += 360;
 
@@ -99,7 +100,7 @@ bool IA_Graf_FollowRuta::run()
    
     if( ruta.size() != 2)
     {
-         distancia = .6F;
+         distancia = .5F;
     }else{
         distancia = 3.1F;
     }
@@ -146,8 +147,8 @@ bool IA_Graf_FollowPatrol::run()
     float nextY = *iter;
 
     float rZ = atan2(owner->getY() - nextY, owner->getX() - nextX);
-    rZ += M_PI/2.0;
-    rZ = rZ * 180/M_PI;
+    rZ += PI/2.0;
+    rZ = rZ * 180/PI;
     if (rZ < 0)
         rZ += 360;
 

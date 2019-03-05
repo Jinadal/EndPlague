@@ -310,45 +310,66 @@ void IAComponent::setPatrollingRoute(GameObject* owner)
 
     }
 
+    std::vector<float> ruta;
+
     if(ai == 0){
-        patrollingRoute = {-45, 10, -35, -20 };
-        currentpatrollingRoute = patrollingRoute;
+        ruta = {-45, 10, -35, -20 };
+       
 
     }
      if(ai == 1){
-        patrollingRoute = {-45, 30, -35, 20 };
-        currentpatrollingRoute = patrollingRoute;
+        ruta = {-43, 35, -34, 35, -36,18, -34,4, -36, 10  };
+       
     }
-     if(ai == 2){ // Seguir Poniedo puntos de ruta de patrulla
-        patrollingRoute = {-20, 30, 10, 20 };
-        currentpatrollingRoute = patrollingRoute;
+     if(ai == 2){ 
+        ruta = {-19, 21, 5, 20, 8,31, -4,44, -19,40 };
+        
     }
      if(ai == 3){
-        patrollingRoute = {-20, 5, 0, 30 };
-        currentpatrollingRoute = patrollingRoute;
+        ruta = {-7, 1, -16, -5, -23,1 };
+        
     }
      if(ai == 4){
-        patrollingRoute = {0, -30, 5, -30 };
-        currentpatrollingRoute = patrollingRoute;
+       ruta = {6, -39, 4, -21 ,-11,-23,-20,-29,-17,-40,-2,-38 };
+      
     }
      if(ai == 5){
-        patrollingRoute = {15, 10, 20, 0 };
-        currentpatrollingRoute = patrollingRoute;
+        ruta = {12, 7, 19, 1, 16,-4 };
+       
     }
      if(ai == 6){
-        patrollingRoute = {30,30, 40, 40 };
-        currentpatrollingRoute = patrollingRoute;
+       ruta = {45,27, 39, 40, 32,31 };
+       
     }
      if(ai == 7){
-        patrollingRoute = {30, 0, 40, 0 };
-        currentpatrollingRoute = patrollingRoute;
+        ruta = {46,-1, 45,10,33,9,30,2 };
+       
     }
      if(ai == 8){
-        patrollingRoute = {30, -20, 25, -20 };
-        currentpatrollingRoute = patrollingRoute;
+       ruta = {21, -22,24,-31, 42,-30, 39,-20 };
+    
     }
      if(ai == 9){
-        patrollingRoute = {40, -40, 40, -45 };
-        currentpatrollingRoute = patrollingRoute;
+        ruta = {37, -40, 24, -40, 24,-47 };
+      
     }
+
+    while(!ruta.empty()){
+        int randpos;
+        do{
+             randpos = (rand()%(ruta.size()-1));
+        }while(randpos%2 != 0);
+        patrollingRoute.push_back(ruta[randpos]);
+        randpos++;
+        patrollingRoute.push_back(ruta[randpos]);
+        randpos--;
+        ruta.erase(ruta.begin()+ randpos);
+       
+        ruta.erase(ruta.begin()+ randpos);
+    }
+
+  
+    currentpatrollingRoute = patrollingRoute;
+
+
 }

@@ -46,7 +46,7 @@ LIBRAIES := $(SfmlLibraries) $(FmodLibraries) $(IrrlichtLibraries) $(BulletLibra
 
 default:
 	@mkdir -p $(DIRS)
-	@make Ejecutable
+	$(MAKE)  Ejecutable
 
 #Linker
 Ejecutable: $(OBJECTS)
@@ -69,8 +69,13 @@ info:
 	$(info $(OBJECTS))
 
 all:
-	@make clear
-	@make
+	$(MAKE) clear
+	$(MAKE) 
 
 clear:
 	@rm -f $(OBJECTS)
+
+supra:
+	$(MAKE) clear
+	$(MAKE) -j12 -s
+
