@@ -43,6 +43,7 @@ void Facade::initRoot()
     glm::mat4& Model = scene->getEntity()->modelMatrix();
     Model = glm::mat4(1.0f);
 
+    
 }
 
 bool Facade::openWindow(GLFWwindow* w)
@@ -116,7 +117,7 @@ TNode* Facade::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
     return nullptr;
 }
 
-TNode* Facade::createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff,float t,float b,float r,float l)
+TNode* Facade::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,float ff)
 {
     if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
     {
@@ -124,12 +125,11 @@ TNode* Facade::createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,floa
 
         //light Leaf
         TCamera* c = new TCamera();
-        c->setCameraParametres( n, ff, t, b, r, l);
         TNode* nodeCamera = new TNode(nodeRST, c);
+        nodeCamera->setId(5);
         nodeRST->addChild(nodeCamera);
-
         camera = nodeCamera;
-
+        calculateCamera(p,v);
 
         return camera;
     }
@@ -220,4 +220,9 @@ void Facade::renderCamera()
     {
         glUniformMatrix4fv(scene->getEntity()->getViewID(), 1, GL_FALSE, &scene->getEntity()->viewMatrix()[0][0]);
     }
+}
+
+void Facade::calculateCamera(glm::vec3 p,glm::vec3 t)
+{
+    scene->getEntity()->viewMatrix() = glm::lookAt(p,t,glm::vec3(0,1,0));   
 }

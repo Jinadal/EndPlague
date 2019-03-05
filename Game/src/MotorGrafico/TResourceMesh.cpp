@@ -23,12 +23,12 @@ bool TResourceMesh::loadResource()
     
     if (scene)
     {
-         std::cout<<name<<std::endl;
-        bsize = scene->mNumMeshes;
+        std::cout<<name<<std::endl;
+        meshbuffersize = scene->mNumMeshes;
         for(unsigned int i = 0; i < scene->mNumMeshes; i++)
         {
 
-            b = (unsigned int *)malloc(sizeof(unsigned int) * scene->mNumMeshes * 4);
+            meshbuffer = (unsigned int *)malloc(sizeof(unsigned int) * scene->mNumMeshes * 4);
             aiMesh* m = scene->mMeshes[i];
             loadMesh(m,i);
             ret = true;
@@ -89,41 +89,41 @@ void TResourceMesh::loadMesh(aiMesh* m, int n)
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    b[n*4]=buffer[0];
-    b[n*4+1]=buffer[1];
-    b[n*4+2]=buffer[2];
-    b[n*4+3]=buffer[3];
+    meshbuffer[n*4]=buffer[0];
+    meshbuffer[n*4+1]=buffer[1];
+    meshbuffer[n*4+2]=buffer[2];
+    meshbuffer[n*4+3]=buffer[3];
 }
 
 void TResourceMesh::draw()
 {
-    for(int i = 0; i < bsize; i++)
+    for(int i = 0; i < meshbuffersize; i++)
     {
          //BIND VAO
         glBindVertexArray(VAO);
         //==============================================  
 
 
-        //Bind and pass to OpenGL the fourth array (vertex indices)
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, b[i*4]);
+        //Bind and pass to OpenGL the first array (vertex indices)
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshbuffer[i*4]);
 
-        //Bind and pass to OpenGL the first array (vertex coordinates)
-        glBindBuffer(GL_ARRAY_BUFFER, b[i*4+1]);
+        //Bind and pass to OpenGL the first array (vertex position)
+        glBindBuffer(GL_ARRAY_BUFFER, meshbuffer[i*4+1]);
         glEnableVertexAttribArray(1);
         glVertexAttribPointer(i*4+1, 3, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
 
         //Bind and pass to OpenGL the second array (vertex normals)
-        glBindBuffer(GL_ARRAY_BUFFER, b[i*4+2]);
+        glBindBuffer(GL_ARRAY_BUFFER, meshbuffer[i*4+2]);
         glEnableVertexAttribArray(2);
         glVertexAttribPointer(i*4+2, 3, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
 
         //Bind and pass to OpenGL the third array (vertex texture coordinates)
-        glBindBuffer(GL_ARRAY_BUFFER, b[i*4+3]);
+        glBindBuffer(GL_ARRAY_BUFFER, meshbuffer[i*4+3]);
         glEnableVertexAttribArray(3);
         glVertexAttribPointer(i*4+3, 2, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
 
         //We order to draw here
-        glDrawElements(GL_TRIANGLES, bsize, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, meshbuffersize, GL_UNSIGNED_INT, 0);
 
 
         //==============================================    

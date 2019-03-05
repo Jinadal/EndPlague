@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <GL/glew.h>
+#define GLM_ENABLE_EXPERIMENTAL 
+
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
@@ -32,13 +34,14 @@ class Facade
         void clean();
         void initOpenGL();
         void renderCamera();
-        void updateCamera(glm::vec3 p,glm::vec3);
+        void calculateCamera(glm::vec3 p,glm::vec3 t);
+
         //TREE METHODS
         void initRoot();
         TNode* getSceneRoot() { return scene; }
         TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
-        TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff,float t,float b,float r,float l);
+        TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
 
         TNode* createBranch(TNode* f, glm::vec3 v);
 };

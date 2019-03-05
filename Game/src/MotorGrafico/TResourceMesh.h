@@ -9,10 +9,10 @@ class TResourceMesh : public TResource
 private:
     std::vector<TResourceMesh*> meshes;
 
-    GLuint *buffer, *faces, *b;
+    GLuint *buffer, *faces, *meshbuffer;
     GLuint  VAO;
     GLfloat* textures;
-    int bsize;
+    int meshbuffersize;
 
 public:
     TResourceMesh(){};

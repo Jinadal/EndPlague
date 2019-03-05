@@ -6,18 +6,19 @@ class TCamera : public TEntity
 {
     private:
         //Parallel or perspective; true == persective, false == parallel
-        bool perspective = false;
-        float near = 1.0f, far = 1.0f, top = 1.0f, bot = 1.0f, right = 1.0f, left = 1.0f;
+        bool perspective;
+        float near, far, top, bot, right, left, zoom;
     public:
-        TCamera(){}
+        TCamera();
         ~TCamera(){}
 
         //Get & Set
-        void setCameraParametres(float n,float f,float t,float b,float r,float l);
+        void setCameraParametres(float n,float f);
         void setPerspective(){ perspective = true;};
         
         void changeCamera(bool c){ perspective = c;};
-        
+
+
         void beginDraw(){}
         void endDraw(){}
 

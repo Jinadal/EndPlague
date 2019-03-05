@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 #include <stack>
+#define GLM_ENABLE_EXPERIMENTAL 
+#include <glm/gtx/string_cast.hpp>
+
 #include <GL/glew.h>
 #include <glm/ext.hpp>
 #include <iostream>
@@ -10,6 +13,7 @@ class TEntity
         static GLuint viewID;
         static GLuint projectionID;
         static GLuint modelID;
+        static GLuint MVPID;
     public:
         TEntity(){}
         virtual ~TEntity(){}
@@ -20,10 +24,14 @@ class TEntity
         static void setviewID(GLuint v){ viewID = v;};
         static void setprojectionID(GLuint p){ projectionID = p;};
         static void setmodelID(GLuint m){ modelID = m;};
+        static void setMVPID(GLuint m){ MVPID = m;};
+
 
         static GLuint getModelID(){ return modelID;};
         static GLuint getViewID(){ return viewID;};
         static GLuint getProjectionID(){ return projectionID;};
+        static GLuint getMVPID(){ return MVPID;};
+
 
     //Static matrix in order to make the unique and global to their childs
     static glm::mat4& modelMatrix() 

@@ -1,7 +1,6 @@
 #include "TTransform.h"
 #include "TEntity.h"
-#define GLM_ENABLE_EXPERIMENTAL 
-#include <glm/gtx/string_cast.hpp>
+
 
 //Move the matrix position from one place to another x,y,z
 void TTransform::translate(float x,float y,float z)
@@ -43,16 +42,9 @@ void TTransform::identity()
 //Pushes the fathers matrix and multiplys the actual with the previous 
 void TTransform::beginDraw()
 {   
-    
-
     glm::mat4& model = modelMatrix();
-    //std::cout << "Im matrix from model : " <<glm::to_string(model) << std::endl;
-
     stackMatrix().push(model);
     model = matrix * model;
-    //std::cout << "Im matrix from matrix : " <<glm::to_string(matrix) << std::endl;
-    //std::cout << "Im matrix from model : " <<glm::to_string(model) << std::endl;
-
 }
 
 //Sets the matrix of the fathers node

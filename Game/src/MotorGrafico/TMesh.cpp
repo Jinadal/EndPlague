@@ -4,11 +4,12 @@ void TMesh::beginDraw()
 {
     if(mesh)
     {
-        
-        glUniformMatrix4fv(TEntity::modelID, 1, GL_FALSE, &modelMatrix()[0][0]);
-        glUniformMatrix4fv(TEntity::viewID, 1, GL_FALSE, &viewMatrix()[0][0]);
-        glUniformMatrix4fv(TEntity::projectionID, 1, GL_FALSE, &projectionMatrix()[0][0]);
+        glm::mat4 pm = projectionMatrix();
+        glm::mat4 vm = viewMatrix();
+        glm::mat4 mm = modelMatrix();
 
+        glm::mat4 mvp = pm * vm * mm;
+        glUniformMatrix4fv(getMVPID(),1,GL_FALSE,&mvp[0][0]);
         mesh->draw();
     }
 }
