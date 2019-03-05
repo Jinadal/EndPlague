@@ -74,8 +74,9 @@ all:
 
 clear:
 	@rm -f $(OBJECTS)
-
+	
+#n es el numero de nucleos con los que ejecutar
 supra:
 	$(MAKE) clear
-	$(MAKE) -j12 -s
+	$(MAKE) -j${n} -s
 
