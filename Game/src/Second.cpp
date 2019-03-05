@@ -95,7 +95,7 @@ int Second::run()
     TNode* scene = facade->getSceneRoot();
 	scene->setId(0);
     TNode* camera = facade->createNodeCamera(scene,glm::vec3(10,0,10),glm::vec3(0,0,0),0.01f,1000.0f);
-	TNode* mesh = facade->createNodeMesh(scene,glm::vec3(0,0,0),"nitro.obj");
+	//TNode* mesh = facade->createNodeMesh(scene,glm::vec3(0,0,0),"nitro.obj");
 	// Dark blue backgroundFF
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
@@ -127,7 +127,7 @@ int Second::run()
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals; // Won't be used at the moment.
-	bool res = loadOBJ("nanosuit/nanosuit.obj", vertices, uvs, normals);
+	bool res = loadOBJ("res/DOOMIE.obj", vertices, uvs, normals);
 
 	// Load it into a VBO
 

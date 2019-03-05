@@ -1,8 +1,8 @@
-#include "Second.h"
+#include "Game.h"
 
 int main(){
     
-    Second::getInstance()->run();
+    Game::getInstance()->run();
 
     return 0;
 }
