@@ -5,7 +5,7 @@ class GameManager
         GameManager(){}
     
     public:
-        ~GameManager(){clear();}
+        ~GameManager(){}
         static GameManager* getInstance(){
             static GameManager only_instance;
             return &only_instance;

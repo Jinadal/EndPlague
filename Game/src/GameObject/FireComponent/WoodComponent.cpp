@@ -3,6 +3,7 @@
 #include "RenderComponent.h"
 #include "SpawnComponent.h"
 #include "GameValues.h"
+#include "ProjectileComponent.h"
 
 void WoodComponent::update(float dt)
 {
@@ -50,5 +51,15 @@ void WoodComponent::addBucket()
         {
             gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
         }     
+    }
+}
+
+
+void WoodComponent::dealDamage(ProjectileComponent* projectile)
+{
+    if(projectile && projectile->getTeam()!=team)
+    {
+        setBurning(true);
+        life -= projectile->getDamage();
     }
 }

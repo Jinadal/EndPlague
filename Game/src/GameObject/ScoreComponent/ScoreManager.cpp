@@ -21,3 +21,11 @@ int ScoreManager::resetScore()
     score = 0;
     return sa;
 }
+
+
+bool ScoreManager::getWin()
+{
+    bool r = win;
+    win = false;
+    return r;
+}

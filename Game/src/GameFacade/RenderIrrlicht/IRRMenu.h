@@ -17,7 +17,7 @@ class IRRMenu : public FMenu
 
 
     ~IRRMenu() {}
-    void setMenuBackground();
+    void setMenuBackground(char* t);
     irr::gui::IGUIButton* createButton(int x,int y,int xx,int xy, int id);
     void clearBackground();
     void update(){}

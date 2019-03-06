@@ -15,7 +15,7 @@ class LOTMenu : public FMenu
 
 
         ~LOTMenu() {}
-        void setMenuBackground();
+        void setMenuBackground(char* t);
         void clearBackground();
         void update(){}
 };

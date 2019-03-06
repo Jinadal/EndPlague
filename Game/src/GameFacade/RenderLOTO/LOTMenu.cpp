@@ -1,6 +1,6 @@
 #include "LOTMenu.h"
 
-void LOTMenu::setMenuBackground()
+void LOTMenu::setMenuBackground(char* t)
 {
 
 }

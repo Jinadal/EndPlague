@@ -51,8 +51,8 @@ void GameManager::initAll()
 
 void GameManager::clear()
 {
-    HUD::getInstance()->clear();
     GameResource::getInstance()->clear();
+    HUD::getInstance()->clear();
     ScoreManager::getInstance()->resetScore();
 }
 

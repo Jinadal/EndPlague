@@ -7,6 +7,7 @@ class ScoreManager : public Manager
     private:
         ScoreManager():Manager(){score = 0.f;}
         int score;
+        bool win = false;
     
     public:
         ~ScoreManager(){clear();}
@@ -21,5 +22,7 @@ class ScoreManager : public Manager
         void applyScore(int score);
         int getScore(){return score;};
         int resetScore();
-        int getEnemies(){return static_cast<int>(components.size());};
+        int getEnemies(){return static_cast<int>(components.size());}
+        bool getWin();
+        void setWin(bool w = true){win = w;}
 };

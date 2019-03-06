@@ -17,5 +17,5 @@ class EndState : public IGameState
     ~EndState() {}
     void initState();
     void update(float dt);
-    void clear(){};
+    void clear();
 };
