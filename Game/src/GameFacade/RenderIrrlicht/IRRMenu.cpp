@@ -1,9 +1,9 @@
 #include "IRRMenu.h"
 
-void IRRMenu::setMenuBackground()
+void IRRMenu::setMenuBackground(char* t)
 {
     env = IRRRender::getInstance()->getGUIEnv();
-    irr::video::ITexture* texture = IRRRender::getInstance()->getDriver()->getTexture("res/sprites/Fondo.png");
+    irr::video::ITexture* texture = IRRRender::getInstance()->getDriver()->getTexture(t);
     
     float screenWidth = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Width;
     float screenHeight = (float)IRRRender::getInstance()->getDriver()->getScreenSize().Height;

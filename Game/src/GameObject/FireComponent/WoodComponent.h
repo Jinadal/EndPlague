@@ -1,5 +1,7 @@
 #include "Component.h"
 
+
+class ProjectileComponent;
 class WoodComponent:public Component
 {
     private:
@@ -23,4 +25,6 @@ class WoodComponent:public Component
         int getTeam(){return team;}
         void update(float dt);
         void addBucket();
+        void dealDamage(ProjectileComponent* projectile);
+
 };

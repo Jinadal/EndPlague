@@ -6,7 +6,7 @@
 
 LOTRender::LOTRender()
 {
-    window = render.initWindow();
+    //window = render.initWindow();
 }
 void LOTRender::drawAll()
 {
@@ -15,7 +15,8 @@ void LOTRender::drawAll()
 
 bool LOTRender::run()
 {
-    return render.openWindow(window);
+    return true;
+    //return render.openWindow(window);
 }
 
 void LOTRender::drop()

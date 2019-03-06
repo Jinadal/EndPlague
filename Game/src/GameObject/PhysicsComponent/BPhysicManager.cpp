@@ -88,19 +88,23 @@ bool BPhysicManager::callbackFunc(btManifoldPoint& cp, const btCollisionObjectWr
     LifeComponent* i_life = go1->getComponent<LifeComponent>();
     LifeComponent* j_life = go2->getComponent<LifeComponent>();
 
+    WoodComponent* i_wood = go1->getComponent<WoodComponent>();
+    WoodComponent* j_wood = go2->getComponent<WoodComponent>();
+
+
     if(i_projectil && !go2->getComponent<ItemComponent>()){
         i_projectil->dealDamage(j_life);//Gestionamos la vida
 
-        if(go2->getComponent<WoodComponent>() && go2->getComponent<WoodComponent>()->getTeam()!=i_projectil->getTeam()) //Si colisiona con un GO que se puede quemar, lo quemamos
-            go2->getComponent<WoodComponent>()->setBurning(true);
+        if(j_wood) //Si colisiona con un GO que se puede quemar, lo quemamos
+            j_wood->dealDamage(i_projectil);
     }
         
     if(j_projectil && !go1->getComponent<ItemComponent>())
     {
         j_projectil->dealDamage(i_life);//Gestionamos la vida
 
-        if(go1->getComponent<WoodComponent>() && go1->getComponent<WoodComponent>()->getTeam()!=j_projectil->getTeam()) //Si colisiona con un GO que se puede quemar, lo quemamos
-            go1->getComponent<WoodComponent>()->setBurning(true);
+        if(i_wood) //Si colisiona con un GO que se puede quemar, lo quemamos
+            i_wood->dealDamage(j_projectil);
     }
 
 

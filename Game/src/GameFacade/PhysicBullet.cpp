@@ -58,7 +58,9 @@ void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
         }
     }
     delete rigidbody->getCollisionShape();
+
     _world->removeRigidBody(rigidbody);
+
     delete rigidbody;
 }
 

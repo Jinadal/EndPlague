@@ -6,7 +6,7 @@ class FMenu
         FMenu(){};
     public:  
         virtual ~FMenu(){};
-        virtual void setMenuBackground() = 0;
+        virtual void setMenuBackground(char* t) = 0;
         virtual void clearBackground() = 0;
         virtual void update() = 0;
 };
