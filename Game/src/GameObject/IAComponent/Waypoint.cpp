@@ -391,6 +391,12 @@ std::vector<float> GPS::getWay(float xi, float yi, float xf, float yf )
                 minway = current->path;
                 minweight = auxweight;
             }
+
+            if(minweight == 0 && wai[i] == waf[f])
+            {
+                returno.push_back(wai[i]->_x);
+                returno.push_back(wai[i]->_y);
+            }
         }
     }
 

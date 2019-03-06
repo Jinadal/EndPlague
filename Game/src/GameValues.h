@@ -94,11 +94,11 @@ namespace gv
     
     //----------- ENEMY 1 ---------------
         const float     ENEMY_1_LIFE        = 200.f;
-        const float     ENEMY_1_VELOCITY    = 3.f;
+        const float     ENEMY_1_VELOCITY    = 4.f;
 
     //----------- ENEMY 2 ---------------
         const float     ENEMY_2_LIFE        = 100.f;
-        const float     ENEMY_2_VELOCITY    = 3.f;
+        const float     ENEMY_2_VELOCITY    = 4.f;
 
         const int       ENEMY_SCORE         = 10;  //Score gets killing as enemy
         const float     ENEMY_CADENCE       = .9f; //Shoot cadence of enemies

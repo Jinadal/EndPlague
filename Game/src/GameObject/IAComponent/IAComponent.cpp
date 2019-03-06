@@ -127,14 +127,14 @@ if(!mode)
                 Selector* seguimientoDirecto = new Selector();
                 decideSeg->addChild(seguimientoDirecto);
 
-                        Secuencia* otraArea = new Secuencia();
+                       /* Secuencia* otraArea = new Secuencia();
                         seguimientoDirecto->addChild(otraArea);
 
                             IA_Graf_Checkarea* checkarea = new IA_Graf_Checkarea(gameObject,main);
                             otraArea->addChild(checkarea);
 
                             IA_Graf_LaunchGPS* GPS = new IA_Graf_LaunchGPS(gameObject, main);
-                            otraArea->addChild(GPS);
+                            otraArea->addChild(GPS);*/
 
                         // ---------------------------------
 

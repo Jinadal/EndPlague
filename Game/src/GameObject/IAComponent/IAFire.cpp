@@ -72,8 +72,8 @@ bool IA_Fire_GPStoSpawn::run()
 {
     GPS* gps = ((IAManager*)owner->getComponent<IAComponent>()->getManager())->getGPS();
     GameObject* spawn = owner->getComponent<IAComponent>()->spawnOnFire;
-
-  owner->getComponent<IAComponent>()->route = gps->getWay(owner->getX(),owner->getY(),spawn->getX(),spawn->getY());
+std::vector<float> r = gps->getWay(owner->getX(),owner->getY(),spawn->getX(),spawn->getY());
+  owner->getComponent<IAComponent>()->route = r;
     
      owner->getComponent<IAComponent>()->onRoute = true;
     

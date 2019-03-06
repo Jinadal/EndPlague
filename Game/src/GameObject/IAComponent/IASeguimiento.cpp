@@ -20,7 +20,7 @@ bool IA_Seg_ToPlayer::run()
         owner->getComponent<BPhysicComponent>()->setvMax(0.f);
 
     }else{
-        owner->getComponent<BPhysicComponent>()->setvMax(3.f);
+        owner->getComponent<BPhysicComponent>()->setvMax(5.f);
     }
 
     owner->getComponent<RenderComponent>()->setTexture((char*)"res/yelow.bmp");

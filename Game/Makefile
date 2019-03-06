@@ -80,8 +80,9 @@ all:
 
 clear:
 	@rm -f $(OBJECTS)
-
+	
+#n es el numero de nucleos con los que ejecutar make n=numero nucleos supra : make n=12 supra
 supra:
 	$(MAKE) clear
-	$(MAKE) @-j4 -s
+	$(MAKE) -j${n} -s
 
