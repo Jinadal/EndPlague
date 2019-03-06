@@ -4,6 +4,10 @@
 #include "LOTHUD.h"
 #include "LOTMenu.h"
 
+LOTRender::LOTRender()
+{
+    window = render.initWindow();
+}
 void LOTRender::drawAll()
 {
 
@@ -11,7 +15,7 @@ void LOTRender::drawAll()
 
 bool LOTRender::run()
 {
-    return true;
+    return render.openWindow(window);
 }
 
 void LOTRender::drop()

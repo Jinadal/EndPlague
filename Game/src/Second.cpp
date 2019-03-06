@@ -24,7 +24,7 @@ using namespace glm;
 #include <../common/controls.cpp>
 #include <../common/objloader.cpp>
 
-#include "Facade.h"
+#include "LOTO.h"
 
 Second* Second::only_instance = nullptr;
 
@@ -90,7 +90,7 @@ int Second::run()
 
 	glEnable( GL_DEBUG_OUTPUT );
     glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
-    Facade* facade = new Facade();
+    LOTO* facade = new LOTO();
     facade->initRoot();
     TNode* scene = facade->getSceneRoot();
 	scene->setId(0);

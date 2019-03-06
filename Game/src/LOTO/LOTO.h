@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -7,16 +8,16 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "../MotorGrafico/TNode.h"
-#include "../MotorGrafico/TCamera.h"
-#include "../MotorGrafico/TLight.h"
-#include "../MotorGrafico/TMesh.h"
-#include "../MotorGrafico/TTransform.h"
-#include "../MotorGrafico/TResourceManager.h"
-#include "../MotorGrafico/TResourceMesh.h"
-#include "../MotorGrafico/TResourceShader.h"
+#include "TNode.h"
+#include "TCamera.h"
+#include "TLight.h"
+#include "TMesh.h"
+#include "TTransform.h"
+#include "TResourceManager.h"
+#include "TResourceMesh.h"
+#include "TResourceShader.h"
 
-class Facade
+class LOTO
 {
     private: 
         GLFWwindow* window;

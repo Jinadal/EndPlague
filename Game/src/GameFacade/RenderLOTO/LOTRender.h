@@ -1,9 +1,12 @@
 #pragma once
 #include "FRender.h"
+#include "LOTO.h"
 
 class LOTRender : public FRender{
     private:
-        LOTRender(){};
+        LOTO render;
+        GLFWwindow* window;
+        LOTRender();
     public:
         
         static LOTRender* getInstance(){
