@@ -43,12 +43,12 @@ class ItemFabric
             }, 
             {
                 PEAK,
-                (char*)"res/PEAK.obj",
+                (char*)"res/obj/PICO.obj",
                 (char*)"res/PEAK.bmp"
             },
             {
                 POTION,
-                (char*)"res/POTION.obj",
+                (char*)"res/obj/POCION.obj",
                 (char*)"res/POTION.bmp"
 
             },

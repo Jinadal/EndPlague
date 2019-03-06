@@ -14,5 +14,6 @@ class SpawnComponent : public Component{
         ~SpawnComponent(){};
 
         void update(float elapsedTime);
+        bool isCuartel();
 };
 

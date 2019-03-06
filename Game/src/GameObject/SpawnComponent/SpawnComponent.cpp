@@ -30,3 +30,10 @@ void SpawnComponent::update(float elapsedTime)
     } 
 }
 
+bool SpawnComponent::isCuartel()
+{
+    if(type == ENEMY_1)
+        return true;
+
+    return false;
+}

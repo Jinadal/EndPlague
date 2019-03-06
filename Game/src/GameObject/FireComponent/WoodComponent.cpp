@@ -1,6 +1,7 @@
 #include "WoodComponent.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "SpawnComponent.h"
 #include "GameValues.h"
 
 void WoodComponent::update(float dt)
@@ -17,13 +18,25 @@ void WoodComponent::update(float dt)
 
 void WoodComponent::setBurning(bool b){
     burning=b;
-    if(b)//Cambiamos el color a rojo si esta ardiendo
+    if(gameObject->getComponent<SpawnComponent>() && gameObject->getComponent<SpawnComponent>()->isCuartel())
     {
-        gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/red.bmp");
-    }else//Cambiamos el color a rojo si esta ardiendo
-    {
-        gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
+        if(b)
+        {
+            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Cuartel_Fuego_Color.bmp");
+        }else
+        {
+            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Cuartel_SColor.bmp");
+        }
+    }else{
+        if(b)
+        {
+            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Casa_Fuego_Color.bmp");
+        }else
+        {
+            gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Casa_Color.bmp");
+        }
     }
+    
 
 }
 
