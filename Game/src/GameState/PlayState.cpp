@@ -7,6 +7,7 @@
 #include "SpawnManager.h"
 #include "GameObject.h"
 #include "GameManager.h"
+#include "ScoreManager.h"
 
 
 
@@ -41,13 +42,14 @@ void PlayState::update(float dt)
         Game::getInstance()->setState(IGameState::stateType::END);
     }else if(SpawnManager::getInstance()->getNumSpawns()<=0)
     {
-        clear();
         if(level<fabrics.size())
         {
             initState();
         }else
         {
             level = 0;
+            clear();
+            ScoreManager::getInstance()->setWin();
             Game::getInstance()->setState(IGameState::stateType::END);
         }
     }

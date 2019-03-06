@@ -19,12 +19,12 @@ void EndState::update(float dt)
 
 void EndState::initState(){
 
-    if(true)
+    if(ScoreManager::getInstance()->getWin())
     {
-        Render::getInstance()->getMenu()->setMenuBackground("res/sprites/Win.png");
+        Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Win.png");
     }else
     {
-        Render::getInstance()->getMenu()->setMenuBackground("res/sprites/Loose.png");
+        Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Loose.png");
     }
     std::cout<<"Puntuacion final: "<<HUD::getInstance()->getScore()<<"\n";
     type = IGameState::END; 

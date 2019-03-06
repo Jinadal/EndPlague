@@ -9,6 +9,7 @@
 #include "EndState.h"
 #include "IntroState.h"
 #include "DialogueState.h"
+#include "NextLevelState.h"
 
 void Game::run()
 {
@@ -51,6 +52,9 @@ void Game::setState(IGameState::stateType type)
             break;
         case IGameState::stateType::DIALOGUE:
             state = DialogueState::getInstance();
+            break;
+        case IGameState::stateType::NEXTLEVEL:
+            state = NextLevelState::getInstance();
             break;
     }
     state->initState();
