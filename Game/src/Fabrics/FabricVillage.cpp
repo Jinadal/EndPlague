@@ -111,7 +111,7 @@ void FabricVillage::loadLevel()
 
 void FabricVillage::spawn(float x, float y, float rz, bool type)
 {
-    GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -1.f, -rz);
+    GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -2.58f, -rz);
     
     if(type){
         RenderManager::getInstance()->createComponent(spawn, (char*)"res/obj/CUARTEL.obj");
@@ -123,7 +123,7 @@ void FabricVillage::spawn(float x, float y, float rz, bool type)
         SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_2);
     }
     WoodManager::getInstance()->createComponent(spawn, gv::SPAWN_LIFE);
-    BPhysicManager::getInstance()->createComponent(spawn, 2.f, 2.f, 2.f, 0.f, 0);
+    BPhysicManager::getInstance()->createComponent(spawn, 3.5f, 3.5f, 3.f, 0.f, 0);
    
 }
 

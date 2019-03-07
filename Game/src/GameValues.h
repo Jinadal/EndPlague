@@ -8,7 +8,7 @@ namespace gv
 //########################################################################
 
     //----------   CLOCK    ------------
-        const int       CLOCK_FPS               = 60;   //FPS
+        const int       CLOCK_FPS               = 100;   //FPS
 
     //---------- INTRO STATE------------
         const float     INTRO_DURATION          = .1f;  //seg

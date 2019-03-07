@@ -9,6 +9,7 @@
 
 #define PI 3.14159265
 
+
 GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, ProjectileType type, int team)
 {
     GameObject* r =  GameResource::getInstance()->createGameObject(x, y, -1.f, rz);

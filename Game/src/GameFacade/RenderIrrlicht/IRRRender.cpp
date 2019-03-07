@@ -102,9 +102,6 @@ FMesh* IRRRender::createMesh(char* s)
     {
         node = smgr->addMeshSceneNode(mesh);//Adds the mesh to the node
         node->setMaterialFlag(irr::video::EMF_LIGHTING, true);
-        node->setAutomaticCulling( irr::scene::EAC_BOX ); 
-        //node->setMaterialFlag(EMF_WIREFRAME, true);
-        //node->setDebugDataVisible(EDS_BBOX);
     }
 
     return new IRRMesh(node);
@@ -114,7 +111,6 @@ FCamera* IRRRender::createCamera()
 {
     irr::scene::ICameraSceneNode* node = smgr->addCameraSceneNode(0, irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
     camera = node;
-    node->setAutomaticCulling(irr::scene::EAC_OCC_QUERY);
     return new IRRCamera(node);
 }
 

@@ -25,7 +25,7 @@ void SpawnComponent::update(float elapsedTime)
         float rz = gameObject->getRZ();
 
         EnemyFabric* f = new EnemyFabric();
-        f->createEnemy(x, y, z, rz, type);
+        f->createEnemy(x, y, z+1.58f, rz, type);
         delete f;
     } 
 }

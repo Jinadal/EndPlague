@@ -25,7 +25,7 @@ class ProjectileFabric
         {
             {
                 PARROW,
-                (char*)"res/OBJ/FLECHA.obj",
+                (char*)"res/obj/FLECHA.obj",
                 (char*)"res/tex/Flecha_Color.bmp",
                 gv::ARROW_VELOCITY,
                 gv::ARROW_DAMAGE
