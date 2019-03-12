@@ -25,7 +25,6 @@ void TCamera::setCameraParametres(float n,float f)
     if(perspective)
     {
         //glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT,n,f) FOR THE FUTURE
- 
         projectionMatrix() = glm::perspective(zoom, (float)16 / (float)9, near, far);
         
     }

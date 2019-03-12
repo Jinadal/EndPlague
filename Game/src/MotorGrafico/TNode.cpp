@@ -76,24 +76,6 @@ TNode* TNode::searchChild(unsigned int n)
     return nullptr;
 }
 
-//Deletes all the branch in preorder except for the node that calls the method
-//void TNode::killBranch()
-//{
-//    std::cout<<"SI NO TENGO HIJOS ME MATO : "<<getId()<<std::endl;
-//    for(unsigned int i=0; i<child.size();i++)
-//    {
-//
-//            std::cout<<"Tengo que vivir por mis hijos : "<<getId()<<std::endl;
-//            child[i]->killBranch();
-//        
-//    }
-//    delete this;
-//    std::cout<<"Me he muerto y soy : "<<getId()<<std::endl;
-//    child.clear();
-//    child.shrink_to_fit();
-//
-//}
-
 //Draws the tree of nodes in inorder
 void TNode::draw()
 {

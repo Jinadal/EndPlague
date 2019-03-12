@@ -14,10 +14,8 @@ public:
 
     bool loadResource();
     void draw(){};
-    
-    //*************
-    //Set & GET
-    //*************
+
+    //Get & Set
     GLuint getId(){ return id;};
     GLenum GetAiType(){ return type;};
     void setType(GLenum t){ type = t;};

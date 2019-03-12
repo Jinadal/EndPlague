@@ -42,7 +42,6 @@ void Facade::initRoot()
     View = glm::mat4(1.0f);
     glm::mat4& Model = scene->getEntity()->modelMatrix();
     Model = glm::mat4(1.0f);
-
     
 }
 
@@ -80,17 +79,19 @@ TNode* Facade::createNodeMesh(TNode* f, glm::vec3 v, const char* m)
 {
     if(f!= nullptr)
     {
+        //Be sure that the father is a root or a transformation node
         if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
         {
+            //Creates a 3 node branch with their respective transformations
             TNode* nodeRST = createBranch(f,v);
-            //Mesh Leaf
+            
+            //Mesh Leaf, load in memory mesh and assign it
             TMesh* mesh = new TMesh();
-            TResourceMesh* mm;
-            mm = manager->getResourceMesh(m);
+            TResourceOBJ* mm = manager->getResourceOBJ(m);
             mesh->setMesh((TResource*) mm);
+            
             TNode* nodeMesh = new TNode(nodeRST,mesh);
             nodeMesh->setId(4);
-
             nodeRST->addChild(nodeMesh);
 
             return nodeMesh;
@@ -103,6 +104,7 @@ TNode* Facade::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
 {
     if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
     {
+        //Creates a 3 node branch with their respective transformations
         TNode* nodeRST = createBranch(f,v);
 
         //light Leaf
@@ -123,7 +125,7 @@ TNode* Facade::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
     {
         TNode* nodeRST = createBranch(f,v);
 
-        //light Leaf
+        //Camera Leaf
         TCamera* c = new TCamera();
         TNode* nodeCamera = new TNode(nodeRST, c);
         nodeCamera->setId(5);

@@ -3,6 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+
+
+//Method that reads a shader and compiles it taken from the Internet
 bool TResourceShader::loadResource()
 {
     bool ret = false;

@@ -1,5 +1,5 @@
 #include "TResourceManager.h"
-#include "TResourceMesh.h"
+#include "TResourceOBJ.h"
 #include "TResourceMaterial.h"
 #include "TResourceTexture.h"
 #include "TResourceShader.h"
@@ -85,6 +85,37 @@ TResourceMesh* TResourceManager::getResourceMesh(const char* name)
     }
     return res;
 }
+
+TResourceOBJ* TResourceManager::getResourceOBJ(const char* name)
+{
+    
+    TResourceOBJ* res = nullptr;
+    bool found = false; //We must read the resource as less as possible
+
+    for(unsigned int i=0; i<obj.size() && found==false; i++)
+    {
+        if(strcmp(name,obj[i]->getName())==0)
+        {
+            found = true;
+            res = obj[i];
+        }
+    }
+    if(res == nullptr)
+    {
+        res = new TResourceOBJ();
+        res->setName(name);
+        if(res->loadResource())
+        {
+            obj.push_back(res);
+        }
+        else
+        {
+            delete res;
+        }
+    }
+    return res;
+}
+
 
 TResourceMaterial* TResourceManager::getResourceMaterial(const char* name)
 {

@@ -7,11 +7,12 @@ class TResourceTexture : public TResource
 {
 private:
     GLuint textureID;
-
+    bool active;
 public:
     TResourceTexture(){}
-    ~TResourceTexture(){}
+    ~TResourceTexture(){ glDeleteTextures(1, &textureID);};
 
     bool loadResource(); 
-    void draw(){}
+    void draw();
+
 };

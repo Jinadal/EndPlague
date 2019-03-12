@@ -13,5 +13,5 @@ public:
 
     bool loadResource(){ return true; };
     void loadResource(aiMaterial* m); 
-    void draw(){};
+    void draw();
 };

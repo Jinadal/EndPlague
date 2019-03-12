@@ -3,23 +3,31 @@
 #include <iostream>
 #include <vector>
 
-
+class TResourceMaterial;
+class TResourceTexture;
 class TResourceMesh : public TResource
 {
 private:
-    std::vector<TResourceMesh*> meshes;
-
-    GLuint *buffer, *faces, *meshbuffer;
+    GLuint *buffer, *IBO;
+    GLfloat *bufferdata, *textures;
     GLuint  VAO;
-    GLfloat* textures;
-    int meshbuffersize;
+    int nFaces;
+    TResourceMaterial* material = nullptr;
+    TResourceTexture* texture = nullptr;
+    bool activated = false;
 
 public:
     TResourceMesh(){};
     ~TResourceMesh();
 
-    void loadMesh(aiMesh* m, int n);
-    bool loadResource();
+    void loadMesh(aiMesh* m);
+    bool loadResource(){return false;};
     void draw();
+
+    void setMaterial(TResourceMaterial* m){ material = m;};
+    void setTexture(TResourceTexture* t){ texture = t;};
+
+    void setActivated(bool a){ activated=a;};
+    bool getActivated(){ return activated;};
 };
 

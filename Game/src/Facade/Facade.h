@@ -13,7 +13,7 @@
 #include "../MotorGrafico/TMesh.h"
 #include "../MotorGrafico/TTransform.h"
 #include "../MotorGrafico/TResourceManager.h"
-#include "../MotorGrafico/TResourceMesh.h"
+#include "../MotorGrafico/TResourceOBJ.h"
 #include "../MotorGrafico/TResourceShader.h"
 
 class Facade
