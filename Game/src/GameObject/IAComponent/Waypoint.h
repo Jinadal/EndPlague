@@ -87,7 +87,7 @@ class GPS
         void addWaypointToArea(int a, int w);
         void addConexionToGraph(int w1, int w2);
 
-        void Initialice();
+        void Initialice(int lv);
         void Clear();
         std::vector<float> getWay(float xi, float yi, float xf, float yf );
         std::vector<Area*> getAreas(){return AML;}

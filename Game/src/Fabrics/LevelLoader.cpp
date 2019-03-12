@@ -29,7 +29,7 @@ bool LevelLoader::hasNext()
 }
 
 
-void LevelLoader::loadNext()
+void LevelLoader::loadLevel()
 {
     if(next>=gv::LEVELS_LIST.size())
         next = 0;
@@ -62,16 +62,16 @@ void LevelLoader::createMap(char* obj, char* bmp, char* bullet)
 {
     //ADDING A MAP 700 x 700 x 1
     GameObject* map = GameResource::getInstance()->createGameObject(0.f, 0.f, 0.f, 0.f);
-    RenderManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(map, obj);//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
-    map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    BPhysicManager::getInstance()->createComponent(map, (char*)"res/Mapa_2.bullet");
+    map->getComponent<RenderComponent>()->setTexture((char*)bmp);//Path de bmp   
+    BPhysicManager::getInstance()->createComponent(map, (char*)bullet);
     //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
 }
-void LevelLoader::createPlayer(float x, float y, float rz)
+void LevelLoader::createPlayer(float x, float y, float z)
 {
     //ADDING A PLAYER 1 x 1 x 2
-    player = GameResource::getInstance()->createPlayer(-40.f, -46.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    player = GameResource::getInstance()->createPlayer(x, y, z, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(gv::PLAYER_VELOCITY);
@@ -81,6 +81,8 @@ void LevelLoader::createPlayer(float x, float y, float rz)
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
+    IAManager::getInstance()->init(0);
+
 }
 
 

@@ -26,5 +26,5 @@ class HUD
         int getScore(){return score;}
         void init(){Render::getInstance()->getHUD()->init();}
         void clear(){Render::getInstance()->getHUD()->clear();}
-
+        float high = 60.f;
 };

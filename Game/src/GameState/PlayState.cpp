@@ -26,7 +26,7 @@ void PlayState::initState()
 
         GameManager::getInstance()->initAll();
     }
-}
+} 
 
 
 void PlayState::update(float dt)
@@ -44,6 +44,7 @@ void PlayState::update(float dt)
     {
         if(level<fabrics.size())
         {
+            clear();
             initState();
         }else
         {

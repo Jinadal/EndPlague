@@ -297,7 +297,7 @@ void IAComponent::Clear()
     mapa.clear();
 }
 
-void IAComponent::setPatrollingRoute(GameObject* owner)
+void IAComponent::setPatrollingRoute(GameObject* owner, int lv)
 {
    std::vector<Area*> AML = ((IAManager*)manager)->getGPS()->getAreas();
     int ai = 0;
@@ -313,8 +313,12 @@ void IAComponent::setPatrollingRoute(GameObject* owner)
     std::vector<float> ruta;
 
     if(ai == 0){
+        if(lv == 0){
+        ruta = {7, 1, -8, 3 };
+
+        }else{
         ruta = {-45, 10, -35, -20 };
-       
+        }
 
     }
      if(ai == 1){

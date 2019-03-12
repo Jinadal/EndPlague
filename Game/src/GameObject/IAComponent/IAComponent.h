@@ -11,17 +11,19 @@ class IAComponent : public Component
 
     public:
 
-    IAComponent(GameObject * owner, Manager * m, GameObject* main): Component(owner, m), main(main)
+    IAComponent(GameObject * owner, Manager * m, GameObject* main, int lv): Component(owner, m), main(main)
     {
-        setPatrollingRoute(owner);
+        nivel = lv;
+        setPatrollingRoute(owner, nivel);
     }
     ~IAComponent(){Clear();}
 
     void Initialice(int mode);
     void run();
     void Clear();
-    void setPatrollingRoute(GameObject* owner);
+    void setPatrollingRoute(GameObject* owner, int nivel);
 
+    int nivel;
     std::map<std::string,Nodo*> mapa;
 
     GameObject* main;
