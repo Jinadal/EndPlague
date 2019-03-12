@@ -94,6 +94,7 @@ void FabricVillage::loadLevel()
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
+    IAManager::getInstance()->init(1);
     
 
 

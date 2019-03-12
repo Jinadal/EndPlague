@@ -20,7 +20,7 @@
 
 namespace mine{
 std::vector<Position> loc_wells{
-    {0.f, 10.f, 0.f, true},
+    {0.f, 7.f, 0.f, true},
 };
 std::vector<Position> loc_spawns{
     {0.f, -10.f, 0.f, false},
@@ -36,15 +36,16 @@ void FabricMine::loadLevel()
 
      //ADDING A MAP 700 x 700 x 1
     GameObject* map = GameResource::getInstance()->createGameObject(0.f, 0.f, 0.f, 0.f);
-    RenderManager::getInstance()->createComponent(map, (char*)"res/SUELO.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(map, (char*)"res/MiniMapa.obj");//Fachada de render y path de obj
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)"res/SUELO.bmp");//Path de bmp   
-    BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 0.f, 1);
+    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 0.f, 1);
+    BPhysicManager::getInstance()->createComponent(map, (char*)"res/MiniMapa.bullet");
 
 
 
     //ADDING A PLAYER 1 x 1 x 2
-    player = GameResource::getInstance()->createPlayer(-40.f, -46.f, -1.f, 0.f);//Creates a new GO on x, y, z, rz
+    player = GameResource::getInstance()->createPlayer(0.f, 0.f, -2.f, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/DOOMIE.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(gv::PLAYER_VELOCITY);
@@ -54,6 +55,7 @@ void FabricMine::loadLevel()
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
+    IAManager::getInstance()->init(0);
     
     
     for(size_t i = 0; i<mine::loc_wells.size(); i++)
@@ -72,7 +74,7 @@ void FabricMine::loadLevel()
 
 void FabricMine::spawn(float x, float y, float rz, bool type)
 {
-    GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -1.f, -rz);
+    GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -3.f, -rz);
     
     if(type){
         RenderManager::getInstance()->createComponent(spawn, (char*)"res/CUARTEL.obj");
@@ -90,7 +92,7 @@ void FabricMine::spawn(float x, float y, float rz, bool type)
 
 void FabricMine::well(float x, float y, float rz, bool type)
 {
-    GameObject* well = GameResource::getInstance()->createGameObject(x, y, -1.f, rz);
+    GameObject* well = GameResource::getInstance()->createGameObject(x, y, -2.f, rz);
     RenderManager::getInstance()->createComponent(well, (char*)"res/WELL.obj");//Fachada de render y path de obj
     well->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");//Path de bmp
     WellManager::getInstance()->createComponent(well);

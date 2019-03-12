@@ -5,9 +5,10 @@ class GameObject;
 class GPS;
 class IAManager : public Manager{
     private:
-        IAManager():Manager(){init();};
+        IAManager():Manager(){};
         GameObject* player;
         GPS* gps;
+        int nivel;
        
     public:
         ~IAManager(){clear();}
@@ -16,7 +17,7 @@ class IAManager : public Manager{
             return &only_instance;
         }
 
-        void init();
+        void init(int lv);
         void clear();
         void setPlayer(GameObject* player){this->player = player;}
         void createComponent(GameObject* owner);

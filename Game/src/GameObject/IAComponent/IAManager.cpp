@@ -6,7 +6,7 @@
 
 void IAManager::createComponent(GameObject *owner)
 {
-    components.push_back(new IAComponent(owner,this, player));
+    components.push_back(new IAComponent(owner,this, player, nivel));
     owner->addComponent(components[components.size()-1]);
   
 }
@@ -25,10 +25,11 @@ void IAManager::updateAll(float dt)
 }
 
 
-void IAManager::init()
+void IAManager::init(int lv)
 {
     gps = new GPS();
-    gps->Initialice();
+    gps->Initialice(lv);
+    nivel = lv;
 }
 
 void IAManager::clear()

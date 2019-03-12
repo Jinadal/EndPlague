@@ -2,9 +2,30 @@
 #include <cmath>
 #include "Area.h"
 
-void GPS::Initialice()
+void GPS::Initialice(int lv)
 {
 
+if(lv == 0)
+{
+
+    addWaypoint(5 ,1);
+    addWaypoint(-6,3);
+
+    addArea(-12, 8,13,-17);
+
+    addWaypointToArea(0,0);
+    addWaypointToArea(0,1);
+    
+    addConexionToGraph(0,1);
+
+
+
+}
+
+
+
+if(lv == 1)
+{
     addWaypoint(-38.7 ,-26);
     addWaypoint(-28,1);
     addWaypoint(-33,15.7);
@@ -93,7 +114,7 @@ void GPS::Initialice()
     addConexionToGraph(10,11);
     addConexionToGraph(10,12);
 
-   
+}
 
     
 

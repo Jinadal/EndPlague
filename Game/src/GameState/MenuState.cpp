@@ -8,7 +8,7 @@
 void MenuState::initState()
 {
     type = IGameState::MENU;
-    Render::getInstance()->getMenu()->setMenuBackground("res/sprites/Menu.png");
+    Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Menu.png");
 }
 
 void MenuState::update(float dt)

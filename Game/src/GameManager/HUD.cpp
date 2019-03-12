@@ -9,6 +9,9 @@
 #include "IAComponent.h"
 #include "Waypoint.h"
 #include <iostream>
+#include <SFML/Window.hpp>
+
+
 
 void HUD::update(float dt)
 {
@@ -39,6 +42,16 @@ void HUD::update(float dt)
         }
     }
 
+
+    float dtt = high;
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+
+        if(1/dt >high)
+            high = 1/dt;
+
+    }
+  
     std::cout<<"========= H U D ==========\n";
     std::cout<<"  X: "<<pox<<"\n";
     std::cout<<"  Y: "<<poy<<"\n";
@@ -46,7 +59,7 @@ void HUD::update(float dt)
     std::cout<<"  Life: "<<life<<"\n";
     std::cout<<"  Score: "<<score<<"\n";
     std::cout<<"  Spawns: "<<numSpawns<<"\n";
-    std::cout<<"  FPS: "<<1/dt<<"\n";
+    std::cout<<"  FPS: "<<dtt<<"\n";
     std::cout<<"==========================\n";
 
     Render::getInstance()->getHUD()->updateValues(life, shield,1/dt, score, numSpawns, 1);

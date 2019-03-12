@@ -1,9 +1,9 @@
 #pragma once
 #include "GameValues.h"
 #include <vector>
-
+#include "Fabric.h"
 class GameObject;
-class LevelLoader
+class LevelLoader: public Fabric
 {
     private:
         LevelLoader(){};
@@ -19,7 +19,7 @@ class LevelLoader
         ~LevelLoader(){};
 
         bool hasNext();
-        void loadNext();
+        void loadLevel();
         void createMap(char* obj, char* bmp, char* bullet);
         void createPlayer(float x, float y, float rz);
         void createSpawn(float x, float y, float rz, bool type);
@@ -31,7 +31,9 @@ class LevelLoader
 
 struct xyrt
 {
-    float _x, _y, _rz;
+    float _x;
+    float _y;
+    float _rz;
     bool _t;
 };
 
@@ -40,9 +42,9 @@ struct Level
 {
     //NewValues
     //Mapa
-    char map_obj[10], map_bmp[10], map_bullet[10];
+    char map_obj[20], map_bmp[20], map_bullet[20];
     //Player
-    float pla_x, pla_y, pla_rz;
+    float pla_x, pla_y, pla_z;
     //Spawns
     std::vector<xyrt> spawns;
     //Wells
