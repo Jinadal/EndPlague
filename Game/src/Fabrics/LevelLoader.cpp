@@ -41,8 +41,13 @@ void LevelLoader::loadNext()
     Level level;
     input_file.read((char*)&level, sizeof(level));
     
-    //createMap(level.map_obj, level.map_bmp, level.map_bullet);
-    std::cout<<"Mapa: "<<level.map_obj<<" Text:"<<level.map_bmp<<" Bullet: "<<level.map_bullet<<"\n";
+    createMap(level.map_obj, level.map_bmp, level.map_bullet);
+    createPlayer(level.pla_x, level.pla_y, level.pla_rz);
+    for(std::size_t i = 0; i<level.spawns.size(); i++) 
+        createSpawn(level.spawns[i].x, level.spawns[i].y, level.spawns[i].r, level.spawns[i].t);
+
+    for(std::size_t i = 0; i<level.wells.size(); i++) 
+        createWell(level.wells[i].x, level.wells[i].y, level.wells[i].r);
 
     next++;
 }
@@ -110,18 +115,6 @@ void LevelLoader::createWell(float x, float y, float rz)
 
 void LevelLoader::writeFile()
 {
-    Level level = {
-        "MapaOBJ",
-        "MapaBMP",
-        "Mapabull",
-
-        0.f,
-        1.f,
-        2.f,
-
-        {},
-        {}
-    };
     std::ofstream output_file("data/1.data", std::ios::binary);
     output_file.write((char*)&village, sizeof(village));
     output_file.close();

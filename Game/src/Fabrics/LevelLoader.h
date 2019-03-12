@@ -31,8 +31,8 @@ class LevelLoader
 
 struct xyrt
 {
-    float _x, _y, _rz;
-    bool _t;
+    float x, y, r;
+    bool t;
 };
 
 
@@ -40,7 +40,7 @@ struct Level
 {
     //NewValues
     //Mapa
-    char map_obj[10], map_bmp[10], map_bullet[10];
+    char map_obj[20], map_bmp[20], map_bullet[20];
     //Player
     float pla_x, pla_y, pla_rz;
     //Spawns

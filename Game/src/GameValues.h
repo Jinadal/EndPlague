@@ -33,7 +33,7 @@ namespace gv
         const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else LOTTO
 
     //-------------- LEVELS --------------
-        const std::vector<char*> LEVELS_LIST    = std::vector<char*>{(char*)"data/1.data", (char*)"data/2.data"};
+        const std::vector<char*> LEVELS_LIST    = std::vector<char*>{(char*)"data/1.data"};
 
 
 //########################################################################
