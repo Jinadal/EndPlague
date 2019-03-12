@@ -11,7 +11,7 @@ class Fabric;
 class PlayState : public IGameState 
 {
     private:
-       std::vector<Fabric*> fabrics = {new FabricMine(), new FabricVillage()}; 
+       std::vector<Fabric*> fabrics = {new FabricVillage()}; 
      //   std::vector<Fabric*> fabrics = { new FabricVillage(),new FabricMine()}; 
          //   std::vector<Fabric*> fabrics = {LevelLoader::getInstance()}; 
         std::size_t level = 0;

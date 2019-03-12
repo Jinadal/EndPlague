@@ -6,9 +6,9 @@ Level village = {
     "res/SUELO.bmp",//Map BMP
     "res/Mapa_2.bullet",//Map BULLET
 
-    0.f,//Player x
-    1.f,//Player y
-    2.f,//Player rz
+    -40.f,//Player x
+    -46.f,//Player y
+    -1.f,//Player z
 
     //Spawns
     {{-24.7f, -46.1f, 0.f, false},

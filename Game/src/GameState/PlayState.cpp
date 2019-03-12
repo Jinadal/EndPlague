@@ -8,6 +8,7 @@
 #include "GameObject.h"
 #include "GameManager.h"
 #include "ScoreManager.h"
+#include "LevelLoader.h"
 
 
 
@@ -19,10 +20,13 @@ void PlayState::initState()
     {
         loaded=true;
 
-        if(level>=fabrics.size())
-            level = 0;
-
-        fabrics[level]->loadLevel();
+        if(LevelLoader::getInstance()->hasNext())
+        {
+            LevelLoader::getInstance()->loadLevel();
+        }else
+        {
+            Game::getInstance()->setState(IGameState::stateType::END);            
+        }
 
         GameManager::getInstance()->initAll();
     }
@@ -42,19 +46,14 @@ void PlayState::update(float dt)
         Game::getInstance()->setState(IGameState::stateType::END);
     }else if(SpawnManager::getInstance()->getNumSpawns()<=0)
     {
-        if(level<fabrics.size())
-        {
-            clear();
-            initState();
-        }else
-        {
-            level = 0;
-            clear();
+        if(!LevelLoader::getInstance()->hasNext())
             ScoreManager::getInstance()->setWin();
-            Game::getInstance()->setState(IGameState::stateType::END);
-        }
+
+        clear();
+        initState();
     }
 }
+
 
 void PlayState::clear(){
     GameManager::getInstance()->clear();

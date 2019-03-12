@@ -42,8 +42,9 @@ void LevelLoader::loadLevel()
     input_file.read((char*)&level, sizeof(level));
     
     createMap(level.map_obj, level.map_bmp, level.map_bullet);
-    createPlayer(level.pla_x, level.pla_y, level.pla_rz);
-    for(std::size_t i = 0; i<level.spawns.size(); i++) 
+    createPlayer(level.pla_x, level.pla_y, level.pla_z);
+    
+    for(std::size_t i = 0; i<level.spawns.size(); i++)
         createSpawn(level.spawns[i].x, level.spawns[i].y, level.spawns[i].r, level.spawns[i].t);
 
     for(std::size_t i = 0; i<level.wells.size(); i++) 
