@@ -2,8 +2,8 @@
 
 
 Level village = {
-    "res/Mapa_2.obj",//Map OBJ
-    "res/SUELO.bmp",//Map BMP
+    "res/obj/SUELO.obj",//Map OBJ
+    "res/tex/Suelo.bmp",//Map BMP
     "res/Mapa_2.bullet",//Map BULLET
 
     -40.f,//Player x

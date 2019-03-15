@@ -32,15 +32,15 @@ class ProjectileFabric
             },
             {
                 PAXE,
-                (char*)"res/HACHA.obj",
-                (char*)"res/green.bmp",
+                (char*)"res/obj/HACHA.obj",
+                (char*)"res/tex/Hacha_Color.bmp",
                 gv::AXE_VELOCITY,
                 gv::AXE_DAMAGE
             },
             {
                 PPEAK,
                 (char*)"res/obj/PICO.obj",
-                (char*)"res/PEAK.bmp",
+                (char*)"res/tex/Pico_Color.bmp",
                 gv::PEAK_VELOCITY,
                 gv::PEAK_DAMAGE                
             }

@@ -82,7 +82,7 @@ void LevelLoader::createPlayer(float x, float y, float z)
     CameraManager::getInstance()->createComponent(player);
     StorageManager::getInstance()->createComponent(player);
     IAManager::getInstance()->setPlayer(player);
-    IAManager::getInstance()->init(0);
+    IAManager::getInstance()->init(1);
 
 }
 
