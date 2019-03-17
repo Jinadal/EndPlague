@@ -7,16 +7,16 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "../MotorGrafico/TNode.h"
-#include "../MotorGrafico/TCamera.h"
-#include "../MotorGrafico/TLight.h"
-#include "../MotorGrafico/TMesh.h"
-#include "../MotorGrafico/TTransform.h"
-#include "../MotorGrafico/TResourceManager.h"
-#include "../MotorGrafico/TResourceOBJ.h"
-#include "../MotorGrafico/TResourceShader.h"
+#include "TNode.h"
+#include "TCamera.h"
+#include "TLight.h"
+#include "TMesh.h"
+#include "TTransform.h"
+#include "TResourceManager.h"
+#include "TResourceOBJ.h"
+#include "TResourceShader.h"
 
-class Facade
+class Loto
 {
     private: 
         GLFWwindow* window;

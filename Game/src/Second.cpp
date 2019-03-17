@@ -24,7 +24,7 @@ using namespace glm;
 #include <../common/controls.cpp>
 #include <../common/objloader.cpp>
 
-#include "Facade.h"
+#include "Loto.h"
 
 Second* Second::only_instance = nullptr;
 
@@ -87,12 +87,12 @@ int Second::run()
     glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
    
    
-    Facade* facade = new Facade();
-    facade->initRoot();
-    TNode* scene = facade->getSceneRoot();
+    Loto* loto = new Loto();
+    loto->initRoot();
+    TNode* scene = loto->getSceneRoot();
 	scene->setId(0);
-    TNode* camera = facade->createNodeCamera(scene,glm::vec3(10,0,5),glm::vec3(0,0,0),0.01f,1000.0f);
-	TNode* mesh = facade->createNodeMesh(scene,glm::vec3(0,0,0),"Gema/Gema_02.OBJ");
+    TNode* camera = loto->createNodeCamera(scene,glm::vec3(10,0,5),glm::vec3(0,0,0),0.01f,1000.0f);
+	TNode* mesh = loto->createNodeMesh(scene,glm::vec3(0,0,0),"Gema/Gema_02.OBJ");
 	// Dark blue backgroundFF
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 

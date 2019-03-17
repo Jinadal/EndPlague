@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
-#include "../Facade/Facade.h"
+#include "Loto.h"
 
 //#include "TTransform.h"
 //#include "TCamera.h"
@@ -38,43 +38,43 @@ void Game::run()
 }
 void loadMesh()
 {
-  Facade* facade = new Facade();
-  GLFWwindow* window = facade->initWindow();
-  TResourceManager* manager = facade->getManager();
-  facade->initRoot();
-  facade->initOpenGL();
-  TNode* scene = facade->getSceneRoot();
+  Loto* loto = new Loto();
+  GLFWwindow* window = loto->initWindow();
+  TResourceManager* manager = loto->getManager();
+  loto->initRoot();
+  loto->initOpenGL();
+  TNode* scene = loto->getSceneRoot();
   scene->setId(0);
-  TNode* one = facade->createNodeMesh(scene,glm::vec3(0,0,0),"res/HACHA.obj");
-  while(facade->openWindow(window))
+  TNode* one = loto->createNodeMesh(scene,glm::vec3(0,0,0),"res/HACHA.obj");
+  while(loto->openWindow(window))
   {
-    facade->clear(window);
-    facade->renderCamera();
+    loto->clear(window);
+    loto->renderCamera();
     scene->draw();
   }
   
-  facade->clean();
-  delete facade;
+  loto->clean();
+  delete loto;
 }
 
 void windowTest()
 {
-  Facade* facade = new Facade();
-  GLFWwindow* window = facade->initWindow();
+  Loto* loto = new Loto();
+  GLFWwindow* window = loto->initWindow();
 
-  while (facade->openWindow(window))
+  while (loto->openWindow(window))
   {
     // render
     // ------
 
-    facade->clear(window);
+    loto->clear(window);
 
   }
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
   glfwTerminate();
 
-  delete facade;
+  delete loto;
 }
 
 //void resourceTest()

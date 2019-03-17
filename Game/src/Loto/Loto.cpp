@@ -1,4 +1,4 @@
-#include "Facade.h"
+#include "Loto.h"
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -7,7 +7,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-GLFWwindow* Facade::initWindow()
+GLFWwindow* Loto::initWindow()
 {
     // glfw: initialize and configure
     // ------------------------------
@@ -31,7 +31,7 @@ GLFWwindow* Facade::initWindow()
     return window;
 }
 
-void Facade::initRoot()
+void Loto::initRoot()
 {
     scene = new TNode();
     manager = new TResourceManager();
@@ -45,12 +45,12 @@ void Facade::initRoot()
     
 }
 
-bool Facade::openWindow(GLFWwindow* w)
+bool Loto::openWindow(GLFWwindow* w)
 {
     return !glfwWindowShouldClose(w);
 }
 
-void Facade::clear(GLFWwindow* w)
+void Loto::clear(GLFWwindow* w)
 {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -59,7 +59,7 @@ void Facade::clear(GLFWwindow* w)
 }
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void Facade::processInput(GLFWwindow *window)
+void Loto::processInput(GLFWwindow *window)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
@@ -75,7 +75,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 //We create all the branch with the 3 transformations in the order ROT - SCA - TRANS
-TNode* Facade::createNodeMesh(TNode* f, glm::vec3 v, const char* m)
+TNode* Loto::createNodeMesh(TNode* f, glm::vec3 v, const char* m)
 {
     if(f!= nullptr)
     {
@@ -100,7 +100,7 @@ TNode* Facade::createNodeMesh(TNode* f, glm::vec3 v, const char* m)
     return nullptr;
 }
 
-TNode* Facade::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
+TNode* Loto::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
 {
     if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
     {
@@ -119,7 +119,7 @@ TNode* Facade::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
     return nullptr;
 }
 
-TNode* Facade::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,float ff)
+TNode* Loto::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,float ff)
 {
     if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
     {
@@ -138,7 +138,7 @@ TNode* Facade::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
     return nullptr;
 }
 
-TNode* Facade::createBranch(TNode* f, glm::vec3 v)
+TNode* Loto::createBranch(TNode* f, glm::vec3 v)
 {
     //Rotation node
     TTransform* tr = new TTransform();
@@ -167,13 +167,13 @@ TNode* Facade::createBranch(TNode* f, glm::vec3 v)
     return nodeTrans;
 }
 
-void Facade::clean()
+void Loto::clean()
 {
     delete manager;
     delete scene;
 }
 
-void Facade::initOpenGL()
+void Loto::initOpenGL()
 {
     const char * vertex_shader_path     = "shaders/vertshader.glsl";
     const char * fragment_shader_path   = "shaders/fragshader.glsl";
@@ -215,7 +215,7 @@ void Facade::initOpenGL()
     
 }
 
-void Facade::renderCamera()
+void Loto::renderCamera()
 {
 
     if(camera != nullptr)
@@ -224,7 +224,7 @@ void Facade::renderCamera()
     }
 }
 
-void Facade::calculateCamera(glm::vec3 p,glm::vec3 t)
+void Loto::calculateCamera(glm::vec3 p,glm::vec3 t)
 {
     scene->getEntity()->viewMatrix() = glm::lookAt(p,t,glm::vec3(0,1,0));   
 }
