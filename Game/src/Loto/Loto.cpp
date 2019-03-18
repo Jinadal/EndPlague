@@ -50,6 +50,11 @@ bool Loto::openWindow(GLFWwindow* w)
     return !glfwWindowShouldClose(w);
 }
 
+bool Loto::run()
+{
+    return !glfwWindowShouldClose(window);
+}
+
 void Loto::clear(GLFWwindow* w)
 {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

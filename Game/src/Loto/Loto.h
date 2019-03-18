@@ -27,6 +27,7 @@ class Loto
     public:
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
+        bool run();
         void processInput(GLFWwindow *window);
         void clear(GLFWwindow* w);
 

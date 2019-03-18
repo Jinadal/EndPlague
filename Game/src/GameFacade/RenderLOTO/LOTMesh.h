@@ -1,8 +1,10 @@
 #pragma once
 #include "FMesh.h"
-
+#include "TNode.h"
 class LOTMesh : public FMesh 
 {
+    private:
+        TNode* mesh;
     public:
         LOTMesh(){}
         ~LOTMesh(){}
@@ -12,5 +14,8 @@ class LOTMesh : public FMesh
         void setVisible(bool b);
         void setTexture(char* s);
         void isMap();
+
+
+        void setMesh(TNode* node){mesh = node;}
 };
 

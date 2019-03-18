@@ -21,13 +21,9 @@ GameObject* GameResource::createPlayer(float x, float y, float z, float rz)
     player = gameobjects[gameobjects.size() - 1]; 
     return gameobjects[gameobjects.size() - 1];
 }
-std::size_t maxGO = 0;
+
 void GameResource::updateAll()
 {   
-    std::cout<<"Num GameObjects: "<<gameobjects.size()<<"\n";
-    std::cout<<"MAX GameObjects: "<<maxGO<<"\n";
-    if(gameobjects.size()>maxGO)
-        maxGO = gameobjects.size();
     std::vector<GameObject*>::iterator it = gameobjects.begin();
     for(std::size_t i = 0; i<gameobjects.size(); i++)
     {
