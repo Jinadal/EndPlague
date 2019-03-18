@@ -14,6 +14,10 @@ LOTRender::LOTRender()
     loto->initOpenGL();
     scene = loto->getSceneRoot();
     scene->setId(0);
+    
+
+    loto->createNodeMesh(scene, glm::vec3(0,0,0), "nanosuit/nanosuit.obj");
+
 }
 void LOTRender::drawAll()
 {
@@ -45,14 +49,11 @@ float LOTRender::getCursorY()
 
 FMesh* LOTRender::createMesh(char* s)
 {
-    LOTMesh* mesh = new LOTMesh();
-    mesh->setMesh(loto->createNodeMesh(scene,glm::vec3(0,0,0),s));
-    return mesh;
+    return new LOTMesh();
 }
 
 FCamera* LOTRender::createCamera()
 {
-    loto->createNodeCamera(scene, glm::vec3(0, 0, 0), glm::vec3(0,0,0),1.f,1.f);
     return new LOTCamera();
 }
 

@@ -7,6 +7,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+
 GLFWwindow* Loto::initWindow()
 {
     // glfw: initialize and configure
@@ -27,6 +28,7 @@ GLFWwindow* Loto::initWindow()
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
 
     return window;
 }
@@ -57,8 +59,8 @@ bool Loto::run()
 
 void Loto::clear(GLFWwindow* w)
 {
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
     glfwSwapBuffers(w);
     glfwPollEvents();
 }
@@ -180,9 +182,8 @@ void Loto::clean()
 
 void Loto::initOpenGL()
 {
-    const char * vertex_shader_path     = "shaders/vertshader.glsl";
-    const char * fragment_shader_path   = "shaders/fragshader.glsl";
-
+    const char * vertex_shader_path   = "src/Loto/shaders/TransformVertexShader.vertexshader";
+    const char * fragment_shader_path   = "src/Loto/shaders/ColorFragmentShader.fragmentshader";
     GLenum res = glewInit();
     if (res != GLEW_OK)
     {
