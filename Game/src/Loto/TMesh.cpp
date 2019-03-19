@@ -9,6 +9,7 @@ void TMesh::beginDraw()
         glm::mat4 mm = modelMatrix();
 
         glm::mat4 mvp = pm * vm * mm;
+        
         glUniformMatrix4fv(getMVPID(),1,GL_FALSE,&mvp[0][0]);
         mesh->draw();
     }

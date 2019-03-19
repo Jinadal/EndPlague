@@ -1,5 +1,6 @@
 #include "Loto.h"
 #include <iostream>
+using namespace glm;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -183,7 +184,7 @@ void Loto::clean()
 void Loto::initOpenGL()
 {
     const char * vertex_shader_path   = "src/Loto/shaders/TransformVertexShader.vertexshader";
-    const char * fragment_shader_path   = "src/Loto/shaders/ColorFragmentShader.fragmentshader";
+    const char * fragment_shader_path = "src/Loto/shaders/ColorFragmentShader.fragmentshader";
     GLenum res = glewInit();
     if (res != GLEW_OK)
     {
@@ -209,15 +210,21 @@ void Loto::initOpenGL()
     glDetachShader(shaderProgram, vertexID);
 	glDetachShader(shaderProgram, fragmentID);
 	
-
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS); 
+	glEnable(GL_CULL_FACE);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    glUseProgram(shaderProgram);
     GLuint view         = glGetUniformLocation(shaderProgram, "ViewMatrix");
     GLuint model        = glGetUniformLocation(shaderProgram, "ModelMatrix");
     GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
+    GLuint mvp          = glGetUniformLocation(shaderProgram, "MVP");
 
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
-
+    scene->getEntity()->setMVPID(mvp);
     
 }
 
