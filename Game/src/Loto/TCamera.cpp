@@ -4,7 +4,6 @@
 #define GLM_ENABLE_EXPERIMENTAL 
 TCamera::TCamera()
 {
-    //Camera parameters default initialization. Those values are currently not in use in our game (with the exception of nnear, ffar and zoom)
     left=1.f;
     right=2.f;
     top=1.f;

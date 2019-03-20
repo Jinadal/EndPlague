@@ -1,6 +1,5 @@
 #include "Loto.h"
 #include <iostream>
-using namespace glm;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -58,10 +57,13 @@ bool Loto::run()
     return !glfwWindowShouldClose(window);
 }
 
-void Loto::clear(GLFWwindow* w)
+void Loto::clear()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+void Loto::postDraw(GLFWwindow* w)
+{
     glfwSwapBuffers(w);
     glfwPollEvents();
 }
@@ -148,7 +150,7 @@ TNode* Loto::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,float 
 
 TNode* Loto::createBranch(TNode* f, glm::vec3 v)
 {
-    //Rotation node
+       //Rotation node
     TTransform* tr = new TTransform();
     tr->identity();
     TNode* nodeRot = new TNode(f, tr);
@@ -167,6 +169,7 @@ TNode* Loto::createBranch(TNode* f, glm::vec3 v)
     TTransform* tt = new TTransform();
     tt->identity();
     tt->translate(v.x,v.y,v.z);
+    
     TNode* nodeTrans = new TNode(nodeSca, tt);
     nodeTrans->setId(3);
 
@@ -204,28 +207,30 @@ void Loto::initOpenGL()
     glLinkProgram(shaderProgram);
     glValidateProgram(shaderProgram);
 
-    glDeleteShader(vertexID);
-    glDeleteShader(fragmentID);
-
     glDetachShader(shaderProgram, vertexID);
 	glDetachShader(shaderProgram, fragmentID);
 	
+    glDeleteShader(vertexID);
+    glDeleteShader(fragmentID);
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 	glEnable(GL_CULL_FACE);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glUseProgram(shaderProgram);
+
     GLuint view         = glGetUniformLocation(shaderProgram, "ViewMatrix");
     GLuint model        = glGetUniformLocation(shaderProgram, "ModelMatrix");
     GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
     GLuint mvp          = glGetUniformLocation(shaderProgram, "MVP");
+	GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
 
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
     scene->getEntity()->setMVPID(mvp);
-    
+    glUniform1i(TextureID, 0);
+
 }
 
 void Loto::renderCamera()

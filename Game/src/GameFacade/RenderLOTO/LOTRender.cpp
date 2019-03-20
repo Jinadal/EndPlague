@@ -20,16 +20,14 @@ void MessageCallback( GLenum source,
 LOTRender::LOTRender()
 {
 
-    
     loto = new Loto();
     window = loto->initWindow();
-    manager = loto->getManager();
     loto->initRoot();
     loto->initOpenGL();
     scene = loto->getSceneRoot();
     scene->setId(0);
-    TNode* camera = loto->createNodeCamera(scene,glm::vec3(10,10,25),glm::vec3(0,10,0),0.01f,1000.0f);
-    loto->createNodeMesh(scene, glm::vec3(0,0,0), "nanosuit/nanosuit.obj");
+    TNode* camera = loto->createNodeCamera(scene,glm::vec3(10,10,25),glm::vec3(10,0,0),0.01f,1000.0f);
+    loto->createNodeMesh(scene, glm::vec3(10,10,0), "nanosuit/nanosuit.obj");
 
 
     glEnable( GL_DEBUG_OUTPUT );
@@ -37,9 +35,11 @@ LOTRender::LOTRender()
 }
 void LOTRender::drawAll()
 {
-    loto->clear(window);
-    loto->renderCamera();
+    loto->processInput(window);
+    loto->clear();
+    //loto->renderCamera();
     scene->draw();
+    loto->postDraw(window);
 }
 
 bool LOTRender::run()
