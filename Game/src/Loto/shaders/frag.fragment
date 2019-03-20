@@ -1,0 +1,19 @@
+#version 330 core
+
+// Ouput data
+out vec3 color;
+
+//uniform vec4 color;
+uniform vec2 light_pos;
+
+in vec3 pos;
+
+void main()
+{
+    
+	// Output color = red 
+	color = vec3(1,1,0);
+    
+    float intensity = 1.0 / length (pos.xy - light_pos);
+    color = color * intensity;
+}

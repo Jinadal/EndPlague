@@ -1,8 +1,14 @@
 #pragma once
 #include "FRender.h"
+#include "Loto.h"
+
 
 class LOTRender : public FRender{
     private:
+        GLFWwindow* window;        
+        Loto* loto;
+        TResourceManager* manager;
+        TNode* scene;
         LOTRender();
     public:
         
