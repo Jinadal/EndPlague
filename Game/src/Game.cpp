@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Game.h"
-#include "Loto.h"
+#include "Katana.h"
 
 //#include "TTransform.h"
 //#include "TCamera.h"
@@ -38,43 +38,43 @@ void Game::run()
 }
 void loadMesh()
 {
-  Loto* loto = new Loto();
-  GLFWwindow* window = loto->initWindow();
-  TResourceManager* manager = loto->getManager();
-  loto->initRoot();
-  loto->initOpenGL();
-  TNode* scene = loto->getSceneRoot();
+  Katana* katana = new Katana();
+  GLFWwindow* window = katana->initWindow();
+  TResourceManager* manager = katana->getManager();
+  katana->initRoot();
+  katana->initOpenGL();
+  TNode* scene = katana->getSceneRoot();
   scene->setId(0);
-  TNode* one = loto->createNodeMesh(scene,glm::vec3(0,0,0),"res/HACHA.obj");
-  while(loto->openWindow(window))
+  TNode* one = katana->createNodeMesh(scene,glm::vec3(0,0,0),"res/HACHA.obj");
+  while(katana->openWindow(window))
   {
-    loto->clear(window);
-    loto->renderCamera();
+    katana->clear(window);
+    katana->renderCamera();
     scene->draw();
   }
   
-  loto->clean();
-  delete loto;
+  katana->clean();
+  delete katana;
 }
 
 void windowTest()
 {
-  Loto* loto = new Loto();
-  GLFWwindow* window = loto->initWindow();
+  Katana* katana = new Katana();
+  GLFWwindow* window = katana->initWindow();
 
-  while (loto->openWindow(window))
+  while (katana->openWindow(window))
   {
     // render
     // ------
 
-    loto->clear(window);
+    katana->clear(window);
 
   }
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
   glfwTerminate();
 
-  delete loto;
+  delete katana;
 }
 
 //void resourceTest()
