@@ -18,7 +18,6 @@ class TCamera : public TEntity
         
         void changeCamera(bool c){ perspective = c;};
 
-
         void beginDraw(){}
         void endDraw(){}
 

@@ -14,8 +14,7 @@ KATRender::KATRender()
     scene = katana->getSceneRoot();
 	//scene->setId(0);
 
-	katana->createNodeCamera(scene, glm::vec3(10,0,5),glm::vec3(0,0,0),0.01f,1000.0f);
-	katana->createNodeMesh(scene, glm::vec3(0,0,0),"nanosuit/nanosuit.obj");
+	katana->createNodeCamera(scene, glm::vec3(100,0,50),glm::vec3(0,0,0),0.01f,100.0f);
 
     /*
     while(katana->openWindow(window))
@@ -72,4 +71,10 @@ FHUD* KATRender::getHUD()
 FMenu* KATRender::getMenu()
 {
     return KATMenu::getInstance();
+}
+
+
+void KATRender::setCamera(float x,float y,float z,float rx,float ry,float rz)
+{
+    katana->calculateCamera(glm::vec3(x, y, z),glm::vec3(rx, ry, rz));
 }
