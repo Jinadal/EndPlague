@@ -83,7 +83,6 @@ void TNode::draw()
 
     if(entity)
     {
-        std::cout<<entity<<std::endl;
         entity->beginDraw();
     }
     for(unsigned int i = 0; i<child.size(); i++)

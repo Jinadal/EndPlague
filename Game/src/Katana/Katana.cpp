@@ -4,12 +4,9 @@
 #include <glm/glm.hpp>
 #define GLM_ENABLE_EXPERIMENTAL 
 #include <iostream>
+#include "GameValues.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-
-// settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
 
 
 void MessageCallback( GLenum source,
@@ -38,7 +35,7 @@ GLFWwindow* Katana::initWindow()
 
     // glfw window creation
     // --------------------
-    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -218,7 +215,7 @@ void Katana::initOpenGL()
 	glEnable(GL_CULL_FACE);
 
     	// Create and compile our GLSL program from the shaders
-	GLuint programID = LoadShaders( "src/Katana/shaders/TransformVertexShader.vertexshader", "src/Katana/shaders/TextureFragmentShader.fragmentshader" );
+	GLuint programID = LoadShaders( "src/Katana/shaders/TransformVertexShader.vertexshader", "src/Katana/shaders/ColorFragmentShader.fragmentshader" );
     scene->getEntity()->setProgramID(programID);
 	// Get a handle for our "MVP" uniform
 	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
@@ -226,7 +223,7 @@ void Katana::initOpenGL()
 	// Load the texture
 	//TResourceTexture* Texture = new TResourceTexture();
 	//GLuint Texture = loadDDS("uvmap.DDS");
-	
+	glUseProgram(scene->getEntity()->getProgramID());
 	// Get a handle for our "myTextureSampler" uniform
 	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
 
@@ -253,7 +250,6 @@ void Katana::drawAll()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Use our shader
-    glUseProgram(scene->getEntity()->getProgramID());
     scene->draw();
 
     // Swap buffers

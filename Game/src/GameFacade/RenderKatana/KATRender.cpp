@@ -7,15 +7,24 @@
 
 KATRender::KATRender()
 {
-    Katana* katana = new Katana();
+    katana = new Katana();
 	window = katana->initWindow();
     katana->initRoot();
 	katana->initOpenGL();
     scene = katana->getSceneRoot();
-	scene->setId(0);
+	//scene->setId(0);
 
-	katana->createNodeCamera(scene,glm::vec3(10,0,5),glm::vec3(0,0,0),0.01f,1000.0f);
-	katana->createNodeMesh(scene,glm::vec3(0,0,0),"nanosuit/nanosuit.obj");
+	katana->createNodeCamera(scene, glm::vec3(10,0,5),glm::vec3(0,0,0),0.01f,1000.0f);
+	katana->createNodeMesh(scene, glm::vec3(0,0,0),"nanosuit/nanosuit.obj");
+
+    /*
+    while(katana->openWindow(window))
+	{
+		katana->drawAll();
+	} 
+
+	katana->close();
+    */
 }
 
 void KATRender::drawAll()
@@ -45,8 +54,9 @@ float KATRender::getCursorY()
 
 FMesh* KATRender::createMesh(char* s)
 {
-	//katana->createNodeMesh(scene,glm::vec3(0,0,0),s);
-    return new KATMesh();
+    KATMesh* r = new KATMesh();
+    r->setMesh(katana->createNodeMesh(scene,glm::vec3(0,0,0),s));
+    return r;
 }
 
 FCamera* KATRender::createCamera()
