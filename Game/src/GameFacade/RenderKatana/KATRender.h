@@ -2,10 +2,12 @@
 #include "FRender.h"
 #include "Katana.h"
 
-
+class GLFWwindow;
 class KATRender : public FRender{
     private:
+        GLFWwindow* window;
         Katana* katana;
+        TNode* scene;
         KATRender();
     public:
         

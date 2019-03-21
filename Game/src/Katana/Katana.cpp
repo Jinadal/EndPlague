@@ -1,8 +1,30 @@
 #include "Katana.h"
+#include <../common/shader.cpp>
+// Include GLM
+#include <glm/glm.hpp>
+#define GLM_ENABLE_EXPERIMENTAL 
 #include <iostream>
-#include "GameValues.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
+// settings
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
+
+
+void MessageCallback( GLenum source,
+                      GLenum type,
+                      GLuint id,
+                      GLenum severity,
+                      GLsizei length,
+                      const GLchar* message,
+                      const void* userParam )
+{
+  fprintf( stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+           ( type == GL_DEBUG_TYPE_ERROR ? " GL ERROR " : "" ),
+            type, severity, message );
+}
+
 
 
 GLFWwindow* Katana::initWindow()
@@ -16,7 +38,7 @@ GLFWwindow* Katana::initWindow()
 
     // glfw window creation
     // --------------------
-    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -25,7 +47,6 @@ GLFWwindow* Katana::initWindow()
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
 
     return window;
 }
@@ -49,18 +70,10 @@ bool Katana::openWindow(GLFWwindow* w)
     return !glfwWindowShouldClose(w);
 }
 
-bool Katana::run()
-{
-    return !glfwWindowShouldClose(window);
-}
-
 void Katana::clear(GLFWwindow* w)
 {
-    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-void Katana::postDraw(GLFWwindow* w)
-{
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
     glfwSwapBuffers(w);
     glfwPollEvents();
 }
@@ -147,7 +160,7 @@ TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
 
 TNode* Katana::createBranch(TNode* f, glm::vec3 v)
 {
-       //Rotation node
+    //Rotation node
     TTransform* tr = new TTransform();
     tr->identity();
     TNode* nodeRot = new TNode(f, tr);
@@ -166,7 +179,6 @@ TNode* Katana::createBranch(TNode* f, glm::vec3 v)
     TTransform* tt = new TTransform();
     tt->identity();
     tt->translate(v.x,v.y,v.z);
-    
     TNode* nodeTrans = new TNode(nodeSca, tt);
     nodeTrans->setId(3);
 
@@ -183,50 +195,40 @@ void Katana::clean()
 
 void Katana::initOpenGL()
 {
-    const char * vertex_shader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
-    const char * fragment_shader_path = "src/Katana/shaders/ColorFragmentShader.fragmentshader";
     GLenum res = glewInit();
     if (res != GLEW_OK)
     {
         fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
     }
 
-    TResourceShader* vertexShader   = manager->getResourceShader(vertex_shader_path, (GLenum)GL_VERTEX_SHADER);
-	TResourceShader* fragmentShader = manager->getResourceShader(fragment_shader_path, (GLenum)GL_FRAGMENT_SHADER);
 
-    GLuint vertexID     = vertexShader->getId();
-	GLuint fragmentID   = fragmentShader->getId();
+    //glfwSetCursorPos(window, 1024/2, 768/2);
+	glEnable( GL_DEBUG_OUTPUT );
+    glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
 
-    GLuint shaderProgram = glCreateProgram();
-    
-    glAttachShader(shaderProgram, vertexID);
-    glAttachShader(shaderProgram, fragmentID);
-    glLinkProgram(shaderProgram);
-    glValidateProgram(shaderProgram);
 
-    glDetachShader(shaderProgram, vertexID);
-	glDetachShader(shaderProgram, fragmentID);
-	
-    glDeleteShader(vertexID);
-    glDeleteShader(fragmentID);
-
+       	// Dark blue backgroundFF
+	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+		// Enable depth test
 	glEnable(GL_DEPTH_TEST);
+	// Accept fragment if it closer to the camera than the former one
 	glDepthFunc(GL_LESS); 
+
+	// Cull triangles which normal is not towards the camera
 	glEnable(GL_CULL_FACE);
-    
-    glUseProgram(shaderProgram);
 
-    GLuint view         = glGetUniformLocation(shaderProgram, "ViewMatrix");
-    GLuint model        = glGetUniformLocation(shaderProgram, "ModelMatrix");
-    GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
-    GLuint mvp          = glGetUniformLocation(shaderProgram, "MVP");
-	GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
-
-    scene->getEntity()->setviewID(view);
-    scene->getEntity()->setmodelID(model);
-    scene->getEntity()->setprojectionID(projection);
-    scene->getEntity()->setMVPID(mvp);
-    glUniform1i(TextureID, 0);
+    	// Create and compile our GLSL program from the shaders
+	GLuint programID = LoadShaders( "src/Katana/shaders/TransformVertexShader.vertexshader", "src/Katana/shaders/TextureFragmentShader.fragmentshader" );
+    scene->getEntity()->setProgramID(programID);
+	// Get a handle for our "MVP" uniform
+	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+	scene->getEntity()->setMVPID(MatrixID);
+	// Load the texture
+	//TResourceTexture* Texture = new TResourceTexture();
+	//GLuint Texture = loadDDS("uvmap.DDS");
+	
+	// Get a handle for our "myTextureSampler" uniform
+	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
 
 }
 
@@ -242,4 +244,29 @@ void Katana::renderCamera()
 void Katana::calculateCamera(glm::vec3 p,glm::vec3 t)
 {
     scene->getEntity()->viewMatrix() = glm::lookAt(p,t,glm::vec3(0,1,0));   
+}
+
+
+void Katana::drawAll()
+{
+    // Clear the screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // Use our shader
+    glUseProgram(scene->getEntity()->getProgramID());
+    scene->draw();
+
+    // Swap buffers
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+}
+
+void Katana::close()
+{
+
+	glDeleteProgram(scene->getEntity()->getProgramID());
+	//glDeleteTextures(1, &Texture);
+
+	// Close OpenGL window and terminate GLFW
+	glfwTerminate();
 }

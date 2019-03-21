@@ -27,16 +27,15 @@ class Katana
     public:
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
-        bool run();
         void processInput(GLFWwindow *window);
-        void clear();
         void clear(GLFWwindow* w);
-        void postDraw(GLFWwindow* w);
+        void close();
 
         TResourceManager* getManager(){return manager;};
         void clean();
         void initOpenGL();
         void renderCamera();
+        void drawAll();
         void calculateCamera(glm::vec3 p,glm::vec3 t);
 
         //TREE METHODS

@@ -14,6 +14,7 @@ class TEntity
         static GLuint projectionID;
         static GLuint modelID;
         static GLuint MVPID;
+        static GLuint programID;
     public:
         TEntity(){}
         virtual ~TEntity(){}
@@ -25,6 +26,8 @@ class TEntity
         static void setprojectionID(GLuint p){ projectionID = p;};
         static void setmodelID(GLuint m){ modelID = m;};
         static void setMVPID(GLuint m){ MVPID = m;};
+        static void setProgramID(GLuint pid){programID = pid;};
+        static GLuint getProgramID(){return programID;};
 
 
         static GLuint getModelID(){ return modelID;};
@@ -37,19 +40,16 @@ class TEntity
     static glm::mat4& modelMatrix() 
     {
         static glm::mat4 matrix;
-        std::cout << "Im matrix from model : " <<glm::to_string(matrix) << std::endl;
         return matrix;
     };
     static glm::mat4& viewMatrix() 
     {
         static glm::mat4 matrix;
-        std::cout << "Im matrix from view : " <<glm::to_string(matrix) << std::endl;
         return matrix;
     };
     static glm::mat4& projectionMatrix() 
     {
         static glm::mat4 matrix;
-        std::cout << "Im matrix from projection : " <<glm::to_string(matrix) << std::endl;
         return matrix;
     };
     static std::stack<glm::mat4>& stackMatrix() 

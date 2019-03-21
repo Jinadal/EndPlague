@@ -7,22 +7,30 @@
 
 KATRender::KATRender()
 {
-   
+    Katana* katana = new Katana();
+	window = katana->initWindow();
+    katana->initRoot();
+	katana->initOpenGL();
+    scene = katana->getSceneRoot();
+	scene->setId(0);
+
+	katana->createNodeCamera(scene,glm::vec3(10,0,5),glm::vec3(0,0,0),0.01f,1000.0f);
+	katana->createNodeMesh(scene,glm::vec3(0,0,0),"nanosuit/nanosuit.obj");
 }
 
 void KATRender::drawAll()
 {
-
+    katana->drawAll();
 }
 
 bool KATRender::run()
 {
-    return true;
+    return katana->openWindow(window);
 }
 
 void KATRender::drop()
 {
-
+    katana->close();
 }
 
 float KATRender::getCursorX()
@@ -37,6 +45,7 @@ float KATRender::getCursorY()
 
 FMesh* KATRender::createMesh(char* s)
 {
+	//katana->createNodeMesh(scene,glm::vec3(0,0,0),s);
     return new KATMesh();
 }
 
