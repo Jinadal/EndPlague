@@ -37,16 +37,19 @@ class TEntity
     static glm::mat4& modelMatrix() 
     {
         static glm::mat4 matrix;
+        std::cout << "Im matrix from model : " <<glm::to_string(matrix) << std::endl;
         return matrix;
     };
     static glm::mat4& viewMatrix() 
     {
         static glm::mat4 matrix;
+        std::cout << "Im matrix from view : " <<glm::to_string(matrix) << std::endl;
         return matrix;
     };
     static glm::mat4& projectionMatrix() 
     {
         static glm::mat4 matrix;
+        std::cout << "Im matrix from projection : " <<glm::to_string(matrix) << std::endl;
         return matrix;
     };
     static std::stack<glm::mat4>& stackMatrix() 
