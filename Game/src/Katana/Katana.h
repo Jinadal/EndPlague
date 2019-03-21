@@ -30,6 +30,7 @@ class Katana
         bool run();
         void processInput(GLFWwindow *window);
         void clear();
+        void clear(GLFWwindow* w);
         void postDraw(GLFWwindow* w);
 
         TResourceManager* getManager(){return manager;};

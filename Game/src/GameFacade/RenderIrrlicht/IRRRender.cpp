@@ -3,11 +3,12 @@
 #include "IRRMesh.h"
 #include "IRRMenu.h"
 #include "IRRHUD.h"
+#include "GameValues.h"
 
 IRRRender::IRRRender(){
     //We need to use video::EDT_SOFTWARE!!
     //BUT we only can see the map with EDT:OPENGL!
-    device = irr::createDevice( irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1366, 768), 16,
+    device = irr::createDevice( irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(gv::SCR_HEIGHT, gv::SCR_WIDTH), 16,
 			false, false, false, 0);
 
     if (!device)

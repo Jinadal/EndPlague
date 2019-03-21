@@ -7,9 +7,9 @@
 
 KATRender::KATRender()
 {
-
-
+   
 }
+
 void KATRender::drawAll()
 {
 

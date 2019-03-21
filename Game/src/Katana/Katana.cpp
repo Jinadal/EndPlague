@@ -1,11 +1,8 @@
 #include "Katana.h"
 #include <iostream>
+#include "GameValues.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-
-// settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
 
 
 GLFWwindow* Katana::initWindow()
@@ -19,7 +16,7 @@ GLFWwindow* Katana::initWindow()
 
     // glfw window creation
     // --------------------
-    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -62,7 +59,7 @@ void Katana::clear(GLFWwindow* w)
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
-void Loto::postDraw(GLFWwindow* w)
+void Katana::postDraw(GLFWwindow* w)
 {
     glfwSwapBuffers(w);
     glfwPollEvents();
@@ -186,8 +183,8 @@ void Katana::clean()
 
 void Katana::initOpenGL()
 {
-    const char * vertex_shader_path   = "src/Loto/shaders/TransformVertexShader.vertexshader";
-    const char * fragment_shader_path = "src/Loto/shaders/ColorFragmentShader.fragmentshader";
+    const char * vertex_shader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
+    const char * fragment_shader_path = "src/Katana/shaders/ColorFragmentShader.fragmentshader";
     GLenum res = glewInit();
     if (res != GLEW_OK)
     {

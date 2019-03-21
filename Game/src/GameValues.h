@@ -29,8 +29,10 @@ namespace gv
         const float     PROJECTILE_GRAVITY      = 1.f;      //ONLY projectiles gravity 0.f
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
-    //------------- PHYSICS --------------
+    //------------- RENDER  --------------
         const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else LOTTO
+        const unsigned int SCR_WIDTH            = 1366;
+        const unsigned int SCR_HEIGHT           = 768;
 
     //-------------- LEVELS --------------
         const std::vector<char*> LEVELS_LIST    = std::vector<char*>{(char*)"data/1.data"};
