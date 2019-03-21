@@ -1,5 +1,5 @@
 #include "Render.h"
-#include "LOTRender.h"
+#include "KATRender.h"
 #include "IRRRender.h"
 #include "GameValues.h"
 
@@ -9,7 +9,7 @@ Render::Render(){
         render = IRRRender::getInstance();
     }else
     {
-        render = LOTRender::getInstance();
+        render = KATRender::getInstance();
     }
 }
 
