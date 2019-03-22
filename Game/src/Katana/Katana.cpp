@@ -192,41 +192,56 @@ void Katana::clean()
 
 void Katana::initOpenGL()
 {
+
+    const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
+    const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
+
     GLenum res = glewInit();
     if (res != GLEW_OK)
     {
         fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
     }
 
+    TResourceShader* vertexShader   = manager->getResourceShader(vshader_path, (GLenum)GL_VERTEX_SHADER);
+	TResourceShader* fragmentShader = manager->getResourceShader(fshader_path, (GLenum)GL_FRAGMENT_SHADER);
 
-    //glfwSetCursorPos(window, 1024/2, 768/2);
-	glEnable( GL_DEBUG_OUTPUT );
-    glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
+    GLuint vertexID     = vertexShader->getId();
+	GLuint fragmentID   = fragmentShader->getId();
 
+    GLuint shaderProgram = glCreateProgram();
+    
+    glAttachShader(shaderProgram, vertexID);
+    glAttachShader(shaderProgram, fragmentID);
+    glLinkProgram(shaderProgram);
+    glValidateProgram(shaderProgram);
 
-       	// Dark blue backgroundFF
-	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
-		// Enable depth test
+    glDetachShader(shaderProgram, vertexID);
+	glDetachShader(shaderProgram, fragmentID);
+
+    glDeleteShader(vertexID);
+    glDeleteShader(fragmentID);
+
+    //Enable Z-Buffer 
 	glEnable(GL_DEPTH_TEST);
-	// Accept fragment if it closer to the camera than the former one
 	glDepthFunc(GL_LESS); 
-
-	// Cull triangles which normal is not towards the camera
 	glEnable(GL_CULL_FACE);
+    
+    glUseProgram(shaderProgram);
 
-    	// Create and compile our GLSL program from the shaders
-	GLuint programID = LoadShaders( "src/Katana/shaders/TransformVertexShader.vertexshader", "src/Katana/shaders/ColorFragmentShader.fragmentshader" );
-    scene->getEntity()->setProgramID(programID);
-	// Get a handle for our "MVP" uniform
-	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-	scene->getEntity()->setMVPID(MatrixID);
-	// Load the texture
-	//TResourceTexture* Texture = new TResourceTexture();
-	//GLuint Texture = loadDDS("uvmap.DDS");
-	glUseProgram(scene->getEntity()->getProgramID());
-	// Get a handle for our "myTextureSampler" uniform
-	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
+    scene->getEntity()->setProgramID(shaderProgram);
 
+    GLuint view         = glGetUniformLocation(shaderProgram, "V");
+    GLuint model        = glGetUniformLocation(shaderProgram, "M");
+    GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
+	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
+	GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
+    GLuint light        = glGetUniformLocation(shaderProgram, "light_pos");
+
+    scene->getEntity()->setviewID(view);
+    scene->getEntity()->setmodelID(model);
+    scene->getEntity()->setprojectionID(projection);
+	scene->getEntity()->setMVPID(matrix);
+    glUniform1i(TextureID, 0);
 }
 
 void Katana::deleteNodeBranch(TNode* n)

@@ -15,7 +15,7 @@ KATRender::KATRender()
 	//scene->setId(0);
 
 	katana->createNodeCamera(scene, glm::vec3(100,0,50),glm::vec3(0,0,0),0.01f,100.0f);
-
+	
     /*
     while(katana->openWindow(window))
 	{

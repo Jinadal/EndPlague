@@ -24,7 +24,7 @@ bool TResourceShader::loadResource()
 
         source = allLines.c_str();
         std::cout << source;
-
+        ret = true;
         theFile.close();
     }
     else
@@ -35,5 +35,15 @@ bool TResourceShader::loadResource()
     glShaderSource(id, 1, &source, nullptr);
     glCompileShader(id);
 
+    GLint Result = GL_FALSE;
+	int InfoLogLength;
+	// Check Vertex Shader
+	glGetShaderiv(id, GL_COMPILE_STATUS, &Result);
+	glGetShaderiv(id, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	if ( InfoLogLength > 0 ){
+		std::vector<char> ShaderErrorMessage(InfoLogLength+1);
+		glGetShaderInfoLog(id, InfoLogLength, NULL, &ShaderErrorMessage[0]);
+		printf("%s\n", &ShaderErrorMessage[0]);
+	}
     return ret;
 }

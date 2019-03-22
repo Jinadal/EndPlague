@@ -92,11 +92,11 @@ void LevelLoader::createSpawn(float x, float y, float rz, bool type)
     GameObject* spawn = GameResource::getInstance()->createGameObject(x, y, -2.58f, -rz);
     
     if(type){
-        RenderManager::getInstance()->createComponent(spawn, (char*)"res/obj/CUARTEL.obj");
+        RenderManager::getInstance()->createComponent(spawn, (char*)"res/con_mtl/CUARTEL.obj");
         spawn->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Cuartel_Color.bmp");
         SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_1);
     }else{
-        RenderManager::getInstance()->createComponent(spawn, (char*)"res/obj/CASA.obj");
+        RenderManager::getInstance()->createComponent(spawn, (char*)"res/con_mtl/CASA.obj");
         spawn->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Casa_Color.bmp");
         SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_2);
     }
@@ -108,7 +108,7 @@ void LevelLoader::createSpawn(float x, float y, float rz, bool type)
 void LevelLoader::createWell(float x, float y, float rz)
 {
     GameObject* well = GameResource::getInstance()->createGameObject(x, y, -1.f, rz);
-    RenderManager::getInstance()->createComponent(well, (char*)"res/obj/POZO.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(well, (char*)"res/con_mtl/POZO.obj");//Fachada de render y path de obj
     well->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Pozo_Color.bmp");//Path de bmp
     WellManager::getInstance()->createComponent(well);
     BPhysicManager::getInstance()->createComponent(well, .5f, .5f, .5f, 0.f, 1);   
