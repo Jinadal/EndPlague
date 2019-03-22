@@ -229,6 +229,16 @@ void Katana::initOpenGL()
 
 }
 
+void Katana::deleteNodeBranch(TNode* n)
+{
+    if(n!=nullptr)
+    {
+        TNode* d = n->getFather()->getFather()->getFather();
+        if(d != nullptr && dynamic_cast<TTransform*>(d->getEntity()) != nullptr)
+            delete d;
+    }
+}
+
 void Katana::renderCamera()
 {
 

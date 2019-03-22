@@ -44,6 +44,7 @@ class Katana
         TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
         TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
+        void deleteNodeBranch(TNode* n);
 
         TNode* createBranch(TNode* f, glm::vec3 v);
 };
