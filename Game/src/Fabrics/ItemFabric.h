@@ -33,29 +33,29 @@ class ItemFabric
             {
                 CROSSBOW,
                 (char*)"res/obj/BALLESTA.obj",
-                (char*)"res/tex/Ballesta_Color.bmp"
+                (char*)"res/obj/Ballesta_Color.bmp"
 
             },
             {
                 AXE,
                 (char*)"res/obj/HACHA.obj",
-                (char*)"res/tex/Hacha_Color.bmp"
+                (char*)"res/obj/Hacha_Color.bmp"
             }, 
             {
                 PEAK,
                 (char*)"res/obj/PICO.obj",
-                (char*)"res/tex/Pico_Color.bmp"
+                (char*)"res/obj/Pico_Color.bmp"
             },
             {
                 POTION,
                 (char*)"res/obj/POCION.obj",
-                (char*)"res/tex/Pocion_Color.bmp"
+                (char*)"res/obj/Pocion_Color.bmp"
 
             },
             {
                 SHIELD,
                 (char*)"res/obj/ESCUDO.obj",
-                (char*)"res/tex/Escudo_Color.bmp"
+                (char*)"res/obj/Escudo_Color.bmp"
             }
         };
 
