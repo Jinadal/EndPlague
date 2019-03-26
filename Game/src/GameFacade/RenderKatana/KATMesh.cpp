@@ -11,6 +11,7 @@ void KATMesh::setPosition(float x, float y, float z)
     matrix->translate(-x, y, z);
 }
 
+
 void KATMesh::setRotation(float x, float y, float z)
 {
     TTransform* matrix = (TTransform*)mesh->getFather()->getEntity();

@@ -23,7 +23,6 @@ bool TResourceShader::loadResource()
         }
 
         source = allLines.c_str();
-        std::cout << source;
         ret = true;
         theFile.close();
     }
