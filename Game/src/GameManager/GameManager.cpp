@@ -20,6 +20,7 @@
 #include "WellManager.h"
 #include "WoodManager.h"
 
+#include "SoundSystem.h"
 #include "GameResource.h"
 #include "Render.h"
 #include "HUD.h"
@@ -29,6 +30,7 @@ void GameManager::initAll()
 {
     GameResource::getInstance();
 
+    SoundSystem::getInstance()->Init();
     BPhysicManager::getInstance();
     BucketManager::getInstance();
     CameraManager::getInstance();
@@ -54,6 +56,7 @@ void GameManager::clear()
     GameResource::getInstance()->clear();
     HUD::getInstance()->clear();
     ScoreManager::getInstance()->resetScore();
+    SoundSystem::getInstance()->Shutdown();
 }
 
 void GameManager::updateAll(float dt)
@@ -71,6 +74,7 @@ void GameManager::updateAll(float dt)
     CameraManager::getInstance()->updateAll(dt);
     LifeManager::getInstance()->updateAll(dt);
     RenderManager::getInstance()->updateAll(dt);
+    SoundSystem::getInstance()->Update();
 
     //USELESS
     //BucketManager::getInstance()->updateAll(dt);

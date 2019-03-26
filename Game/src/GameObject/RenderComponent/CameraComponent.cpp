@@ -1,5 +1,6 @@
 #include "CameraComponent.h"
 #include "GameValues.h"
+#include "CameraManager.h"
 
 
 void CameraComponent::update(float dt)
@@ -17,6 +18,8 @@ void CameraComponent::update(float dt)
     z = gameObject->getZ();
 
     node->update(x, y-(gv::CAMERA_DY * zoom), z-(gv::CAMERA_DZ * zoom), x, y, z);
+
+   ((CameraManager*)manager)->setCameraPosition(x, y-(gv::CAMERA_DY * zoom), z-(gv::CAMERA_DZ * zoom));
 }
 
 void CameraComponent::setFOV(float fov)

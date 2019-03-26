@@ -6,6 +6,7 @@
 #include "BPhysicManager.h"
 #include "ProjectileManager.h"
 #include "GameObject.h"
+#include "SpecificSoundEvent.h"
 
 #define PI 3.14159265
 
@@ -20,6 +21,18 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
     RenderManager::getInstance()->createComponent(r, projectile_types[type].mesh);
     r->getComponent<RenderComponent>()->setTexture(projectile_types[type].texture);
     ProjectileManager::getInstance()->createComponent(r, projectile_types[type].damage, team);
+    ShootSoundEvent* s = nullptr;
+    if(type == PARROW)
+       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ballesta"));
+
+    if(type == PAXE)
+       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("hacha"));
+
+    if(type == PPEAK)
+       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("pico"));
+
+    s->setPosition({x,y,-1});
+    s->start();
 
     return r;
 }
