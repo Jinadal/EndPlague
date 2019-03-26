@@ -26,21 +26,21 @@ class ProjectileFabric
             {
                 PARROW,
                 (char*)"res/obj/FLECHA.obj",
-                (char*)"res/tex/Flecha_Color.bmp",
+                (char*)"res/obj/Flecha_Color.bmp",
                 gv::ARROW_VELOCITY,
                 gv::ARROW_DAMAGE
             },
             {
                 PAXE,
                 (char*)"res/obj/HACHA.obj",
-                (char*)"res/tex/Hacha_Color.bmp",
+                (char*)"res/obj/Hacha_Color.bmp",
                 gv::AXE_VELOCITY,
                 gv::AXE_DAMAGE
             },
             {
                 PPEAK,
                 (char*)"res/obj/PICO.obj",
-                (char*)"res/tex/Pico_Color.bmp",
+                (char*)"res/obj/Pico_Color.bmp",
                 gv::PEAK_VELOCITY,
                 gv::PEAK_DAMAGE                
             }

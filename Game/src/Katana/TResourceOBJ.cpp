@@ -76,10 +76,6 @@ bool TResourceOBJ::loadResource()
                 TResourceTexture* texture = new TResourceTexture();
                 std::string completePath = path + texturepath.data;                
                 texture->setName(completePath.c_str());
-                for(size_t i=0;i<completePath.size()-1;i++)
-                {
-                std::cout<<completePath[i]<<std::ends;
-                }
                 texture->loadResource();
                 mesh->setTexture(texture);
                 mesh->setActivated(true);

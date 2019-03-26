@@ -5,6 +5,8 @@
 
 TResourceMesh::~TResourceMesh()
 {
+    texture->setActivate(false);
+    delete texture;
     glDeleteBuffers(4, buffer);
     glDeleteVertexArrays(1, &VAO);
 }
@@ -110,7 +112,7 @@ void TResourceMesh::loadMesh(aiMesh* m)
 
 void TResourceMesh::draw()
 {
-    if(texture!= nullptr && getActivated())
+    if(texture!= nullptr && texture->getActive())
     texture->draw();
 
     if(material != nullptr)

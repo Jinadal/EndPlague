@@ -15,4 +15,6 @@ public:
     bool loadResource(); 
     void draw();
 
+    void setActivate(bool b){active = b;};
+    bool getActive(){ return active;};
 };

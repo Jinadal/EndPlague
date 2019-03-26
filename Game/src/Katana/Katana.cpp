@@ -195,6 +195,9 @@ void Katana::initOpenGL()
 
     const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
     const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
+    const char * vbill_path     = "src/Katana/shaders/billboard.vert";
+    const char * gbill_path     = "src/Katana/shaders/billboard.geo";
+    const char * fbill_path     = "src/Katana/shaders/billboard.frag";
 
     GLenum res = glewInit();
     if (res != GLEW_OK)
@@ -204,16 +207,24 @@ void Katana::initOpenGL()
 
     TResourceShader* vertexShader   = manager->getResourceShader(vshader_path, (GLenum)GL_VERTEX_SHADER);
 	TResourceShader* fragmentShader = manager->getResourceShader(fshader_path, (GLenum)GL_FRAGMENT_SHADER);
+    TResourceShader* vbillShader    = manager->getResourceShader(vbill_path, (GLenum)GL_VERTEX_SHADER);
+    TResourceShader* gbillShader    = manager->getResourceShader(gbill_path, (GLenum)GL_GEOMETRY_SHADER);
+    TResourceShader* fbillShader    = manager->getResourceShader(fbill_path, (GLenum)GL_FRAGMENT_SHADER);
 
     GLuint vertexID     = vertexShader->getId();
 	GLuint fragmentID   = fragmentShader->getId();
+    GLuint vbillID      = vbillShader->getId();
+    GLuint gbillID      = gbillShader->getId();
+    GLuint fbillID      = fbillShader->getId();
 
     GLuint shaderProgram = glCreateProgram();
+    billboardProgram = glCreateProgram();
     
     glAttachShader(shaderProgram, vertexID);
     glAttachShader(shaderProgram, fragmentID);
     glLinkProgram(shaderProgram);
     glValidateProgram(shaderProgram);
+  
 
     glDetachShader(shaderProgram, vertexID);
 	glDetachShader(shaderProgram, fragmentID);
@@ -221,6 +232,29 @@ void Katana::initOpenGL()
     glDeleteShader(vertexID);
     glDeleteShader(fragmentID);
 
+    glAttachShader(billboardProgram, vbillID);
+    glAttachShader(billboardProgram, gbillID);
+    glAttachShader(billboardProgram, fbillID);
+    glLinkProgram(billboardProgram);
+    glValidateProgram(billboardProgram);
+
+    GLint Result = GL_FALSE;
+    int InfoLogLength;
+    glGetProgramiv(billboardProgram, GL_LINK_STATUS, &Result);
+	glGetProgramiv(billboardProgram, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	if ( InfoLogLength > 0 ){
+		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
+		glGetProgramInfoLog(billboardProgram, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+		printf("%s\n", &ProgramErrorMessage[0]);
+    }
+
+    glDetachShader(billboardProgram, vbillID);
+	glDetachShader(billboardProgram, gbillID);
+    glDetachShader(billboardProgram, fbillID);
+
+    glDeleteShader(vbillID);
+    glDeleteShader(gbillID);
+    glDeleteShader(fbillID);
     //Enable Z-Buffer 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
@@ -250,7 +284,7 @@ void Katana::deleteNodeBranch(TNode* n)
     {
         TNode* d = n->getFather()->getFather()->getFather();
         if(d != nullptr && dynamic_cast<TTransform*>(d->getEntity()) != nullptr)
-            delete d;
+            scene->remChild(n);            
     }
 }
 
@@ -274,6 +308,7 @@ void Katana::drawAll()
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    renderBillboards();
     // Use our shader
     scene->draw();
 
@@ -290,4 +325,34 @@ void Katana::close()
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
+}
+
+TBillboard* Katana::createBillboard(const char* n, glm::vec3 p)
+{
+	//Create or get a reference to the texture from the resourceManager
+	TResourceTexture* t = manager->getResourceTexture(n);
+	
+	//Create the billboard
+	TBillboard* b = new TBillboard(t, p);
+	billboards.push_back(b);
+
+	return b;
+}
+void Katana::renderBillboards()
+{
+	glm::mat4 v = scene->getEntity()->viewMatrix();
+	glm::mat4 p = scene->getEntity()->projectionMatrix();
+	glm::mat4 m = p * v;
+	glm::vec3 camPos = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
+
+	GLuint VPMat = glGetUniformLocation(billboardProgram, "gVP");
+	glUniformMatrix4fv(VPMat, 1, GL_FALSE, &m[0][0]);
+
+	GLuint cameraPosition = glGetUniformLocation(billboardProgram, "gCameraPos");
+	glUniform3fv(cameraPosition, 1, &camPos[0]);
+
+	for(unsigned int i = 0; i < billboards.size(); i++)
+	{
+		billboards[i]->beginDraw();
+	}
 }

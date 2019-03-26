@@ -11,6 +11,7 @@
 #include "TCamera.h"
 #include "TLight.h"
 #include "TMesh.h"
+#include "TBillboard.h"
 #include "TTransform.h"
 #include "TResourceManager.h"
 #include "TResourceOBJ.h"
@@ -23,7 +24,8 @@ class Katana
         TNode* scene;
         TNode* camera;
         TResourceManager* manager;
-
+        std::vector<TBillboard*> billboards;
+        GLuint billboardProgram;
     public:
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
@@ -44,6 +46,8 @@ class Katana
         TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
         TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
+        TBillboard* createBillboard(const char* n, glm::vec3 p);
+        void renderBillboards();
         void deleteNodeBranch(TNode* n);
 
         TNode* createBranch(TNode* f, glm::vec3 v);
