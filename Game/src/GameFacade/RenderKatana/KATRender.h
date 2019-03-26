@@ -40,5 +40,6 @@ class KATRender : public FRender{
 
         TNode* getScene(){return scene;}
         void setCamera(float x,float y,float z,float rx,float ry,float rz);
+        void deleteNode(TNode* n);
 
 };
