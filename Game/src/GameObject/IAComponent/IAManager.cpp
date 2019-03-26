@@ -30,6 +30,9 @@ void IAManager::init(int lv)
     gps = new GPS();
     gps->Initialice(lv);
     nivel = lv;
+     AmbientSoundEvent* s = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ambiente"));
+     s->start();
+     s->setAttackParameter()
 }
 
 void IAManager::clear()

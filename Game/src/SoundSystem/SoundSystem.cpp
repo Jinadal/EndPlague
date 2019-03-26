@@ -50,12 +50,14 @@ void SoundSystem::Init()
     SoundSystem::LoadBank("res/media/Master Bank.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
 
     SoundSystem::LoadBank("res/media/Shoot.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Fondo.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
   
     
     SoundSystem::LoadEvent("event:/hacha", "hacha");
     SoundSystem::LoadEvent("event:/pico", "pico");
-    SoundSystem::LoadEvent("event:/balleste", "ballesta");
+    SoundSystem::LoadEvent("event:/ballesta", "ballesta");
 
+    SoundSystem::LoadEvent("event:/ambiente", "ambiente");
 
 
 }
@@ -269,10 +271,10 @@ float  SoundSystem::VolumeTodB(float volume)
 
 int SoundSystem::ErrorCheck(FMOD_RESULT result) {
     if (result != FMOD_OK){
-        std::cout << "FMOD ERROR " << result << std::endl;
+       // std::cout << "FMOD ERROR " << result << std::endl;
         return 1;
     }
-     std::cout << "FMOD all good" << std::endl;
+    // std::cout << "FMOD all good" << std::endl;
     return 0;
 }
 
