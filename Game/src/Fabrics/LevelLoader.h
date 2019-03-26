@@ -1,9 +1,8 @@
 #pragma once
 #include "GameValues.h"
 #include <vector>
-#include "Fabric.h"
 class GameObject;
-class LevelLoader: public Fabric
+class LevelLoader
 {
     private:
         LevelLoader(){};

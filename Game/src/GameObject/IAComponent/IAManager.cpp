@@ -24,10 +24,18 @@ void IAManager::updateAll(float dt)
     }
     if(onAttack > gv::MIN_ENEMIES_FOR_ACTION)
     {
-       actionTime = true;
+        if(actionTime)
+        {
+            actionTime = true;
+            //Cambia sondio
+        }
     }else
     {
-        actionTime = false;
+        if(!actionTime)
+        {
+            actionTime = false;
+            //Cambia Sonido
+        }
     }
 }
 

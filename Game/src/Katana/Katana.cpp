@@ -356,3 +356,9 @@ void Katana::renderBillboards()
 		billboards[i]->beginDraw();
 	}
 }
+
+
+CursorXYZ Katana::cursorPosition()
+{
+    
+}

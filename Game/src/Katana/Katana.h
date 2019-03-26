@@ -17,6 +17,11 @@
 #include "TResourceOBJ.h"
 #include "TResourceShader.h"
 
+struct CursorXYZ
+{
+    float x, y, z;
+};
+
 class Katana
 {
     private: 
@@ -51,4 +56,5 @@ class Katana
         void deleteNodeBranch(TNode* n);
 
         TNode* createBranch(TNode* f, glm::vec3 v);
+        CursorXYZ cursorPosition();
 };
