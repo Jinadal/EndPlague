@@ -375,10 +375,10 @@ CursorXYZ Katana::cursorPosition()
 
     glm::vec3 ray_wor = (glm::inverse(scene->getEntity()->viewMatrix()) * ray_eye);
 
-    ray_wor = glm::normalize(ray_wor);
+    //ray_wor = glm::normalize(ray_wor);
 
     x = cameraPos.x - ((cameraPos.z * ray_wor.x) / ray_wor.z);
     y = cameraPos.y - ((cameraPos.z * ray_wor.y) / ray_wor.z);
 
-    return CursorXYZ{x, y, 0.f};
+    return CursorXYZ{-x, y, 0.f};
 }

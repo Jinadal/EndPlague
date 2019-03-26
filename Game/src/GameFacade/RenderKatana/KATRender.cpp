@@ -43,16 +43,12 @@ void KATRender::drop()
 
 float KATRender::getCursorX()
 {
-    CursorXYZ r = katana->cursorPosition();
-    std::cout<<r.x;
-    return r.x;
+    return katana->cursorPosition().x;
 }
 
 float KATRender::getCursorY()
 {
-    CursorXYZ r = katana->cursorPosition();
-    std::cout<<"  "<<r.y<<"\n";
-    return r.y;
+    return katana->cursorPosition().y;
 }
 
 FMesh* KATRender::createMesh(char* s)
