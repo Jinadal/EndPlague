@@ -34,8 +34,10 @@ namespace gv
         const unsigned int SCR_WIDTH            = 1366;
         const unsigned int SCR_HEIGHT           = 768;
 
-    //-------------- LEVELS --------------
-        const std::vector<char*> LEVELS_LIST    = std::vector<char*>{(char*)"data/1.data"};
+
+    //-------------- SOUND --------------
+        const int MIN_ENEMIES_FOR_ACTION        = 5;
+    
 
 
 //########################################################################

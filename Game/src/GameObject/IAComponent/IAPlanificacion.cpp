@@ -7,6 +7,7 @@
 #include "ShootComponent.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "IAManager.h"
 
 /*
 Salta si el personaje entra a menos de 10 unidades de distancia de portador de la ia
@@ -64,6 +65,7 @@ bool IA_Plan_InSight::run()
            if(w1 >= 0 && w2 >= 0 && (w1 + w2) <= 1){
                if(main==PhysicBullet::getInstance()->rayTest(owner->getX(),owner->getY(), owner->getZ(),main->getX(),main->getY(), main->getZ())){
                 owner->getComponent<ShootComponent>()->shoot();
+                IAManager::getInstance()->attacking();
                  return true;
                }
             }

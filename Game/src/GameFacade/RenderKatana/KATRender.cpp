@@ -43,12 +43,12 @@ void KATRender::drop()
 
 float KATRender::getCursorX()
 {
-    return 0.f;
+    return katana->cursorPosition().x;
 }
 
 float KATRender::getCursorY()
 {
-    return 0.f;
+    return katana->cursorPosition().y;
 }
 
 FMesh* KATRender::createMesh(char* s)
@@ -65,6 +65,7 @@ FCamera* KATRender::createCamera()
 
 FHUD* KATRender::getHUD()
 {
+
     return KATHUD::getInstance();
 }
 
