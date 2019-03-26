@@ -4,8 +4,6 @@
 #include "TEntity.h"
 #include "TTransform.h"
 
-
-
 void KATMesh::setPosition(float x, float y, float z)
 {
     TTransform* matrix = (TTransform*)mesh->getFather()->getEntity();
@@ -15,10 +13,13 @@ void KATMesh::setPosition(float x, float y, float z)
 
 void KATMesh::setRotation(float x, float y, float z)
 {
-    //TTransform* matrix = (TTransform*)mesh->getFather()->getEntity();
+    TTransform* matrix = (TTransform*)mesh->getFather()->getEntity();
     //matrix->identity();
-    //matrix->rotate(0, 0, 1, z);
+    matrix->rotate(0, 0, 1, -z/57.2958);
+    matrix->rotate(0, 1, 0, y/57.2958);
+    matrix->rotate(1, 0, 0, x/57.2958);
 }
+
 
 void KATMesh::setVisible(bool b)
 {
