@@ -1,4 +1,5 @@
 #include "SoundSystem.h"
+#include "CameraManager.h"
 #include <iostream>
 
 SoundSystem* SoundSystem::only_instance = nullptr; 
@@ -43,9 +44,27 @@ void SoundEngineData::Update() {
 
 
 
+void SoundSystem::Init()
+{
+    SoundSystem::LoadBank("res/media/Master Bank.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Master Bank.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
 
+    SoundSystem::LoadBank("res/media/Shoot.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+  
+    
+    SoundSystem::LoadEvent("event:/hacha", "hacha");
+    SoundSystem::LoadEvent("event:/pico", "pico");
+    SoundSystem::LoadEvent("event:/balleste", "ballesta");
+
+
+
+}
 void SoundSystem::Update() {
+    CameraManager* ca = CameraManager::getInstance();
+    Vector3 v3 = {ca->getCX(),ca->getCY(),ca->getCZ()};
+    SoundSystem::Set3dListener( v3);
     soundEngineData->Update();
+
 }
 
 
@@ -268,6 +287,20 @@ void SoundSystem::setVolume(float vol)
   //no encuentro una forma de hacerlo
 }
 
+void SoundSystem::Set3dListener(const Vector3& Pos)
+{
+   
+
+    FMOD_VECTOR pos = VectorToFmod(Pos);
+    FMOD_VECTOR vel = VectorToFmod({0,0,0});
+    FMOD_VECTOR forw = VectorToFmod({0,0,0});
+    FMOD_VECTOR up = VectorToFmod({0,0,0});
+
+        FMOD_3D_ATTRIBUTES att = {pos, vel, forw, up} ;
+     
+        
+        soundEngineData->mpStudioSystem->setListenerAttributes(0,&att);
+}
 
 FMOD::Studio::EventInstance* SoundSystem::getEventInstanceFromName(std::string eventName)
 {
@@ -320,16 +353,16 @@ void SoundEvent::setGain(float gain)
 
 void SoundEvent::setPosition(Vector3 pos)
 {
-    FMOD_3D_ATTRIBUTES* atrib = {};
+    FMOD_3D_ATTRIBUTES atrib;
 
-       atrib->position =  SoundSystem::getInstance()->VectorToFmod(pos);
-       atrib->velocity = SoundSystem::getInstance()->VectorToFmod({0,0,0});
-       atrib->forward = SoundSystem::getInstance()->VectorToFmod({0,0,0});
-       atrib->up = SoundSystem::getInstance()->VectorToFmod({0,0,0});
+       atrib.position =  SoundSystem::getInstance()->VectorToFmod(pos);
+       atrib.velocity = SoundSystem::getInstance()->VectorToFmod({0,0,0});
+       atrib.forward = SoundSystem::getInstance()->VectorToFmod({0,0,0});
+       atrib.up = SoundSystem::getInstance()->VectorToFmod({0,0,0});
 
     
 
-    SoundSystem::ErrorCheck(soundInstance->set3DAttributes(atrib));
+    SoundSystem::ErrorCheck(soundInstance->set3DAttributes(&atrib));
 }
 
 bool SoundEvent::isPlaying()
