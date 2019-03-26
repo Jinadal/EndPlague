@@ -9,7 +9,7 @@ class KATMesh : public FMesh
         TNode* mesh;
     public:
         KATMesh(){}
-        ~KATMesh(){/*KATRender::getInstance()->deleteNode(mesh);*/}
+        ~KATMesh(){KATRender::getInstance()->deleteNode(mesh);}
 
         void setPosition(float x, float y, float z);
         void setRotation(float x, float y, float z);
