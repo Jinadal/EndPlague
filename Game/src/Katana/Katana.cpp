@@ -299,6 +299,7 @@ void Katana::renderCamera()
 
 void Katana::calculateCamera(glm::vec3 p,glm::vec3 t)
 {
+    cameraPos = p;
     scene->getEntity()->viewMatrix() = glm::lookAt(p,t,glm::vec3(0,1,0));   
 }
 
@@ -357,8 +358,27 @@ void Katana::renderBillboards()
 	}
 }
 
-
 CursorXYZ Katana::cursorPosition()
 {
-    
+    double xpos, ypos;
+    glfwGetCursorPos(window, &xpos, &ypos);
+    int width, height;
+    glfwGetWindowSize(window, &width, &height);
+    float x = 2 * xpos/width -1;
+    float y = 1 - 2 * ypos/height;
+    float z = 1.0f;
+
+    glm::vec3 ray_nds = glm::vec3(x, y, z);
+    glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, -1.0, 1.0);
+    glm::vec4 ray_eye = glm::inverse(scene->getEntity()->projectionMatrix()) * ray_clip;
+    ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
+
+    glm::vec3 ray_wor = (glm::inverse(scene->getEntity()->viewMatrix()) * ray_eye);
+
+    ray_wor = glm::normalize(ray_wor);
+
+    x = cameraPos.x - ((cameraPos.z * ray_wor.x) / ray_wor.z);
+    y = cameraPos.y - ((cameraPos.z * ray_wor.y) / ray_wor.z);
+
+    return CursorXYZ{x, y, 0.f};
 }

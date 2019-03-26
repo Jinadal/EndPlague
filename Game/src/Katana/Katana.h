@@ -31,6 +31,7 @@ class Katana
         TResourceManager* manager;
         std::vector<TBillboard*> billboards;
         GLuint billboardProgram;
+        glm::vec3 cameraPos = glm::vec3(0, 0, 0);
     public:
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
