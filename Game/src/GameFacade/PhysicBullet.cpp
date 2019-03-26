@@ -6,7 +6,6 @@
 
 void PhysicBullet::clear()
 {
-    std::cout<<"Clear PB\n";
     int i;
 	for (i=_world->getNumCollisionObjects()-1; i>=0 ;i--)
 	{
@@ -46,7 +45,6 @@ void PhysicBullet::clear()
 
 void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
 {
-    std::cout<<"Borrand RB\n";
     if(rigidbody && rigidbody->getMotionState())
     {
         delete rigidbody->getMotionState();
@@ -69,7 +67,6 @@ void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
 
 void PhysicBullet::init()
 {
-    std::cout<<"Init PB\n";
     //Initialize the scene where the physics take part. It defines how collision are going to take part and resolved.
 
     //btDbvtBroadphase = uses a fast dynamic bounding volume hierarchy based on AABB tree
