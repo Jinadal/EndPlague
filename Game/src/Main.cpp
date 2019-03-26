@@ -3,10 +3,6 @@
 #include "SpecificSoundEvent.h"
 #include <SFML/Window.hpp>
 int main(){
-
-
-
-    
     LevelLoader::getInstance()->writeFile();
     Game::getInstance()->run();
 

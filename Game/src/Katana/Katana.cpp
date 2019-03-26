@@ -269,7 +269,7 @@ void Katana::initOpenGL()
     GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
 	GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
-    GLuint light        = glGetUniformLocation(shaderProgram, "light_pos");
+    //GLuint light        = glGetUniformLocation(shaderProgram, "light_pos");
 
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);

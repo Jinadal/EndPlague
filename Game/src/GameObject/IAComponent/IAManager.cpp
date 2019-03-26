@@ -2,7 +2,7 @@
 #include "IAComponent.h"
 #include "GameObject.h"
 #include "Waypoint.h"
-
+#include "GameValues.h"
 
 void IAManager::createComponent(GameObject *owner)
 {
@@ -13,6 +13,7 @@ void IAManager::createComponent(GameObject *owner)
 
 void IAManager::updateAll(float dt)
 {
+    onAttack = 0;
     if(player)
     {
         std::vector<Component*>::iterator iter;
@@ -21,7 +22,13 @@ void IAManager::updateAll(float dt)
             ((IAComponent*)(*iter))->run();
         }
     }
- 
+    if(onAttack > gv::MIN_ENEMIES_FOR_ACTION)
+    {
+       actionTime = true;
+    }else
+    {
+        actionTime = false;
+    }
 }
 
 

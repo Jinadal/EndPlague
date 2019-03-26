@@ -269,10 +269,10 @@ float  SoundSystem::VolumeTodB(float volume)
 
 int SoundSystem::ErrorCheck(FMOD_RESULT result) {
     if (result != FMOD_OK){
-        std::cout << "FMOD ERROR " << result << std::endl;
+        //std::cout << "FMOD ERROR " << result << std::endl;
         return 1;
     }
-     std::cout << "FMOD all good" << std::endl;
+    //std::cout << "FMOD all good" << std::endl;
     return 0;
 }
 
