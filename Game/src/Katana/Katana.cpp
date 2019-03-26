@@ -250,7 +250,7 @@ void Katana::deleteNodeBranch(TNode* n)
     {
         TNode* d = n->getFather()->getFather()->getFather();
         if(d != nullptr && dynamic_cast<TTransform*>(d->getEntity()) != nullptr)
-            delete d;
+            scene->remChild(n);            
     }
 }
 

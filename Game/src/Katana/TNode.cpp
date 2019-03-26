@@ -17,7 +17,6 @@ TNode::~TNode()
     {
         delete child[i];
     }
-    std::cout<<"Soy el nodo y me mato: "<<getId()<<std::endl;
 }
 
 bool TNode::addChild(TNode* n)
@@ -26,7 +25,6 @@ bool TNode::addChild(TNode* n)
     //and ends the execution
     if(n->getFather()==this)
     {
-        std::cout<<"Meto en el padre :"<<getId()<<" el hijo que es : "<<n->getId()<<std::endl;
         child.push_back(n);
     }
     return true;
