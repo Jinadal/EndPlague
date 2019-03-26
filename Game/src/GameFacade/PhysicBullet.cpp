@@ -7,7 +7,6 @@
 void PhysicBullet::clear()
 {
     std::cout<<"Clear PB\n";
-    wasCleared = true;
     int i;
 	for (i=_world->getNumCollisionObjects()-1; i>=0 ;i--)
 	{
@@ -47,7 +46,6 @@ void PhysicBullet::clear()
 
 void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
 {
-
     std::cout<<"Borrand RB\n";
     if(rigidbody && rigidbody->getMotionState())
     {
