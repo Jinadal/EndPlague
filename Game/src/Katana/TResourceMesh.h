@@ -29,5 +29,7 @@ public:
 
     void setActivated(bool a){ activated=a;};
     bool getActivated(){ return activated;};
+
+    TResourceTexture* getTexture(){ return texture;};
 };
 

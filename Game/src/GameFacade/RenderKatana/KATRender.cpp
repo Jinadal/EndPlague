@@ -78,3 +78,9 @@ void KATRender::setCamera(float x,float y,float z,float rx,float ry,float rz)
 {
     katana->calculateCamera(glm::vec3(x, y, z),glm::vec3(rx, ry, rz));
 }
+
+
+void KATRender::deleteNode(TNode* n)
+{
+    katana->deleteNodeBranch(n);
+}
