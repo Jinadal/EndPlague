@@ -7,9 +7,7 @@
 
 void IntroState::initState(){
     //RenderIrrlicht::getInstance()->loadIntro();
-    AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
-    m->start();
-    SoundSystem::getInstance()->saveEvent(m,"musica");
+    
 };
 
 void IntroState::clear(){
