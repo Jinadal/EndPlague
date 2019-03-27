@@ -287,7 +287,13 @@ int SoundSystem::ErrorCheck(FMOD_RESULT result) {
 }
 
 void SoundSystem::Shutdown() {
-    delete soundEngineData;
+    
+
+    if(only_instance){
+        delete soundEngineData;
+        delete only_instance;
+        only_instance = nullptr;
+    }
 } 
 
 void SoundSystem::setVolume(float vol)

@@ -11,8 +11,7 @@ public:
         PAUSE,
         END,
         INTRO,
-        DIALOGUE,
-        NEXTLEVEL
+        TONEXT
     };
 
     virtual ~IGameState() {};

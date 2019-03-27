@@ -30,12 +30,10 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- RENDER  --------------
-        const bool      RENDER_ENGINE           = false;     //If true Irrlicht, else LOTTO
+        const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else LOTTO
         const unsigned int SCR_WIDTH            = 1366;
         const unsigned int SCR_HEIGHT           = 768;
 
-    //-------------- LEVELS --------------
-        const std::vector<char*> LEVELS_LIST    = std::vector<char*>{(char*)"data/1.data"};
 
     //-------------- SOUND --------------
         const int MIN_ENEMIES_FOR_ACTION        = 5;

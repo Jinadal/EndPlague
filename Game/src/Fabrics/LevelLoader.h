@@ -1,9 +1,8 @@
 #pragma once
 #include "GameValues.h"
 #include <vector>
-#include "Fabric.h"
 class GameObject;
-class LevelLoader: public Fabric
+class LevelLoader
 {
     private:
         LevelLoader(){};
@@ -18,6 +17,7 @@ class LevelLoader: public Fabric
 
         ~LevelLoader(){};
 
+        void resetNext(){next=0;};
         bool hasNext();
         void loadLevel();
         void createMap(char* obj, char* bmp, char* bullet);

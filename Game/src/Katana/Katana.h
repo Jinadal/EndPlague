@@ -17,6 +17,11 @@
 #include "TResourceOBJ.h"
 #include "TResourceShader.h"
 
+struct CursorXYZ
+{
+    float x, y, z;
+};
+
 class Katana
 {
     private: 
@@ -26,6 +31,7 @@ class Katana
         TResourceManager* manager;
         std::vector<TBillboard*> billboards;
         GLuint billboardProgram;
+        glm::vec3 cameraPos = glm::vec3(0, 0, 0);
     public:
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
@@ -51,4 +57,5 @@ class Katana
         void deleteNodeBranch(TNode* n);
 
         TNode* createBranch(TNode* f, glm::vec3 v);
+        CursorXYZ cursorPosition();
 };

@@ -15,14 +15,17 @@
 #include "StorageManager.h"
 #include "IAManager.h"
 
-#include <fstream>
-#include <iostream>
-#include <string.h>
+//LEVELS
 #include "Village.h"
+#include "Mine.h"
+
+#include <iostream>
+
+std::vector<Level> levels{mine, village};
 
 bool LevelLoader::hasNext()
 {
-    if(next<gv::LEVELS_LIST.size())
+    if(next<levels.size())
         return true;
 
     return false;
@@ -31,15 +34,11 @@ bool LevelLoader::hasNext()
 
 void LevelLoader::loadLevel()
 {
-    if(next>=gv::LEVELS_LIST.size())
+    if(next>=levels.size())
         next = 0;
-    
-    /*
-        Load LEVELS_LIST[next] here
-    */    
-    std::ifstream input_file(gv::LEVELS_LIST[next], std::ios::binary);
-    Level level;
-    input_file.read((char*)&level, sizeof(level));
+
+
+    Level level = levels[next];
     
     createMap(level.map_obj, level.map_bmp, level.map_bullet);
     createPlayer(level.pla_x, level.pla_y, level.pla_z);
@@ -67,7 +66,6 @@ void LevelLoader::createMap(char* obj, char* bmp, char* bullet)
     map->getComponent<RenderComponent>()->isMap();
     map->getComponent<RenderComponent>()->setTexture((char*)bmp);//Path de bmp   
     BPhysicManager::getInstance()->createComponent(map, (char*)bullet);
-    //BPhysicManager::getInstance()->createComponent(map, 700.f, 700.f, .5f, 100000.f, 1);
 }
 void LevelLoader::createPlayer(float x, float y, float z)
 {
@@ -93,11 +91,9 @@ void LevelLoader::createSpawn(float x, float y, float rz, bool type)
     
     if(type){
         RenderManager::getInstance()->createComponent(spawn, (char*)"res/obj/CUARTEL.obj");
-        //spawn->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Cuartel_Color.bmp");
         SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_1);
     }else{
         RenderManager::getInstance()->createComponent(spawn, (char*)"res/obj/CASA.obj");
-        //spawn->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Casa_Color.bmp");
         SpawnManager::getInstance()->createComponent(spawn, 4.f, ENEMY_2);
     }
     WoodManager::getInstance()->createComponent(spawn, gv::SPAWN_LIFE);
@@ -109,16 +105,6 @@ void LevelLoader::createWell(float x, float y, float rz)
 {
     GameObject* well = GameResource::getInstance()->createGameObject(x, y, -1.f, rz);
     RenderManager::getInstance()->createComponent(well, (char*)"res/obj/POZO.obj");//Fachada de render y path de obj
-    //well->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Pozo_Color.bmp");//Path de bmp
     WellManager::getInstance()->createComponent(well);
     BPhysicManager::getInstance()->createComponent(well, .5f, .5f, .5f, 0.f, 1);   
-}
-
-
-
-void LevelLoader::writeFile()
-{
-    std::ofstream output_file("data/1.data", std::ios::binary);
-    output_file.write((char*)&village, sizeof(village));
-    output_file.close();
 }
