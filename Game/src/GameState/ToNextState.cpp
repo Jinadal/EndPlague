@@ -25,6 +25,7 @@ void ToNextState::update(float dt)
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
     {
         LevelLoader::getInstance()->resetNext();
+        clear();
         Game::getInstance()->setState(IGameState::stateType::MENU);
     }
 }
