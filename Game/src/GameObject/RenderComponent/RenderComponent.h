@@ -8,6 +8,7 @@ class RenderComponent : public Component{
     private:
         FMesh* node;
         bool leviosa = false;
+        bool rotates = false;
         float time = 0.f;
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
@@ -29,4 +30,5 @@ class RenderComponent : public Component{
         void isMap();
 
         void isLeviosa(){leviosa = true;}
+        void isRotates(){rotates = true;}
 };
