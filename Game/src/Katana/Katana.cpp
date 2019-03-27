@@ -1,26 +1,12 @@
 #include "Katana.h"
-#include <../common/shader.cpp>
+#include "../common/shader.cpp"
 // Include GLM
+#include "../../lib/glm/glm.hpp"
 #define GLM_ENABLE_EXPERIMENTAL 
 #include <iostream>
 #include "GameValues.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-
-
-void MessageCallback( GLenum source,
-                      GLenum type,
-                      GLuint id,
-                      GLenum severity,
-                      GLsizei length,
-                      const GLchar* message,
-                      const void* userParam )
-{
-  fprintf( stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
-           ( type == GL_DEBUG_TYPE_ERROR ? " GL ERROR " : "" ),
-            type, severity, message );
-}
-
 
 
 GLFWwindow* Katana::initWindow()
@@ -34,7 +20,7 @@ GLFWwindow* Katana::initWindow()
 
     // glfw window creation
     // --------------------
-    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "Screems in Goblin", NULL, NULL);
+    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -258,9 +244,6 @@ void Katana::initOpenGL()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 	glEnable(GL_CULL_FACE);
-        
-    glEnable( GL_DEBUG_OUTPUT );
-    glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
 
     scene->getEntity()->setProgramID(shaderProgram);
 
@@ -346,8 +329,8 @@ void Katana::renderBillboards()
 	glm::mat4 v         = scene->getEntity()->viewMatrix();
 	glm::mat4 p         = scene->getEntity()->projectionMatrix();
 	glm::mat4 PV        = p * v;
-	glm::vec3 camPos(glm::inverse(v)[3]);
-
+	glm::vec3 camPos = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
+    
     GLuint PVID     = glGetUniformLocation(billboardProgram, "gVP");
     GLuint camID    = glGetUniformLocation(billboardProgram, "gCameraPos");
 
@@ -384,3 +367,4 @@ CursorXYZ Katana::cursorPosition()
 
     return CursorXYZ{-x, y, 0.f};
 }
+

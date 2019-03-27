@@ -13,8 +13,8 @@ KATRender::KATRender()
 	katana->initOpenGL();
     scene = katana->getSceneRoot();
 
-	katana->createNodeCamera(scene, glm::vec3(-0,-0,-1),glm::vec3(0,0,0),0.1f,100.0f);
-    //katana->createBillboard("res/sprites/Menu.png",glm::vec3(0,0,0));
+	katana->createNodeCamera(scene, glm::vec3(0,0,-10),glm::vec3(0,0,0),0.1f,100.0f);
+    katana->createBillboard("res/sprites/Menu.png",glm::vec3(0,0,0));
 }
 
 void KATRender::drawAll()
@@ -81,6 +81,5 @@ void KATRender::deleteNode(TNode* n)
 
 TBillboard* KATRender::createBillboard(char* t,float x, float y, float z)
 {
-	TBillboard* bill = katana->createBillboard(t,glm::vec3(x, y, z));
-    
+    katana->createBillboard(t,glm::vec3(x, y, z));
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include <../../lib/GL/glew.h>
+#include "../../lib/GL/glew.h"
 #include "TEntity.h"
 
 class TCamera : public TEntity
