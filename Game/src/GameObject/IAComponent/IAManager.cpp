@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Waypoint.h"
 #include "GameValues.h"
+#include "SpecificSoundEvent.h"
 
 void IAManager::createComponent(GameObject *owner)
 {
@@ -24,18 +25,14 @@ void IAManager::updateAll(float dt)
     }
     if(onAttack > gv::MIN_ENEMIES_FOR_ACTION)
     {
-        if(actionTime)
-        {
-            actionTime = true;
-            //Cambia sondio
-        }
+       actionTime = true;
+     ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente"))->setAttackParameter(actionTime);
+
     }else
     {
-        if(!actionTime)
-        {
-            actionTime = false;
-            //Cambia Sonido
-        }
+        actionTime = false;
+     ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente"))->setAttackParameter(actionTime);
+
     }
 }
 
@@ -45,6 +42,8 @@ void IAManager::init(int lv)
     gps = new GPS();
     gps->Initialice(lv);
     nivel = lv;
+  
+     
 }
 
 void IAManager::clear()

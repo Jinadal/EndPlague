@@ -28,4 +28,5 @@ class IAManager : public Manager{
         GameObject* getPlayer(){return player;}
         GPS* getGPS(){return gps;}
         void attacking(){onAttack++;}
+        bool getActionTime(){return actionTime;}
 };

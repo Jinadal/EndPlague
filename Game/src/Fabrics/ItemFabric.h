@@ -8,7 +8,7 @@ enum ItemTypes
     AXE,
     PEAK,
     POTION, 
-    SHIELD,
+    SHIELD
 };
 
 struct IType{

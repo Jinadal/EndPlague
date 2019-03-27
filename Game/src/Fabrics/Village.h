@@ -11,7 +11,8 @@ Level village = {
     -1.f,//Player z
 
     //Spawns
-    {{-24.7f, -46.1f, 0.f, false},
+    {
+    {-24.7f, -46.1f, 0.f, false},
     {-1.1f, -45.7f, 90.f, true},
     {45.8f, -46.0f, 270.f, true},
     {14.9f, -39.0f, 180.f, false},
@@ -37,7 +38,8 @@ Level village = {
     {-24.f, 45.f, 180.f, false},
     {20.3f, 44.6f, 270.f, true},
     {27.6f, 45.6f, 180.f, false},
-    {45.6f, 45.9f, 180.f, false}},
+    {45.6f, 45.9f, 180.f, false}
+    },
 
     //Wells
     {{13.f, 1.7f, 0.f, true},

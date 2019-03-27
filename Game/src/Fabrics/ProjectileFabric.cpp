@@ -23,15 +23,23 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
     ProjectileManager::getInstance()->createComponent(r, projectile_types[type].damage, team);
     ShootSoundEvent* s = nullptr;
     if(type == PARROW)
-       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ballesta"));
+       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("gballesta"));
 
     if(type == PAXE)
-       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("hacha"));
+       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ghacha"));
 
     if(type == PPEAK)
-       s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("pico"));
-
-    s->setPosition({x,y,-1});
+    {
+      if(team == 2)
+      {
+           s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("gpico"));
+      }else{
+           s = new ShootSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("epico"));
+            s->setVoice();
+          
+      }
+    }
+   // s->setPosition({x,y,-1});
     s->start();
 
     return r;

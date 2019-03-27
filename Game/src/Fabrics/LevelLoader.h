@@ -17,6 +17,7 @@ class LevelLoader
 
         ~LevelLoader(){};
 
+        void resetNext(){next=0;};
         bool hasNext();
         void loadLevel();
         void createMap(char* obj, char* bmp, char* bullet);

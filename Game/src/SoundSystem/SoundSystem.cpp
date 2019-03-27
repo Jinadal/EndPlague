@@ -50,11 +50,19 @@ void SoundSystem::Init()
     SoundSystem::LoadBank("res/media/Master Bank.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
 
     SoundSystem::LoadBank("res/media/Shoot.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Goblin.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Fondo.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
   
     
-    SoundSystem::LoadEvent("event:/hacha", "hacha");
-    SoundSystem::LoadEvent("event:/pico", "pico");
-    SoundSystem::LoadEvent("event:/balleste", "ballesta");
+    SoundSystem::LoadEvent("event:/g_hacha", "ghacha");
+    SoundSystem::LoadEvent("event:/g_pico", "gpico");
+    SoundSystem::LoadEvent("event:/g_ballesta", "gballesta");
+
+    SoundSystem::LoadEvent("event:/e_pico", "epico");
+
+
+    SoundSystem::LoadEvent("event:/ambiente", "ambiente");
+    SoundSystem::LoadEvent("event:/musica", "musica");
 
 
 
@@ -181,6 +189,8 @@ void SoundSystem::LoadEvent(const std::string& strEventName, std::string strSear
         SoundSystem::ErrorCheck(pEventDescription->createInstance(&pEventInstance));
         if (pEventInstance){
             soundEngineData->mEvents[strSearchName] = pEventInstance;
+            soundEngineData->mEventsDescriptions[strSearchName] = pEventDescription;
+
            
 
            //  std::cout << "good 3 \n";
@@ -269,15 +279,21 @@ float  SoundSystem::VolumeTodB(float volume)
 
 int SoundSystem::ErrorCheck(FMOD_RESULT result) {
     if (result != FMOD_OK){
-        //std::cout << "FMOD ERROR " << result << std::endl;
+        std::cout << "FMOD ERROR " << result << std::endl;
         return 1;
     }
-    //std::cout << "FMOD all good" << std::endl;
+    // std::cout << "FMOD all good" << std::endl;
     return 0;
 }
 
 void SoundSystem::Shutdown() {
-    delete soundEngineData;
+    
+
+    if(only_instance){
+        delete soundEngineData;
+        delete only_instance;
+        only_instance = nullptr;
+    }
 } 
 
 void SoundSystem::setVolume(float vol)
@@ -304,13 +320,29 @@ void SoundSystem::Set3dListener(const Vector3& Pos)
 
 FMOD::Studio::EventInstance* SoundSystem::getEventInstanceFromName(std::string eventName)
 {
-    auto tFoundIt = soundEngineData->mEvents.find(eventName);
+   auto eventDes = soundEngineData->mEventsDescriptions.find(eventName);
    // if (!tFoundIt == soundEngineData->mEvents.end())
+        FMOD::Studio::EventInstance* pEventInstance = NULL;
+
+        SoundSystem::ErrorCheck(eventDes->second->createInstance(&pEventInstance));
 
 
    
-        return tFoundIt->second;
+        return pEventInstance;
     
+}
+
+void SoundSystem::saveEvent(SoundEvent * s, const std::string& strEventName)
+{
+    soundEngineData->mSoundEvents[strEventName] = s;
+
+}
+
+SoundEvent* SoundSystem::getEvent(const std::string& strEventName)
+{
+     auto tFoundIt = soundEngineData->mSoundEvents.find(strEventName);
+
+     return tFoundIt->second;
 }
 
 ///////////////////////SOUND EVENT///////////////////////////////
@@ -319,6 +351,7 @@ FMOD::Studio::EventInstance* SoundSystem::getEventInstanceFromName(std::string e
 SoundEvent::SoundEvent(FMOD::Studio::EventInstance* eventInstance)
 {
     soundInstance = eventInstance;
+    
 }
 
 

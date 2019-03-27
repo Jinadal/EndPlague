@@ -8,8 +8,8 @@
 #include "PauseState.h"
 #include "EndState.h"
 #include "IntroState.h"
-#include "DialogueState.h"
-#include "NextLevelState.h"
+#include "SoundSystem.h"
+#include "ToNextState.h"
 
 void Game::run()
 {
@@ -28,6 +28,8 @@ void Game::run()
 
 void Game::initGame()
 {  
+    SoundSystem::getInstance()->Init();
+
     setState(IGameState::stateType::INTRO);
 }
 
@@ -50,11 +52,8 @@ void Game::setState(IGameState::stateType type)
         case IGameState::stateType::INTRO:
             state = IntroState::getInstance();
             break;
-        case IGameState::stateType::DIALOGUE:
-            state = DialogueState::getInstance();
-            break;
-        case IGameState::stateType::NEXTLEVEL:
-            state = NextLevelState::getInstance();
+        case IGameState::stateType::TONEXT:
+            state = ToNextState::getInstance();
             break;
     }
     state->initState();

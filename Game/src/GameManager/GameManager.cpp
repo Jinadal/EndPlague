@@ -30,7 +30,7 @@ void GameManager::initAll()
 {
     GameResource::getInstance();
 
-    SoundSystem::getInstance()->Init();
+
     BPhysicManager::getInstance();
     BucketManager::getInstance();
     CameraManager::getInstance();

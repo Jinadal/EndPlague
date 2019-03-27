@@ -13,7 +13,7 @@ struct Vector3 {
     float z;
 };
 
-
+class SoundEvent;
 
 struct SoundEngineData {
     SoundEngineData();
@@ -30,11 +30,15 @@ struct SoundEngineData {
     typedef std::map<int, FMOD::Channel*> ChannelMap;
     typedef std::map<std::string, FMOD::Studio::EventInstance*> EventMap;
     typedef std::map<std::string, FMOD::Studio::Bank*> BankMap;
+    typedef std::map<std::string, FMOD::Studio::EventDescription* > EventDescMap;
+    typedef std::map<std::string, SoundEvent* > SoundEventMap;
 
+    EventDescMap mEventsDescriptions;
     BankMap mBanks;
     EventMap mEvents;
     SoundMap mSounds;
     ChannelMap mChannels;
+    SoundEventMap mSoundEvents;
 };
 
 class SoundEvent;
@@ -81,7 +85,8 @@ class SoundSystem {
     float VolumeTodB(float volume);
     void setVolume(float vol);
     FMOD_VECTOR VectorToFmod(const Vector3& vPosition);
-
+    void saveEvent(SoundEvent* s, const std::string& strEventName);
+    SoundEvent* getEvent(const std::string& strEventName);
     FMOD::Studio::EventInstance* getEventInstanceFromName(std::string eventName);
 }; 
 
