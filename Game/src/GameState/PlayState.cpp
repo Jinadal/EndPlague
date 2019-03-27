@@ -10,7 +10,7 @@
 #include "ScoreManager.h"
 #include "LevelLoader.h"
 
-
+#include <iostream>
 
 void PlayState::initState()
 {
@@ -19,15 +19,7 @@ void PlayState::initState()
     if(!loaded)
     {
         loaded=true;
-
-        if(LevelLoader::getInstance()->hasNext())
-        {
-            LevelLoader::getInstance()->loadLevel();
-        }else
-        {
-            Game::getInstance()->setState(IGameState::stateType::END);            
-        }
-
+        LevelLoader::getInstance()->loadLevel();
         GameManager::getInstance()->initAll();
     }
 } 
@@ -39,25 +31,29 @@ void PlayState::update(float dt)
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         Game::getInstance()->setState(IGameState::stateType::PAUSE);
-    
+
+
     if(IAManager::getInstance()->getPlayer() && IAManager::getInstance()->getPlayer()->getKill())
     {
         clear();
+        LevelLoader::getInstance()->resetNext();
         Game::getInstance()->setState(IGameState::stateType::END);
     }else if(SpawnManager::getInstance()->getNumSpawns()<=0)
     {
-        if(!LevelLoader::getInstance()->hasNext())
-            ScoreManager::getInstance()->setWin();
-
         clear();
-        initState();
+        if(!LevelLoader::getInstance()->hasNext())
+        {
+            ScoreManager::getInstance()->setWin();
+            Game::getInstance()->setState(IGameState::stateType::END);
+        }else{
+
+            Game::getInstance()->setState(IGameState::stateType::TONEXT);
+        }
     }
 }
 
 
 void PlayState::clear(){
     GameManager::getInstance()->clear();
-    level++;
     loaded=false;
-
 }

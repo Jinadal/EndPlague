@@ -4,7 +4,6 @@
 class PlayState : public IGameState 
 {
     private:
-        std::size_t level = 0;
         bool loaded; 
         PlayState(){}         
     public:
