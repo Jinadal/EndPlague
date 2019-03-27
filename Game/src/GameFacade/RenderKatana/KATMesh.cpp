@@ -1,5 +1,5 @@
 #include "KATMesh.h"
-#include <glm/glm.hpp>
+#include <../../lib/glm/glm.hpp>
 #define GLM_ENABLE_EXPERIMENTAL 
 #include "TEntity.h"
 #include "TTransform.h"

@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <GL/glew.h>
+#include <../../lib/GL/glew.h>
 #define GLM_ENABLE_EXPERIMENTAL 
 
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
+#include "../../lib/GLFW/glfw3.h"
+#include <../../lib/glm/glm.hpp>
 
 #include "TNode.h"
 #include "TCamera.h"
