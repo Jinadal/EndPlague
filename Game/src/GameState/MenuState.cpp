@@ -11,6 +11,9 @@ void MenuState::initState()
     type = IGameState::MENU;
     Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Initial.png");
 
+    AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
+    m->start();
+    SoundSystem::getInstance()->saveEvent(m,"musica");
     
 }
 
@@ -23,6 +26,8 @@ void MenuState::update(float dt)
         
         Game::getInstance()->setState(IGameState::stateType::PLAY);
     }
+    SoundSystem::getInstance()->Update();
+
 };
 
 void MenuState::clear()

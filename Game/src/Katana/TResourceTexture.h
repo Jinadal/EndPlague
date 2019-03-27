@@ -1,6 +1,6 @@
 #pragma once
-#include <GL/glew.h>
-#include <SFML/Graphics.hpp>
+#include <../../lib/GL/glew.h>
+#include <../../lib/SFML/Graphics.hpp>
 #include "TResource.h"
 class TResource;
 class TResourceTexture : public TResource

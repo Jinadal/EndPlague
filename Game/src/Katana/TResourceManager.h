@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-#include <GL/glew.h>
+#include <../../lib/GL/glew.h>
 
 class TResource;
 class TResourceMesh;
