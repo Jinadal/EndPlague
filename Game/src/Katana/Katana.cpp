@@ -59,7 +59,7 @@ void Katana::initRoot()
     View = glm::mat4(1.0f);
     glm::mat4& Model = scene->getEntity()->modelMatrix();
     Model = glm::mat4(1.0f);
-    
+
 }
 
 bool Katana::openWindow(GLFWwindow* w)
@@ -259,8 +259,9 @@ void Katana::initOpenGL()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 	glEnable(GL_CULL_FACE);
-    
-    glUseProgram(shaderProgram);
+        
+    glEnable( GL_DEBUG_OUTPUT );
+    glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
 
     scene->getEntity()->setProgramID(shaderProgram);
 
@@ -275,7 +276,9 @@ void Katana::initOpenGL()
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
 	scene->getEntity()->setMVPID(matrix);
-    glUniform1i(TextureID, 0);
+
+    glUseProgram(shaderProgram);
+
 }
 
 void Katana::deleteNodeBranch(TNode* n)
@@ -308,8 +311,10 @@ void Katana::drawAll()
 {
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glUseProgram(billboardProgram);
 
-    renderBillboards();
+	renderBillboards();
+    glUseProgram(scene->getEntity()->getProgramID());
     // Use our shader
     scene->draw();
 
@@ -330,10 +335,7 @@ void Katana::close()
 
 TBillboard* Katana::createBillboard(const char* n, glm::vec3 p)
 {
-	//Create or get a reference to the texture from the resourceManager
 	TResourceTexture* t = manager->getResourceTexture(n);
-	
-	//Create the billboard
 	TBillboard* b = new TBillboard(t, p);
 	billboards.push_back(b);
 
@@ -341,16 +343,17 @@ TBillboard* Katana::createBillboard(const char* n, glm::vec3 p)
 }
 void Katana::renderBillboards()
 {
-	glm::mat4 v = scene->getEntity()->viewMatrix();
-	glm::mat4 p = scene->getEntity()->projectionMatrix();
-	glm::mat4 m = p * v;
-	glm::vec3 camPos = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
+    
+	glm::mat4 v         = scene->getEntity()->viewMatrix();
+	glm::mat4 p         = scene->getEntity()->projectionMatrix();
+	glm::mat4 PV        = p * v;
+	glm::vec3 camPos(glm::inverse(v)[3]);
 
-	GLuint VPMat = glGetUniformLocation(billboardProgram, "gVP");
-	glUniformMatrix4fv(VPMat, 1, GL_FALSE, &m[0][0]);
+    GLuint PVID     = glGetUniformLocation(billboardProgram, "gVP");
+    GLuint camID    = glGetUniformLocation(billboardProgram, "gCameraPos");
 
-	GLuint cameraPosition = glGetUniformLocation(billboardProgram, "gCameraPos");
-	glUniform3fv(cameraPosition, 1, &camPos[0]);
+    glUniformMatrix4fv(PVID,1,GL_FALSE,&PV[0][0]);
+    glUniform3fv(camID, 1, &camPos[0]);
 
 	for(unsigned int i = 0; i < billboards.size(); i++)
 	{

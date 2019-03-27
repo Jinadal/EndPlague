@@ -4,7 +4,7 @@
 #define GLM_ENABLE_EXPERIMENTAL 
 TCamera::TCamera()
 {
-    left=1.f;
+    left=2.f;
     right=2.f;
     top=1.f;
     bot=2.f;
