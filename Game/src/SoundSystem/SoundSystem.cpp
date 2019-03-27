@@ -334,6 +334,9 @@ FMOD::Studio::EventInstance* SoundSystem::getEventInstanceFromName(std::string e
 
 void SoundSystem::saveEvent(SoundEvent * s, const std::string& strEventName)
 {
+    auto tFoundIt = soundEngineData->mSoundEvents.find(strEventName);
+    if (tFoundIt != soundEngineData->mSoundEvents.end())
+        return;
     soundEngineData->mSoundEvents[strEventName] = s;
 
 }
