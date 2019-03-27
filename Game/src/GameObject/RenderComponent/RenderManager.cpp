@@ -4,7 +4,7 @@
 //Updates all the components
 void RenderManager::updateAll(float dt){
     for(std::size_t i = 0; i<components.size(); i++)
-        ((RenderComponent*)components[i])->update();
+        ((RenderComponent*)components[i])->update(dt);
 }
 
 void RenderManager::createComponent(GameObject *owner, char* path){

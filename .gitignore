@@ -2,8 +2,7 @@
 bin
 
 #Ejecutable
-Game/bin/Ejecutable
-bin/Ejecutable
+Ejecutable
 
 # ignore all .zip
 *.zip

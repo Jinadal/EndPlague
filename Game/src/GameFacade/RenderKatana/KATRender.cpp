@@ -81,6 +81,5 @@ void KATRender::deleteNode(TNode* n)
 
 TBillboard* KATRender::createBillboard(char* t,float x, float y, float z)
 {
-	TBillboard* bill = katana->createBillboard(t,glm::vec3(x, y, z));
-    
+	//TBillboard* bill = katana->createBillboard(t,glm::vec3(x, y, z));
 }
