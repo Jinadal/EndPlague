@@ -21,6 +21,7 @@
 
 #include <iostream>
 
+
 std::vector<Level> levels{mine, village};
 
 bool LevelLoader::hasNext()

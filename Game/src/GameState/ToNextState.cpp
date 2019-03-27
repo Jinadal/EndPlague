@@ -6,7 +6,7 @@
 #include "LevelLoader.h"
 #include "Render.h"
 #include "FMenu.h"
-#include "SoundSystem.h"
+#include "SpecificSoundEvent.h"
 
 void ToNextState::initState()
 {
@@ -20,11 +20,15 @@ void ToNextState::update(float dt)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         clear();
+        AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
+        m->start();
+        SoundSystem::getInstance()->saveEvent(m,"musica");
         Game::getInstance()->setState(IGameState::stateType::PLAY);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
     {
         LevelLoader::getInstance()->resetNext();
+        clear();
         Game::getInstance()->setState(IGameState::stateType::MENU);
     }
 }

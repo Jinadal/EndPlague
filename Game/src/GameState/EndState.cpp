@@ -7,11 +7,15 @@
 #include "ScoreManager.h"
 #include <iostream>
 #include "HUD.h"
+#include "SoundSystem.h"
 
 void EndState::update(float dt)
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
+        SoundSystem::getInstance()->Init();
+
         Game::getInstance()->setState(IGameState::stateType::MENU);
+    }
 
 
     
