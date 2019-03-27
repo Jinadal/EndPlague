@@ -6,7 +6,7 @@ class GameObject;
 class ItemComponent : public Component{
     private:
         ItemTypes Type;
-
+        float life = 0.f;
     public:
         //CONSTRUCTOR
         ItemComponent(GameObject* g, Manager* m, ItemTypes Type) :Component(g, m){
@@ -17,4 +17,5 @@ class ItemComponent : public Component{
         ~ItemComponent(){}
 
         ItemTypes getType(){return Type;}
+        void update(float dt);
 };

@@ -10,6 +10,9 @@ void ItemManager::createComponent(GameObject  *owner,ItemTypes type){
 
 void ItemManager::updateAll(float dt)
 {
-
+    for(std::size_t i = 0 ; i<components.size(); i++)
+    {
+        ((ItemComponent*)components[i])->update(dt); 
+    }
 }
 

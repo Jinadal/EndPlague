@@ -74,12 +74,13 @@ void GameManager::updateAll(float dt)
     CameraManager::getInstance()->updateAll(dt);
     LifeManager::getInstance()->updateAll(dt);
     RenderManager::getInstance()->updateAll(dt);
+    ItemManager::getInstance()->updateAll(dt);
     SoundSystem::getInstance()->Update();
 
     //USELESS
     //BucketManager::getInstance()->updateAll(dt);
     //DropperManager::getInstance()->updateAll(dt);
-    //ItemManager::getInstance()->updateAll(dt);
+    
     //ProjectileManager::getInstance()->updateAll(dt);
     //ScoreManager::getInstance()->updateAll(dt);
     //StorageManager::getInstance()->updateAll(dt);
