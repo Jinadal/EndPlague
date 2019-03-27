@@ -9,8 +9,10 @@ void StorageComponent::itemCatch(ItemComponent* item)
 {
     
     if(!item) return;
-        
-    itemDrop();
+    
+    if(itemType != EMPTY && item->getType() != POTION && item->getType() != SHIELD)
+        itemDrop();
+
     applyEffect(item->getType());
     itemType = item->getType();
     item->getGameObject()->setKill(true);
@@ -18,9 +20,6 @@ void StorageComponent::itemCatch(ItemComponent* item)
 
 void StorageComponent::itemDrop()
 {
-    if(itemType == EMPTY || itemType == POTION || itemType == SHIELD)
-        return;
-
     ItemFabric* fabric = new ItemFabric();
     fabric->createItem(gameObject->getX()-3.f, gameObject->getY()-3.f, gameObject->getZ(), gameObject->getRZ(), itemType);
 

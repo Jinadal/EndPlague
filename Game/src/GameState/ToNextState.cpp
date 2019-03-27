@@ -18,10 +18,10 @@ void ToNextState::initState()
 void ToNextState::update(float dt)
 {
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         clear();
         Game::getInstance()->setState(IGameState::stateType::PLAY);
-    
+    }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
     {
         LevelLoader::getInstance()->resetNext();
