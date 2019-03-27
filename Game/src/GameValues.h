@@ -121,8 +121,8 @@ namespace gv
 
     const float     SPAWN_CADENCIA          = 3.f;
     const int       MAX_ENEMIES             = 80;  //NOT USED
-    const int       MIN_ENEMIES             = 1;  
-    const int       ENEMIES_PER_SPAWN       = 1;
+    const int       MIN_ENEMIES             = 20;  
+    const int       ENEMIES_PER_SPAWN       = 4;
 
 
     //---------- WOOD AND FIRE -----------

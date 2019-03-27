@@ -20,6 +20,7 @@ GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyT
     if(nsp <= nen && gv::MIN_ENEMIES<=nen)
         return nullptr;
     
+
     
     //ADDING A ENEMY
     GameObject* primero = GameResource::getInstance()->createGameObject(x, y, z, rz);//Creates a new GO on x, y, z, rz
