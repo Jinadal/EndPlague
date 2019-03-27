@@ -20,6 +20,8 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
     r->getComponent<BPhysicComponent>()->setGravity(0.f,0.f,gv::PROJECTILE_GRAVITY);
     RenderManager::getInstance()->createComponent(r, projectile_types[type].mesh);
     r->getComponent<RenderComponent>()->setTexture(projectile_types[type].texture);
+    if(type != PARROW)
+      r->getComponent<RenderComponent>()->isRotates();
     ProjectileManager::getInstance()->createComponent(r, projectile_types[type].damage, team);
     ShootSoundEvent* s = nullptr;
     if(type == PARROW)
@@ -39,7 +41,8 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
           
       }
     }
-   // s->setPosition({x,y,-1});
+    s->setPosition({x,y,-1});
+    s->setVolume(5);
     s->start();
 
     return r;

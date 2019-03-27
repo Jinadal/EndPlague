@@ -14,7 +14,10 @@ void StorageComponent::itemCatch(ItemComponent* item)
         itemDrop();
 
     applyEffect(item->getType());
-    itemType = item->getType();
+
+    if(item->getType() != POTION && item->getType() != SHIELD)
+        itemType = item->getType();
+        
     item->getGameObject()->setKill(true);
 }
 

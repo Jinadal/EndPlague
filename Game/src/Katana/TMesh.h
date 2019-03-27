@@ -1,5 +1,5 @@
 #include <iostream>
-#include <../../lib/GL/glew.h>
+#include "../../lib/GL/glew.h"
 #include "TEntity.h"
 #include "TResource.h"
 

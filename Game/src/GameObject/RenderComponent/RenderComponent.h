@@ -7,6 +7,9 @@ class GameObject;
 class RenderComponent : public Component{
     private:
         FMesh* node;
+        bool leviosa = false;
+        bool rotates = false;
+        float time = 0.f;
     public:
         //Creates the componet, adds the parent g, and creates a node on r, with s mesh path
         RenderComponent(GameObject* g, Manager* m, char* s) : Component(g, m){
@@ -16,7 +19,7 @@ class RenderComponent : public Component{
         virtual ~RenderComponent(){delete node;}
 
         //Updates the position and the scale of the mesh
-        void update();
+        void update(float dt);
 
         //Sets the visibility to h
         void setVisible(bool h);
@@ -25,4 +28,7 @@ class RenderComponent : public Component{
         void setTexture(char s[]);
 
         void isMap();
+
+        void isLeviosa(){leviosa = true;}
+        void isRotates(){rotates = true;}
 };

@@ -1,10 +1,10 @@
 #pragma once
-#include <../../lib/assimp/Importer.hpp>
-#include <../../lib/assimp/scene.h>
-#include <../../lib/assimp/postprocess.h>
+#include "../../lib/assimp/Importer.hpp"
+#include "../../lib/assimp/scene.h"
+#include "../../lib/assimp/postprocess.h"
 
-#include <../../lib/GL/glew.h>
-#include <../../lib/glm/ext.hpp>
+#include "../../lib/GL/glew.h"
+#include "../../lib/glm/ext.hpp"
 
 class TResource
 {

@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <../../lib/GL/glew.h>
+#include "../../lib/GL/glew.h"
 #define GLM_ENABLE_EXPERIMENTAL 
 
 #include "../../lib/GLFW/glfw3.h"
-#include <../../lib/glm/glm.hpp>
+#include "../../lib/glm/glm.hpp"
 
 #include "TNode.h"
 #include "TCamera.h"
@@ -30,6 +30,7 @@ class Katana
         TNode* camera;
         TResourceManager* manager;
         std::vector<TBillboard*> billboards;
+        std::vector<TResourceTexture*> hud;
         GLuint billboardProgram;
         glm::vec3 cameraPos = glm::vec3(0, 0, 0);
     public:
@@ -58,4 +59,7 @@ class Katana
 
         TNode* createBranch(TNode* f, glm::vec3 v);
         CursorXYZ cursorPosition();
+
+        void createNodeTexture(char* name, glm::vec3 p);
+        void renderTexture();
 };

@@ -1,12 +1,23 @@
 #include "RenderComponent.h"
 #include "GameObject.h"
+#include <cmath>
+void RenderComponent::update(float dt){
 
-void RenderComponent::update(){
+    float sz = 0.f;
+    float sr = 0.f;
+    this->time += dt;
+    if(leviosa){
+        sz = - 0.6 + 0.6 * sin(1.8 * this->time); 
+    }
+    if(rotates){
+        sr =500 * this->time;
+    }
+
     node->setPosition(gameObject->getX(),
                         gameObject->getY(),
-                        gameObject->getZ());
+                        gameObject->getZ() + sz);
 
-    node->setRotation(gameObject->getRX(), 
+    node->setRotation(gameObject->getRX() + sr, 
                         gameObject->getRY(), 
                         gameObject->getRZ());
 
