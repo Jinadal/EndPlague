@@ -1,6 +1,7 @@
+#pragma once
 #include "TEntity.h"
 #include "TResourceTexture.h"
-class TBillboard
+class TBillboard : public TEntity
 {
     private:
         TResourceTexture* texture;
