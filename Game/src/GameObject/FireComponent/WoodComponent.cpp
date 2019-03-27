@@ -4,6 +4,7 @@
 #include "SpawnComponent.h"
 #include "GameValues.h"
 #include "ProjectileComponent.h"
+#include "SpecificSoundEvent.h"
 
 void WoodComponent::update(float dt)
 {
@@ -38,6 +39,12 @@ void WoodComponent::setBurning(bool b){
         }
     }
     
+    
+        FireSoundEvent * s = new FireSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("sburn"));
+        s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
+        s->setVolume(5);
+        s->start();
+    
 
 }
 
@@ -50,7 +57,10 @@ void WoodComponent::addBucket()
         if(gameObject->getComponent<RenderComponent>())
         {
             gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
-        }     
+        }  
+
+        FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent("sburn"));
+        s->stop(); 
     }
 }
 
@@ -60,6 +70,11 @@ void WoodComponent::dealDamage(ProjectileComponent* projectile)
     if(projectile && projectile->getTeam()!=team)
     {
         setBurning(true);
+        HitSoundEvent * s = new HitSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("shit"));
+        s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
+        s->setVolume(5);
+        s->start();
+
         life -= projectile->getDamage();
     }
 }

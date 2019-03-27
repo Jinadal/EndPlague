@@ -32,3 +32,17 @@ void AmbientSoundEvent::setAttackParameter(bool bol)
     //float val = bol? 1.f : 0.f;
     SoundSystem::ErrorCheck(pParameter->setValue(bol));
 }
+
+FireSoundEvent* FireSoundEvent::newSoundEvent(FMOD::Studio::EventInstance* ei)
+{
+    FireSoundEvent* sse = new FireSoundEvent(ei);
+
+    return sse;
+}
+
+HitSoundEvent* HitSoundEvent::newSoundEvent(FMOD::Studio::EventInstance* ei)
+{
+    HitSoundEvent* sse = new HitSoundEvent(ei);
+
+    return sse;
+}

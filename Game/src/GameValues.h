@@ -30,7 +30,7 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- RENDER  --------------
-        const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else LOTTO
+        const bool      RENDER_ENGINE           = false;     //If true Irrlicht, else KATANA
         const unsigned int SCR_WIDTH            = 1366;
         const unsigned int SCR_HEIGHT           = 768;
 
@@ -121,8 +121,8 @@ namespace gv
 
     const float     SPAWN_CADENCIA          = 3.f;
     const int       MAX_ENEMIES             = 80;  //NOT USED
-    const int       MIN_ENEMIES             = 20;  
-    const int       ENEMIES_PER_SPAWN       = 4;
+    const int       MIN_ENEMIES             = 1;  
+    const int       ENEMIES_PER_SPAWN       = 1;
 
 
     //---------- WOOD AND FIRE -----------
