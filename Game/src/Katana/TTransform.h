@@ -1,6 +1,6 @@
 #pragma once
-#include <GL/glew.h>
-#include <glm/ext.hpp>
+#include <../../lib/GL/glew.h>
+#include <../../lib/glm/ext.hpp>
 #include "TEntity.h"
 
 class TTransform : public TEntity

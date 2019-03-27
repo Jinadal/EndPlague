@@ -1,7 +1,6 @@
 #include "Katana.h"
 #include <../common/shader.cpp>
 // Include GLM
-#include <glm/glm.hpp>
 #define GLM_ENABLE_EXPERIMENTAL 
 #include <iostream>
 #include "GameValues.h"

@@ -2,10 +2,10 @@
 #include <iostream>
 #include <stack>
 #define GLM_ENABLE_EXPERIMENTAL 
-#include <glm/gtx/string_cast.hpp>
+#include <../../lib/glm/gtx/string_cast.hpp>
 
-#include <GL/glew.h>
-#include <glm/ext.hpp>
+#include <../../lib/GL/glew.h>
+#include <../../lib/glm/ext.hpp>
 #include <iostream>
 class TEntity
 {
