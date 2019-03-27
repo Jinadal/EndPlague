@@ -25,14 +25,14 @@ class EnemyFabric
         {
             {
                 ENEMY_1,
-                (char*)"res/obj/ALDEANO.obj",
+                (char*)"res/obj/SOLDADOBB.obj",
                 (char*)"res/red.bmp",
                 gv::ENEMY_1_LIFE,
                 gv::ENEMY_1_VELOCITY
             },
             {
                 ENEMY_2,
-                (char*)"res/obj/ALDEANO.obj",
+                (char*)"res/obj/ALDEANOBB.obj",
                 (char*)"res/green.bmp",
                 gv::ENEMY_2_LIFE,
                 gv::ENEMY_2_VELOCITY
