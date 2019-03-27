@@ -269,7 +269,7 @@ void Katana::initOpenGL()
     GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
 	GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
-    GLuint light        = glGetUniformLocation(shaderProgram, "light_pos");
+    //GLuint light        = glGetUniformLocation(shaderProgram, "light_pos");
 
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
@@ -284,7 +284,7 @@ void Katana::deleteNodeBranch(TNode* n)
     {
         TNode* d = n->getFather()->getFather()->getFather();
         if(d != nullptr && dynamic_cast<TTransform*>(d->getEntity()) != nullptr)
-            scene->remChild(n);            
+            scene->remChild(d);            
     }
 }
 

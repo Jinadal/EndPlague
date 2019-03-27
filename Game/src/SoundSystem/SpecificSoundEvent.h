@@ -7,6 +7,7 @@ class ShootSoundEvent : public SoundEvent
 
     ShootSoundEvent(FMOD::Studio::EventInstance* eventInstance): SoundEvent(eventInstance){}
     virtual ~ShootSoundEvent() {};
+    void setVoice();
 
     protected:
 
@@ -22,7 +23,7 @@ class AmbientSoundEvent : public SoundEvent
     AmbientSoundEvent(FMOD::Studio::EventInstance* eventInstance): SoundEvent(eventInstance){}
     virtual ~AmbientSoundEvent() {};
 
-    void setAttackParameter(float val);
+    void setAttackParameter(bool bol);
     protected:
 
     virtual AmbientSoundEvent* newSoundEvent(FMOD::Studio::EventInstance* ei);

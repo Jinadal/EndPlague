@@ -37,6 +37,10 @@ namespace gv
     //-------------- LEVELS --------------
         const std::vector<char*> LEVELS_LIST    = std::vector<char*>{(char*)"data/1.data"};
 
+    //-------------- SOUND --------------
+        const int MIN_ENEMIES_FOR_ACTION        = 5;
+    
+
 
 //########################################################################
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PLAYER ~~~~~~~~~~~~~~~~~~~

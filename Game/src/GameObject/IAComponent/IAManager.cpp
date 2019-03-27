@@ -2,7 +2,8 @@
 #include "IAComponent.h"
 #include "GameObject.h"
 #include "Waypoint.h"
-
+#include "GameValues.h"
+#include "SpecificSoundEvent.h"
 
 void IAManager::createComponent(GameObject *owner)
 {
@@ -13,6 +14,7 @@ void IAManager::createComponent(GameObject *owner)
 
 void IAManager::updateAll(float dt)
 {
+    onAttack = 0;
     if(player)
     {
         std::vector<Component*>::iterator iter;
@@ -21,7 +23,17 @@ void IAManager::updateAll(float dt)
             ((IAComponent*)(*iter))->run();
         }
     }
- 
+    if(onAttack > gv::MIN_ENEMIES_FOR_ACTION)
+    {
+       actionTime = true;
+     ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente"))->setAttackParameter(actionTime);
+
+    }else
+    {
+        actionTime = false;
+     ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente"))->setAttackParameter(actionTime);
+
+    }
 }
 
 
@@ -30,9 +42,8 @@ void IAManager::init(int lv)
     gps = new GPS();
     gps->Initialice(lv);
     nivel = lv;
-     AmbientSoundEvent* s = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ambiente"));
-     s->start();
-     s->setAttackParameter()
+  
+     
 }
 
 void IAManager::clear()

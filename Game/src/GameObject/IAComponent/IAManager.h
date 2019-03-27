@@ -9,6 +9,9 @@ class IAManager : public Manager{
         GameObject* player;
         GPS* gps;
         int nivel;
+
+        bool actionTime = false;
+        int onAttack = 0;
        
     public:
         ~IAManager(){clear();}
@@ -24,4 +27,6 @@ class IAManager : public Manager{
         void updateAll(float dt);
         GameObject* getPlayer(){return player;}
         GPS* getGPS(){return gps;}
+        void attacking(){onAttack++;}
+        bool getActionTime(){return actionTime;}
 };

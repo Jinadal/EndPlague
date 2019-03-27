@@ -9,7 +9,7 @@
 #include "GameManager.h"
 #include "ScoreManager.h"
 #include "LevelLoader.h"
-
+#include "SpecificSoundEvent.h"
 
 
 void PlayState::initState()
@@ -29,7 +29,15 @@ void PlayState::initState()
         }
 
         GameManager::getInstance()->initAll();
+       
     }
+    
+    AmbientSoundEvent* s = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ambiente"));
+    s->start();
+    SoundSystem::getInstance()->saveEvent(s,"ambiente");
+
+   
+
 } 
 
 

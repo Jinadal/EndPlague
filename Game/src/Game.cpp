@@ -10,6 +10,7 @@
 #include "IntroState.h"
 #include "DialogueState.h"
 #include "NextLevelState.h"
+#include "SoundSystem.h"
 
 void Game::run()
 {
@@ -28,6 +29,8 @@ void Game::run()
 
 void Game::initGame()
 {  
+    SoundSystem::getInstance()->Init();
+
     setState(IGameState::stateType::INTRO);
 }
 
