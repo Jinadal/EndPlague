@@ -1,6 +1,6 @@
 #include "TCamera.h"
 #include "TEntity.h"
-#include <../../lib/glm/glm.hpp>
+#include "../../lib/glm/glm.hpp"
 #define GLM_ENABLE_EXPERIMENTAL 
 TCamera::TCamera()
 {
