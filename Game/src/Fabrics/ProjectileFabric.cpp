@@ -39,7 +39,8 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
           
       }
     }
-   // s->setPosition({x,y,-1});
+    s->setPosition({x,y,-1});
+    s->setVolume(5);
     s->start();
 
     return r;

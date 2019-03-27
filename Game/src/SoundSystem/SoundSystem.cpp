@@ -52,7 +52,11 @@ void SoundSystem::Init()
     SoundSystem::LoadBank("res/media/Shoot.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Goblin.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Fondo.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Spawn.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
   
+    SoundSystem::LoadEvent("event:/s_hit", "shit");
+    SoundSystem::LoadEvent("event:/s_burn", "sburn");
+
     
     SoundSystem::LoadEvent("event:/g_hacha", "ghacha");
     SoundSystem::LoadEvent("event:/g_pico", "gpico");
@@ -309,8 +313,8 @@ void SoundSystem::Set3dListener(const Vector3& Pos)
 
     FMOD_VECTOR pos = VectorToFmod(Pos);
     FMOD_VECTOR vel = VectorToFmod({0,0,0});
-    FMOD_VECTOR forw = VectorToFmod({0,0,0});
-    FMOD_VECTOR up = VectorToFmod({0,0,0});
+    FMOD_VECTOR forw = VectorToFmod({0,1,0});
+    FMOD_VECTOR up = VectorToFmod({0,0,-1});
 
         FMOD_3D_ATTRIBUTES att = {pos, vel, forw, up} ;
      
@@ -393,8 +397,8 @@ void SoundEvent::setPosition(Vector3 pos)
 
        atrib.position =  SoundSystem::getInstance()->VectorToFmod(pos);
        atrib.velocity = SoundSystem::getInstance()->VectorToFmod({0,0,0});
-       atrib.forward = SoundSystem::getInstance()->VectorToFmod({0,0,0});
-       atrib.up = SoundSystem::getInstance()->VectorToFmod({0,0,0});
+       atrib.forward = SoundSystem::getInstance()->VectorToFmod({0,1,0});
+       atrib.up = SoundSystem::getInstance()->VectorToFmod({0,0,-1});
 
     
 

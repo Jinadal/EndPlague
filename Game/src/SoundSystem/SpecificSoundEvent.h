@@ -29,3 +29,29 @@ class AmbientSoundEvent : public SoundEvent
     virtual AmbientSoundEvent* newSoundEvent(FMOD::Studio::EventInstance* ei);
 
 };
+
+class FireSoundEvent : public SoundEvent
+{
+    public:
+
+    FireSoundEvent(FMOD::Studio::EventInstance* eventInstance): SoundEvent(eventInstance){}
+    virtual ~FireSoundEvent() {};
+
+    protected:
+
+    virtual FireSoundEvent* newSoundEvent(FMOD::Studio::EventInstance* ei);
+
+};
+
+class HitSoundEvent : public SoundEvent
+{
+    public:
+
+    HitSoundEvent(FMOD::Studio::EventInstance* eventInstance): SoundEvent(eventInstance){}
+    virtual ~HitSoundEvent() {};
+
+    protected:
+
+    virtual HitSoundEvent* newSoundEvent(FMOD::Studio::EventInstance* ei);
+
+};

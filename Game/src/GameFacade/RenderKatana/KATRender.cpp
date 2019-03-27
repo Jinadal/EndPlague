@@ -14,7 +14,7 @@ KATRender::KATRender()
     scene = katana->getSceneRoot();
 
 	katana->createNodeCamera(scene, glm::vec3(0,0,-10),glm::vec3(0,0,0),0.1f,100.0f);
-    katana->createBillboard("res/sprites/Menu.png",glm::vec3(0,0,0));
+    katana->createNodeTexture("res/sprites/Menu.png",glm::vec3(0,0,0));
 }
 
 void KATRender::drawAll()
