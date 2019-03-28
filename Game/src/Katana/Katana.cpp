@@ -20,7 +20,7 @@ GLFWwindow* Katana::initWindow()
 
     // glfw window creation
     // --------------------
-    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "Screams In Goblin", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
