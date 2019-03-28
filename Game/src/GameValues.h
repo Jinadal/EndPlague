@@ -30,7 +30,7 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- RENDER  --------------
-        const bool      RENDER_ENGINE           = true;     //If true Irrlicht, else KATANA
+        const bool      RENDER_ENGINE           = false;     //If true Irrlicht, else KATANA
         const unsigned int SCR_WIDTH            = 1366;
         const unsigned int SCR_HEIGHT           = 768;
 
