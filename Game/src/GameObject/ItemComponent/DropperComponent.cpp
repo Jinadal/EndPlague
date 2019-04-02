@@ -2,10 +2,12 @@
 #include "GameObject.h"
 #include <stdlib.h>
 #include "GameValues.h"
+#include "DropperManager.h"
 
 DropperComponent::~DropperComponent()
 {
-    dropItem();
+    if(DropperManager::getInstance()->getDrop())
+        dropItem();
 }
 
 void DropperComponent::dropItem()

@@ -1,8 +1,11 @@
 #include "GameResource.h"
 #include "GameObject.h"
 #include <iostream>
+#include "DropperManager.h"
+
 void GameResource::clear()
 {
+    DropperManager::getInstance()->setDrop(false);
     for(std::size_t i = 0; i<gameobjects.size(); i++)
     {
         delete gameobjects[i];
