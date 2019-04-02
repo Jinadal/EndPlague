@@ -14,7 +14,7 @@ class PhysicBullet{
         
     public:
     
-        virtual ~PhysicBullet(){clear();};
+        ~PhysicBullet(){};
 
         static PhysicBullet* getInstance(){
             static PhysicBullet only_instance;
