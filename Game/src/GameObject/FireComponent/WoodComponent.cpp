@@ -41,6 +41,7 @@ void WoodComponent::setBurning(bool b){
     
     
         FireSoundEvent * s = new FireSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("sburn"));
+        SoundSystem::getInstance()->saveEvent(s, "sburn");
         s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
         s->setVolume(5);
         s->start();
