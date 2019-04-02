@@ -24,31 +24,28 @@
 #include "GameResource.h"
 #include "Render.h"
 #include "HUD.h"
-#include <iostream>
 
 void GameManager::initAll()
 {
-    GameResource::getInstance();
+    //GameResource::getInstance();
+    //BPhysicManager::getInstance();
+    //BucketManager::getInstance();
+    //CameraManager::getInstance();
+    //DropperManager::getInstance();
+    //WoodManager::getInstance();
+    //IAManager::getInstance();
+    //InputManager::getInstance();
+    //ItemManager::getInstance();
+    //LifeManager::getInstance();
+    //ProjectileManager::getInstance();
+    //RenderManager::getInstance();
+    //ScoreManager::getInstance();
+    //ShootManager::getInstance();
+    //SpawnManager::getInstance();
+    //StorageManager::getInstance();
+    //WellManager::getInstance();
 
-
-    BPhysicManager::getInstance();
-    BucketManager::getInstance();
-    CameraManager::getInstance();
-    DropperManager::getInstance();
-    WoodManager::getInstance();
-    IAManager::getInstance();
-    InputManager::getInstance();
-    ItemManager::getInstance();
-    LifeManager::getInstance();
-    ProjectileManager::getInstance();
-    RenderManager::getInstance();
-    ScoreManager::getInstance();
-    ShootManager::getInstance();
-    SpawnManager::getInstance();
-    StorageManager::getInstance();
-    WellManager::getInstance();
-
-    HUD::getInstance()->init();
+    //HUD::getInstance()->init();
 }
 
 void GameManager::clear()

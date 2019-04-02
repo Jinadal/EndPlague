@@ -1,8 +1,10 @@
 #include "PhysicBullet.h"
 #include <btBulletWorldImporter.h>
 #include "GameValues.h"
-#include <iostream>
+
 #define PI 3.141592
+
+
 
 void PhysicBullet::clear()
 {
@@ -10,6 +12,7 @@ void PhysicBullet::clear()
 	for (i=_world->getNumCollisionObjects()-1; i>=0 ;i--)
 	{
 		btCollisionObject* obj = _world->getCollisionObjectArray()[i];
+
 		btRigidBody* body = btRigidBody::upcast(obj);
 		if (body && body->getMotionState())
 		{
