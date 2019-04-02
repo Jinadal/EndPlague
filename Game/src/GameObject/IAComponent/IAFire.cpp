@@ -115,12 +115,12 @@ bool IA_fire_StillOnFire::run()
   }
  
   if(ok && owner->getComponent<IAComponent>()->spawnOnFire->getComponent<WoodComponent>()->getBurning())
-    return false;
+    return true;
 
   owner->getComponent<IAComponent>()->onRoute = false;
   owner->getComponent<IAComponent>()->spawnOnFire = nullptr;
     
-  return true;
+  return false;
 }
 
 bool IA_Fire_HaveSpawn::run()
