@@ -1,15 +1,18 @@
 #include "Render.h"
 #include "KATRender.h"
 #include "IRRRender.h"
+#include "NORender.h"
 #include "GameValues.h"
 
 Render::Render(){
-    if(gv::RENDER_ENGINE)
-    {
-        render = IRRRender::getInstance();
-    }else
+    if(gv::RENDER_ENGINE == 1)
     {
         render = KATRender::getInstance();
+    }else if(gv::RENDER_ENGINE == 2)
+    {
+        render = IRRRender::getInstance();
+    }else{
+        render = NORender::getInstance();
     }
 }
 
