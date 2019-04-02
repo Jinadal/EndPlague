@@ -48,7 +48,7 @@ void PlayState::update(float dt)
         clear();
         LevelLoader::getInstance()->resetNext();
         Game::getInstance()->setState(IGameState::stateType::END);
-    }else if(SpawnManager::getInstance()->getNumSpawns()<=0)
+    }else if(SpawnManager::getInstance()->getNumSpawns()<=-1)
     {
         clear();
         if(!LevelLoader::getInstance()->hasNext())

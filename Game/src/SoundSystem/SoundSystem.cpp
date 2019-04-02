@@ -1,5 +1,7 @@
 #include "SoundSystem.h"
 #include "CameraManager.h"
+#include "GameObject.h"
+#include "GameResource.h"
 #include <iostream>
 
 SoundSystem* SoundSystem::only_instance = nullptr; 
@@ -73,7 +75,10 @@ void SoundSystem::Init()
 }
 void SoundSystem::Update() {
     CameraManager* ca = CameraManager::getInstance();
+    //GameObject* pt = GameResource::getInstance()->getPlayer();
     Vector3 v3 = {ca->getCX(),ca->getCY(),ca->getCZ()};
+    //Vector3 v3 = {pt->getX(),pt->getY(),pt->getZ()};
+
     SoundSystem::Set3dListener( v3);
     soundEngineData->Update();
 
