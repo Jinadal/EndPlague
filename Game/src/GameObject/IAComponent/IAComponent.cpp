@@ -195,7 +195,7 @@ if(mode)
                         IA_fire_StillOnFire* stillonfire = new IA_fire_StillOnFire(gameObject);
                         aPozo->addChild(stillonfire);
 
-                        IA_Graf_FollowRuta* followruta2 = new IA_Graf_FollowRuta(gameObject, 3.1F);
+                        IA_Graf_FollowRuta* followruta2 = new IA_Graf_FollowRuta(gameObject, 4.1F);
                         aPozo->addChild(followruta2);
                     
 
@@ -205,9 +205,11 @@ if(mode)
                         checkspawn->addChild(havespawn);
                         IA_fire_StillOnFire* stillonfire2 = new IA_fire_StillOnFire(gameObject);
                         checkspawn->addChild(stillonfire2);
+                        IA_Graf_FollowRuta* followruta3 = new IA_Graf_FollowRuta(gameObject, 4.F);
+                        checkspawn->addChild(followruta3);
 
-                    IA_Graf_FollowRuta* followruta3 = new IA_Graf_FollowRuta(gameObject, 3.1F);
-                    pozoOCasa->addChild(followruta3);
+                    IA_Graf_FollowRuta* followruta4 = new IA_Graf_FollowRuta(gameObject, 3.F);
+                    pozoOCasa->addChild(followruta4);
 
         Secuencia* seeFire = new Secuencia();
         nodoRaiz2->addChild(seeFire);

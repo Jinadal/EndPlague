@@ -7,6 +7,7 @@
 #include <cmath>
 #include "BPhysicComponent.h"
 #include "RenderComponent.h"
+#include <iostream>
 
 #define PI 3.1416
 
@@ -102,8 +103,9 @@ bool IA_Graf_FollowRuta::run()
     {
          distancia = .5F;
     }else{
-        distancia = 3.1F;
+        //distancia = 4.1F;
     }
+    //std::cout << "distancia: " << d << " ///// objetivo: " << distancia<< "\n"; 
     if(round(fabs(d)) < distancia  )
     {
         int tam = ruta.size();
