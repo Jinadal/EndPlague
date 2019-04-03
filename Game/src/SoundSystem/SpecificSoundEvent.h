@@ -1,6 +1,5 @@
 #include "SoundSystem.h"
 
-
 class ShootSoundEvent : public SoundEvent
 {
     public:

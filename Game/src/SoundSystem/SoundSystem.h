@@ -1,44 +1,18 @@
+#pragma once
 #include "fmod_studio.hpp"
 #include "fmod.hpp"
 #include <string>
 #include <map>
 #include <vector>
 #include <math.h>
-
+#include "SoundEngineData.h"
+#include "SoundEvent.h"
 
 
 struct Vector3 {
     float x;
     float y;
     float z;
-};
-
-class SoundEvent;
-
-struct SoundEngineData {
-    SoundEngineData();
-    ~SoundEngineData();
-
-    void Update();
-
-    FMOD::Studio::System* mpStudioSystem;
-    FMOD::System* mpSystem;
-
-    int mnNextChannelId;
-
-    typedef std::map<std::string, FMOD::Sound*> SoundMap;
-    typedef std::map<int, FMOD::Channel*> ChannelMap;
-    typedef std::map<std::string, FMOD::Studio::EventInstance*> EventMap;
-    typedef std::map<std::string, FMOD::Studio::Bank*> BankMap;
-    typedef std::map<std::string, FMOD::Studio::EventDescription* > EventDescMap;
-    typedef std::map<std::string, SoundEvent* > SoundEventMap;
-
-    EventDescMap mEventsDescriptions;
-    BankMap mBanks;
-    EventMap mEvents;
-    SoundMap mSounds;
-    ChannelMap mChannels;
-    SoundEventMap mSoundEvents;
 };
 
 class SoundEvent;
@@ -86,28 +60,6 @@ class SoundSystem {
     SoundEvent* getEvent(const std::string& strEventName);
     FMOD::Studio::EventInstance* getEventInstanceFromName(std::string eventName);
 }; 
-
-class SoundEvent {
-public:
-    SoundEvent(FMOD::Studio::EventInstance* eventInstance);
-    virtual ~SoundEvent() {}; 
-    
-    virtual void start();
- 
-    void stop();
-    void pause();
-    void setVolume(float vol);
-    void setGain(float gain);
-    void setPosition(Vector3 pos);
-    bool isPlaying();
-
-    FMOD::Studio::EventInstance* getSoundInstance(){return soundInstance;}
-    
-protected:
-    FMOD::Studio::EventInstance* soundInstance;
-  
-    virtual SoundEvent* newSoundEvent(FMOD::Studio::EventInstance*) = 0;
-};
 
 
 
