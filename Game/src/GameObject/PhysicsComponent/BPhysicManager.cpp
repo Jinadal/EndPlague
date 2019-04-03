@@ -11,7 +11,6 @@
 #include "GameObject.h"
 #include "BPhysicComponent.h"
 
- 
 void BPhysicManager::createComponent(GameObject* owner, float xsize, float ysize, float zsize, float mass, int physicType)
 {
     components.push_back(new BPhysicComponent(owner, this, xsize, ysize, zsize, mass, physicType));
@@ -29,16 +28,16 @@ void BPhysicManager::clear()
 }
 void BPhysicManager::init()
 {
-    PhysicBullet::getInstance();
+    physics = new PhysicBullet();
+    //PhysicBullet::getInstance();
 }
-
 
 void BPhysicManager::updateAll(float dt){
     for(std::size_t i = 0; i<components.size(); i++)
     {
         ((BPhysicComponent*)components[i])->update();
     }
-    PhysicBullet::getInstance()->iteration(dt);
+    physics->iteration(dt);
 }
 
 
