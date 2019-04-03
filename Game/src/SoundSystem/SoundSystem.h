@@ -34,6 +34,7 @@ class SoundSystem {
     
     void Update();
     void Shutdown();
+    void Release();
    static int ErrorCheck(FMOD_RESULT result);
     void Init();
     void LoadBank(const std::string& strBankName, FMOD_STUDIO_LOAD_BANK_FLAGS flags);
@@ -60,9 +61,3 @@ class SoundSystem {
     SoundEvent* getEvent(const std::string& strEventName);
     FMOD::Studio::EventInstance* getEventInstanceFromName(std::string eventName);
 }; 
-
-
-
-
-
-//SEGUIR IMPLEMENTANDO LOS SOUNDEVENTS, CAMBIAR NOMBRE A LOS OTROS EVENTOS, Y HACER EL TRANSPASO DE SOUNDSYSTEM2

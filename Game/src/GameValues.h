@@ -29,7 +29,7 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- RENDER  --------------
-        const int          RENDER_ENGINE        = 1;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
+        const int          RENDER_ENGINE        = 3;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
         const unsigned int SCR_WIDTH            = 1366;
         const unsigned int SCR_HEIGHT           = 768;
 

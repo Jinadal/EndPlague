@@ -257,8 +257,41 @@ int SoundSystem::ErrorCheck(FMOD_RESULT result) {
 }
 
 void SoundSystem::Shutdown() {
+    Release();
     delete soundEngineData;
 } 
+
+void SoundSystem::Release(){
+
+
+    //mapa Descriptions 
+    for(std::map<std::string, FMOD::Studio::EventDescription*>::iterator it = soundEngineData->mEventsDescriptions.begin(); it != soundEngineData->mEventsDescriptions.end(); it++)
+    {
+        it->second->releaseAllInstances();
+       // delete it->second;
+
+    }
+   // soundEngineData->mEventsDescriptions.clear();
+
+    //mapa Instancias 
+  /*  for(std::map<std::string, FMOD::Studio::EventInstance*>::iterator it = soundEngineData->mEvents.begin(); it != soundEngineData->mEvents.end(); it++)
+    {
+       delete it->second;
+
+    }*/
+    soundEngineData->mEvents.clear();
+
+
+    //mapa SoundEvents 
+   /* for(std::map<std::string, SoundEvent* >::iterator it = soundEngineData->mSoundEvents.begin(); it != soundEngineData->mSoundEvents.end(); it++)
+    {
+       delete it->second;
+
+    }*/
+    soundEngineData->mSoundEvents.clear();
+    
+
+}
 
 
 void SoundSystem::setVolume(float vol)

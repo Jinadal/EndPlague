@@ -53,7 +53,7 @@ void GameManager::clear()
     GameResource::getInstance()->clear();
     HUD::getInstance()->clear();
     ScoreManager::getInstance()->resetScore();
-    SoundSystem::getInstance()->Shutdown();
+    SoundSystem::getInstance()->Release();
 }
 
 void GameManager::updateAll(float dt)
