@@ -1,9 +1,9 @@
 #pragma once 
 #include <btBulletDynamicsCommon.h>
 
+
 class PhysicBullet{
     private:
-        bool cleared = false;
         btBroadphaseInterface*                      _broadphase;
         btDefaultCollisionConfiguration*            _collisionConfiguration;
         btCollisionDispatcher*                      _dispatcher;

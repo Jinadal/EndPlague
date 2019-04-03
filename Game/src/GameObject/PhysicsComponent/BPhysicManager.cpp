@@ -40,7 +40,6 @@ void BPhysicManager::updateAll(float dt){
     physics->iteration(dt);
 }
 
-
 //Callback which registers and shows in terminal the colliding objects
 //Parametres are standars of the bullet engine, no need of thinking much about them
 //Need to add the next to lines to main or world init

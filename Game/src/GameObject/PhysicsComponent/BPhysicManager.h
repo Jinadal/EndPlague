@@ -1,7 +1,7 @@
 #pragma once
 #include "PhysicBullet.h"
 #include "Manager.h"
-
+#include <iostream>
 class GameObject;
 class BPhysicManager : public Manager
 {
