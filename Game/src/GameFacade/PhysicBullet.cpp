@@ -1,13 +1,16 @@
 #include "PhysicBullet.h"
 #include <btBulletWorldImporter.h>
 #include "GameValues.h"
+#include <iostream>
 
 #define PI 3.141592
 
 
+PhysicBullet::~PhysicBullet(){clear();}
 
 void PhysicBullet::clear()
 {
+    cleared = true;
     int i;
 	for (i=_world->getNumCollisionObjects()-1; i>=0 ;i--)
 	{
@@ -39,6 +42,7 @@ void PhysicBullet::clear()
 		delete shape;
 	}
 	_collisionShapes.clear();
+    
     delete _broadphase;
     delete _collisionConfiguration;
     delete _dispatcher;
@@ -48,6 +52,9 @@ void PhysicBullet::clear()
 
 void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
 {
+    if(cleared)
+        return;
+
     if(rigidbody && rigidbody->getMotionState())
     {
         delete rigidbody->getMotionState();

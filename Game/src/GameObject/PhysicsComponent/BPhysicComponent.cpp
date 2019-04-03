@@ -6,7 +6,7 @@ BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, float xs
     btVector3 position = btVector3(owner->getX(), owner->getY(), owner->getZ());
     btVector3 size = btVector3(xsize, ysize, zsize);
 
-    rbody = PhysicBullet::getInstance()->createRigidBody(position, size, mass, physicType);
+    rbody = BPhysicManager::getInstance()->getPhysics()->createRigidBody(position, size, mass, physicType);
 
     btTransform tr = rbody->getCenterOfMassTransform();
     btQuaternion quat;
@@ -20,7 +20,7 @@ BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, float xs
 
 BPhysicComponent::BPhysicComponent(GameObject* owner, Manager* manager, char* filename) : Component(owner, manager)
 {
-    rbody = PhysicBullet::getInstance()->createFromFile(filename);
+    rbody = BPhysicManager::getInstance()->getPhysics()->createFromFile(filename);
 
     //---------------- Esta Parte esta por valorar-------------
         btTransform tr = rbody->getCenterOfMassTransform();
