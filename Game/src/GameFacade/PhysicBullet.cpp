@@ -4,13 +4,14 @@
 #include <iostream>
 
 #define PI 3.141592
+bool PhysicBulletWasCleared = false;
 
 
 PhysicBullet::~PhysicBullet(){clear();}
 
 void PhysicBullet::clear()
 {
-    cleared = true;
+    PhysicBulletWasCleared = true;
     int i;
 	for (i=_world->getNumCollisionObjects()-1; i>=0 ;i--)
 	{
@@ -47,13 +48,14 @@ void PhysicBullet::clear()
     delete _collisionConfiguration;
     delete _dispatcher;
     delete _solver;
-    delete _world;;
+    delete _world;
 }
 
 void PhysicBullet::removeRigidBody(btRigidBody* rigidbody)
 {
-    if(cleared)
+    if(PhysicBulletWasCleared)
         return;
+
 
     if(rigidbody && rigidbody->getMotionState())
     {
