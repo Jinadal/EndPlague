@@ -1,10 +1,12 @@
+#pragma once
 #include "fmod_studio.hpp"
 #include "fmod.hpp"
 #include <string>
 #include <map>
 #include <vector>
 #include <math.h>
-
+#include "SoundEngineData.h"
+#include "SoundEvent.h"
 
 
 struct Vector3 {
@@ -15,54 +17,24 @@ struct Vector3 {
 
 class SoundEvent;
 
-struct SoundEngineData {
-    SoundEngineData();
-    ~SoundEngineData();
-
-    void Update();
-
-    FMOD::Studio::System* mpStudioSystem;
-    FMOD::System* mpSystem;
-
-    int mnNextChannelId;
-
-    typedef std::map<std::string, FMOD::Sound*> SoundMap;
-    typedef std::map<int, FMOD::Channel*> ChannelMap;
-    typedef std::map<std::string, FMOD::Studio::EventInstance*> EventMap;
-    typedef std::map<std::string, FMOD::Studio::Bank*> BankMap;
-    typedef std::map<std::string, FMOD::Studio::EventDescription* > EventDescMap;
-    typedef std::map<std::string, SoundEvent* > SoundEventMap;
-
-    EventDescMap mEventsDescriptions;
-    BankMap mBanks;
-    EventMap mEvents;
-    SoundMap mSounds;
-    ChannelMap mChannels;
-    SoundEventMap mSoundEvents;
-};
-
-class SoundEvent;
-
 class SoundSystem {
 
  private:
          SoundEngineData* soundEngineData;
-	  
-        static SoundSystem* only_instance;
-        SoundSystem(){soundEngineData = new SoundEngineData();}
+	    SoundSystem(){soundEngineData = new SoundEngineData();}
  public:
         static SoundSystem* getInstance()
         {
-            if(!only_instance) only_instance = new SoundSystem();
-
-            return only_instance;
+            static SoundSystem only_instance;
+            return &only_instance;
         }
 
-    ~SoundSystem(){only_instance = nullptr; Shutdown();}
+    ~SoundSystem(){Shutdown();}
     
     
     void Update();
     void Shutdown();
+    void Release();
    static int ErrorCheck(FMOD_RESULT result);
     void Init();
     void LoadBank(const std::string& strBankName, FMOD_STUDIO_LOAD_BANK_FLAGS flags);
@@ -89,31 +61,3 @@ class SoundSystem {
     SoundEvent* getEvent(const std::string& strEventName);
     FMOD::Studio::EventInstance* getEventInstanceFromName(std::string eventName);
 }; 
-
-class SoundEvent {
-public:
-    SoundEvent(FMOD::Studio::EventInstance* eventInstance);
-    virtual ~SoundEvent() {}; 
-    
-    virtual void start();
- 
-    void stop();
-    void pause();
-    void setVolume(float vol);
-    void setGain(float gain);
-    void setPosition(Vector3 pos);
-    bool isPlaying();
-
-    FMOD::Studio::EventInstance* getSoundInstance(){return soundInstance;}
-    
-protected:
-    FMOD::Studio::EventInstance* soundInstance;
-  
-    virtual SoundEvent* newSoundEvent(FMOD::Studio::EventInstance*) = 0;
-};
-
-
-
-
-
-//SEGUIR IMPLEMENTANDO LOS SOUNDEVENTS, CAMBIAR NOMBRE A LOS OTROS EVENTOS, Y HACER EL TRANSPASO DE SOUNDSYSTEM2

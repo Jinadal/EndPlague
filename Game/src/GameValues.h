@@ -30,7 +30,7 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- RENDER  --------------
-        const int          RENDER_ENGINE        = 1;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
+        const int          RENDER_ENGINE        = 3;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
         const unsigned int SCR_WIDTH            = 1366;
         const unsigned int SCR_HEIGHT           = 768;
 
@@ -109,10 +109,6 @@ namespace gv
         const int       ENEMY_SCORE         = 10;  //Score gets killing as enemy
         const float     ENEMY_CADENCE       = .9f; //Shoot cadence of enemies
         const int       ENEMY_WEAPON        = 2;   //1:AXE 2:PEAK 3:ARROW??
-
-
-
-
 
 
 //#####################################################################
