@@ -283,11 +283,12 @@ void SoundSystem::Release(){
 
 
     //mapa SoundEvents 
-   /* for(std::map<std::string, SoundEvent* >::iterator it = soundEngineData->mSoundEvents.begin(); it != soundEngineData->mSoundEvents.end(); it++)
+    for(std::map<std::string, SoundEvent* >::iterator it = soundEngineData->mSoundEvents.begin(); it != soundEngineData->mSoundEvents.end(); it++)
     {
        delete it->second;
+       
 
-    }*/
+    }
     soundEngineData->mSoundEvents.clear();
     
 
