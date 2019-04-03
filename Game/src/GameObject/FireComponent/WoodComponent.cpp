@@ -80,6 +80,7 @@ void WoodComponent::addBucket()
         std::string name = ss.str();
         FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent(name));
         s->stop(); 
+
     }
 }
 
@@ -94,7 +95,7 @@ void WoodComponent::dealDamage(ProjectileComponent* projectile)
         s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
         s->setVolume(5);
         s->start();
-
+        delete s;
         life -= projectile->getDamage();
     }
 }

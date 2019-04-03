@@ -45,5 +45,8 @@ GameObject* ProjectileFabric::createProjectile(float x, float y, float rz, Proje
     s->setVolume(5);
     s->start();
 
+    delete s;
+
+
     return r;
 }

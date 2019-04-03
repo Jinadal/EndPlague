@@ -15,7 +15,7 @@ void NORender::drawAll()
 
 bool NORender::run()
 {
-    if(loops>10)
+    if(loops>200)
         return false;
 
     return true;
