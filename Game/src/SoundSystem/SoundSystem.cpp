@@ -13,15 +13,70 @@ SoundEngineData::SoundEngineData() {
     mpStudioSystem = NULL;
     SoundSystem::ErrorCheck(FMOD::Studio::System::create(&mpStudioSystem));
     SoundSystem::ErrorCheck(mpStudioSystem->initialize(32, FMOD_STUDIO_INIT_LIVEUPDATE, FMOD_INIT_PROFILE_ENABLE, NULL));
+   // SoundSystem::ErrorCheck(mpStudioSystem->initialize(512, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL, 0));
 
     mpSystem = NULL;
     SoundSystem::ErrorCheck(mpStudioSystem->getLowLevelSystem(&mpSystem));
+
+
+ 
 }
 
 
 SoundEngineData::~SoundEngineData() {
     SoundSystem::ErrorCheck(mpStudioSystem->unloadAll());
     SoundSystem::ErrorCheck(mpStudioSystem->release());
+
+    //mapa sonidos
+    for(std::map<std::string, FMOD::Sound*>::iterator it = mSounds.begin(); it != mSounds.end(); it++)
+    {
+       delete it->second;
+
+    }
+    mSounds.clear();
+
+    //mapa canales
+    for(std::map<int, FMOD::Channel*>::iterator it = mChannels.begin(); it != mChannels.end(); it++)
+    {
+       delete it->second;
+
+    }
+    mChannels.clear();
+
+    //mapa Instancias 
+    for(std::map<std::string, FMOD::Studio::EventInstance*>::iterator it = mEvents.begin(); it != mEvents.end(); it++)
+    {
+       delete it->second;
+
+    }
+    mEvents.clear();
+
+    //mapa Bancos 
+    for(std::map<std::string, FMOD::Studio::Bank*>::iterator it = mBanks.begin(); it != mBanks.end(); it++)
+    {
+       delete it->second;
+
+    }
+    mBanks.clear();
+
+
+    //mapa Descriptions 
+    for(std::map<std::string, FMOD::Studio::EventDescription*>::iterator it = mEventsDescriptions.begin(); it != mEventsDescriptions.end(); it++)
+    {
+       delete it->second;
+
+    }
+    mEventsDescriptions.clear();
+
+
+    //mapa SoundEvents 
+    for(std::map<std::string, SoundEvent* >::iterator it = mSoundEvents.begin(); it != mSoundEvents.end(); it++)
+    {
+       delete it->second;
+
+    }
+    mSoundEvents.clear();
+    
 }
 
 

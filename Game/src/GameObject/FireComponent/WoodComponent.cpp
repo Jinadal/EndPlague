@@ -48,13 +48,13 @@ void WoodComponent::setBurning(bool b){
             gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Casa_Color.bmp");
         }
     }
-     std::cout << "Sonido arranca"<< this <<"\n";
+   //  std::cout << "Sonido arranca"<< this <<"\n";
         FireSoundEvent * s = new FireSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("sburn"));
         const void * address = static_cast<const void*>(this);
         std::stringstream ss;
         ss << address;  
         std::string name = ss.str();
-        SoundSystem::getInstance()->saveEvent(s, name); //guardar id como nombre de  la instancia
+        SoundSystem::getInstance()->saveEvent(s, name); 
         s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
         s->setVolume(5);
         s->start();
