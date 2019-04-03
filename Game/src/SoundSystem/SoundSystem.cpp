@@ -4,9 +4,6 @@
 #include "GameResource.h"
 #include <iostream>
 
-SoundSystem* SoundSystem::only_instance = nullptr; 
-
-
   
 
 SoundEngineData::SoundEngineData() {
@@ -17,7 +14,6 @@ SoundEngineData::SoundEngineData() {
     mpSystem = NULL;
     SoundSystem::ErrorCheck(mpStudioSystem->getLowLevelSystem(&mpSystem));
 }
-
 
 SoundEngineData::~SoundEngineData() {
     SoundSystem::ErrorCheck(mpStudioSystem->unloadAll());
@@ -296,14 +292,9 @@ int SoundSystem::ErrorCheck(FMOD_RESULT result) {
 }
 
 void SoundSystem::Shutdown() {
-    
-
-    if(only_instance){
-        delete soundEngineData;
-        delete only_instance;
-        only_instance = nullptr;
-    }
+    delete soundEngineData;
 } 
+
 
 void SoundSystem::setVolume(float vol)
 {

@@ -47,18 +47,15 @@ class SoundSystem {
 
  private:
          SoundEngineData* soundEngineData;
-	  
-        static SoundSystem* only_instance;
-        SoundSystem(){soundEngineData = new SoundEngineData();}
+	    SoundSystem(){soundEngineData = new SoundEngineData();}
  public:
         static SoundSystem* getInstance()
         {
-            if(!only_instance) only_instance = new SoundSystem();
-
-            return only_instance;
+            static SoundSystem only_instance;
+            return &only_instance;
         }
 
-    ~SoundSystem(){only_instance = nullptr; Shutdown();}
+    ~SoundSystem(){Shutdown();}
     
     
     void Update();
