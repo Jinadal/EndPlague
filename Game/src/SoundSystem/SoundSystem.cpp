@@ -347,5 +347,13 @@ SoundEvent* SoundSystem::getEvent(const std::string& strEventName)
      return tFoundIt->second;
 }
 
-///////////////////////SOUND EVENT///////////////////////////////
+void SoundSystem::deleteEvent(SoundEvent* s, const std::string strEventName)
+{
+    auto tFoundIt = soundEngineData->mSoundEvents.find(strEventName);
+    if (tFoundIt == soundEngineData->mSoundEvents.end())
+        return;
+
+    soundEngineData->mSoundEvents.erase(tFoundIt);
+    delete s;
+}
 

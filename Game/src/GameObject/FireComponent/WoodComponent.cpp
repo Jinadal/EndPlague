@@ -23,6 +23,7 @@ void WoodComponent::update(float dt)
         std::string name = ss.str();
         FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent(name));
         s->stop(); 
+        SoundSystem::getInstance()->deleteEvent(s, name);
         gameObject->setKill(true);
         
     }
@@ -59,6 +60,7 @@ void WoodComponent::setBurning(bool b){
         s->setVolume(5);
         s->start();
    
+   ///Hay que borrar el puntero al evento cunndo se pare el sonido 
     
 
 }
@@ -80,7 +82,7 @@ void WoodComponent::addBucket()
         std::string name = ss.str();
         FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent(name));
         s->stop(); 
-
+        SoundSystem::getInstance()->deleteEvent(s, name);
     }
 }
 

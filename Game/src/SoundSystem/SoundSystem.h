@@ -60,4 +60,5 @@ class SoundSystem {
     void saveEvent(SoundEvent* s, const std::string& strEventName);
     SoundEvent* getEvent(const std::string& strEventName);
     FMOD::Studio::EventInstance* getEventInstanceFromName(std::string eventName);
+    void deleteEvent(SoundEvent * s, const std::string strEventName);
 }; 
