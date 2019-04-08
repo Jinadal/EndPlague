@@ -20,7 +20,7 @@ GLFWwindow* Katana::initWindow()
 
     // glfw window creation
     // --------------------
-    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "Screams In Goblin", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -251,7 +251,7 @@ void Katana::initOpenGL()
     GLuint model        = glGetUniformLocation(shaderProgram, "M");
     GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
-	GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
+	//GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
     //GLuint light        = glGetUniformLocation(shaderProgram, "light_pos");
 
     scene->getEntity()->setviewID(view);
@@ -293,13 +293,13 @@ void Katana::drawAll()
 {
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glUseProgram(scene->getEntity()->getProgramID());
-    // Use our shader
-    scene->draw();
 	glUseProgram(billboardProgram);
 
 	renderBillboards();
+    glUseProgram(scene->getEntity()->getProgramID());
+    // Use our shader
+    scene->draw();
+
     // Swap buffers
     glfwSwapBuffers(window);
     glfwPollEvents();
@@ -325,8 +325,7 @@ TBillboard* Katana::createBillboard(const char* n, glm::vec3 p)
 }
 void Katana::renderBillboards()
 {
-    glDisable(GL_DEPTH_TEST); // Disable the Depth-testing
-
+    
 	glm::mat4 v         = scene->getEntity()->viewMatrix();
 	glm::mat4 p         = scene->getEntity()->projectionMatrix();
 	glm::mat4 PV        = p * v;
@@ -342,9 +341,6 @@ void Katana::renderBillboards()
 	{
 		billboards[i]->beginDraw();
 	}
-
-    glEnable(GL_DEPTH_TEST);
- 
 }
 
 CursorXYZ Katana::cursorPosition()
