@@ -3,7 +3,7 @@
 
 void KATMenu::setMenuBackground(char* t)
 {
-    //background = KATRender::getInstance()->createBillboard(t, 0, 0, 0);
+    background = KATRender::getInstance()->createBillboard(t, 0, 0, 0);
 }
 
 void KATMenu::clearBackground()
