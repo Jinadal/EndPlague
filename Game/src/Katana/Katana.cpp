@@ -330,7 +330,7 @@ void Katana::renderBillboards()
 	glm::mat4 v         = scene->getEntity()->viewMatrix();
 	glm::mat4 p         = scene->getEntity()->projectionMatrix();
 	glm::mat4 PV        = p * v;
-	glm::vec3 camPos = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
+	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
     
     GLuint PVID     = glGetUniformLocation(billboardProgram, "gVP");
     GLuint camID    = glGetUniformLocation(billboardProgram, "gCameraPos");
