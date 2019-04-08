@@ -1,30 +1,28 @@
 #pragma once 
 #include <btBulletDynamicsCommon.h>
 
+
 class PhysicBullet{
     private:
-        PhysicBullet(){init();};
-
         btBroadphaseInterface*                      _broadphase;
         btDefaultCollisionConfiguration*            _collisionConfiguration;
         btCollisionDispatcher*                      _dispatcher;
         btSequentialImpulseConstraintSolver*        _solver;
         btDynamicsWorld*                            _world;
         btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
-        
     public:
-    
-        ~PhysicBullet(){};
+        PhysicBullet(){init();}
+        ~PhysicBullet();
 
-        static PhysicBullet* getInstance(){
-            static PhysicBullet only_instance;
-            return &only_instance;
-        }
+        //static PhysicBullet* getInstance(){
+        //    static PhysicBullet only_instance;
+        //    return &only_instance;
+        //}
     
 
         void removeRigidBody(btRigidBody* rigidbody);
 
-        
+
         btRigidBody* createRigidBody(const btVector3 &TPosition, const btVector3 &TScale, btScalar TMass, int physicType);
         btRigidBody* createFromFile(char* filename);
         void iteration(float d);

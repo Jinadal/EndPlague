@@ -1,14 +1,15 @@
 #pragma once
 #include "PhysicBullet.h"
 #include "Manager.h"
-
+#include <iostream>
 class GameObject;
 class BPhysicManager : public Manager
 {
     private:
+        PhysicBullet* physics;
         BPhysicManager(){init();  gContactAddedCallback = this->callbackFunc;}
     public:
-        ~BPhysicManager(){}
+        ~BPhysicManager(){delete physics;}
 
         static BPhysicManager* getInstance(){
             static BPhysicManager only_instance;
@@ -20,4 +21,5 @@ class BPhysicManager : public Manager
         void updateAll(float dt);
         void clear();
         void init();
+        PhysicBullet* getPhysics(){return physics;}
 };

@@ -30,8 +30,6 @@ void PlayState::initState()
     s->start();
     SoundSystem::getInstance()->saveEvent(s,"ambiente");
 
-   
-
 } 
 
 
@@ -65,5 +63,6 @@ void PlayState::update(float dt)
 
 void PlayState::clear(){
     GameManager::getInstance()->clear();
+
     loaded=false;
 }

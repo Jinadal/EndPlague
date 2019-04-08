@@ -5,6 +5,8 @@
 #include "GameValues.h"
 #include "ProjectileComponent.h"
 #include "SpecificSoundEvent.h"
+#include <iostream>
+#include <sstream>
 
 void WoodComponent::update(float dt)
 {
@@ -14,7 +16,16 @@ void WoodComponent::update(float dt)
     }
     if(life<0.f)
     {
+
+        const void * address = static_cast<const void*>(this);
+        std::stringstream ss;
+        ss << address;  
+        std::string name = ss.str();
+        FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent(name));
+        s->stop(); 
+        SoundSystem::getInstance()->deleteEvent(s, name);
         gameObject->setKill(true);
+        
     }
 }
 
@@ -38,13 +49,18 @@ void WoodComponent::setBurning(bool b){
             gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/tex/Casa_Color.bmp");
         }
     }
-    
-    
+   //  std::cout << "Sonido arranca"<< this <<"\n";
         FireSoundEvent * s = new FireSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("sburn"));
-        SoundSystem::getInstance()->saveEvent(s, "sburn");
+        const void * address = static_cast<const void*>(this);
+        std::stringstream ss;
+        ss << address;  
+        std::string name = ss.str();
+        SoundSystem::getInstance()->saveEvent(s, name); 
         s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
         s->setVolume(5);
         s->start();
+   
+   ///Hay que borrar el puntero al evento cunndo se pare el sonido 
     
 
 }
@@ -60,8 +76,13 @@ void WoodComponent::addBucket()
             gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
         }  
 
-        FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent("sburn"));
+        const void * address = static_cast<const void*>(this);
+        std::stringstream ss;
+        ss << address;  
+        std::string name = ss.str();
+        FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent(name));
         s->stop(); 
+        SoundSystem::getInstance()->deleteEvent(s, name);
     }
 }
 
@@ -70,12 +91,13 @@ void WoodComponent::dealDamage(ProjectileComponent* projectile)
 {
     if(projectile && projectile->getTeam()!=team)
     {
-        setBurning(true);
+        if(!burning)
+            setBurning(true);
         HitSoundEvent * s = new HitSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("shit"));
         s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
         s->setVolume(5);
         s->start();
-
+        delete s;
         life -= projectile->getDamage();
     }
 }

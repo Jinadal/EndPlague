@@ -1,49 +1,12 @@
 #include "SoundSystem.h"
+#include "SoundEvent.h"
+#include "SoundEngineData.h"
 #include "CameraManager.h"
+#include "GameObject.h"
+#include "GameResource.h"
 #include <iostream>
 
-SoundSystem* SoundSystem::only_instance = nullptr; 
-
-
   
-
-SoundEngineData::SoundEngineData() {
-    mpStudioSystem = NULL;
-    SoundSystem::ErrorCheck(FMOD::Studio::System::create(&mpStudioSystem));
-    SoundSystem::ErrorCheck(mpStudioSystem->initialize(32, FMOD_STUDIO_INIT_LIVEUPDATE, FMOD_INIT_PROFILE_ENABLE, NULL));
-
-    mpSystem = NULL;
-    SoundSystem::ErrorCheck(mpStudioSystem->getLowLevelSystem(&mpSystem));
-}
-
-
-SoundEngineData::~SoundEngineData() {
-    SoundSystem::ErrorCheck(mpStudioSystem->unloadAll());
-    SoundSystem::ErrorCheck(mpStudioSystem->release());
-}
-
-
-void SoundEngineData::Update() {
-    std::vector<ChannelMap::iterator> pStoppedChannels;
-    for (auto it = mChannels.begin(), itEnd = mChannels.end(); it != itEnd; ++it)
-    {
-        bool bIsPlaying = false;
-        it->second->isPlaying(&bIsPlaying);
-        if (!bIsPlaying)
-        {
-             pStoppedChannels.push_back(it);
-        }
-    }
-    for (auto& it : pStoppedChannels)
-    {
-         mChannels.erase(it);
-    }
-    SoundSystem::ErrorCheck(mpStudioSystem->update());
-}
-
-
-
-
 void SoundSystem::Init()
 {
     SoundSystem::LoadBank("res/media/Master Bank.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
@@ -73,7 +36,10 @@ void SoundSystem::Init()
 }
 void SoundSystem::Update() {
     CameraManager* ca = CameraManager::getInstance();
+    //GameObject* pt = GameResource::getInstance()->getPlayer();
     Vector3 v3 = {ca->getCX(),ca->getCY(),ca->getCZ()};
+    //Vector3 v3 = {pt->getX(),pt->getY(),pt->getZ()};
+
     SoundSystem::Set3dListener( v3);
     soundEngineData->Update();
 
@@ -291,14 +257,43 @@ int SoundSystem::ErrorCheck(FMOD_RESULT result) {
 }
 
 void SoundSystem::Shutdown() {
+    Release();
+    delete soundEngineData;
+} 
+
+void SoundSystem::Release(){
+
+
+    //mapa Descriptions 
+    for(std::map<std::string, FMOD::Studio::EventDescription*>::iterator it = soundEngineData->mEventsDescriptions.begin(); it != soundEngineData->mEventsDescriptions.end(); it++)
+    {
+        it->second->releaseAllInstances();
+       // delete it->second;
+
+    }
+   // soundEngineData->mEventsDescriptions.clear();
+
+    //mapa Instancias 
+  /*  for(std::map<std::string, FMOD::Studio::EventInstance*>::iterator it = soundEngineData->mEvents.begin(); it != soundEngineData->mEvents.end(); it++)
+    {
+       delete it->second;
+
+    }*/
+    soundEngineData->mEvents.clear();
+
+
+    //mapa SoundEvents 
+    for(std::map<std::string, SoundEvent* >::iterator it = soundEngineData->mSoundEvents.begin(); it != soundEngineData->mSoundEvents.end(); it++)
+    {
+       delete it->second;
+       
+
+    }
+    soundEngineData->mSoundEvents.clear();
     
 
-    if(only_instance){
-        delete soundEngineData;
-        delete only_instance;
-        only_instance = nullptr;
-    }
-} 
+}
+
 
 void SoundSystem::setVolume(float vol)
 {
@@ -352,67 +347,13 @@ SoundEvent* SoundSystem::getEvent(const std::string& strEventName)
      return tFoundIt->second;
 }
 
-///////////////////////SOUND EVENT///////////////////////////////
-
-
-SoundEvent::SoundEvent(FMOD::Studio::EventInstance* eventInstance)
+void SoundSystem::deleteEvent(SoundEvent* s, const std::string strEventName)
 {
-    soundInstance = eventInstance;
-    
+    auto tFoundIt = soundEngineData->mSoundEvents.find(strEventName);
+    if (tFoundIt == soundEngineData->mSoundEvents.end())
+        return;
+
+    soundEngineData->mSoundEvents.erase(tFoundIt);
+    delete s;
 }
 
-
-void SoundEvent::start()
-{
-    SoundSystem::ErrorCheck(soundInstance->start());
-}
-
-void SoundEvent::stop()
-{
-    SoundSystem::ErrorCheck(soundInstance->stop(FMOD_STUDIO_STOP_IMMEDIATE) ); //FMOD_STUDIO_STOP_ALLOWFADEOUT
-}
-
-void SoundEvent::pause()
-{
-    SoundSystem::ErrorCheck(soundInstance->setPaused(true) );
-}
-
-void SoundEvent::setVolume(float vol)
-{
-    SoundSystem::ErrorCheck(soundInstance->setVolume(vol) );
-
-}
-
-void SoundEvent::setGain(float gain)
-{
-    float vol = 0.f;
-    SoundSystem::ErrorCheck(soundInstance->getVolume(&vol));
-    vol = vol * gain;
-    SoundSystem::ErrorCheck(soundInstance->setVolume(vol));
-}
-
-void SoundEvent::setPosition(Vector3 pos)
-{
-    FMOD_3D_ATTRIBUTES atrib;
-
-       atrib.position =  SoundSystem::getInstance()->VectorToFmod(pos);
-       atrib.velocity = SoundSystem::getInstance()->VectorToFmod({0,0,0});
-       atrib.forward = SoundSystem::getInstance()->VectorToFmod({0,1,0});
-       atrib.up = SoundSystem::getInstance()->VectorToFmod({0,0,-1});
-
-    
-
-    SoundSystem::ErrorCheck(soundInstance->set3DAttributes(&atrib));
-}
-
-bool SoundEvent::isPlaying()
-{
-    bool res = false;
-    FMOD_STUDIO_PLAYBACK_STATE* state = NULL;
-   
-    SoundSystem::ErrorCheck(soundInstance->getPlaybackState(state));
-
-    if (*state == FMOD_STUDIO_PLAYBACK_PLAYING) res = true;
-
-    return res;
-}

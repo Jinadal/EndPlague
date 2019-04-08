@@ -3,6 +3,7 @@
 #include "PhysicBullet.h"
 #include "GameObject.h"
 
+#include "BPhysicManager.h"
 
 class BPhysicComponent : public Component 
 {
@@ -11,7 +12,7 @@ class BPhysicComponent : public Component
         float tx = 0.f, ty = 0.f;
         float vMax=3.f;
     public:
-        ~BPhysicComponent(){PhysicBullet::getInstance()->removeRigidBody(rbody);};
+        ~BPhysicComponent(){BPhysicManager::getInstance()->getPhysics()->removeRigidBody(rbody);};
         BPhysicComponent(GameObject* owner, 
                             Manager* manager, 
                             float xsize, 
