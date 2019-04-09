@@ -99,6 +99,15 @@ if(!mode)
     mapa.insert(pRaiz);
 
 
+        Secuencia* LODS = new Secuencia();
+        nodoRaiz->addChild(LODS);
+
+                IA_Plan_LODSoldier* checkLODs = new IA_Plan_LODSoldier(gameObject, main);
+                LODS->addChild(checkLODs);
+
+                MoveNone* movenones = new MoveNone(gameObject);
+                LODS->addChild(movenones);
+
         
         Secuencia* seguirRuta = new Secuencia();
         nodoRaiz->addChild(seguirRuta );
@@ -174,6 +183,17 @@ if(mode)
 
     mapa.insert(pRaiz2);       
       
+
+
+        Secuencia* LODV = new Secuencia();
+        nodoRaiz2->addChild(LODV);
+
+                IA_Plan_LODSoldier* checkLODv = new IA_Plan_LODSoldier(gameObject, main);
+                LODV->addChild(checkLODv);
+
+                MoveNone* movenonev = new MoveNone(gameObject);
+                LODV->addChild(movenonev);
+
         
         Secuencia* seguirRuta2 = new Secuencia();
         nodoRaiz2->addChild(seguirRuta2 );

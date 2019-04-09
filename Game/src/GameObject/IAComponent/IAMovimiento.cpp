@@ -6,7 +6,7 @@ bool MoveNone::run(){
   
   owner->getComponent<BPhysicComponent>()->setVelocity(0,0,0);
 
-return false;
+return true;
     
 }
 

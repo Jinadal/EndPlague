@@ -40,3 +40,31 @@ class IA_Plan_ChangeDirection : public Nodo
 
 };
 
+class IA_Plan_LODSoldier : public Nodo
+{
+
+    public:
+
+    IA_Plan_LODSoldier (GameObject* o, GameObject* m){owner = o; main = m;}
+    virtual ~IA_Plan_LODSoldier(){}
+
+    bool run() override;
+    GameObject * owner;
+    GameObject* main;
+
+};
+
+class IA_Plan_LODVillager : public Nodo
+{
+
+    public:
+
+    IA_Plan_LODVillager (GameObject* o, GameObject* m){owner = o; main = m;}
+    virtual ~IA_Plan_LODVillager(){}
+
+    bool run() override;
+    GameObject * owner;
+    GameObject* main;
+
+};
+

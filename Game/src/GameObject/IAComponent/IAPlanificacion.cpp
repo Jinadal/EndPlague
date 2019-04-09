@@ -9,6 +9,7 @@
 #include "RenderComponent.h"
 #include "IAManager.h"
 #include "BPhysicManager.h"
+#include <iostream>
 
 /*
 Salta si el personaje entra a menos de 10 unidades de distancia de portador de la ia
@@ -117,3 +118,48 @@ return false;
 
 }
 
+bool IA_Plan_LODSoldier::run()
+{
+
+    float d = round(sqrt(pow(main->getX() - owner->getX(),2) + pow(main->getY() - owner->getY(),2)));
+
+    //std::cout << "Distancia al player " << d <<"\n";
+    if(d>60.f)
+    {
+        return true;
+    }else{
+        if(d>25)
+        {
+            owner->getComponent<IAComponent>()->onRoute = false;
+            owner->getComponent<IAComponent>()->onPatrol = true;
+            return false;
+
+        }
+    }
+    
+    return false;
+}
+
+bool IA_Plan_LODVillager::run()
+{
+
+    float d = round(sqrt(pow(main->getX() - owner->getX(),2) + pow(main->getY() - owner->getY(),2)));
+
+    std::cout << "Distancia al player " << d <<"\n";
+    if(d>65.f)
+    {
+        return true;
+    }else{
+        if(d>45)
+        {
+            owner->getComponent<IAComponent>()->onRoute = false;
+            owner->getComponent<IAComponent>()->onPatrol = true;
+            return false;
+
+        }
+
+        
+    }
+    
+    return false;
+}
