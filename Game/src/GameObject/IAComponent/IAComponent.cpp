@@ -188,7 +188,7 @@ if(mode)
         Secuencia* LODV = new Secuencia();
         nodoRaiz2->addChild(LODV);
 
-                IA_Plan_LODSoldier* checkLODv = new IA_Plan_LODSoldier(gameObject, main);
+                IA_Plan_LODVillager* checkLODv = new IA_Plan_LODVillager(gameObject, main);
                 LODV->addChild(checkLODv);
 
                 MoveNone* movenonev = new MoveNone(gameObject);

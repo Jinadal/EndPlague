@@ -12,5 +12,6 @@ class InputComponent : public Component
     
     ~InputComponent(){}
 
+   //->cambio bool libre = false;
     void update(float cursorX, float cursorY);
 };

@@ -145,21 +145,26 @@ bool IA_Plan_LODVillager::run()
 
     float d = round(sqrt(pow(main->getX() - owner->getX(),2) + pow(main->getY() - owner->getY(),2)));
 
-    std::cout << "Distancia al player " << d <<"\n";
+    //std::cout << "Distancia al player " << d <<"";
     if(d>65.f)
     {
+    //std::cout << " lejos y me clavo" <<"\n";
+
         return true;
     }else{
-        if(d>45)
+        if(d>40)
         {
             owner->getComponent<IAComponent>()->onRoute = false;
             owner->getComponent<IAComponent>()->onPatrol = true;
+      //      std::cout << " media y deberia moverme" <<"\n";
+
             return false;
 
         }
 
-        
+
     }
+    //std::cout << " hago de to" <<"\n";
     
     return false;
 }
