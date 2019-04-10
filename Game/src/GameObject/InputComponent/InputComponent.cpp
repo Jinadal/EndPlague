@@ -22,8 +22,9 @@ void InputComponent::update(float cursorX, float cursorY)
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         enX+=1;
 
-
-
+  /**  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+   *     libre = !libre;
+   */
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         if(gameObject->getComponent<ShootComponent>())
         gameObject->getComponent<ShootComponent>()->shoot();
@@ -42,6 +43,12 @@ void InputComponent::update(float cursorX, float cursorY)
     
 
     if(gameObject->getComponent<BPhysicComponent>()!=nullptr){
-        gameObject->getComponent<BPhysicComponent>()->moveObject(enX ,enY, 0.f, cursorX, cursorY);
+      //  if(!libre){
+            gameObject->getComponent<BPhysicComponent>()->moveObject(enX ,enY, 0.f, cursorX, cursorY);
+
+   /*     }else{
+    *       gameObject->getComponent<CameraComponent>()->moveObject(enX ,enY, 0.f, cursorX, cursorY);
+    *    }
+    */ 
     }
 }
