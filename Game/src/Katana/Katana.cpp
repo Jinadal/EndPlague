@@ -130,7 +130,7 @@ TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
         //Camera Leaf
         TCamera* c = new TCamera();
         TNode* nodeCamera = new TNode(nodeRST, c);
-        nodeCamera->setId(5);
+        nodeCamera->setId(10);
         nodeRST->addChild(nodeCamera);
         camera = nodeCamera;
         calculateCamera(p,v);
@@ -139,6 +139,7 @@ TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
     }
     return nullptr;
 }
+
 
 TNode* Katana::createBranch(TNode* f, glm::vec3 v)
 {
@@ -275,7 +276,10 @@ void Katana::deleteNodeBranch(TNode* n)
 
 void Katana::renderCamera()
 {
-
+    
+    glm::mat4 cm  = ((TTransform*) camera->getEntity())->getMatrix();
+    cm = glm::inverse(cm);
+    scene->getEntity()->viewMatrix() = cm;
     if(camera != nullptr)
     {
         glUniformMatrix4fv(scene->getEntity()->getViewID(), 1, GL_FALSE, &scene->getEntity()->viewMatrix()[0][0]);
@@ -297,6 +301,8 @@ void Katana::drawAll()
 
 	renderBillboards();
     glUseProgram(scene->getEntity()->getProgramID());
+    renderCamera();
+
     // Use our shader
     scene->draw();
 

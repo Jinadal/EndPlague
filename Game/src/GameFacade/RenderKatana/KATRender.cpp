@@ -13,7 +13,7 @@ KATRender::KATRender()
 	katana->initOpenGL();
     scene = katana->getSceneRoot();
 
-    katana->createNodeCamera(scene, glm::vec3(0,0,0),glm::vec3(0,0,100),0.01f,100.0f);
+    katana->createNodeCamera(scene, glm::vec3(0,0,-50),glm::vec3(0,0,0),0.01f,100.0f);
     katana->createBillboard("res/sprites/Initial.png",glm::vec3(0,-0.5,0.8));
 }
 
@@ -51,7 +51,9 @@ FMesh* KATRender::createMesh(char* s)
 
 FCamera* KATRender::createCamera()
 {
-    return new KATCamera();
+    KATCamera* camara = new KATCamera();
+    camara->setCamera(katana->getNodeCamera());   
+    return (FCamera*)camara;
 }
 
 FHUD* KATRender::getHUD()
