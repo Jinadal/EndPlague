@@ -130,7 +130,7 @@ TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
         //Camera Leaf
         TCamera* c = new TCamera();
         TNode* nodeCamera = new TNode(nodeRST, c);
-        nodeCamera->setId(5);
+        nodeCamera->setId(10);
         nodeRST->addChild(nodeCamera);
         camera = nodeCamera;
         calculateCamera(p,v);
@@ -139,6 +139,7 @@ TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
     }
     return nullptr;
 }
+
 
 TNode* Katana::createBranch(TNode* f, glm::vec3 v)
 {
@@ -275,17 +276,25 @@ void Katana::deleteNodeBranch(TNode* n)
 
 void Katana::renderCamera()
 {
+    
+    
+    glm::mat4 tm  = ((TTransform*) camera->getFather()->getEntity())->getMatrix();
+    glm::mat4 sm  = ((TTransform*) camera->getFather()->getFather()->getEntity())->getMatrix();
+    glm::mat4 rm  = ((TTransform*) camera->getFather()->getFather()->getFather()->getEntity())->getMatrix();
 
-    if(camera != nullptr)
-    {
-        glUniformMatrix4fv(scene->getEntity()->getViewID(), 1, GL_FALSE, &scene->getEntity()->viewMatrix()[0][0]);
-    }
+    glm::mat4 fm = tm * sm * rm;
+    scene->getEntity()->viewMatrix() = glm::inverse(fm);
+
+    //if(camera != nullptr)
+    //{
+    //    glUniformMatrix4fv(scene->getEntity()->getViewID(), 1, GL_FALSE, &scene->getEntity()->viewMatrix()[0][0]);
+    //}
 }
 
 void Katana::calculateCamera(glm::vec3 p,glm::vec3 t)
 {
     cameraPos = p;
-    scene->getEntity()->viewMatrix() = glm::lookAt(p,t,glm::vec3(0,1,0));   
+   // scene->getEntity()->viewMatrix() = glm::lookAt(p,t,glm::vec3(0,1,0));   
 }
 
 
@@ -297,6 +306,8 @@ void Katana::drawAll()
 
 	renderBillboards();
     glUseProgram(scene->getEntity()->getProgramID());
+    renderCamera();
+
     // Use our shader
     scene->draw();
 
@@ -368,3 +379,10 @@ CursorXYZ Katana::cursorPosition()
     return CursorXYZ{-x, y, 0.f};
 }
 
+
+void Katana::setCameraPosition(float x, float y, float z)
+{
+    cameraPos.x = x;
+    cameraPos.y = y;
+    cameraPos.z = z;
+}

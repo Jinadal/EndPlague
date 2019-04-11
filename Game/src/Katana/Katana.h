@@ -54,6 +54,7 @@ class Katana
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
         TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
         TBillboard* createBillboard(const char* n, glm::vec3 p);
+        TNode* getNodeCamera() {return camera;}
         void renderBillboards();
         void deleteNodeBranch(TNode* n);
 
@@ -62,4 +63,6 @@ class Katana
 
         void createNodeTexture(char* name, glm::vec3 p);
         void renderTexture();
+
+        void setCameraPosition(float x, float y, float z);
 };
