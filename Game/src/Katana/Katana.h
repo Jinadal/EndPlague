@@ -63,4 +63,6 @@ class Katana
 
         void createNodeTexture(char* name, glm::vec3 p);
         void renderTexture();
+
+        void setCameraPosition(float x, float y, float z);
 };

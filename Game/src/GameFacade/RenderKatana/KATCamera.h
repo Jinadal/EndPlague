@@ -13,5 +13,5 @@ class KATCamera : public FCamera
         void update(float x, float y, float z, float rx, float ry, float rz);
         void setFOV(float fov);
 
-        void setCamera(TNode* n){camera = n;}
+        void setCamera(TNode* n);
 };

@@ -13,8 +13,8 @@ KATRender::KATRender()
 	katana->initOpenGL();
     scene = katana->getSceneRoot();
 
-    katana->createNodeCamera(scene, glm::vec3(0,0,-50),glm::vec3(0,0,0),0.01f,100.0f);
-    katana->createBillboard("res/sprites/Initial.png",glm::vec3(0,-0.5,0.8));
+    katana->createNodeCamera(scene, glm::vec3(0,0,0),glm::vec3(0,0,-1),0.01f,100.0f);
+    katana->createBillboard("res/sprites/Initial.png",glm::vec3(0,-0.5,0.8));//glm::vec3(0,-0.5,0.8))
 }
 
 void KATRender::drawAll()
