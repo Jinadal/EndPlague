@@ -26,6 +26,14 @@ void ParticleSystem::init()
         data[3*i + 1]   = v.y;
         data[3*i + 2]   = v.z;
     }
+
+
+
+
+    const char * partvert = "src/ParticleSystem/part.vert";
+    const char * partfrag = "src/ParticleSystem/part.frag"; 
+
+    
 }
 
 
