@@ -68,9 +68,9 @@ FMenu* KATRender::getMenu()
 }
 
 
-void KATRender::setCamera(float x,float y,float z,float rx,float ry,float rz)
+void KATRender::setCamera(float x,float y,float z)
 {
-    katana->calculateCamera(glm::vec3(x, y, z),glm::vec3(rx, ry, rz));
+    katana->setCameraPosition(x, y, z);
 }
 
 

@@ -125,15 +125,14 @@ TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,floa
 {
     if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
     {
-        TNode* nodeRST = createBranch(f,v);
-
+        TNode* nodeRST = createBranch(f,p);
+        setCameraPosition(p.x, p.y, p.z);
         //Camera Leaf
         TCamera* c = new TCamera();
         TNode* nodeCamera = new TNode(nodeRST, c);
         nodeCamera->setId(10);
         nodeRST->addChild(nodeCamera);
         camera = nodeCamera;
-        calculateCamera(p,v);
 
         return camera;
     }
@@ -290,13 +289,6 @@ void Katana::renderCamera()
     //    glUniformMatrix4fv(scene->getEntity()->getViewID(), 1, GL_FALSE, &scene->getEntity()->viewMatrix()[0][0]);
     //}
 }
-
-void Katana::calculateCamera(glm::vec3 p,glm::vec3 t)
-{
-    cameraPos = p;
-   // scene->getEntity()->viewMatrix() = glm::lookAt(p,t,glm::vec3(0,1,0));   
-}
-
 
 void Katana::drawAll()
 {

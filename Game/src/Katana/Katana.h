@@ -45,7 +45,6 @@ class Katana
         void initOpenGL();
         void renderCamera();
         void drawAll();
-        void calculateCamera(glm::vec3 p,glm::vec3 t);
 
         //TREE METHODS
         void initRoot();
