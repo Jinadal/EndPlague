@@ -152,7 +152,7 @@ bool IA_Plan_LODVillager::run()
 
         return true;
     }else{
-        if(d>40)
+        if(d>50)
         {
             owner->getComponent<IAComponent>()->onRoute = false;
             owner->getComponent<IAComponent>()->onPatrol = true;
