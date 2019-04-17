@@ -75,7 +75,7 @@ void WoodComponent::addBucket()
         std::string name = ss.str();
 
         WaterdropSoundEvent * sw = new WaterdropSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("waterdrop"));
-         SoundSystem::getInstance()->saveEvent(sw, name); 
+         
         sw->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
         sw->setVolume(15);
         sw->start();

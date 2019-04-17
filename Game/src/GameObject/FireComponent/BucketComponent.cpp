@@ -14,11 +14,8 @@ void BucketComponent::fillBucket(WellComponent* wc)
         gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");
 
         WatergetSoundEvent * s = new WatergetSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("waterget"));
-        const void * address = static_cast<const void*>(this);
-        std::stringstream ss;
-        ss << address;  
-        std::string name = ss.str();
-        SoundSystem::getInstance()->saveEvent(s, name); 
+     
+       
         s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
         s->setVolume(5);
         s->start();
