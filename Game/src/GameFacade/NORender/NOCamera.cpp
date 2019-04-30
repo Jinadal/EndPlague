@@ -4,7 +4,7 @@
 #include "TNode.h"
 #include "TCamera.h"
 
-void NOCamera::update(float x, float y, float z, float rx, float ry, float rz)
+void NOCamera::update(float x, float y, float z, float rx, float ry, float rz, bool ortho)
 {
 }
 

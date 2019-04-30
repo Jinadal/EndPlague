@@ -12,7 +12,7 @@ void KATCamera::setCamera(TNode* n){
 }
 
 
-void KATCamera::update(float x, float y, float z, float rx, float ry, float rz)
+void KATCamera::update(float x, float y, float z, float rx, float ry, float rz, bool ortho)
 {
     TTransform* translate = (TTransform*)camera->getFather()->getEntity();
     TTransform* rotate = (TTransform*)camera->getFather()->getFather()->getFather()->getEntity();
@@ -22,10 +22,17 @@ void KATCamera::update(float x, float y, float z, float rx, float ry, float rz)
 
     float dz = z - rz;
     float dy = y - ry;
-
-    rotate->rotate(0, 0, 1, 3.1416);
-    rotate->rotate(1, 0, 0, 3.1416);
-    rotate->rotate(1, 0, 0, atan(dy/dz));
+    if(!ortho){
+        rotate->rotate(0, 0, 1, 3.1416);
+        rotate->rotate(1, 0, 0, 3.1416);
+        rotate->rotate(1, 0, 0, atan(dy/dz));
+    }else{
+        rotate->rotate(0, 0, 1, 3.1416);
+        rotate->rotate(1, 0, 0, 3.1416);
+        //rotate->rotate(1, 0, 0, atan(dy/dz));
+        float ajust = ry - y;
+        y = y +ajust;
+    }
     translate->translate(-x, y, z);
     KATRender::getInstance()->setCamera(-x, y, z);
 }

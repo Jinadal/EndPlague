@@ -17,7 +17,7 @@ void CameraComponent::update(float dt)
     y += vy*dt;
     z = gameObject->getZ();
 
-    node->update(x, y-(gv::CAMERA_DY * zoom), z-(gv::CAMERA_DZ * zoom), x, y, z);
+    node->update(x, y-(gv::CAMERA_DY * zoom), z-(gv::CAMERA_DZ * zoom), x, y, z, ortho);
 
    ((CameraManager*)manager)->setCameraPosition(x, y, z-(gv::CAMERA_DZ * zoom));
 }
