@@ -40,6 +40,11 @@ void InputComponent::update(float cursorX, float cursorY)
         if(gameObject->getComponent<CameraComponent>())
         gameObject->getComponent<CameraComponent>()->setZoom(-gv::CAMERA_ZOOM_VEL);
     }
+
+     if(sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
+        if(gameObject->getComponent<CameraComponent>())
+        gameObject->getComponent<CameraComponent>()->setOrtho();
+    }
     
 
     if(gameObject->getComponent<BPhysicComponent>()!=nullptr){

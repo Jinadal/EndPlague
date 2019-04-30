@@ -11,6 +11,7 @@ class CameraComponent : public Component{
         float x, y, z;
         float rz;
         float zoom = 1.f;
+        bool ortho = false;
     public:
         CameraComponent(GameObject* parent, Manager* m) : Component(parent, m)
         {
@@ -29,5 +30,6 @@ class CameraComponent : public Component{
         void update(float dt);
         void setFOV(float fov);
         void setZoom(float dt);
+        void setOrtho(){ortho = !ortho;}
 
 };

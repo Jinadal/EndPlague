@@ -16,6 +16,8 @@ void SoundSystem::Init()
     SoundSystem::LoadBank("res/media/Goblin.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Fondo.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Spawn.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Water.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+
   
     SoundSystem::LoadEvent("event:/s_hit", "shit");
     SoundSystem::LoadEvent("event:/s_burn", "sburn");
@@ -32,6 +34,8 @@ void SoundSystem::Init()
     SoundSystem::LoadEvent("event:/musica", "musica");
 
 
+    SoundSystem::LoadEvent("event:/g_waterget", "waterget");
+    SoundSystem::LoadEvent("event:/g_waterdrop", "waterdrop");
 
 }
 void SoundSystem::Update() {

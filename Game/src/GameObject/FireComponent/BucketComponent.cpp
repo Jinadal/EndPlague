@@ -2,6 +2,9 @@
 #include "WoodComponent.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "SpecificSoundEvent.h"
+#include <sstream>
+
 
 void BucketComponent::fillBucket(WellComponent* wc)
 {
@@ -9,6 +12,15 @@ void BucketComponent::fillBucket(WellComponent* wc)
     {
         water=true;
         gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");
+
+        WatergetSoundEvent * s = new WatergetSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("waterget"));
+     
+       
+        s->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
+        s->setVolume(5);
+        s->start();
+
+        delete s;
     }
 }
 

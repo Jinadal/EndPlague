@@ -10,7 +10,7 @@ class IRRCamera : public FCamera{
 
         ~IRRCamera(){}
 
-        void update(float x, float y, float z, float rx, float ry, float rz);
+        void update(float x, float y, float z, float rx, float ry, float rz, bool ortho);
         void setFOV(float fov);
 
 };

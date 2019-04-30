@@ -68,6 +68,20 @@ void WoodComponent::setBurning(bool b){
 void WoodComponent::addBucket()
 {
     buckets++;
+
+     const void * address = static_cast<const void*>(this);
+        std::stringstream ss;
+        ss << address;  
+        std::string name = ss.str();
+
+        WaterdropSoundEvent * sw = new WaterdropSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("waterdrop"));
+         
+        sw->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
+        sw->setVolume(15);
+        sw->start();
+
+        delete sw;
+
     if(buckets>=gv::BUCKETS_NEDED){
         burning = false;
         buckets = 0;
@@ -76,10 +90,7 @@ void WoodComponent::addBucket()
             gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/green.bmp");
         }  
 
-        const void * address = static_cast<const void*>(this);
-        std::stringstream ss;
-        ss << address;  
-        std::string name = ss.str();
+       
         FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent(name));
         s->stop(); 
         SoundSystem::getInstance()->deleteEvent(s, name);

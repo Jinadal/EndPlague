@@ -105,7 +105,7 @@ bool IA_Graf_FollowRuta::run()
     }else{
         //distancia = 4.1F;
     }
-    //std::cout << "distancia: " << d << " ///// objetivo: " << distancia<< "\n"; 
+   // std::cout << "distancia: " << d << " ///// objetivo: " << distancia<< "\n"; 
     if(round(fabs(d)) < distancia  )
     {
         int tam = ruta.size();
