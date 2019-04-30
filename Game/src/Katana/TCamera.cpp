@@ -31,7 +31,7 @@ void TCamera::switchProyection(bool ortho)
     else
     {
     
-       projectionMatrix() = glm::ortho(-10.f, 10.f, -10.f, 10.f, 1.f, 100.f);
+       projectionMatrix() = glm::ortho(-20.f, 20.f, -10.f, 10.f, 1.f, 100.f);
     }
 }
 
