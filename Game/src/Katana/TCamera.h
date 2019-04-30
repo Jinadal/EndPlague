@@ -13,7 +13,7 @@ class TCamera : public TEntity
         ~TCamera(){}
 
         //Get & Set
-        void setCameraParametres(float n,float f);
+        void switchProyection(bool ortho);
         void setPerspective(){ perspective = true;};
         
         void changeCamera(bool c){ perspective = c;};
