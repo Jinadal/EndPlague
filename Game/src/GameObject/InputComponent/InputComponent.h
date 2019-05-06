@@ -6,7 +6,7 @@ class InputComponent : public Component
 {
 
     public:
-
+    bool proyec = false;
     //Constructor
     InputComponent(GameObject *owner, Manager* m): Component(owner, m) {}
     

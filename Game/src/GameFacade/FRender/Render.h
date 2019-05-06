@@ -32,4 +32,5 @@ class Render
         FCamera* createCamera();
         FHUD* getHUD();
         FMenu* getMenu();
+        FRender* getRender(){return render;}
 };

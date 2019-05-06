@@ -46,6 +46,7 @@ class Katana
         void clean();
         void initOpenGL();
         void renderCamera();
+        void renderEnvoirment();
         void drawAll();
 
         //TREE METHODS

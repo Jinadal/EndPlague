@@ -5,6 +5,8 @@
 #include "CameraComponent.h"
 #include <SFML/Window.hpp>
 #include "GameValues.h"
+#include "KATRender.h"
+#include "TCamera.h"
 
 void InputComponent::update(float cursorX, float cursorY)
 {
@@ -42,10 +44,16 @@ void InputComponent::update(float cursorX, float cursorY)
     }
 
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
+       /* if(gameObject->getComponent<CameraComponent>())
+        gameObject->getComponent<CameraComponent>()->setOrtho();*/
+        proyec = !proyec;
+        ((TCamera*)((KATRender*)Render::getInstance()->getRender())->getKatana()->getNodeCamera()->getEntity())->switchProyection(proyec);
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
         if(gameObject->getComponent<CameraComponent>())
         gameObject->getComponent<CameraComponent>()->setOrtho();
     }
-    
 
     if(gameObject->getComponent<BPhysicComponent>()!=nullptr){
       //  if(!libre){

@@ -14,23 +14,25 @@ TCamera::TCamera()
     
     projectionMatrix() = glm::perspective(glm::radians(zoom), (float)16 / (float)9, near, far);
 
+    
 }
 
-void TCamera::setCameraParametres(float n,float f)
+void TCamera::switchProyection(bool ortho)
 {
-    near = n;
-    far = f;
+   
     //else when perspective==false==parallel
-    if(perspective)
+    if(!ortho)
     {
         //glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT,n,f) FOR THE FUTURE
-        projectionMatrix() = glm::perspective(zoom, (float)16 / (float)9, near, far);
+    projectionMatrix() = glm::perspective(glm::radians(zoom), (float)16 / (float)9, near, far);
+
         
     }
     else
     {
     
-        projectionMatrix() = glm::ortho(1.0f,1.0f,1.0f,1.0f);
+       projectionMatrix() = glm::ortho(-20.f, 20.f, -10.f, 10.f, 1.f, 100.f);
     }
 }
+
 
