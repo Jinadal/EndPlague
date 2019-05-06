@@ -28,10 +28,12 @@ class Katana
         GLFWwindow* window;
         TNode* scene;
         TNode* camera;
+        TNode* light;
         TResourceManager* manager;
         std::vector<TBillboard*> billboards;
         std::vector<TResourceTexture*> hud;
         GLuint billboardProgram;
+        GLuint shaderProgram;
         glm::vec3 cameraPos = glm::vec3(0, 0, 0);
     public:
         GLFWwindow* initWindow();
@@ -64,4 +66,6 @@ class Katana
         void renderTexture();
 
         void setCameraPosition(float x, float y, float z);
+
+        void renderLight();
 };

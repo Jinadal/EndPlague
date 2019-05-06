@@ -36,5 +36,6 @@ void TResourceTexture::draw()
     {
         //Bind and enable the texture
         glBindTexture(GL_TEXTURE_2D, textureID);
+        
     }
 }

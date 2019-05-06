@@ -7,7 +7,18 @@
 #include "GameValues.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-
+void MessageCallback( GLenum source,
+                      GLenum type,
+                      GLuint id,
+                      GLenum severity,
+                      GLsizei length,
+                      const GLchar* message,
+                      const void* userParam )
+{
+  fprintf( stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+           ( type == GL_DEBUG_TYPE_ERROR ? " GL ERROR " : "" ),
+            type, severity, message );
+}
 
 GLFWwindow* Katana::initWindow()
 {
@@ -180,30 +191,21 @@ void Katana::initOpenGL()
 
     const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
     const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
-    const char * vbill_path     = "src/Katana/shaders/billboard.vert";
-    const char * gbill_path     = "src/Katana/shaders/billboard.geo";
-    const char * fbill_path     = "src/Katana/shaders/billboard.frag";
 
     GLenum res = glewInit();
     if (res != GLEW_OK)
     {
         fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
     }
-
+    glEnable( GL_DEBUG_OUTPUT );
+    glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
     TResourceShader* vertexShader   = manager->getResourceShader(vshader_path, (GLenum)GL_VERTEX_SHADER);
 	TResourceShader* fragmentShader = manager->getResourceShader(fshader_path, (GLenum)GL_FRAGMENT_SHADER);
-    TResourceShader* vbillShader    = manager->getResourceShader(vbill_path, (GLenum)GL_VERTEX_SHADER);
-    TResourceShader* gbillShader    = manager->getResourceShader(gbill_path, (GLenum)GL_GEOMETRY_SHADER);
-    TResourceShader* fbillShader    = manager->getResourceShader(fbill_path, (GLenum)GL_FRAGMENT_SHADER);
-
+ 
     GLuint vertexID     = vertexShader->getId();
 	GLuint fragmentID   = fragmentShader->getId();
-    GLuint vbillID      = vbillShader->getId();
-    GLuint gbillID      = gbillShader->getId();
-    GLuint fbillID      = fbillShader->getId();
 
-    GLuint shaderProgram = glCreateProgram();
-    billboardProgram = glCreateProgram();
+    shaderProgram = glCreateProgram();
     
     glAttachShader(shaderProgram, vertexID);
     glAttachShader(shaderProgram, fragmentID);
@@ -217,29 +219,16 @@ void Katana::initOpenGL()
     glDeleteShader(vertexID);
     glDeleteShader(fragmentID);
 
-    glAttachShader(billboardProgram, vbillID);
-    glAttachShader(billboardProgram, gbillID);
-    glAttachShader(billboardProgram, fbillID);
-    glLinkProgram(billboardProgram);
-    glValidateProgram(billboardProgram);
-
     GLint Result = GL_FALSE;
     int InfoLogLength;
-    glGetProgramiv(billboardProgram, GL_LINK_STATUS, &Result);
-	glGetProgramiv(billboardProgram, GL_INFO_LOG_LENGTH, &InfoLogLength);
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &Result);
+	glGetProgramiv(shaderProgram, GL_INFO_LOG_LENGTH, &InfoLogLength);
 	if ( InfoLogLength > 0 ){
 		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
-		glGetProgramInfoLog(billboardProgram, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+		glGetProgramInfoLog(shaderProgram, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 		printf("%s\n", &ProgramErrorMessage[0]);
     }
 
-    glDetachShader(billboardProgram, vbillID);
-	glDetachShader(billboardProgram, gbillID);
-    glDetachShader(billboardProgram, fbillID);
-
-    glDeleteShader(vbillID);
-    glDeleteShader(gbillID);
-    glDeleteShader(fbillID);
     //Enable Z-Buffer 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
@@ -247,13 +236,13 @@ void Katana::initOpenGL()
 
     scene->getEntity()->setProgramID(shaderProgram);
 
-    GLuint view         = glGetUniformLocation(shaderProgram, "V");
-    GLuint model        = glGetUniformLocation(shaderProgram, "M");
+    GLuint view         = glGetUniformLocation(shaderProgram, "view");
+    GLuint model        = glGetUniformLocation(shaderProgram, "model");
     GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
-	//GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
-    //GLuint light        = glGetUniformLocation(shaderProgram, "light_pos");
+    GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
 
+	glUniform1i(TextureID, 0);
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
@@ -276,7 +265,6 @@ void Katana::deleteNodeBranch(TNode* n)
 void Katana::renderCamera()
 {
     
-    
     glm::mat4 tm  = ((TTransform*) camera->getFather()->getEntity())->getMatrix();
     glm::mat4 sm  = ((TTransform*) camera->getFather()->getFather()->getEntity())->getMatrix();
     glm::mat4 rm  = ((TTransform*) camera->getFather()->getFather()->getFather()->getEntity())->getMatrix();
@@ -294,12 +282,10 @@ void Katana::drawAll()
 {
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glUseProgram(billboardProgram);
 
-	renderBillboards();
     glUseProgram(scene->getEntity()->getProgramID());
     renderCamera();
-
+    renderLight();
     // Use our shader
     scene->draw();
 
@@ -377,4 +363,24 @@ void Katana::setCameraPosition(float x, float y, float z)
     cameraPos.x = x;
     cameraPos.y = y;
     cameraPos.z = z;
+}
+
+void Katana::renderLight()
+{
+    GLuint camID        = glGetUniformLocation(shaderProgram, "viewPos");
+    GLuint lightpos     = glGetUniformLocation(shaderProgram, "lightPos");
+    GLuint lightcol     = glGetUniformLocation(shaderProgram, "lightColor");
+    GLuint objectcol    = glGetUniformLocation(shaderProgram, "objectColor");
+
+    glm::mat4 v         = scene->getEntity()->viewMatrix();
+
+	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
+    glm::vec3 lc = glm::vec3(1.0,1.0,1.0);
+    glm::vec3 oc = glm::vec3(1.0,0.5,0.31);
+    glm::vec3 lp = glm::vec3(0.0,0.0,-25.0);
+
+    glUniform3fv(camID,1,&camPos[0]);
+    glUniform3fv(lightpos,1,&lp[0]);
+    glUniform3fv(lightcol,1,&lc[0]);         
+    glUniform3fv(objectcol,1,&oc[0]);   
 }
