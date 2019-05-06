@@ -365,7 +365,6 @@ void Katana::setCameraPosition(float x, float y, float z)
     cameraPos.z = z;
 }
 
-<<<<<<< HEAD
 void Katana::renderLight()
 {
     GLuint camID        = glGetUniformLocation(shaderProgram, "viewPos");
@@ -384,33 +383,5 @@ void Katana::renderLight()
     glUniform3fv(lightpos,1,&lp[0]);
     glUniform3fv(lightcol,1,&lc[0]);         
     glUniform3fv(objectcol,1,&oc[0]);   
-=======
-
-void Katana::renderEnvoirment()
-{
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    glOrtho(0.0, gv::SCR_WIDTH, gv::SCR_HEIGHT, 0.0, -1.0, 10.0);
-    glMatrixMode(GL_MODELVIEW);
-    //glPushMatrix();        ----Not sure if I need this
-    glLoadIdentity();
-    glDisable(GL_CULL_FACE);
-
-    glClear(GL_DEPTH_BUFFER_BIT);
-
-    glBegin(GL_QUADS);
-        glColor3f(1.0f, 0.0f, 0.0);
-        glVertex2f(0.0, 0.0);
-        glVertex2f(10.0, 0.0);
-        glVertex2f(10.0, 10.0);
-        glVertex2f(0.0, 10.0);
-    glEnd();
-
-// Making sure we can render 3d again
-glMatrixMode(GL_PROJECTION);
-glPopMatrix();
-glMatrixMode(GL_MODELVIEW);
-//glPopMatrix();        ----and this?
->>>>>>> b5873239695de4f38da2674a820f62fce8d33ca6
 }
+
