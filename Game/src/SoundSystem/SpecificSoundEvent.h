@@ -3,3 +3,4 @@
 #include "HitSoundEvent.h"
 #include "ShootSoundEvent.h"
 #include "WaterSoundEvent.h"
+#include "ItemPickSoundEvent.h"

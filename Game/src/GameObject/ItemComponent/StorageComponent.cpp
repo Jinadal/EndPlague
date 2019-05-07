@@ -4,6 +4,8 @@
 #include "ShootComponent.h"
 #include "LifeComponent.h"
 #include "GameValues.h"
+#include "SpecificSoundEvent.h"
+
 
 void StorageComponent::itemCatch(ItemComponent* item)
 {
@@ -63,6 +65,13 @@ void StorageComponent::applyEffect(ItemTypes Type)
 
 void StorageComponent::potion()
 {
+    ItemPickSoundEvent* poti = new ItemPickSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("pickpotion"));
+    poti->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
+    poti->setVolume(5);
+    poti->start();
+    
+
+    delete poti;
     //it gives you life
     if(gameObject->getComponent<LifeComponent>())
     {
@@ -95,6 +104,12 @@ void StorageComponent::peak()
 
 void StorageComponent::shield()
 {
+     ItemPickSoundEvent* shield = new ItemPickSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("pickshield"));
+    shield->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
+    shield->setVolume(5);
+    shield->start();
+  
+    delete shield;
     //it gives you life shield
     if(gameObject->getComponent<LifeComponent>())
     {

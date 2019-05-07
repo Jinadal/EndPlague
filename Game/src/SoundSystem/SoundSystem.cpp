@@ -17,6 +17,8 @@ void SoundSystem::Init()
     SoundSystem::LoadBank("res/media/Fondo.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Spawn.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Water.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Picks.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+
 
   
     SoundSystem::LoadEvent("event:/s_hit", "shit");
@@ -32,10 +34,16 @@ void SoundSystem::Init()
 
     SoundSystem::LoadEvent("event:/ambiente", "ambiente");
     SoundSystem::LoadEvent("event:/musica", "musica");
+    SoundSystem::LoadEvent("event:/menu_musica", "menumusica");
+
 
 
     SoundSystem::LoadEvent("event:/g_waterget", "waterget");
     SoundSystem::LoadEvent("event:/g_waterdrop", "waterdrop");
+
+
+    SoundSystem::LoadEvent("event:/pocion_coger", "pickpotion");
+    SoundSystem::LoadEvent("event:/escudo_coger", "pickshield");
 
 }
 void SoundSystem::Update() {
