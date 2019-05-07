@@ -23,6 +23,8 @@ void SoundSystem::Init()
   
     SoundSystem::LoadEvent("event:/s_hit", "shit");
     SoundSystem::LoadEvent("event:/s_burn", "sburn");
+    SoundSystem::LoadEvent("event:/s_breakdown", "sbreakdown");
+
 
     
     SoundSystem::LoadEvent("event:/g_hacha", "ghacha");

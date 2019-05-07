@@ -24,6 +24,13 @@ void WoodComponent::update(float dt)
         FireSoundEvent * s = ((FireSoundEvent*)SoundSystem::getInstance()->getEvent(name));
         s->stop(); 
         SoundSystem::getInstance()->deleteEvent(s, name);
+
+        SpawnBreakSoundEvent* sb = new SpawnBreakSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("sbreakdown"));
+        sb->setPosition({gameObject->getX(), gameObject->getY(), gameObject->getZ()});
+        sb->setVolume(5);
+        sb->start();
+
+        delete sb;
         gameObject->setKill(true);
         
     }
