@@ -51,7 +51,8 @@
         "complex": "cpp",
         "iomanip": "cpp",
         "variant": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "*.ipp": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

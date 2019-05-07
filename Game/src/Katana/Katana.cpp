@@ -5,6 +5,8 @@
 #define GLM_ENABLE_EXPERIMENTAL 
 #include <iostream>
 #include "GameValues.h"
+#include "resource_manager.h"
+#include "SpriteRenderer.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void MessageCallback( GLenum source,
@@ -191,6 +193,8 @@ void Katana::initOpenGL()
 
     const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
     const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
+    const char * vsprite_path   = "shaders/sprite.vs";
+    const char * fsprite_path   = "shaders/sprite.fs";
 
     GLenum res = glewInit();
     if (res != GLEW_OK)
@@ -199,25 +203,42 @@ void Katana::initOpenGL()
     }
     glEnable( GL_DEBUG_OUTPUT );
     glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
+
     TResourceShader* vertexShader   = manager->getResourceShader(vshader_path, (GLenum)GL_VERTEX_SHADER);
 	TResourceShader* fragmentShader = manager->getResourceShader(fshader_path, (GLenum)GL_FRAGMENT_SHADER);
+    TResourceShader * vspriteShader = manager->getResourceShader(vsprite_path, (GLenum)GL_VERTEX_SHADER);
+    TResourceShader * fspriteShader = manager->getResourceShader(fsprite_path, (GLenum)GL_FRAGMENT_SHADER);
  
     GLuint vertexID     = vertexShader->getId();
 	GLuint fragmentID   = fragmentShader->getId();
+    GLuint vspriteID    = vspriteShader->getId();
+    GLuint fspriteID    = fspriteShader->getId();
 
     shaderProgram = glCreateProgram();
-    
+    spriteProgram = glCreateProgram();
+
     glAttachShader(shaderProgram, vertexID);
     glAttachShader(shaderProgram, fragmentID);
     glLinkProgram(shaderProgram);
     glValidateProgram(shaderProgram);
+
+
+    glAttachShader(spriteProgram, vspriteID);
+    glAttachShader(spriteProgram, fspriteID);
+    glLinkProgram(spriteProgram);
+    glValidateProgram(spriteProgram);
   
 
     glDetachShader(shaderProgram, vertexID);
 	glDetachShader(shaderProgram, fragmentID);
+    glDetachShader(spriteProgram, vspriteID);
+	glDetachShader(spriteProgram, fspriteID);
 
     glDeleteShader(vertexID);
     glDeleteShader(fragmentID);
+    glDeleteShader(vspriteID);
+    glDeleteShader(fspriteID);
+
 
     GLint Result = GL_FALSE;
     int InfoLogLength;
@@ -241,6 +262,9 @@ void Katana::initOpenGL()
     GLuint projection   = glGetUniformLocation(shaderProgram, "ProjectionMatrix");
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
     GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
+
+
+
 
 	glUniform1i(TextureID, 0);
     scene->getEntity()->setviewID(view);
@@ -286,6 +310,9 @@ void Katana::drawAll()
     glUseProgram(scene->getEntity()->getProgramID());
     renderCamera();
     renderLight();
+    //renderBillboards();
+    testSprites();
+
     // Use our shader
     scene->draw();
 
@@ -314,7 +341,7 @@ TBillboard* Katana::createBillboard(const char* n, glm::vec3 p)
 }
 void Katana::renderBillboards()
 {
-    
+    /*//Chage all the camera
 	glm::mat4 v         = scene->getEntity()->viewMatrix();
 	glm::mat4 p         = scene->getEntity()->projectionMatrix();
 	glm::mat4 PV        = p * v;
@@ -330,6 +357,7 @@ void Katana::renderBillboards()
 	{
 		billboards[i]->beginDraw();
 	}
+    */
 }
 
 CursorXYZ Katana::cursorPosition()
@@ -365,7 +393,6 @@ void Katana::setCameraPosition(float x, float y, float z)
     cameraPos.z = z;
 }
 
-<<<<<<< HEAD
 void Katana::renderLight()
 {
     GLuint camID        = glGetUniformLocation(shaderProgram, "viewPos");
@@ -384,33 +411,32 @@ void Katana::renderLight()
     glUniform3fv(lightpos,1,&lp[0]);
     glUniform3fv(lightcol,1,&lc[0]);         
     glUniform3fv(objectcol,1,&oc[0]);   
-=======
 
-void Katana::renderEnvoirment()
-{
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    glOrtho(0.0, gv::SCR_WIDTH, gv::SCR_HEIGHT, 0.0, -1.0, 10.0);
-    glMatrixMode(GL_MODELVIEW);
-    //glPushMatrix();        ----Not sure if I need this
-    glLoadIdentity();
-    glDisable(GL_CULL_FACE);
+}
 
-    glClear(GL_DEPTH_BUFFER_BIT);
 
-    glBegin(GL_QUADS);
-        glColor3f(1.0f, 0.0f, 0.0);
-        glVertex2f(0.0, 0.0);
-        glVertex2f(10.0, 0.0);
-        glVertex2f(10.0, 10.0);
-        glVertex2f(0.0, 10.0);
-    glEnd();
 
-// Making sure we can render 3d again
-glMatrixMode(GL_PROJECTION);
-glPopMatrix();
-glMatrixMode(GL_MODELVIEW);
-//glPopMatrix();        ----and this?
->>>>>>> b5873239695de4f38da2674a820f62fce8d33ca6
+void Katana::testSprites(){
+        //----------------------------------------------------------------------------------------
+    	//----------------------------GAME INIT---------------------------------------------------
+        //---------------------------------------------------------------------------------------
+            int SCREEN_WIDTH = 800;
+            int SCREEN_HEIGHT = 800;
+
+            glUseProgram(spriteProgram);
+            // Configure shaders
+            glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH), static_cast<GLfloat>(SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
+            GLuint imageID = glGetUniformLocation(spriteProgram, "image");
+            GLuint projectionID = glGetUniformLocation(spriteProgram, "projection");
+
+            glUniformMatrix4fv(projectionID, 1, GL_FALSE, &projection[0][0]);
+            glUniform1i(imageID, 0);
+
+            // Load textures
+            //ResourceManager::LoadTexture("res/awesomeface.png", GL_TRUE, "face");
+
+            // Set render-specific controls
+            SpriteRenderer * Renderer = new SpriteRenderer(spriteProgram);
+            Texture2D tex = ResourceManager::GetTexture("face");
+            Renderer->DrawSprite(tex, glm::vec2(200, 100), glm::vec2(200, 200), 0.0f, glm::vec3(1.0f, 1.0f, 0.0f));
 }

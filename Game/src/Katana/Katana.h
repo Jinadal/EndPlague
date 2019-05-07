@@ -32,9 +32,10 @@ class Katana
         TResourceManager* manager;
         std::vector<TBillboard*> billboards;
         std::vector<TResourceTexture*> hud;
-        GLuint billboardProgram;
+        GLuint spriteProgram;
         GLuint shaderProgram;
         glm::vec3 cameraPos = glm::vec3(0, 0, 0);
+        
     public:
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
@@ -46,7 +47,6 @@ class Katana
         void clean();
         void initOpenGL();
         void renderCamera();
-        void renderEnvoirment();
         void drawAll();
 
         //TREE METHODS
@@ -69,4 +69,6 @@ class Katana
         void setCameraPosition(float x, float y, float z);
 
         void renderLight();
+
+        void testSprites();
 };
