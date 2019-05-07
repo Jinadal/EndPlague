@@ -27,4 +27,5 @@ class FRender
         virtual FCamera* createCamera() = 0;
         virtual FHUD* getHUD() = 0;
         virtual FMenu* getMenu() = 0;
+        
 };
