@@ -41,7 +41,6 @@ class KATRender : public FRender{
         TNode* getScene(){return scene;}
         void setCamera(float x,float y,float z);
         void deleteNode(TNode* n);
-        TBillboard* createBillboard(char* t,float x, float y, float z);
         Katana* getKatana(){return katana;}
 
 };

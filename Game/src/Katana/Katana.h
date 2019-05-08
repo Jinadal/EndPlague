@@ -11,12 +11,13 @@
 #include "TCamera.h"
 #include "TLight.h"
 #include "TMesh.h"
-#include "TBillboard.h"
 #include "TTransform.h"
 #include "TResourceManager.h"
 #include "TResourceOBJ.h"
 #include "TResourceShader.h"
+#include "TSprite.h"
 
+class SpriteRenderer;
 struct CursorXYZ
 {
     float x, y, z;
@@ -30,11 +31,12 @@ class Katana
         TNode* camera;
         TNode* light;
         TResourceManager* manager;
-        std::vector<TBillboard*> billboards;
-        std::vector<TResourceTexture*> hud;
         GLuint spriteProgram;
         GLuint shaderProgram;
         glm::vec3 cameraPos = glm::vec3(0, 0, 0);
+        std::vector<TSprite*> sprites;
+
+        SpriteRenderer* spriteRenderer;
         
     public:
         GLFWwindow* initWindow();
@@ -55,7 +57,6 @@ class Katana
         TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
         TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
-        TBillboard* createBillboard(const char* n, glm::vec3 p);
         TNode* getNodeCamera() {return camera;}
         void renderBillboards();
         void deleteNodeBranch(TNode* n);
@@ -70,5 +71,7 @@ class Katana
 
         void renderLight();
 
-        void testSprites();
+        void drawSprites();
+        TSprite* createSprite(char* path);
+        void removeSprite(TSprite* sprite);
 };

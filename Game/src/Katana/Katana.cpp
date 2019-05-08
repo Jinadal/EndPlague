@@ -7,8 +7,8 @@
 #include "GameValues.h"
 //#include "resource_manager.h"
 #include "SpriteRenderer.h"
-#include "texture.h"
-#include "SOIL.h"
+#include "Texture2D.h"
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void MessageCallback( GLenum source,
@@ -195,8 +195,8 @@ void Katana::initOpenGL()
 
     const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
     const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
-    const char * vsprite_path   = "src/Katana/shaders/sprite.vs";
-    const char * fsprite_path   = "src/Katana/shaders/sprite.frag";
+    const char * vsprite_path   = "src/Katana/shaders/sprite.vertexshader";
+    const char * fsprite_path   = "src/Katana/shaders/sprite.fragmentshader";
 
     GLenum res = glewInit();
     if (res != GLEW_OK)
@@ -276,6 +276,7 @@ void Katana::initOpenGL()
 
     glUseProgram(shaderProgram);
 
+    spriteRenderer = new SpriteRenderer(spriteProgram);
 }
 
 void Katana::deleteNodeBranch(TNode* n)
@@ -316,7 +317,7 @@ void Katana::drawAll()
 
     // Use our shader
     scene->draw();
-    testSprites();
+    drawSprites();
 
     // Swap buffers
     glfwSwapBuffers(window);
@@ -331,35 +332,6 @@ void Katana::close()
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
-}
-
-TBillboard* Katana::createBillboard(const char* n, glm::vec3 p)
-{
-	TResourceTexture* t = manager->getResourceTexture(n);
-	TBillboard* b = new TBillboard(t, p);
-	billboards.push_back(b);
-
-	return b;
-}
-void Katana::renderBillboards()
-{
-    /*//Chage all the camera
-	glm::mat4 v         = scene->getEntity()->viewMatrix();
-	glm::mat4 p         = scene->getEntity()->projectionMatrix();
-	glm::mat4 PV        = p * v;
-	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
-    
-    GLuint PVID     = glGetUniformLocation(billboardProgram, "gVP");
-    GLuint camID    = glGetUniformLocation(billboardProgram, "gCameraPos");
-
-    glUniformMatrix4fv(PVID,1,GL_FALSE,&PV[0][0]);
-    glUniform3fv(camID, 1, &camPos[0]);
-
-	for(unsigned int i = 0; i < billboards.size(); i++)
-	{
-		billboards[i]->beginDraw();
-	}
-    */
 }
 
 CursorXYZ Katana::cursorPosition()
@@ -415,40 +387,51 @@ void Katana::renderLight()
 
 
 
-void Katana::testSprites(){
-        //----------------------------------------------------------------------------------------
-    	//----------------------------GAME INIT---------------------------------------------------
-        //---------------------------------------------------------------------------------------
-            int SCREEN_WIDTH = 800;
-            int SCREEN_HEIGHT = 800;
+void Katana::drawSprites(){
+            int SCREEN_WIDTH;
+            int SCREEN_HEIGHT;
 
+            glfwGetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
             glUseProgram(spriteProgram);
-            // Configure shaders
             glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH), static_cast<GLfloat>(SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
             GLuint imageID = glGetUniformLocation(spriteProgram, "image");
             GLuint projectionID = glGetUniformLocation(spriteProgram, "projection");
-
             glUniformMatrix4fv(projectionID, 1, GL_FALSE, &projection[0][0]);
             glUniform1i(imageID, 0);
 
-            // Load textures
-            //ResourceManager::LoadTexture("res/awesomeface.png", GL_TRUE, "face");
-                    Texture2D texture;
-                    
-                    texture.Internal_Format = GL_RGBA;
-                    texture.Image_Format = GL_RGBA;
-                    
-                    // Load image
-                    int width, height;
-                    unsigned char* image = SOIL_load_image("res/awesomeface.png", &width, &height, 0, texture.Image_Format == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
-                    // Now generate texture
-                    texture.Generate(width, height, image);
-                    // And finally free image data
-                    SOIL_free_image_data(image);
-
-            // Set render-specific controls
-            SpriteRenderer * Renderer = new SpriteRenderer(spriteProgram);
+            SpriteRenderer renderer(spriteProgram);
             //Texture2D tex = ResourceManager::GetTexture("face");
-            Renderer->DrawSprite(texture, glm::vec2(200, 100), glm::vec2(200, 200), 0.0f, glm::vec3(1.0f, 1.0f, 0.0f));
+            for(size_t i = 0; i<sprites.size(); i++)
+            {
+                if(sprites[i])
+                {
+                    Texture2D* texture = sprites[i]->getTexture();
+                    renderer.DrawSprite(*texture, glm::vec2(200, 100), glm::vec2(200, 200), 0.0f, glm::vec3(1.0f, 1.0f, 0.0f));
+                }
+            }
 }
 
+
+TSprite* Katana::createSprite(char* path)
+{
+    TSprite* sprite = new TSprite(path);
+
+    sprites.push_back(sprite);
+    return sprite;
+}
+
+
+void Katana::removeSprite(TSprite* sprite)
+{
+    if(sprite)
+    {
+        for(std::vector<TSprite*>::iterator it = sprites.begin(); it!=sprites.end(); it++){
+            if(sprite==*it)
+            {
+                sprites.erase(it);
+                delete sprite;
+                break;
+            }
+        }
+    }
+}

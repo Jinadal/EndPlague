@@ -9,6 +9,7 @@
 ** option) any later version.
 ******************************************************************/
 #include "SpriteRenderer.h"
+#include "Texture2D.h"
 
 
 SpriteRenderer::SpriteRenderer(GLuint spriteProgram)
