@@ -313,10 +313,10 @@ void Katana::drawAll()
     renderCamera();
     renderLight();
     //renderBillboards();
-    testSprites();
 
     // Use our shader
     scene->draw();
+    testSprites();
 
     // Swap buffers
     glfwSwapBuffers(window);
@@ -451,3 +451,4 @@ void Katana::testSprites(){
             //Texture2D tex = ResourceManager::GetTexture("face");
             Renderer->DrawSprite(texture, glm::vec2(200, 100), glm::vec2(200, 200), 0.0f, glm::vec3(1.0f, 1.0f, 0.0f));
 }
+
