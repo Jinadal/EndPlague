@@ -30,6 +30,11 @@ void PlayState::initState()
     s->start();
     SoundSystem::getInstance()->saveEvent(s,"ambiente");
 
+    AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
+    m->start();
+    SoundSystem::getInstance()->saveEvent(m,"musica");
+    m->setTensionParameter(1);
+
 } 
 
 

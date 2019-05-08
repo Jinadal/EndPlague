@@ -15,3 +15,11 @@ void AmbientSoundEvent::setAttackParameter(bool bol)
     //float val = bol? 1.f : 0.f;
     SoundSystem::ErrorCheck(pParameter->setValue(bol));
 }
+
+void AmbientSoundEvent::setTensionParameter(bool ten)
+{
+    FMOD::Studio::ParameterInstance* pParameter = NULL;
+    SoundSystem::ErrorCheck(soundInstance->getParameter("tension", &pParameter));
+    SoundSystem::ErrorCheck(pParameter->setValue(ten));
+
+}
