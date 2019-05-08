@@ -5,8 +5,10 @@
 #define GLM_ENABLE_EXPERIMENTAL 
 #include <iostream>
 #include "GameValues.h"
-#include "resource_manager.h"
+//#include "resource_manager.h"
 #include "SpriteRenderer.h"
+#include "texture.h"
+#include "SOIL.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void MessageCallback( GLenum source,
@@ -193,8 +195,8 @@ void Katana::initOpenGL()
 
     const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
     const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
-    const char * vsprite_path   = "shaders/sprite.vs";
-    const char * fsprite_path   = "shaders/sprite.fs";
+    const char * vsprite_path   = "src/Katana/shaders/sprite.vs";
+    const char * fsprite_path   = "src/Katana/shaders/sprite.frag";
 
     GLenum res = glewInit();
     if (res != GLEW_OK)
@@ -206,8 +208,8 @@ void Katana::initOpenGL()
 
     TResourceShader* vertexShader   = manager->getResourceShader(vshader_path, (GLenum)GL_VERTEX_SHADER);
 	TResourceShader* fragmentShader = manager->getResourceShader(fshader_path, (GLenum)GL_FRAGMENT_SHADER);
-    TResourceShader * vspriteShader = manager->getResourceShader(vsprite_path, (GLenum)GL_VERTEX_SHADER);
-    TResourceShader * fspriteShader = manager->getResourceShader(fsprite_path, (GLenum)GL_FRAGMENT_SHADER);
+    TResourceShader* vspriteShader  = manager->getResourceShader(vsprite_path, (GLenum)GL_VERTEX_SHADER);
+    TResourceShader* fspriteShader  = manager->getResourceShader(fsprite_path, (GLenum)GL_FRAGMENT_SHADER);
  
     GLuint vertexID     = vertexShader->getId();
 	GLuint fragmentID   = fragmentShader->getId();
@@ -398,19 +400,16 @@ void Katana::renderLight()
     GLuint camID        = glGetUniformLocation(shaderProgram, "viewPos");
     GLuint lightpos     = glGetUniformLocation(shaderProgram, "lightPos");
     GLuint lightcol     = glGetUniformLocation(shaderProgram, "lightColor");
-    GLuint objectcol    = glGetUniformLocation(shaderProgram, "objectColor");
 
     glm::mat4 v         = scene->getEntity()->viewMatrix();
 
 	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
     glm::vec3 lc = glm::vec3(1.0,1.0,1.0);
-    glm::vec3 oc = glm::vec3(1.0,0.5,0.31);
     glm::vec3 lp = glm::vec3(0.0,0.0,-25.0);
 
     glUniform3fv(camID,1,&camPos[0]);
     glUniform3fv(lightpos,1,&lp[0]);
     glUniform3fv(lightcol,1,&lc[0]);         
-    glUniform3fv(objectcol,1,&oc[0]);   
 
 }
 
@@ -434,9 +433,21 @@ void Katana::testSprites(){
 
             // Load textures
             //ResourceManager::LoadTexture("res/awesomeface.png", GL_TRUE, "face");
+                    Texture2D texture;
+                    
+                    texture.Internal_Format = GL_RGBA;
+                    texture.Image_Format = GL_RGBA;
+                    
+                    // Load image
+                    int width, height;
+                    unsigned char* image = SOIL_load_image("res/awesomeface.png", &width, &height, 0, texture.Image_Format == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
+                    // Now generate texture
+                    texture.Generate(width, height, image);
+                    // And finally free image data
+                    SOIL_free_image_data(image);
 
             // Set render-specific controls
             SpriteRenderer * Renderer = new SpriteRenderer(spriteProgram);
-            Texture2D tex = ResourceManager::GetTexture("face");
-            Renderer->DrawSprite(tex, glm::vec2(200, 100), glm::vec2(200, 200), 0.0f, glm::vec3(1.0f, 1.0f, 0.0f));
+            //Texture2D tex = ResourceManager::GetTexture("face");
+            Renderer->DrawSprite(texture, glm::vec2(200, 100), glm::vec2(200, 200), 0.0f, glm::vec3(1.0f, 1.0f, 0.0f));
 }
