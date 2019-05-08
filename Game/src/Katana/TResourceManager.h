@@ -8,6 +8,7 @@ class TResourceOBJ;
 class TResourceMaterial;
 class TResourceTexture;
 class TResourceShader;
+class TResourceAnimation;
 class TResourceManager
 {
 private:
@@ -15,8 +16,8 @@ private:
     std::vector<TResourceMaterial*> material;
     std::vector<TResourceTexture*> texture;
     std::vector<TResourceShader*> shader;
-    std::vector<TResourceOBJ*> obj;
-
+    std::vector<TResourceOBJ*> objs;
+    std::vector<TResourceAnimation*> animation;
 
 public:
     TResourceManager(){}
@@ -28,4 +29,8 @@ public:
     TResourceMaterial* getResourceMaterial(const char* name);
     TResourceTexture* getResourceTexture(const char* name);
     TResourceShader* getResourceShader(const char* name, GLenum type);
+    TResourceAnimation* getResourceAnimation(const char* n);
+
+    void deleteOBJ(const char* n);
+    void deleteAnimation(const char* n);
 };

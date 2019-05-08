@@ -40,51 +40,45 @@ bool TResourceOBJ::loadResource()
             meshes.push_back(mesh);
             ret = true;
 
-            //Get the obj path in order to make it relative and use it for the texture path
-            std::vector<std::string> arr;
-            arr=split(name,"/");
-            std::string path;
-
-            if(arr[0].compare("home") == 0)
-            {  
-                path = "/";
-            }
-
-            for(size_t i=0;i<arr.size()-1;i++)
+            if(!animation)
             {
-                path+=arr[i] + "/";
-            }
-            //Load meshs material
-            aiMaterial* currentMaterial = scene->mMaterials[m->mMaterialIndex];
+                //Get the obj path in order to make it relative and use it for the texture path
+                std::vector<std::string> arr;
+                arr=split(name,"/");
+                std::string path;
 
+                if(arr[0].compare("home") == 0)
+                {  
+                    path = "/";
+                }
+
+                for(size_t i=0;i<arr.size()-1;i++)
+                {
+                    path+=arr[i] + "/";
+                }
+                //Load meshs material
+                aiMaterial* currentMaterial = scene->mMaterials[m->mMaterialIndex];
             
+                TResourceMaterial* material = new TResourceMaterial();
+                material->loadResource(currentMaterial);
+                mesh->setMaterial(material);    
+                aiString texturepath;
 
-            TResourceMaterial* material = new TResourceMaterial();
-            material->loadResource(currentMaterial);
-            mesh->setMaterial(material);    
-            aiString texturepath;
-
-            //for(int j= 0; scene->mNumMaterials;j++)
-            //{
-            //    std::cout<<scene->mNumMaterials<<std::endl;
-            //    if(scene->mMaterials[scene->mMeshes[j]->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath)== AI_SUCCESS)
-            //        std::cout<<"AQUI SI QUE HAY UN DIFFUSE"<<std::endl;
-            //}
-            if(currentMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath) == AI_SUCCESS)
-            {
-                //Assign to the texture their path and load it
-                TResourceTexture* texture = new TResourceTexture();
-                std::string completePath = path + texturepath.data;                
-                texture->setName(completePath.c_str());
-                texture->loadResource();
-                mesh->setTexture(texture);
-                mesh->setActivated(true);
+                if(currentMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath) == AI_SUCCESS)
+                {
+                    //Assign to the texture their path and load it
+                    TResourceTexture* texture = new TResourceTexture();
+                    std::string completePath = path + texturepath.data;                
+                    texture->setName(completePath.c_str());
+                    texture->loadResource();
+                    mesh->setTexture(texture);
+                    mesh->setActivated(true);
+                }
+                else
+                {
+                    std::cout<< "Error: " << currentMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath) << std::endl;
+                }
             }
-            else
-            {
-                std::cout<< "Error: " << currentMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath) << std::endl;
-            }
-            
         }
     }
 
