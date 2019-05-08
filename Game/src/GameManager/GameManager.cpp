@@ -45,7 +45,7 @@ void GameManager::initAll()
     //StorageManager::getInstance();
     //WellManager::getInstance();
 
-    //HUD::getInstance()->init();
+    HUD::getInstance()->init();
 }
 
 void GameManager::clear()

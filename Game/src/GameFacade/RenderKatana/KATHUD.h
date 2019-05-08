@@ -1,9 +1,13 @@
 #pragma once
 #include "FHUD.h"
 
+class TSprite;
 class KATHUD : public FHUD
 {
     private:
+        TSprite* background;
+        TSprite* life;
+        
         KATHUD() : FHUD(){}
 
     public:

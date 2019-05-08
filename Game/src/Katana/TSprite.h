@@ -21,4 +21,6 @@ class TSprite
         void setSize(int x, int y);
         void setRotation(float r);
         void setColor(int r, int g, int b);
+        int getWidth(){return width;}
+        int getHeight(){return height;}
 };

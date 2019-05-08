@@ -406,7 +406,7 @@ void Katana::drawSprites(){
                 if(sprites[i])
                 {
                     Texture2D* texture = sprites[i]->getTexture();
-                    renderer.DrawSprite(*texture, sprites[i]->position, sprites[i]->size, 0.f, glm::vec3(1.f, 1.f, 0.f));
+                    renderer.DrawSprite(*texture, sprites[i]->position, sprites[i]->size, sprites[i]->rotation, sprites[i]->color);
                 }
             }
 }

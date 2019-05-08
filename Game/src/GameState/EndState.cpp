@@ -29,7 +29,7 @@ void EndState::initState(){
     {
         Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Loose.png");
     }
-    std::cout<<"Puntuacion final: "<<HUD::getInstance()->getScore()<<"\n";
+    //std::cout<<"Puntuacion final: "<<HUD::getInstance()->getScore()<<"\n";
     type = IGameState::END; 
 };
 
