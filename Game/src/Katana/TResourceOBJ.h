@@ -5,8 +5,10 @@ class TResourceOBJ : public TResource
 {
     private:
         std::vector<TResourceMesh*> meshes;
+        bool animation = false;
     public:
         TResourceOBJ(){};
+        TResourceOBJ(bool a) : animation(a){animation = a;}       //Node no entity
         ~TResourceOBJ(){};
 
         bool loadResource();

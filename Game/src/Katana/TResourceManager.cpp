@@ -3,6 +3,7 @@
 #include "TResourceMaterial.h"
 #include "TResourceTexture.h"
 #include "TResourceShader.h"
+#include "TResourceAnimation.h"
 
 #include <string.h>
 #include <iostream>
@@ -92,12 +93,12 @@ TResourceOBJ* TResourceManager::getResourceOBJ(const char* name)
     TResourceOBJ* res = nullptr;
     bool found = false; //We must read the resource as less as possible
 
-    for(unsigned int i=0; i<obj.size() && found==false; i++)
+    for(unsigned int i=0; i<objs.size() && found==false; i++)
     {
-        if(strcmp(name,obj[i]->getName())==0)
+        if(strcmp(name,objs[i]->getName())==0)
         {
             found = true;
-            res = obj[i];
+            res = objs[i];
         }
     }
     if(res == nullptr)
@@ -106,7 +107,7 @@ TResourceOBJ* TResourceManager::getResourceOBJ(const char* name)
         res->setName(name);
         if(res->loadResource())
         {
-            obj.push_back(res);
+            objs.push_back(res);
         }
         else
         {
@@ -175,4 +176,70 @@ TResourceTexture* TResourceManager::getResourceTexture(const char* name)
         }
     }
     return res;
+}
+
+TResourceAnimation* TResourceManager::getResourceAnimation(const char* name)
+{
+    TResourceAnimation* res = nullptr;
+    bool found = false; //We must read the resource as less as possible
+
+    for(unsigned int i=0; i<animation.size() && found==false; i++)
+    {
+        if(strcmp(name,animation[i]->getName())==0)  // 0 = we've found a coincidence
+        {
+            found = true;
+            res = animation[i];
+        }
+    }
+    //No res coincidence loaded before
+    if(res == nullptr)                             
+    {
+        res = new TResourceAnimation();
+        res->setName(name);
+        if(res->loadResource())
+        {
+            //Load in vector for futures researches
+            animation.push_back(res);
+        }
+        else
+        {
+            delete res;
+        }
+    }
+    return res;
+}
+
+
+void TResourceManager::deleteOBJ(const char* n)
+{
+    TResourceOBJ* obj = NULL;
+    bool found = false;
+
+    for(unsigned int i=0; i<objs.size() && found==false; i++)
+    {
+        if(strcmp(n, objs[i]->getName()) == 0)
+        {
+            obj = objs[i];
+            objs.erase(objs.begin()+i-1);
+            delete obj;
+            found = true;
+        }
+    }
+}
+
+void TResourceManager::deleteAnimation(const char* n)
+{
+    TResourceAnimation* anim = NULL;
+    bool deleted = false;
+
+    for(unsigned int i = 0; i < animation.size() && deleted == false; i++)
+    {
+        if(strcmp(n, animation[i]->getName()) == 0)
+        {
+            anim = animation[i];
+            animation.erase(animation.begin()+i-1);
+            delete anim;
+            deleted = true;
+        }
+    }
 }
