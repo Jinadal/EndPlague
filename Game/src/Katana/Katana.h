@@ -74,4 +74,5 @@ class Katana
         void drawSprites();
         TSprite* createSprite(char* path);
         void removeSprite(TSprite* sprite);
+        void getWindowSize(int &window_w,int &window_h);
 };

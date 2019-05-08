@@ -406,7 +406,7 @@ void Katana::drawSprites(){
                 if(sprites[i])
                 {
                     Texture2D* texture = sprites[i]->getTexture();
-                    renderer.DrawSprite(*texture, glm::vec2(200, 100), glm::vec2(200, 200), 0.0f, glm::vec3(1.0f, 1.0f, 0.0f));
+                    renderer.DrawSprite(*texture, sprites[i]->position, sprites[i]->size, 0.f, glm::vec3(1.f, 1.f, 0.f));
                 }
             }
 }
@@ -434,4 +434,9 @@ void Katana::removeSprite(TSprite* sprite)
             }
         }
     }
+}
+
+void Katana::getWindowSize(int &window_w,int &window_h)
+{
+    glfwGetWindowSize(window, &window_w, &window_h);
 }

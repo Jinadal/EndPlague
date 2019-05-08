@@ -11,14 +11,13 @@
 
 void EndState::update(float dt)
 {
+    Render::getInstance()->getMenu()->update();
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
         SoundSystem::getInstance()->Init();
-
+        clear();
         Game::getInstance()->setState(IGameState::stateType::MENU);
-    }
-
-
-    
+    }  
 }
 
 void EndState::initState(){

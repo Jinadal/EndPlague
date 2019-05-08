@@ -19,7 +19,7 @@ void MenuState::initState()
 
 void MenuState::update(float dt)
 {
-
+    Render::getInstance()->getMenu()->update();
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
         clear();

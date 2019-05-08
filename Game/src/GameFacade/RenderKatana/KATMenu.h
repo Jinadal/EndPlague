@@ -15,9 +15,8 @@ class KATMenu : public FMenu
         }
         
 
-
         ~KATMenu() {}
         void setMenuBackground(char* t);
         void clearBackground();
-        void update(){}
+        void update();
 };
