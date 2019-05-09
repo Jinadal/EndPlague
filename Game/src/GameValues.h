@@ -29,7 +29,7 @@ namespace gv
         const float     PHYSICS_VELOCITY        = 80.f;     //Multiplies the time of phisics 50.f
 
     //------------- RENDER  --------------
-        const int          RENDER_ENGINE        = 1;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
+        const int          RENDER_ENGINE        = 3;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
         const unsigned int SCR_WIDTH            = 1366;
         const unsigned int SCR_HEIGHT           = 768;
 
@@ -45,7 +45,7 @@ namespace gv
 
         const float     PLAYER_LIFE_DECREASE    = 2.f;      //Units per sec life decrease
         const float     PLAYER_VELOCITY         = 7.f;      //Movement velovity of player
-        const float     PLAYER_LIFE             = 100000.f;   //Player life
+        const float     PLAYER_LIFE             = 1000.f;   //Player life
         const float     PLAYER_STRT_CADENCE     = 0.5;      //First weapon cadence
         const int       PLAYER_STRT_WEAPON      = 1;        //First weapon
 
@@ -65,9 +65,9 @@ namespace gv
         const float     SHIELD_VALUE        = 400.f;  //Units of shield
 
     //---------- CROSSBOW ------------
-        const float     CROSSBOW_CADENCE    = .1f;
+        const float     CROSSBOW_CADENCE    = .3f;
         const float     ARROW_VELOCITY      = 10.f;
-        const float     ARROW_DAMAGE        = 10.f;
+        const float     ARROW_DAMAGE        = 20.f;
     
     //------------ PEAK --------------
         const float     PEAK_CADENCE        = .5f;
@@ -76,7 +76,7 @@ namespace gv
 
 
     //------------- AXE --------------
-        const float     AXE_CADENCE         = .8f;
+        const float     AXE_CADENCE         = .65f;
         const float     AXE_VELOCITY        = 10.f;
         const float     AXE_DAMAGE          = 50.f;
 
@@ -98,12 +98,12 @@ namespace gv
 
     
     //----------- ENEMY 1 ---------------
-        const float     ENEMY_1_LIFE        = 200.f;
-        const float     ENEMY_1_VELOCITY    = 4.f;
+        const float     ENEMY_1_LIFE        = 100.f;
+        const float     ENEMY_1_VELOCITY    = 3.f;
 
     //----------- ENEMY 2 ---------------
-        const float     ENEMY_2_LIFE        = 100.f;
-        const float     ENEMY_2_VELOCITY    = 4.f;
+        const float     ENEMY_2_LIFE        = 50.f;
+        const float     ENEMY_2_VELOCITY    = 6.f;
 
         const int       ENEMY_SCORE         = 10;  //Score gets killing as enemy
         const float     ENEMY_CADENCE       = .9f; //Shoot cadence of enemies
@@ -117,11 +117,11 @@ namespace gv
     const float     SPAWN_CADENCIA          = 3.f;
     const int       MAX_ENEMIES             = 80;  //NOT USED
     const int       MIN_ENEMIES             = 20;  
-    const int       ENEMIES_PER_SPAWN       = 4;
+    const int       ENEMIES_PER_SPAWN       = 3;
 
 
     //---------- WOOD AND FIRE -----------
-    const float     FIRE_DAMMAGE            = 10.f;
+    const float     FIRE_DAMMAGE            = 20.f;
     const int       BUCKETS_NEDED           = 5;
     const float     SPAWN_LIFE              = 400.f;
 
