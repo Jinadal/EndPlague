@@ -9,7 +9,9 @@
 void MenuState::initState()
 {
     type = IGameState::MENU;
-    Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Initial.png");
+    menu = new MainMenu();
+    menu->init();
+    //Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Initial.png");
 
     AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
     m->start();
@@ -19,13 +21,37 @@ void MenuState::initState()
 
 void MenuState::update(float dt)
 {
+    //Render::getInstance()->getMenu()->update();
+    menu->update();
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
     {
-        clear();
-        
-        Game::getInstance()->setState(IGameState::stateType::PLAY);
+        switch (menu->click())
+        {
+            case 1:
+                /* Inicio */
+                    delete menu; 
+                    Game::getInstance()->setState(IGameState::stateType::PLAY);
+                break;
+            case 2:
+                /* Opciones */
+                break;
+            case 3:
+                Render::getInstance()->close();
+                break;
+            default:
+                break;
+        }
     }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        menu->up();
+    
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        menu->down();
+
+
+
     SoundSystem::getInstance()->Update();
 
 };
