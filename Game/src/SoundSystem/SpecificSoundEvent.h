@@ -5,3 +5,5 @@
 #include "WaterSoundEvent.h"
 #include "ItemPickSoundEvent.h"
 #include "SpawnBreakSoundEvent.h"
+#include "EnemyDiesSoundEvent.h"
+#include "EnemyHurtsSoundEvent.h"

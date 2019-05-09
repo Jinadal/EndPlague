@@ -18,6 +18,8 @@ void SoundSystem::Init()
     SoundSystem::LoadBank("res/media/Spawn.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Water.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Picks.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Enemy.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+
 
 
   
@@ -47,11 +49,16 @@ void SoundSystem::Init()
     SoundSystem::LoadEvent("event:/pocion_coger", "pickpotion");
     SoundSystem::LoadEvent("event:/escudo_coger", "pickshield");
 
+
+    SoundSystem::LoadEvent("event:/e_muerte", "emuerte");
+    SoundSystem::LoadEvent("event:/e_hit", "ehit");
+
+
 }
 void SoundSystem::Update() {
     CameraManager* ca = CameraManager::getInstance();
     //GameObject* pt = GameResource::getInstance()->getPlayer();
-    Vector3 v3 = {ca->getCX(),ca->getCY(),ca->getCZ()};
+    Vector3 v3 = {ca->getCX(),ca->getCY(),1.f};
     //Vector3 v3 = {pt->getX(),pt->getY(),pt->getZ()};
 
     SoundSystem::Set3dListener( v3);

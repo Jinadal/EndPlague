@@ -24,6 +24,10 @@ void BPhysicManager::createComponent(GameObject* owner, char* filename)
 
 void BPhysicManager::clear()
 {
+      for(std::size_t i = 0; i<components.size(); i++)
+    {
+        delete components[i];
+    }
     components.clear();
 }
 void BPhysicManager::init()
