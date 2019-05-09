@@ -3,6 +3,8 @@ class FMesh;
 class FCamera;
 class FHUD;
 class FMenu;
+class FSprite;
+
 class FRender
 {
     protected:
@@ -27,4 +29,7 @@ class FRender
         virtual FCamera* createCamera() = 0;
         virtual FHUD* getHUD() = 0;
         virtual FMenu* getMenu() = 0;
+        virtual FSprite* getSprite(char* texture, float x, float y, float sx, float sy, float rot, float r, float g, float b) = 0; 
+        virtual void getWindowSize(int &x, int &y) = 0;       
+        virtual void close() = 0; 
 };

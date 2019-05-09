@@ -3,9 +3,10 @@
 #include "KATCamera.h"
 #include "KATHUD.h"
 #include "KATMenu.h"
+#include "KATSprite.h"
 
 
-KATRender::KATRender()
+KATRender::KATRender() : FRender()
 {
     katana = new Katana();
 	window = katana->initWindow();
@@ -67,6 +68,12 @@ FMenu* KATRender::getMenu()
 }
 
 
+FSprite* KATRender::getSprite(char* texture, float x, float y, float sx, float sy, float rot, float r, float g, float b)
+{
+    return new KATSprite(texture, x, y, sx, sy, rot, r, g, b);
+}
+
+
 void KATRender::setCamera(float x,float y,float z)
 {
     katana->setCameraPosition(x, y, z);
@@ -78,3 +85,13 @@ void KATRender::deleteNode(TNode* n)
     katana->deleteNodeBranch(n);
 }
 
+
+void KATRender::getWindowSize(int &x, int &y)
+{
+    katana->getWindowSize(x, y);
+}
+
+void KATRender::close()
+{
+    katana->close();
+}

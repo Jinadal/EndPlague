@@ -17,10 +17,7 @@ class TSprite
         TSprite(char* path);
         ~TSprite(){delete texture;}
         Texture2D* getTexture(){return texture;}
-        void setPosition(int x, int y);
-        void setSize(int x, int y);
-        void setRotation(float r);
-        void setColor(int r, int g, int b);
+        void setTexture(char* t);
         int getWidth(){return width;}
         int getHeight(){return height;}
 };

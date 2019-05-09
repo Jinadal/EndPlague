@@ -327,11 +327,12 @@ void Katana::drawAll()
 void Katana::close()
 {
 
-	glDeleteProgram(scene->getEntity()->getProgramID());
+    glfwSetWindowShouldClose(window, 1);
+	//glDeleteProgram(scene->getEntity()->getProgramID());
 	//glDeleteTextures(1, &Texture);
 
 	// Close OpenGL window and terminate GLFW
-	glfwTerminate();
+	//glfwTerminate();
 }
 
 CursorXYZ Katana::cursorPosition()
@@ -401,12 +402,12 @@ void Katana::drawSprites(){
 
             SpriteRenderer renderer(spriteProgram);
             //Texture2D tex = ResourceManager::GetTexture("face");
-            for(size_t i = 0; i<sprites.size(); i++)
+            for(size_t i = sprites.size(); i>=1; i--)
             {
-                if(sprites[i])
+                if(sprites[i-1])
                 {
-                    Texture2D* texture = sprites[i]->getTexture();
-                    renderer.DrawSprite(*texture, sprites[i]->position, sprites[i]->size, sprites[i]->rotation, sprites[i]->color);
+                    Texture2D* texture = sprites[i-1]->getTexture();
+                    renderer.DrawSprite(*texture, sprites[i-1]->position, sprites[i-1]->size, sprites[i-1]->rotation, sprites[i-1]->color);
                 }
             }
 }

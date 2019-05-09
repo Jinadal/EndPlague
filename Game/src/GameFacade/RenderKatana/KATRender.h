@@ -23,6 +23,7 @@ class KATRender : public FRender{
 //--------------------------------------------------------------------------          
 
         void drawAll();
+        void getWindowSize(int &x, int &y);
         bool run();
         void drop();
         float getCursorX();
@@ -31,7 +32,9 @@ class KATRender : public FRender{
         FCamera* createCamera();
         FHUD* getHUD();
         FMenu* getMenu();
-
+        FSprite* getSprite(char* texture, float x, float y, float sx, float sy, float rot, float r, float g, float b);
+        void close();
+        
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
 //---------- - - - - - - SPECIFIC FUNCTIONS - - - - - - - - - --------------
