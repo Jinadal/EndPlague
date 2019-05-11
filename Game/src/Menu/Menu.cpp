@@ -1,6 +1,9 @@
 #include "Menu.h"
 #include "FSprite.h"
-#include <iostream>
+#include "GameValues.h"
+
+float HEIGHT_MODEL_SCALE = 1.f;
+float WIDTH_MODEL_SCALE = 1.f;
 
 void Menu::down()
 {
@@ -15,6 +18,7 @@ void Menu::down()
     }
     buttons[focus]->focus();
 };
+
 void Menu::up()
 {
     buttons[focus]->unfocus();
@@ -29,6 +33,13 @@ void Menu::up()
     buttons[focus]->focus();
 }
 
+int Menu::click()
+{
+    if(!buttons.empty() && focus>=0 && focus<buttons.size())
+        return buttons[focus]->getID();
+
+    return -1;
+}
 
 void Menu::clear()
 {
@@ -39,16 +50,53 @@ void Menu::clear()
     buttons.clear();
 }
 
-Button::Button(int id, char* pathnormal, char* pathfocus, float x, float y, float sx, float sy)
+void Menu::update()
+{
+    //Scale
+    int screenWidth, screenHeight;
+    Render::getInstance()->getRender()->getWindowSize(screenWidth, screenHeight);
+    HEIGHT_MODEL_SCALE = ((screenHeight * 1.f) / (gv::HEIGHT_MODEL * 1.f));
+    WIDTH_MODEL_SCALE = ((screenWidth * 1.f) / (gv::WIDTH_MODEL*1.f));
+    
+    //Background    
+    float width = background->getWidth() * WIDTH_MODEL_SCALE;
+    float height = background->getHeight() * HEIGHT_MODEL_SCALE;
+    background->setScale(width, height);
+
+    for(size_t i=0; i<buttons.size(); i++)
+        buttons[i]->update();
+}
+
+void Menu::setBackground(char* b)
+{  
+    //Background
+    background = Render::getInstance()->getRender()->getSprite((char*)"res/sprites/menus/Fondo.png", 0, 0, 100, 100, 0.f, 1.f, 1.f, 1.f);
+
+    float height = gv::HEIGHT_MODEL * HEIGHT_MODEL_SCALE * 1.f;
+    float width = gv::WIDTH_MODEL* WIDTH_MODEL_SCALE * 1.f;
+
+    background->setScale(width, height);
+}
+
+Button::Button(int id, char* pathnormal, char* pathfocus, float x, float y)
 {
     this->id = id;
     this->x = x;
-    this->sx = sx;
     this->y = y;
-    this->sy = sy;
     this->pathnormal = pathnormal;
     this->pathfocus = pathfocus;
+
     sprite = Render::getInstance()->getSprite(pathnormal, x, y, sx, sy, 0.f, 1.f, 1.f, 1.f);
+
+    float xi = x * WIDTH_MODEL_SCALE;
+    float yi = y * HEIGHT_MODEL_SCALE;
+
+    sprite->setPosition(xi, yi);
+
+    xi = (sprite->getHeight() + x ) * WIDTH_MODEL_SCALE;
+    yi = (sprite->getWidth() + y ) * HEIGHT_MODEL_SCALE;
+
+    sprite->setScale(xi, yi);
 }
 
 void Button::focus()
@@ -67,14 +115,8 @@ void Button::setPosition(float x, float y)
 {
     this->x = x;
     this->y = y;
-    sprite->setPosition(x, y);
-}
 
-void Button::setScale(float sx, float sy)
-{
-    this->sx = sx;
-    this->sy = sy;
-    sprite->setScale(sx, sy);
+    update();
 }
 
 void Button::setColor(float r, float g, float b)
@@ -84,4 +126,17 @@ void Button::setColor(float r, float g, float b)
 void Button::setRotation(float r)
 {
     sprite->setRotation(r);
+}
+
+void Button::update()
+{
+    float xi = x * WIDTH_MODEL_SCALE;
+    float yi = y * HEIGHT_MODEL_SCALE;
+
+    sprite->setPosition(xi, yi);
+
+    xi = sprite->getWidth() * WIDTH_MODEL_SCALE;
+    yi = sprite->getHeight() * HEIGHT_MODEL_SCALE;
+
+    sprite->setScale(xi, yi);
 }

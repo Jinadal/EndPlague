@@ -4,10 +4,8 @@
 class MainMenu : public Menu
 {
     public:
-        MainMenu():Menu(){}
+        MainMenu();
         ~MainMenu(){}
 
         void init();
-        int click();
-        void update();
 };

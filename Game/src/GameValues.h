@@ -37,6 +37,9 @@ namespace gv
     //-------------- SOUND --------------
         const int MIN_ENEMIES_FOR_ACTION        = 5;
     
+    //-------------- HUD & MENU % --------------
+        const int HEIGHT_MODEL = 1086;
+        const int WIDTH_MODEL = 1930.f;    
 
 
 //########################################################################

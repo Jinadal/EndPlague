@@ -15,7 +15,7 @@ class Button
         char* pathfocus;
         int id;
     public:
-        Button(int id, char* pathnormal, char* pathfocus, float x, float y, float sx, float sy);
+        Button(int id, char* pathnormal, char* pathfocus, float x, float y);
         ~Button(){delete sprite;}
         int getID(){return id;}
 
@@ -25,6 +25,7 @@ class Button
         void setScale(float sx, float sy);
         void setColor(float r, float g, float b);
         void setRotation(float r);
+        void update();
 
 };
 
@@ -38,10 +39,12 @@ class Menu
     public:
         Menu(){focus = 0;}
         ~Menu(){clear();}
-        virtual void init() = 0;
         void clear();
         void down();
         void up();
-        virtual void update() = 0;
-        virtual int click() = 0;
+        void updateButtons();
+        void setBackground(char* b);
+        void update();
+
+        int click();
 };
