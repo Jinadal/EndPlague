@@ -8,8 +8,8 @@
 #include "IAManager.h"
 #include "IAComponent.h"
 #include "Waypoint.h"
-#include <iostream>
 #include <SFML/Window.hpp>
+#include <ShootComponent.h>
 
 
 
@@ -22,8 +22,12 @@ void HUD::update(float dt)
         shield = p->getComponent<LifeComponent>()->getShield();
     }
     
+    if(p && p->getComponent<ShootComponent>())
+    {
+        weapon = (int)p->getComponent<ShootComponent>()->getType();
+    }
     score = ScoreManager::getInstance()->getScore();
     numSpawns = SpawnManager::getInstance()->getNumSpawns();
 
-    Render::getInstance()->getHUD()->updateValues(life, shield,1/dt, score, numSpawns, 1);
+    Render::getInstance()->getHUD()->updateValues(life, shield,1/dt, score, numSpawns, weapon);
 }

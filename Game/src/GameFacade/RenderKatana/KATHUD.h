@@ -7,7 +7,10 @@ class KATHUD : public FHUD
     private:
         TSprite* background;
         TSprite* life;
+        TSprite* shield;
+        TSprite* weapon;
         
+        int weaponType = 2;
         KATHUD() : FHUD(){}
 
     public:

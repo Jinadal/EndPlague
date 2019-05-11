@@ -13,6 +13,7 @@ class HUD
         bool terror;
         bool berserk;
         float fps;
+        int weapon = 1;
         HUD(){};
         
     public:
