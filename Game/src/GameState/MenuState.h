@@ -1,7 +1,7 @@
 #pragma once
 #include "IGameState.h"
-#include "MainMenu.h"
 
+class Menu;
 class MenuState : public IGameState 
 {
     private:

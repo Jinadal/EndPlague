@@ -1,16 +1,20 @@
 #include <cstddef>
-#include "EndState.h"
+#include "CreditsState.h"
 #include "Render.h"
+#include "FMenu.h"
 #include "Game.h"
 #include <SFML/Window.hpp>
-#include "ScoreManager.h"
-#include <iostream>
-#include "HUD.h"
-#include "SoundSystem.h"
-#include "LoseMenu.h"
-#include "WinMenu.h"
+#include "SpecificSoundEvent.h"
+#include "CreditsMenu.h"
 
-void EndState::update(float dt)
+
+void CreditsState::initState()
+{
+    type = IGameState::CREDITS;
+    menu = new CreditsMenu();   
+}
+
+void CreditsState::update(float dt)
 {
     menu->update();
 
@@ -33,21 +37,10 @@ void EndState::update(float dt)
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         menu->down();
-}
 
-void EndState::initState(){
-
-    if(ScoreManager::getInstance()->getWin())
-    {
-        menu = new WinMenu();
-    }else
-    {
-        menu = new LoseMenu();
-    }
-    type = IGameState::END; 
 };
 
-
-void EndState::clear()
+void CreditsState::clear()
 {
-}
+    delete menu;
+};

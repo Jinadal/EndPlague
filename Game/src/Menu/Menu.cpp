@@ -70,7 +70,8 @@ void Menu::update()
 void Menu::setBackground(char* b)
 {  
     //Background
-    background = Render::getInstance()->getRender()->getSprite((char*)"res/sprites/menus/Fondo.png", 0, 0, 100, 100, 0.f, 1.f, 1.f, 1.f);
+    background = Render::getInstance()->getRender()->getSprite(b, 0, 0, 100, 100, 0.f, 1.f, 1.f, 1.f);
+
 
     float height = gv::HEIGHT_MODEL * HEIGHT_MODEL_SCALE * 1.f;
     float width = gv::WIDTH_MODEL* WIDTH_MODEL_SCALE * 1.f;

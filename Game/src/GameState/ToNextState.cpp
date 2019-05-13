@@ -7,6 +7,7 @@
 #include "Render.h"
 #include "FMenu.h"
 #include "SpecificSoundEvent.h"
+#include "ToNextMenu.h"
 
 void ToNextState::initState()
 {

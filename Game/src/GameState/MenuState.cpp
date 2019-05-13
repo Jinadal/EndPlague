@@ -6,6 +6,9 @@
 #include <SFML/Window.hpp>
 #include "SpecificSoundEvent.h"
 
+#include "MainMenu.h"
+
+
 void MenuState::initState()
 {
     type = IGameState::MENU;
@@ -19,7 +22,6 @@ void MenuState::initState()
 
 void MenuState::update(float dt)
 {
-    //Render::getInstance()->getMenu()->update();
     menu->update();
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
@@ -28,13 +30,18 @@ void MenuState::update(float dt)
         {
             case 1:
                 /* Inicio */
-                    delete menu; 
-                    Game::getInstance()->setState(IGameState::stateType::PLAY);
+                delete menu;
+                Game::getInstance()->setState(IGameState::stateType::PLAY);
                 break;
             case 2:
                 /* Opciones */
                 break;
             case 3:
+                delete menu;
+                Game::getInstance()->setState(IGameState::stateType::CREDITS);
+                break;
+            case 4:
+                delete menu;
                 Render::getInstance()->close();
                 break;
             default:
@@ -48,13 +55,11 @@ void MenuState::update(float dt)
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         menu->down();
 
-
-
     SoundSystem::getInstance()->Update();
 
 };
 
 void MenuState::clear()
 {
-    Render::getInstance()->getMenu()->clearBackground();
+    delete menu;
 };

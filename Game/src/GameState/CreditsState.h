@@ -2,20 +2,20 @@
 #include "IGameState.h"
 
 class Menu;
-class ToNextState : public IGameState 
+class CreditsState : public IGameState 
 {
     private:
-        ToNextState(){}
+        CreditsState(){}
         Menu* menu;
     public:
 
-    static ToNextState* getInstance(){
-        static ToNextState only_instance;
+    static CreditsState* getInstance(){
+        static CreditsState only_instance;
         return &only_instance;
     }
         
 
-    ~ToNextState() {}
+    ~CreditsState() {}
     void initState();
     void update(float dt);
     void clear();

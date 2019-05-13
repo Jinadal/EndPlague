@@ -9,7 +9,14 @@ class KATHUD : public FHUD
         TSprite* life;
         TSprite* shield;
         TSprite* weapon;
-        
+        //TSprite* score1;
+        //TSprite* score2;
+        //TSprite* score3;
+        //TSprite* score4;
+        //TSprite* score5;
+
+
+        int scoreNum;
         int weaponType = 2;
         KATHUD() : FHUD(){}
 
