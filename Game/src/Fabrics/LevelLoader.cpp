@@ -20,7 +20,7 @@
 #include "Mine.h"
 
 
-std::vector<Level> levels{mine, village};
+std::vector<Level> levels{village, mine};
 
 bool LevelLoader::hasNext()
 {
