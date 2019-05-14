@@ -1,6 +1,7 @@
 #pragma once
 #include "TResource.h"
 #include "TResourceOBJ.h"
+#include "TResourceMaterial.h"
 #include <vector>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>

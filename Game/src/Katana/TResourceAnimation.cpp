@@ -12,9 +12,9 @@ TResourceAnimation::~TResourceAnimation()
 bool TResourceAnimation::loadResource()
 {
     bool ret = false;
-    for(int i = 0; i < frames; i++)
+    std::string path = name;
+    for(int i = 1; i < frames; i++)
     {
-        std::string path = name;
         if(i < 10)
         {  
             path += "00";
@@ -29,6 +29,20 @@ bool TResourceAnimation::loadResource()
         obj->loadResource();
         frame.push_back(obj);
         ret = true;
+    }
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile(name,0);
+    if(scene)
+    {
+        for(unsigned int i = 1; i<scene->mNumMaterials; i++)
+        {
+            TResourceMaterial* mat = new TResourceMaterial();
+            mat->loadResource(scene->mMaterials[i]);
+            for(unsigned int j = 0; j < frame.size(); j++)
+            {
+                frame[j]->setMaterial(mat);
+            }
+        }
     }
     return ret;
 }

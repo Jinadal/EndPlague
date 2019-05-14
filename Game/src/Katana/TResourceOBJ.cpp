@@ -27,8 +27,8 @@ bool TResourceOBJ::loadResource()
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode){
         std::cout<< "Error: " << importer.GetErrorString() << std::endl;
     }   
-    
-    if (scene)
+
+    if(scene)
     {
         for(unsigned int i = 0; i < scene->mNumMeshes; i++)
         {
@@ -39,6 +39,8 @@ bool TResourceOBJ::loadResource()
             //Push all meshes inside the scene
             meshes.push_back(mesh);
             ret = true;
+            if(!animation)
+            {
                 //Get the obj path in order to make it relative and use it for the texture path
                 std::vector<std::string> arr;
                 arr=split(name,"/");
@@ -75,6 +77,7 @@ bool TResourceOBJ::loadResource()
                 {
                     std::cout<< "Error: " << currentMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath) << std::endl;
                 }
+            }
         }
     }
 
@@ -86,5 +89,13 @@ void TResourceOBJ::draw()
     for(unsigned int i = 0; i < meshes.size(); i++)
     {
         meshes[i]->draw();
+    }
+}
+
+void TResourceOBJ::setMaterial(TResourceMaterial* m)
+{
+    for(unsigned int i = 0; i < meshes.size(); i++)
+    {
+        meshes[i]->setMaterial(m);
     }
 }

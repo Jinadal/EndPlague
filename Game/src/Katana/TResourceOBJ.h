@@ -11,6 +11,7 @@ class TResourceOBJ : public TResource
         TResourceOBJ(bool a) : animation(a){animation = a;}       //Node no entity
         ~TResourceOBJ(){};
 
+        void setMaterial(TResourceMaterial* m);
         bool loadResource();
         void draw();
 
