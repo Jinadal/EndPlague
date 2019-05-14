@@ -15,6 +15,7 @@ void NORender::drawAll()
 
 bool NORender::run()
 {
+    loops++;
     if(toClose)
         return false;
 
