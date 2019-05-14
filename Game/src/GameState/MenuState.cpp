@@ -14,9 +14,9 @@ void MenuState::initState()
     type = IGameState::MENU;
     menu = new MainMenu();
 
-    AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
+    AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("menumusica"));
     m->start();
-    SoundSystem::getInstance()->saveEvent(m,"musica");
+    SoundSystem::getInstance()->saveEvent(m,"menumusica");
     
 }
 
@@ -30,6 +30,9 @@ void MenuState::update(float dt)
         {
             case 1:
                 /* Inicio */
+                SoundEvent* amb = SoundSystem::getInstance()->getEvent("menumusica");
+                amb->stop();
+                SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
                 delete menu;
                 Game::getInstance()->setState(IGameState::stateType::PLAY);
                 break;
@@ -37,10 +40,16 @@ void MenuState::update(float dt)
                 /* Opciones */
                 break;
             case 3:
+                SoundEvent* amb = SoundSystem::getInstance()->getEvent("menumusica");
+                amb->stop();
+                SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
                 delete menu;
                 Game::getInstance()->setState(IGameState::stateType::CREDITS);
                 break;
             case 4:
+                SoundEvent* amb = SoundSystem::getInstance()->getEvent("menumusica");
+                amb->stop();
+                SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
                 delete menu;
                 Render::getInstance()->close();
                 break;

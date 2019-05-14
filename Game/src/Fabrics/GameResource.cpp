@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include <iostream>
 #include "DropperManager.h"
+#include "SpecificSoundEvent.h"
+#include "IAComponent.h"
 
 void GameResource::clear()
 {
@@ -33,6 +35,14 @@ void GameResource::updateAll()
         GameObject* g = *it;
         if(g->getKill())
         {
+            if(g->getComponent<IAComponent>())
+            {
+                EnemyDiesSoundEvent* s = new EnemyDiesSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ehit"));
+                s->setPosition({g->getX(),g->getY(),g->getZ()});
+                s->setVolume(5);
+                s->start();
+                delete s;
+            }
             delete g;
             it = gameobjects.erase(it);
             i--;

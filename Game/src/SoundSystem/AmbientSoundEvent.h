@@ -8,6 +8,7 @@ class AmbientSoundEvent : public SoundEvent
     virtual ~AmbientSoundEvent() {};
 
     void setAttackParameter(bool bol);
+    void setTensionParameter(bool ten);
     protected:
 
     virtual AmbientSoundEvent* newSoundEvent(FMOD::Studio::EventInstance* ei);

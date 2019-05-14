@@ -7,7 +7,7 @@
 #include "GameValues.h"
 #include "KATRender.h"
 #include "TCamera.h"
-
+#include <iostream>
 void InputComponent::update(float cursorX, float cursorY)
 {
     int enX = 0, enY = 0;
@@ -44,17 +44,24 @@ void InputComponent::update(float cursorX, float cursorY)
     }
 
      if(sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
-       /* if(gameObject->getComponent<CameraComponent>())
-        gameObject->getComponent<CameraComponent>()->setOrtho();*/
-        proyec = !proyec;
-        ((TCamera*)((KATRender*)Render::getInstance()->getRender())->getKatana()->getNodeCamera()->getEntity())->switchProyection(proyec);
-    }
+        if(press>4)
+        {
+            if(gameObject->getComponent<CameraComponent>())
+            gameObject->getComponent<CameraComponent>()->setOrtho();
+            proyec = !proyec;
+            ((TCamera*)((KATRender*)Render::getInstance()->getRender())->getKatana()->getNodeCamera()->getEntity())->switchProyection(proyec);
+            press = 0;
+        }
+        press++;
+        std::cout<<press << "\n";
 
+    }
+/*
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
         if(gameObject->getComponent<CameraComponent>())
         gameObject->getComponent<CameraComponent>()->setOrtho();
     }
-
+*/
     if(gameObject->getComponent<BPhysicComponent>()!=nullptr){
       //  if(!libre){
             gameObject->getComponent<BPhysicComponent>()->moveObject(enX ,enY, 0.f, cursorX, cursorY);

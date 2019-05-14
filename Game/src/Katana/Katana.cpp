@@ -383,18 +383,25 @@ void Katana::renderLight()
     GLuint camID        = glGetUniformLocation(shaderProgram, "viewPos");
     GLuint lightpos     = glGetUniformLocation(shaderProgram, "lightPos");
     GLuint lightcol     = glGetUniformLocation(shaderProgram, "lightColor");
+    GLuint objectcol    = glGetUniformLocation(shaderProgram, "objectColor");
+    GLuint lightcoldif    = glGetUniformLocation(shaderProgram, "lightColordiffuse");
 
     glm::mat4 v         = scene->getEntity()->viewMatrix();
 
-	glm::vec3 camPos    = glm::vec3(-v[3][2], v[3][1], v[3][0]);
-    glm::vec3 lc = glm::vec3(1.0,1.0,1.0);
+	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
+    glm::vec3 lc = glm::vec3(0.5,0.5,1.0);
+    glm::vec3 dc = glm::vec3(1.0,0.8,0.5);
+    glm::vec3 oc = glm::vec3(1.0,0.5,0.31);
     glm::vec3 lp = glm::vec3(0.0,0.0,-25.0);
 
     glUniform3fv(camID,1,&camPos[0]);
     glUniform3fv(lightpos,1,&lp[0]);
     glUniform3fv(lightcol,1,&lc[0]);         
 
+    glUniform3fv(objectcol,1,&oc[0]);   
+    glUniform3fv(lightcoldif,1,&dc[0]);
 }
+
 
 
 
@@ -451,3 +458,4 @@ void Katana::getWindowSize(int &window_w,int &window_h)
 {
     glfwGetWindowSize(window, &window_w, &window_h);
 }
+

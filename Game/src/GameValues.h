@@ -14,7 +14,7 @@ namespace gv
         const float     INTRO_DURATION          = .1f;  //seg
 
     //----------   CAMERA   ------------
-        const float     CAMERA_MIN_ZOOM         = .8f;
+        const float     CAMERA_MIN_ZOOM         = 2.f;
         const float     CAMERA_MAX_ZOOM         = 10.2f;
         const float     CAMERA_ZOOM_VEL         = .05f;  //Velocity of camera zoom
 
@@ -35,7 +35,7 @@ namespace gv
 
 
     //-------------- SOUND --------------
-        const int MIN_ENEMIES_FOR_ACTION        = 5;
+        const int MIN_ENEMIES_FOR_ACTION        = 2;
     
     //-------------- HUD & MENU % --------------
         const int HEIGHT_MODEL = 1080;
@@ -68,9 +68,9 @@ namespace gv
         const float     SHIELD_VALUE        = 400.f;  //Units of shield
 
     //---------- CROSSBOW ------------
-        const float     CROSSBOW_CADENCE    = .1f;
+        const float     CROSSBOW_CADENCE    = .3f;
         const float     ARROW_VELOCITY      = 10.f;
-        const float     ARROW_DAMAGE        = 10.f;
+        const float     ARROW_DAMAGE        = 20.f;
     
     //------------ PEAK --------------
         const float     PEAK_CADENCE        = .5f;
@@ -79,7 +79,7 @@ namespace gv
 
 
     //------------- AXE --------------
-        const float     AXE_CADENCE         = .8f;
+        const float     AXE_CADENCE         = .65f;
         const float     AXE_VELOCITY        = 10.f;
         const float     AXE_DAMAGE          = 50.f;
 
@@ -101,12 +101,12 @@ namespace gv
 
     
     //----------- ENEMY 1 ---------------
-        const float     ENEMY_1_LIFE        = 200.f;
-        const float     ENEMY_1_VELOCITY    = 4.f;
+        const float     ENEMY_1_LIFE        = 100.f;
+        const float     ENEMY_1_VELOCITY    = 3.f;
 
     //----------- ENEMY 2 ---------------
-        const float     ENEMY_2_LIFE        = 100.f;
-        const float     ENEMY_2_VELOCITY    = 4.f;
+        const float     ENEMY_2_LIFE        = 50.f;
+        const float     ENEMY_2_VELOCITY    = 6.f;
 
         const int       ENEMY_SCORE         = 10;  //Score gets killing as enemy
         const float     ENEMY_CADENCE       = .9f; //Shoot cadence of enemies
@@ -120,11 +120,11 @@ namespace gv
     const float     SPAWN_CADENCIA          = 3.f;
     const int       MAX_ENEMIES             = 80;  //NOT USED
     const int       MIN_ENEMIES             = 20;  
-    const int       ENEMIES_PER_SPAWN       = 4;
+    const int       ENEMIES_PER_SPAWN       = 3;
 
 
     //---------- WOOD AND FIRE -----------
-    const float     FIRE_DAMMAGE            = 10.f;
+    const float     FIRE_DAMMAGE            = 20.f;
     const int       BUCKETS_NEDED           = 5;
     const float     SPAWN_LIFE              = 400.f;
 

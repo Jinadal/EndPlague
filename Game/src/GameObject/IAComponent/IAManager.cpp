@@ -27,11 +27,16 @@ void IAManager::updateAll(float dt)
     {
        actionTime = true;
      ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente"))->setAttackParameter(actionTime);
+     ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("musica"))->setTensionParameter(!actionTime);
 
-    }else
-    {
+
+    }
+
+   if(onAttack == 0) {
         actionTime = false;
      ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente"))->setAttackParameter(actionTime);
+     ((AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("musica"))->setTensionParameter(!actionTime);
+
 
     }
 }
