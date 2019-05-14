@@ -47,7 +47,7 @@ namespace gv
 //########################################################################
 
         const float     PLAYER_LIFE_DECREASE    = 2.f;      //Units per sec life decrease
-        const float     PLAYER_VELOCITY         = 7.f;      //Movement velovity of player
+        const float     PLAYER_VELOCITY         = 6.f;      //Movement velovity of player
         const float     PLAYER_LIFE             = 1000.f;   //Player life
         const float     PLAYER_STRT_CADENCE     = 0.5;      //First weapon cadence
         const int       PLAYER_STRT_WEAPON      = 1;        //First weapon
@@ -106,7 +106,7 @@ namespace gv
 
     //----------- ENEMY 2 ---------------
         const float     ENEMY_2_LIFE        = 50.f;
-        const float     ENEMY_2_VELOCITY    = 6.f;
+        const float     ENEMY_2_VELOCITY    = 7.f;
 
         const int       ENEMY_SCORE         = 10;  //Score gets killing as enemy
         const float     ENEMY_CADENCE       = .9f; //Shoot cadence of enemies

@@ -51,6 +51,7 @@ class IA_Graf_FollowRuta : public Nodo
     bool run() override;
     GameObject * owner;    
     float distancia = .5f;
+    float prevD = 100.F; 
 };
 
 

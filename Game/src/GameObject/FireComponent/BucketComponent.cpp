@@ -8,7 +8,7 @@
 
 void BucketComponent::fillBucket(WellComponent* wc)
 {
-    if(wc)
+    if(wc && !water)
     {
         water=true;
         gameObject->getComponent<RenderComponent>()->setTexture((char*)"res/blue.bmp");
