@@ -40,7 +40,7 @@ struct Level
 {
     //NewValues
     //Mapa
-    char map_obj[20], map_bmp[20], map_bullet[20];
+    char map_obj[30], map_bmp[30], map_bullet[30];
     //Player
     float pla_x, pla_y, pla_z;
     //Spawns

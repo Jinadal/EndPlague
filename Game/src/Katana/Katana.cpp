@@ -414,6 +414,9 @@ void Katana::drawSprites(){
             glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH), static_cast<GLfloat>(SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
             GLuint imageID = glGetUniformLocation(spriteProgram, "image");
             GLuint projectionID = glGetUniformLocation(spriteProgram, "projection");
+            GLuint transp       = glGetUniformLocation(spriteProgram, "transparency");
+
+            glUniform1i(transp, true);
             glUniformMatrix4fv(projectionID, 1, GL_FALSE, &projection[0][0]);
             glUniform1i(imageID, 0);
 

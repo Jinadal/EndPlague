@@ -53,7 +53,7 @@ void InputComponent::update(float cursorX, float cursorY)
             press = 0;
         }
         press++;
-        std::cout<<press << "\n";
+        //std::cout<<press << "\n";
 
     }
 /*
