@@ -1,11 +1,11 @@
 #pragma once
 #include "FMenu.h"
 
-class TBillboard;
+class TSprite;
 class KATMenu : public FMenu
 {
     private:
-        TBillboard* background;
+        TSprite* background;
         KATMenu() : FMenu(){};
     public:
 
@@ -15,9 +15,8 @@ class KATMenu : public FMenu
         }
         
 
-
         ~KATMenu() {}
         void setMenuBackground(char* t);
         void clearBackground();
-        void update(){}
+        void update();
 };

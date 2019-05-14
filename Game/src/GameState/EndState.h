@@ -1,11 +1,12 @@
 #pragma once
 #include "IGameState.h"
 
+class Menu;
 class EndState : public IGameState 
 {
     private:
         EndState(){}
-
+        Menu* menu;
     public:
 
     static EndState* getInstance(){

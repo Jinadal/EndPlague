@@ -30,13 +30,16 @@ namespace gv
 
     //------------- RENDER  --------------
         const int          RENDER_ENGINE        = 1;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
-        const unsigned int SCR_WIDTH            = 1366;
-        const unsigned int SCR_HEIGHT           = 768;
+        const unsigned int SCR_WIDTH            = 1920;
+        const unsigned int SCR_HEIGHT           = 1080;
 
 
     //-------------- SOUND --------------
         const int MIN_ENEMIES_FOR_ACTION        = 2;
     
+    //-------------- HUD & MENU % --------------
+        const int HEIGHT_MODEL = 1080;
+        const int WIDTH_MODEL = 1920.f;    
 
 
 //########################################################################
@@ -44,7 +47,7 @@ namespace gv
 //########################################################################
 
         const float     PLAYER_LIFE_DECREASE    = 2.f;      //Units per sec life decrease
-        const float     PLAYER_VELOCITY         = 20.f;      //Movement velovity of player
+        const float     PLAYER_VELOCITY         = 6.f;      //Movement velovity of player
         const float     PLAYER_LIFE             = 1000.f;   //Player life
         const float     PLAYER_STRT_CADENCE     = 0.5;      //First weapon cadence
         const int       PLAYER_STRT_WEAPON      = 1;        //First weapon

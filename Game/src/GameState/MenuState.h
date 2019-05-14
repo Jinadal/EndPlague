@@ -1,9 +1,11 @@
 #pragma once
 #include "IGameState.h"
 
+class Menu;
 class MenuState : public IGameState 
 {
     private:
+        Menu* menu;
         MenuState(){}
     public:
 

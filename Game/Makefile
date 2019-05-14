@@ -39,7 +39,7 @@ SfmlHome := -I/usr/include/SFML
 SfmlLibraries := -Llib -lsfml-system -lsfml-window -lsfml-graphics
 
 OpenGLHome := -I/usr/include/OpenGL
-OpenGLLibraries := -lGL -lGLU -lglut -lGLEW -lglfw -lX11
+OpenGLLibraries := -lGL -lGLU -lglut -lGLEW -lglfw -lX11 -lSOIL
 
 
 AssimpHome := -I/usr/include/cmake/assimp-4.1

@@ -5,13 +5,10 @@
 #include "GameValues.h"
 #include "SpecificSoundEvent.h"
 
-void IntroState::initState(){
-    //RenderIrrlicht::getInstance()->loadIntro();
-    
+void IntroState::initState(){    
 };
 
 void IntroState::clear(){
-    //RenderIrrlicht::getInstance()->closeIntro();
 };
 
 void IntroState::update(float dt){

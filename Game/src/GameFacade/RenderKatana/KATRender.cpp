@@ -3,9 +3,10 @@
 #include "KATCamera.h"
 #include "KATHUD.h"
 #include "KATMenu.h"
+#include "KATSprite.h"
 
 
-KATRender::KATRender()
+KATRender::KATRender() : FRender()
 {
     katana = new Katana();
 	window = katana->initWindow();
@@ -14,7 +15,6 @@ KATRender::KATRender()
     scene = katana->getSceneRoot();
 
     katana->createNodeCamera(scene, glm::vec3(0,0,0),glm::vec3(0,0,-1),0.01f,100.0f);
-    katana->createBillboard("res/sprites/Initial.png",glm::vec3(0,-0.5,0.8));//glm::vec3(0,-0.5,0.8))
 }
 
 void KATRender::drawAll()
@@ -68,6 +68,12 @@ FMenu* KATRender::getMenu()
 }
 
 
+FSprite* KATRender::getSprite(char* texture, float x, float y, float sx, float sy, float rot, float r, float g, float b)
+{
+    return new KATSprite(texture, x, y, sx, sy, rot, r, g, b);
+}
+
+
 void KATRender::setCamera(float x,float y,float z)
 {
     katana->setCameraPosition(x, y, z);
@@ -80,9 +86,12 @@ void KATRender::deleteNode(TNode* n)
 }
 
 
-
-TBillboard* KATRender::createBillboard(char* t,float x, float y, float z)
+void KATRender::getWindowSize(int &x, int &y)
 {
-    katana->createBillboard(t,glm::vec3(x, y, z));
-    return nullptr;
+    katana->getWindowSize(x, y);
+}
+
+void KATRender::close()
+{
+    katana->close();
 }

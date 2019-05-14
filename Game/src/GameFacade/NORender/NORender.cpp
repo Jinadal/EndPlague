@@ -3,7 +3,7 @@
 #include "NOCamera.h"
 #include "NOHUD.h"
 #include "NOMenu.h"
-
+#include "NOSprite.h"
 
 NORender::NORender()
 {
@@ -15,7 +15,11 @@ void NORender::drawAll()
 
 bool NORender::run()
 {
-    if(loops>5)
+    loops++;
+    if(toClose)
+        return false;
+
+    if(loops>200)
         return false;
 
     return true;
@@ -54,4 +58,14 @@ FHUD* NORender::getHUD()
 FMenu* NORender::getMenu()
 {
     return NOMenu::getInstance();
+}
+
+FSprite* NORender::getSprite(char* texture, float x, float y, float sx, float sy, float rot, float r, float g, float b)
+{
+    return new NOSprite();
+}
+
+void NORender::close()
+{
+    toClose = true;
 }

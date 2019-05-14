@@ -5,6 +5,10 @@
 #define GLM_ENABLE_EXPERIMENTAL 
 #include <iostream>
 #include "GameValues.h"
+//#include "resource_manager.h"
+#include "SpriteRenderer.h"
+#include "Texture2D.h"
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void MessageCallback( GLenum source,
@@ -31,7 +35,15 @@ GLFWwindow* Katana::initWindow()
 
     // glfw window creation
     // --------------------
-    window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "Screams In Goblin", NULL, NULL);
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+    glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+    glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+    glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+    window = glfwCreateWindow(mode->width, mode->height, "Screams In Goblin", monitor, NULL);
+
+    //window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "Screams In Goblin", monitor, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -191,6 +203,8 @@ void Katana::initOpenGL()
 
     const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
     const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
+    const char * vsprite_path   = "src/Katana/shaders/sprite.vertexshader";
+    const char * fsprite_path   = "src/Katana/shaders/sprite.fragmentshader";
 
     GLenum res = glewInit();
     if (res != GLEW_OK)
@@ -199,25 +213,42 @@ void Katana::initOpenGL()
     }
     glEnable( GL_DEBUG_OUTPUT );
     glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
+
     TResourceShader* vertexShader   = manager->getResourceShader(vshader_path, (GLenum)GL_VERTEX_SHADER);
 	TResourceShader* fragmentShader = manager->getResourceShader(fshader_path, (GLenum)GL_FRAGMENT_SHADER);
+    TResourceShader* vspriteShader  = manager->getResourceShader(vsprite_path, (GLenum)GL_VERTEX_SHADER);
+    TResourceShader* fspriteShader  = manager->getResourceShader(fsprite_path, (GLenum)GL_FRAGMENT_SHADER);
  
     GLuint vertexID     = vertexShader->getId();
 	GLuint fragmentID   = fragmentShader->getId();
+    GLuint vspriteID    = vspriteShader->getId();
+    GLuint fspriteID    = fspriteShader->getId();
 
     shaderProgram = glCreateProgram();
-    
+    spriteProgram = glCreateProgram();
+
     glAttachShader(shaderProgram, vertexID);
     glAttachShader(shaderProgram, fragmentID);
     glLinkProgram(shaderProgram);
     glValidateProgram(shaderProgram);
+
+
+    glAttachShader(spriteProgram, vspriteID);
+    glAttachShader(spriteProgram, fspriteID);
+    glLinkProgram(spriteProgram);
+    glValidateProgram(spriteProgram);
   
 
     glDetachShader(shaderProgram, vertexID);
 	glDetachShader(shaderProgram, fragmentID);
+    glDetachShader(spriteProgram, vspriteID);
+	glDetachShader(spriteProgram, fspriteID);
 
     glDeleteShader(vertexID);
     glDeleteShader(fragmentID);
+    glDeleteShader(vspriteID);
+    glDeleteShader(fspriteID);
+
 
     GLint Result = GL_FALSE;
     int InfoLogLength;
@@ -242,7 +273,9 @@ void Katana::initOpenGL()
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
     GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
 
-	glUniform1i(TextureID, 0);
+
+
+
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
@@ -250,6 +283,10 @@ void Katana::initOpenGL()
 
     glUseProgram(shaderProgram);
 
+	glUniform1i(TextureID, 0);
+
+
+    spriteRenderer = new SpriteRenderer(spriteProgram);
 }
 
 void Katana::deleteNodeBranch(TNode* n)
@@ -286,8 +323,11 @@ void Katana::drawAll()
     glUseProgram(scene->getEntity()->getProgramID());
     renderCamera();
     renderLight();
+    //renderBillboards();
+
     // Use our shader
     scene->draw();
+    drawSprites();
 
     // Swap buffers
     glfwSwapBuffers(window);
@@ -297,39 +337,12 @@ void Katana::drawAll()
 void Katana::close()
 {
 
-	glDeleteProgram(scene->getEntity()->getProgramID());
+    glfwSetWindowShouldClose(window, 1);
+	//glDeleteProgram(scene->getEntity()->getProgramID());
 	//glDeleteTextures(1, &Texture);
 
 	// Close OpenGL window and terminate GLFW
-	glfwTerminate();
-}
-
-TBillboard* Katana::createBillboard(const char* n, glm::vec3 p)
-{
-	TResourceTexture* t = manager->getResourceTexture(n);
-	TBillboard* b = new TBillboard(t, p);
-	billboards.push_back(b);
-
-	return b;
-}
-void Katana::renderBillboards()
-{
-    
-	glm::mat4 v         = scene->getEntity()->viewMatrix();
-	glm::mat4 p         = scene->getEntity()->projectionMatrix();
-	glm::mat4 PV        = p * v;
-	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
-    
-    GLuint PVID     = glGetUniformLocation(billboardProgram, "gVP");
-    GLuint camID    = glGetUniformLocation(billboardProgram, "gCameraPos");
-
-    glUniformMatrix4fv(PVID,1,GL_FALSE,&PV[0][0]);
-    glUniform3fv(camID, 1, &camPos[0]);
-
-	for(unsigned int i = 0; i < billboards.size(); i++)
-	{
-		billboards[i]->beginDraw();
-	}
+	//glfwTerminate();
 }
 
 CursorXYZ Katana::cursorPosition()
@@ -384,7 +397,65 @@ void Katana::renderLight()
     glUniform3fv(camID,1,&camPos[0]);
     glUniform3fv(lightpos,1,&lp[0]);
     glUniform3fv(lightcol,1,&lc[0]);         
+
     glUniform3fv(objectcol,1,&oc[0]);   
     glUniform3fv(lightcoldif,1,&dc[0]);
+}
+
+
+
+
+void Katana::drawSprites(){
+            int SCREEN_WIDTH;
+            int SCREEN_HEIGHT;
+
+            glfwGetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
+            glUseProgram(spriteProgram);
+            glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH), static_cast<GLfloat>(SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
+            GLuint imageID = glGetUniformLocation(spriteProgram, "image");
+            GLuint projectionID = glGetUniformLocation(spriteProgram, "projection");
+            glUniformMatrix4fv(projectionID, 1, GL_FALSE, &projection[0][0]);
+            glUniform1i(imageID, 0);
+
+            SpriteRenderer renderer(spriteProgram);
+            //Texture2D tex = ResourceManager::GetTexture("face");
+            for(size_t i = sprites.size(); i>=1; i--)
+            {
+                if(sprites[i-1])
+                {
+                    Texture2D* texture = sprites[i-1]->getTexture();
+                    renderer.DrawSprite(*texture, sprites[i-1]->position, sprites[i-1]->size, sprites[i-1]->rotation, sprites[i-1]->color);
+                }
+            }
+}
+
+
+TSprite* Katana::createSprite(char* path)
+{
+    TSprite* sprite = new TSprite(path);
+
+    sprites.push_back(sprite);
+    return sprite;
+}
+
+
+void Katana::removeSprite(TSprite* sprite)
+{
+    if(sprite)
+    {
+        for(std::vector<TSprite*>::iterator it = sprites.begin(); it!=sprites.end(); it++){
+            if(sprite==*it)
+            {
+                sprites.erase(it);
+                delete sprite;
+                break;
+            }
+        }
+    }
+}
+
+void Katana::getWindowSize(int &window_w,int &window_h)
+{
+    glfwGetWindowSize(window, &window_w, &window_h);
 }
 

@@ -11,7 +11,8 @@ public:
         PAUSE,
         END,
         INTRO,
-        TONEXT
+        TONEXT,
+        CREDITS
     };
 
     virtual ~IGameState() {};

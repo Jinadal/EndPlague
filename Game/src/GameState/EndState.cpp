@@ -1,41 +1,53 @@
 #include <cstddef>
 #include "EndState.h"
 #include "Render.h"
-#include "FMenu.h"
 #include "Game.h"
 #include <SFML/Window.hpp>
 #include "ScoreManager.h"
 #include <iostream>
 #include "HUD.h"
 #include "SoundSystem.h"
+#include "LoseMenu.h"
+#include "WinMenu.h"
 
 void EndState::update(float dt)
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
-        SoundSystem::getInstance()->Init();
+    menu->update(dt);
 
-        Game::getInstance()->setState(IGameState::stateType::MENU);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
+        switch (menu->click())
+        {
+            case 1:
+                /* Inicio */
+                delete menu;
+                Game::getInstance()->setState(IGameState::stateType::MENU);
+                break;
+            default:
+                break;
+        }
     }
 
-
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        menu->up();
     
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        menu->down();
 }
 
 void EndState::initState(){
 
     if(ScoreManager::getInstance()->getWin())
     {
-        Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Win.png");
+        menu = new WinMenu();
     }else
     {
-        Render::getInstance()->getMenu()->setMenuBackground((char*)"res/sprites/Loose.png");
+        menu = new LoseMenu();
     }
-    std::cout<<"Puntuacion final: "<<HUD::getInstance()->getScore()<<"\n";
     type = IGameState::END; 
 };
 
 
 void EndState::clear()
 {
-    Render::getInstance()->getMenu()->clearBackground();
 }

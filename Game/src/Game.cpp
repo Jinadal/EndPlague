@@ -10,6 +10,7 @@
 #include "IntroState.h"
 #include "SoundSystem.h"
 #include "ToNextState.h"
+#include "CreditsState.h"
 
 void Game::run()
 {
@@ -54,6 +55,9 @@ void Game::setState(IGameState::stateType type)
             break;
         case IGameState::stateType::TONEXT:
             state = ToNextState::getInstance();
+            break;
+        case IGameState::stateType::CREDITS:
+            state = CreditsState::getInstance();
             break;
     }
     state->initState();

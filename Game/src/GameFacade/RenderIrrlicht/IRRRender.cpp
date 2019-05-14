@@ -3,6 +3,7 @@
 #include "IRRMesh.h"
 #include "IRRMenu.h"
 #include "IRRHUD.h"
+#include "IRRSprite.h"
 #include "GameValues.h"
 
 IRRRender::IRRRender(){
@@ -129,4 +130,14 @@ FMenu* IRRRender::getMenu()
 FHUD* IRRRender::getHUD()
 {
     return IRRHUD::getInstance();
+}
+
+FSprite* IRRRender::getSprite(char* texture, float x, float y, float sx, float sy, float rot, float r, float g, float b)
+{
+    return new IRRSprite();
+}
+
+void IRRRender::close()
+{
+    //device->close();
 }
