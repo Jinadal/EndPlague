@@ -39,9 +39,6 @@ bool TResourceOBJ::loadResource()
             //Push all meshes inside the scene
             meshes.push_back(mesh);
             ret = true;
-
-            if(!animation)
-            {
                 //Get the obj path in order to make it relative and use it for the texture path
                 std::vector<std::string> arr;
                 arr=split(name,"/");
@@ -78,7 +75,6 @@ bool TResourceOBJ::loadResource()
                 {
                     std::cout<< "Error: " << currentMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath) << std::endl;
                 }
-            }
         }
     }
 

@@ -1,14 +1,23 @@
 #pragma once
 #include "TResource.h"
-
+#include "TResourceOBJ.h"
+#include <vector>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <iostream>
 class TResourceAnimation : public TResource
 {
     protected:
-
+        int frames = 1;
+        std::vector<TResourceOBJ*> frame;
     public:
-        TResourceAnimation(){};
-        ~TResourceAnimation(){};
+        TResourceAnimation(int f){ frames = f;};
+        ~TResourceAnimation();
 
-        bool loadResource(){return false;};
+        void setFrames(int f){frames = f;};
+        int getFrames(){return frames;};
+
+        bool loadResource();
         void draw(){};
 };

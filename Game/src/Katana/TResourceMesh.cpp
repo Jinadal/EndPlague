@@ -11,34 +11,6 @@ TResourceMesh::~TResourceMesh()
     glDeleteVertexArrays(1, &VAO);
 }
 
-
-//bool TResourceMesh::loadResource()
-//{
-//    bool ret = false;
-//    Assimp::Importer importer;
-//
-//    //Assimp uses an aiScene object to represent the loaded mesh.
-//    const aiScene* scene = importer.ReadFile(name, aiProcess_Triangulate | aiProcess_FlipUVs);
-//    
-//    if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode){
-//        std::cout<< "Error: " << importer.GetErrorString() << std::endl;
-//    }   
-//    
-//    if (scene)
-//    {
-//        //nFaces = scene->mNumMeshes;
-//       
-//        for(unsigned int i = 0; i < scene->mNumMeshes; i++)
-//        {
-//            aiMesh* m = scene->mMeshes[i];
-//            loadMesh(m);
-//            ret = true;
-//        }
-//    }
-//
-//    return ret;
-//} 
-
 void TResourceMesh::loadMesh(aiMesh* m)
 {   
     nFaces = m->mNumFaces;
