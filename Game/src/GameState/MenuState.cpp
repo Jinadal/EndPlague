@@ -26,28 +26,29 @@ void MenuState::update(float dt)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
     {
+        SoundEvent* amb;
         switch (menu->click())
         {
             case 1:
-                /* Inicio */
-                SoundEvent* amb = SoundSystem::getInstance()->getEvent("menumusica");
-                amb->stop();
-                SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
-                delete menu;
-                Game::getInstance()->setState(IGameState::stateType::PLAY);
+                    /* Inicio */
+                    amb = SoundSystem::getInstance()->getEvent("menumusica");
+                    amb->stop();
+                    SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
+                    delete menu;
+                    Game::getInstance()->setState(IGameState::stateType::PLAY);
                 break;
             case 2:
                 /* Opciones */
                 break;
             case 3:
-                SoundEvent* amb = SoundSystem::getInstance()->getEvent("menumusica");
+                amb = SoundSystem::getInstance()->getEvent("menumusica");
                 amb->stop();
                 SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
                 delete menu;
                 Game::getInstance()->setState(IGameState::stateType::CREDITS);
                 break;
             case 4:
-                SoundEvent* amb = SoundSystem::getInstance()->getEvent("menumusica");
+                amb = SoundSystem::getInstance()->getEvent("menumusica");
                 amb->stop();
                 SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
                 delete menu;
