@@ -16,6 +16,7 @@ void PauseState::initState()
 
     s->pause();
 }
+
 void PauseState::update(float dt)
 {
      menu->update(dt);

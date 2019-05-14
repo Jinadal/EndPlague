@@ -7,15 +7,15 @@ class PauseMenu : public Menu
         PauseMenu() : Menu()
         {
             //Background
-            setBackground((char*)"res/sprites/menus/N/N_B.png");
+            setBackground((char*)"res/sprites/menus/P/P_B.png");
             
             //Buttons
-            Button* button = new Button(1, (char*)"res/sprites/menus/N/N_SN_N.png", 
-                                                (char*)"res/sprites/menus/N/N_SN_S.png",619, 667);
+            Button* button = new Button(1, (char*)"res/sprites/menus/P/P_C_N.png", 
+                                                (char*)"res/sprites/menus/P/P_C_S.png",744, 667);
             buttons.push_back(button);
             
-            button = new Button(2, (char*)"res/sprites/menus/N/N_VAM_N.png", 
-                                                (char*)"res/sprites/menus/N/N_VAM_S.png",615, 859);
+            button = new Button(2, (char*)"res/sprites/menus/P/P_VAM_N.png", 
+                                                (char*)"res/sprites/menus/P/P_VAM_S.png",615, 859);
             buttons.push_back(button);
 
             buttons[focus]->focus();

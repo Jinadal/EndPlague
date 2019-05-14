@@ -276,13 +276,15 @@ void Katana::initOpenGL()
 
 
 
-	glUniform1i(TextureID, 0);
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
 	scene->getEntity()->setMVPID(matrix);
 
     glUseProgram(shaderProgram);
+
+	glUniform1i(TextureID, 0);
+
 
     spriteRenderer = new SpriteRenderer(spriteProgram);
 }
@@ -384,7 +386,7 @@ void Katana::renderLight()
 
     glm::mat4 v         = scene->getEntity()->viewMatrix();
 
-	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
+	glm::vec3 camPos    = glm::vec3(-v[3][2], v[3][1], v[3][0]);
     glm::vec3 lc = glm::vec3(1.0,1.0,1.0);
     glm::vec3 lp = glm::vec3(0.0,0.0,-25.0);
 

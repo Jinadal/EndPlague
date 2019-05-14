@@ -14,7 +14,6 @@ class PauseState : public IGameState
         return &only_instance;
     }
     
-
     virtual ~PauseState() {}
     virtual void initState();
     virtual void update(float dt);
