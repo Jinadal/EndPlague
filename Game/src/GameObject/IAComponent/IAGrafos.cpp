@@ -80,11 +80,18 @@ bool IA_Graf_FollowRuta::run()
 
     std::vector<float>::iterator iter = ruta.begin();
 
+    if(!owner->getComponent<IAComponent>()->onRoute){
+       owner->getComponent<IAComponent>()->onRoute = true;
+    }
+
     float nextX = *iter;
 
     iter++;
 
     float nextY = *iter;
+
+    float d = sqrt(pow(nextX - owner->getX(),2) + pow(nextY - owner->getY(), 2));
+
 
     float rZ = atan2(owner->getY() - nextY, owner->getX() - nextX);
     rZ += PI/2.0;
@@ -92,20 +99,23 @@ bool IA_Graf_FollowRuta::run()
     if (rZ < 0)
         rZ += 360;
 
-
+    if(fabs(prevD - d) < 0.1F) rZ +=20;
+    
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
 
     float vel = owner->getComponent<BPhysicComponent>()->getvMax();
     if(vel == 0.f) owner->getComponent<BPhysicComponent>()->setvMax(5.f);
-    float d = sqrt(pow(nextX - owner->getX(),2) + pow(nextY - owner->getY(), 2));
-   
-    if( ruta.size() != 2)
+    prevD = d;
+    if( ruta.size() > 2)
     {
-         distancia = .5F;
+         distancia = .4F;
     }else{
-        //distancia = 4.1F;
+        if(distancia == .4F)
+            distancia = 4.1F;
     }
-   // std::cout << "distancia: " << d << " ///// objetivo: " << distancia<< "\n"; 
+   /* std::cout << "distancia: " << d << " ///// objetivo: " << distancia<< " /// ruta: " << ruta.size() <<
+     " Patrol " << owner->getComponent<IAComponent>()->onPatrol
+    << " ruta " << owner->getComponent<IAComponent>()->onRoute <<  "\n"; */
     if(round(fabs(d)) < distancia  )
     {
         int tam = ruta.size();
@@ -229,6 +239,8 @@ bool IA_Graf_LaunchGPSToPatrol::run()
   owner->getComponent<IAComponent>()->route = gps->getWay(owner->getX(),owner->getY(),nextX,nextY);
     
      owner->getComponent<IAComponent>()->onRoute = true;
+     owner->getComponent<IAComponent>()->onPatrol = false;
+
     
     return true;
 }
@@ -276,8 +288,8 @@ bool IA_Graf_CheckareaPatrol::run()
         return false;
     }
 
-   // if(owner->getComponent<IAComponent>()->onRoute)
-    //return false;
+    if(owner->getComponent<IAComponent>()->onRoute)
+        return false;
    
 
     return true;

@@ -5,19 +5,20 @@
 
 void ProjectileComponent::dealDamage(LifeComponent* l){
     if(l && l->getTeam()!=team)
+    {
         l->looseLife(damage);
 
-    if(team==2)
-    {
-        
-        EnemyHurtsSoundEvent* s = new EnemyHurtsSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ehit"));
-        s->setVoiceParameter();
-        s->setPosition({gameObject->getX(),gameObject->getY(),gameObject->getZ()});
-        s->setVolume(5);
-        s->start();
+        if(team==2)
+        {
+            
+            EnemyHurtsSoundEvent* s = new EnemyHurtsSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ehit"));
+            s->setVoiceParameter();
+            s->setPosition({gameObject->getX(),gameObject->getY(),gameObject->getZ()});
+            s->setVolume(5);
+            s->start();
 
-        delete s;
+            delete s;
+        }
     }
-        
     gameObject->setKill(true);
 }
