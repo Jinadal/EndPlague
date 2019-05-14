@@ -111,6 +111,8 @@ void KATHUD::clear()
 {
     KATRender::getInstance()->getKatana()->removeSprite(background);
     KATRender::getInstance()->getKatana()->removeSprite(life);
+    KATRender::getInstance()->getKatana()->removeSprite(shield);
+    KATRender::getInstance()->getKatana()->removeSprite(weapon);
 
 }
 
