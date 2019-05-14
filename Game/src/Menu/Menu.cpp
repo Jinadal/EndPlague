@@ -7,6 +7,11 @@ float WIDTH_MODEL_SCALE = 1.f;
 
 void Menu::down()
 {
+    if(at<0.2)
+        return;
+
+    at = 0.f;
+
     buttons[focus]->unfocus();
     if(focus >= buttons.size() - 1)
     {
@@ -21,6 +26,10 @@ void Menu::down()
 
 void Menu::up()
 {
+    if(at<0.2)
+        return;
+
+    at = 0.f;
     buttons[focus]->unfocus();
     if(focus <= 0)
     {
@@ -50,8 +59,11 @@ void Menu::clear()
     buttons.clear();
 }
 
-void Menu::update()
+void Menu::update(float dt)
 {
+    //Time
+    at+=dt;
+
     //Scale
     int screenWidth, screenHeight;
     Render::getInstance()->getRender()->getWindowSize(screenWidth, screenHeight);

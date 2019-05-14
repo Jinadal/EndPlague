@@ -36,6 +36,7 @@ class Menu
         FSprite* background;
         std::vector<Button*> buttons;
         std::size_t focus;
+        float at;
     public:
         Menu(){focus = 0;}
         ~Menu(){clear();}
@@ -44,7 +45,7 @@ class Menu
         void up();
         void updateButtons();
         void setBackground(char* b);
-        void update();
+        void update(float dt);
 
         int click();
 };

@@ -30,16 +30,16 @@ namespace gv
 
     //------------- RENDER  --------------
         const int          RENDER_ENGINE        = 1;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
-        const unsigned int SCR_WIDTH            = 1366;
-        const unsigned int SCR_HEIGHT           = 768;
+        const unsigned int SCR_WIDTH            = 1920;
+        const unsigned int SCR_HEIGHT           = 1080;
 
 
     //-------------- SOUND --------------
         const int MIN_ENEMIES_FOR_ACTION        = 5;
     
     //-------------- HUD & MENU % --------------
-        const int HEIGHT_MODEL = 1086;
-        const int WIDTH_MODEL = 1930.f;    
+        const int HEIGHT_MODEL = 1080;
+        const int WIDTH_MODEL = 1920.f;    
 
 
 //########################################################################

@@ -22,7 +22,7 @@ void MenuState::initState()
 
 void MenuState::update(float dt)
 {
-    menu->update();
+    menu->update(dt);
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
     {
