@@ -99,3 +99,12 @@ void TResourceOBJ::setMaterial(TResourceMaterial* m)
         meshes[i]->setMaterial(m);
     }
 }
+
+void TResourceOBJ::setTexture(TResourceTexture* t)
+{
+    for(unsigned int i = 0; i<meshes.size(); i++)
+    {
+        meshes[i]->setTextActive(true);
+        meshes[i]->setTexture(t);
+    }
+}

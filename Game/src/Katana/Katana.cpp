@@ -265,16 +265,13 @@ void Katana::initOpenGL()
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
     GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
 
-
-
-
-	glUniform1i(TextureID, 0);
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
 	scene->getEntity()->setMVPID(matrix);
 
     glUseProgram(shaderProgram);
+	glUniform1i(TextureID, 0);
 
     spriteRenderer = new SpriteRenderer(spriteProgram);
 }

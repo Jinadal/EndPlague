@@ -12,6 +12,8 @@ class TResourceAnimation : public TResource
     protected:
         int frames = 1;
         std::vector<TResourceOBJ*> frame;
+        TResourceMaterial* material = nullptr;
+        TResourceTexture* texture = nullptr;
     public:
         TResourceAnimation(int f){ frames = f;};
         ~TResourceAnimation();

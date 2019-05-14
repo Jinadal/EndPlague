@@ -46,3 +46,13 @@ bool TResourceAnimation::loadResource()
     }
     return ret;
 }
+
+void TResouceAnimation::draw()
+{
+    if(texture != NULL)
+    {
+        texture->draw();
+    }
+    frame[0]->draw();
+
+}

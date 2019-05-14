@@ -12,6 +12,8 @@ class TResourceOBJ : public TResource
         ~TResourceOBJ(){};
 
         void setMaterial(TResourceMaterial* m);
+        void setTexture(TResourceTexture* t);
+
         bool loadResource();
         void draw();
 
