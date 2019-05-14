@@ -201,10 +201,10 @@ void Katana::clean()
 void Katana::initOpenGL()
 {
 
-    const char * vshader_path   = "src/Katana/shaders/TransformVertexShader.vertexshader";
-    const char * fshader_path   = "src/Katana/shaders/TextureFragmentShader.fragmentshader";
-    const char * vsprite_path   = "src/Katana/shaders/sprite.vertexshader";
-    const char * fsprite_path   = "src/Katana/shaders/sprite.fragmentshader";
+    const char * vshader_path   = "src/Katana/shaders/defaultVertex.glsl";
+    const char * fshader_path   = "src/Katana/shaders/defaultFragment.glsl";
+    const char * vsprite_path   = "src/Katana/shaders/spriteVertex.glsl";
+    const char * fsprite_path   = "src/Katana/shaders/spriteFragment.glsl";
 
     GLenum res = glewInit();
     if (res != GLEW_OK)
@@ -412,7 +412,7 @@ void Katana::drawSprites(){
             glfwGetWindowSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
             glUseProgram(spriteProgram);
             glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH), static_cast<GLfloat>(SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
-            GLuint imageID = glGetUniformLocation(spriteProgram, "image");
+            GLuint imageID      = glGetUniformLocation(spriteProgram, "image");
             GLuint projectionID = glGetUniformLocation(spriteProgram, "projection");
             GLuint transp       = glGetUniformLocation(spriteProgram, "transparency");
 
@@ -421,7 +421,6 @@ void Katana::drawSprites(){
             glUniform1i(imageID, 0);
 
             SpriteRenderer renderer(spriteProgram);
-            //Texture2D tex = ResourceManager::GetTexture("face");
             for(size_t i = sprites.size(); i>=1; i--)
             {
                 if(sprites[i-1])
