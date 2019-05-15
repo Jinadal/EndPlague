@@ -135,7 +135,29 @@ TNode* Katana::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
     }
     return nullptr;
 }
+TNode* Katana::createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf, const char* t)
+{
+    if(f!= nullptr)
+    {
+        //Be sure that the father is a root or a transformation node
+        if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
+        {
+            //Creates a 3 node branch with their respective transformations
+            TNode* nodeRST = createBranch(f,v);
+            
+            //Mesh Leaf, load in memory mesh and assign it
+            TAnimation* animation = new TAnimation();
+            TResourceAnimation* an = manager->getResourceAnimation(name,nf,t);
+            animation->setAnimation(an);
+            
+            TNode* nodeAnimation = new TNode(nodeRST,animation);
+            nodeRST->addChild(nodeAnimation);
 
+            return nodeAnimation;
+        }
+    }
+    return nullptr;
+}
 TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,float ff)
 {
     if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
@@ -256,7 +278,6 @@ void Katana::initOpenGL()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 	glEnable(GL_CULL_FACE);
-
     scene->getEntity()->setProgramID(shaderProgram);
 
     GLuint view         = glGetUniformLocation(shaderProgram, "view");

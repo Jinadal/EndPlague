@@ -2,6 +2,7 @@
 #include "TResource.h"
 #include "TResourceOBJ.h"
 #include "TResourceMaterial.h"
+#include "TResourceTexture.h"
 #include <vector>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -10,17 +11,18 @@
 class TResourceAnimation : public TResource
 {
     protected:
-        int frames = 1;
+        int numFrames = 1;
         std::vector<TResourceOBJ*> frame;
         TResourceMaterial* material = nullptr;
         TResourceTexture* texture = nullptr;
     public:
-        TResourceAnimation(int f){ frames = f;};
+        TResourceAnimation(int f){ numFrames = f;};
         ~TResourceAnimation();
 
-        void setFrames(int f){frames = f;};
-        int getFrames(){return frames;};
-
+        void setFrames(int f){numFrames = f;};
+        int getFrames(){return numFrames;};
+        void setTexture(TResourceTexture* t){ texture = t;};
+        TResourceTexture* getTexture(){ return texture;};
         bool loadResource();
-        void draw(){};
+        void draw();
 };

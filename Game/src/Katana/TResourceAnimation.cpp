@@ -13,23 +13,15 @@ bool TResourceAnimation::loadResource()
 {
     bool ret = false;
     std::string path = name;
-    for(int i = 1; i < frames; i++)
+
+    TResourceOBJ* obj = new TResourceOBJ(true);
+    obj->setName(path.c_str());
+    if(obj->loadResource())
     {
-        if(i < 10)
-        {  
-            path += "00";
-        }
-        else if(i <100)
-        {
-            path+= "0";
-        }
-        path += std::to_string(i) + ".obj";
-        TResourceOBJ* obj = new TResourceOBJ(true);
-        obj->setName(path.c_str());
-        obj->loadResource();
         frame.push_back(obj);
         ret = true;
     }
+
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(name,0);
     if(scene)
@@ -47,12 +39,14 @@ bool TResourceAnimation::loadResource()
     return ret;
 }
 
-void TResouceAnimation::draw()
+void TResourceAnimation::draw()
 {
-    if(texture != NULL)
+    for(unsigned int i = 0; i < frame.size(); i++)
     {
-        texture->draw();
+        if(texture != NULL)
+        {
+            texture->draw();
+        }
+        frame[i]->draw();
     }
-    frame[0]->draw();
-
 }

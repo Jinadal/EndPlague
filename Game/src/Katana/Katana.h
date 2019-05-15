@@ -8,6 +8,7 @@
 #include "../../lib/glm/glm.hpp"
 
 #include "TNode.h"
+#include "TAnimation.h"
 #include "TCamera.h"
 #include "TLight.h"
 #include "TMesh.h"
@@ -15,6 +16,7 @@
 #include "TResourceManager.h"
 #include "TResourceOBJ.h"
 #include "TResourceShader.h"
+#include "TResourceAnimation.h"
 #include "TSprite.h"
 
 class SpriteRenderer;
@@ -56,6 +58,7 @@ class Katana
         TNode* getSceneRoot() { return scene; }
         TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
+        TNode* createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf, const char* t);
         TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
         TNode* getNodeCamera() {return camera;}
         void renderBillboards();

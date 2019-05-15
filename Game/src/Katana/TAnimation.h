@@ -8,13 +8,14 @@ class TAnimation : public TEntity
 {
     private:
         TResourceAnimation* animation;
+        int numFrames = 1;
     public:
         TAnimation(){}
         ~TAnimation(){}
 
         //Get & Set
-       // void setAnimation(TAnimation* a){ animation = a;};
-        //TResourceAnimation* getAnimation(){ return animation;};
+        void setAnimation(TResourceAnimation* a){ animation = a;};
+        TResourceAnimation* getAnimation(){ return animation;};
 
         void beginDraw();
         void endDraw(){}
