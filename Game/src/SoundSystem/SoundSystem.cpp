@@ -19,6 +19,8 @@ void SoundSystem::Init()
     SoundSystem::LoadBank("res/media/Water.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Picks.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     SoundSystem::LoadBank("res/media/Enemy.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    SoundSystem::LoadBank("res/media/Menu.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+
 
 
 
@@ -53,6 +55,10 @@ void SoundSystem::Init()
     SoundSystem::LoadEvent("event:/e_muerte", "emuerte");
     SoundSystem::LoadEvent("event:/e_hit", "ehit");
 
+
+    SoundSystem::LoadEvent("event:/m_pulse", "mpulse");
+    SoundSystem::LoadEvent("event:/m_start", "mstart");
+    SoundSystem::LoadEvent("event:/m_select", "mselect");
 
 }
 void SoundSystem::Update() {
