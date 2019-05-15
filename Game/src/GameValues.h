@@ -18,6 +18,9 @@ namespace gv
         const float     CAMERA_MAX_ZOOM         = 10.2f;
         const float     CAMERA_ZOOM_VEL         = .05f;  //Velocity of camera zoom
 
+        const float     CAMERA_HIT_DISTANCE     = .5f;
+        const float     CAMERA_HIT_TIME         = 0.05f;
+
         const float     CAMERA_DY               = 5.f;  //Camera Y distance
         const float     CAMERA_DZ               = 10.f; //Camera Z distance
 

@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "FSprite.h"
 #include "GameValues.h"
+#include "SpecificSoundEvent.h"
 
 float HEIGHT_MODEL_SCALE = 1.f;
 float WIDTH_MODEL_SCALE = 1.f;
@@ -21,6 +22,9 @@ void Menu::down()
     {
         focus++;
     }
+      MPulseSoundEvent * amb = new MPulseSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("mpulse"));  
+        amb->start();
+        delete amb;
     buttons[focus]->focus();
 };
 
@@ -40,12 +44,20 @@ void Menu::up()
         focus--;
     }
     buttons[focus]->focus();
+        MPulseSoundEvent * amb = new MPulseSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("mpulse"));  
+        amb->start();
+        delete amb;
 }
 
 int Menu::click()
 {
-    if(!buttons.empty() && focus>=0 && focus<buttons.size())
+    if(!buttons.empty() && focus>=0 && focus<buttons.size()){
+
+        MPulseSoundEvent * amb = new MPulseSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("mpulse"));  
+        amb->start();
+        delete amb;
         return buttons[focus]->getID();
+    }
 
     return -1;
 }

@@ -5,7 +5,8 @@
 #include "Game.h"
 #include <SFML/Window.hpp>
 #include "SpecificSoundEvent.h"
-
+#include <chrono>
+#include <thread>
 #include "MainMenu.h"
 
 
@@ -27,6 +28,8 @@ void MenuState::update(float dt)
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
     {
         SoundEvent* amb;
+        MStartSoundEvent* ms;
+        MSelectSoundEvent * mse;
         switch (menu->click())
         {
             case 1:
@@ -34,6 +37,12 @@ void MenuState::update(float dt)
                     amb = SoundSystem::getInstance()->getEvent("menumusica");
                     amb->stop();
                     SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
+                    ms = new MStartSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("mstart"));  
+                    ms->start();
+                    SoundSystem::getInstance()->Update();
+
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
+                    delete ms;
                     delete menu;
                     Game::getInstance()->setState(IGameState::stateType::PLAY);
                 break;
@@ -44,9 +53,12 @@ void MenuState::update(float dt)
                 amb = SoundSystem::getInstance()->getEvent("menumusica");
                 amb->stop();
                 SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
-                delete menu;
-                Game::getInstance()->setState(IGameState::stateType::CREDITS);
-                break;
+                mse = new MSelectSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("mselect"));  
+                mse->start();
+                delete mse;
+            delete menu;
+            Game::getInstance()->setState(IGameState::stateType::CREDITS);
+            break;
             case 4:
                 amb = SoundSystem::getInstance()->getEvent("menumusica");
                 amb->stop();
