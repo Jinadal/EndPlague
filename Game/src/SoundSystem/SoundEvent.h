@@ -16,6 +16,7 @@ public:
  
     void stop();
     void pause();
+    void resume();
     void setVolume(float vol);
     void setGain(float gain);
     void setPosition(Vector3 pos);

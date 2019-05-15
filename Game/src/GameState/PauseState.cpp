@@ -13,8 +13,12 @@ void PauseState::initState()
     type = IGameState::PAUSE;
     menu = new PauseMenu();
     AmbientSoundEvent* s = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente");
-
+    AmbientSoundEvent* sm = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("musica");
+    sm->pause();
     s->pause();
+    SoundSystem::getInstance()->Update();
+
+   
 }
 
 void PauseState::update(float dt)
