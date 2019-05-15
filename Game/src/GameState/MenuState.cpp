@@ -5,7 +5,8 @@
 #include "Game.h"
 #include <SFML/Window.hpp>
 #include "SpecificSoundEvent.h"
-
+#include <chrono>
+#include <thread>
 #include "MainMenu.h"
 
 
@@ -34,6 +35,8 @@ void MenuState::update(float dt)
                     amb = SoundSystem::getInstance()->getEvent("menumusica");
                     amb->stop();
                     SoundSystem::getInstance()->deleteEvent(amb,"menumusica");
+
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
                     delete menu;
                     Game::getInstance()->setState(IGameState::stateType::PLAY);
                 break;
