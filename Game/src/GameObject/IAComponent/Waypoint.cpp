@@ -2,9 +2,9 @@
 #include <cmath>
 #include "Area.h"
 
-void GPS::Initialice(int lv)
+void GPS::initialice(int lv)
 {
-
+    graph = new Grafo();
 if(lv == 0)
 {
 
@@ -439,7 +439,7 @@ std::vector<float> GPS::getWay(float xi, float yi, float xf, float yf )
     return returno;
 }
 
-void GPS::Clear()
+void GPS::clear()
 {
     for(std::vector<Area*>::iterator iter = AML.begin(); iter!=AML.end(); iter++){
 

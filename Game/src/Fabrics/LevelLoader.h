@@ -34,7 +34,18 @@ struct xyrt
     float x, y, r;
     bool t;
 };
-
+struct vectorXY_float
+{
+    float x, y;
+};
+struct vectorXYZT_float
+{
+    float x, y, z, t;
+};
+struct vectorXY_int
+{
+    int x, y;
+};
 
 struct Level
 {
@@ -49,5 +60,9 @@ struct Level
     std::vector<xyrt> wells;
 
     //GPS
+    std::vector<vectorXY_float> waypoints;
+    std::vector<vectorXYZT_float> areas;
+    std::vector<vectorXY_int> conections;
+    std::vector<vectorXY_int> waypointarea;
 };
 

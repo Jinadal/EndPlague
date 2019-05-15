@@ -14,6 +14,7 @@
 #include "CameraManager.h"
 #include "StorageManager.h"
 #include "IAManager.h"
+#include "Waypoint.h"
 
 //LEVELS
 #include "Village.h"
@@ -46,6 +47,23 @@ void LevelLoader::loadLevel()
 
     for(std::size_t i = 0; i<level.wells.size(); i++) 
         createWell(level.wells[i].x, level.wells[i].y, level.wells[i].r);
+
+
+    GPS* gps = IAManager::getInstance()->getGPS();
+    gps->clear();
+
+    for(std::size_t i = 0; i<level.areas.size(); i++)
+        gps->addArea(level.areas[i].x, level.areas[i].y, level.areas[i].z, level.areas[i].t);
+    
+    for(std::size_t i = 0; i<level.waypoints.size(); i++)
+        gps->addWaypoint(level.waypoints[i].x, level.waypoints[i].y);
+
+    for(std::size_t i = 0; i<level.conections.size(); i++)
+        gps->addConexionToGraph(level.conections[i].x, level.conections[i].y);
+
+    for(std::size_t i = 0; i<level.waypointarea.size(); i++)
+        gps->addWaypointToArea(level.waypointarea[i].x, level.waypointarea[i].y);
+
 
     next++;
 }

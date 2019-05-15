@@ -80,15 +80,15 @@ class GPS
 
     public: 
         GPS(){graph = new Grafo();}
-        virtual ~GPS(){ Clear();}
+        virtual ~GPS(){ clear();}
 
         void addArea(float xsup, float ysup, float xinf, float yinf);
         void addWaypoint(float coorX, float coorY);
         void addWaypointToArea(int a, int w);
         void addConexionToGraph(int w1, int w2);
 
-        void Initialice(int lv);
-        void Clear();
+        void initialice(int lv);
+        void clear();
         std::vector<float> getWay(float xi, float yi, float xf, float yf );
         std::vector<Area*> getAreas(){return AML;}
 };

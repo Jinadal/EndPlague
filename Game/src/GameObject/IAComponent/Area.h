@@ -12,7 +12,7 @@ class Area
     virtual ~Area(){}
 
     bool checkinArea(float pjx, float pjy);
-    std::vector<Waypoint*> getWaypoints(){ return waypoints;}
+    const 6std::vector<Waypoint*>& getWaypoints(){ return waypoints;}
 
     void addWaypoint(Waypoint* w);
     
