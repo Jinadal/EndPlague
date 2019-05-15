@@ -29,13 +29,25 @@ void PauseState::update(float dt)
     {
         switch (menu->click())
         {
+        MSelectSoundEvent * mse;
+
             case 1:
-                /* Volver */
+                /* Volver */  
+                mse = new MSelectSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("mselect"));  
+                mse->start();
+             
+
+                delete mse;
                 delete menu;
                 Game::getInstance()->setState(IGameState::stateType::PLAY);
                 break;
             case 2:
                 /* Inicio */
+                mse = new MSelectSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("mselect"));  
+                mse->start();
+               
+                SoundSystem::getInstance()->Update();
+                delete mse;
                 PlayState::getInstance()->clear();
                 LevelLoader::getInstance()->resetNext();
                 delete menu;
@@ -51,4 +63,7 @@ void PauseState::update(float dt)
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         menu->down();    
+
+    SoundSystem::getInstance()->Update();
+        
 }

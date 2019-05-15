@@ -37,7 +37,7 @@ void CameraComponent::update(float dt)
 
     node->update(x, y-(gv::CAMERA_DY * zoom) + h, z-(gv::CAMERA_DZ * zoom) + h, x, y, z, ortho);
 
-   ((CameraManager*)manager)->setCameraPosition(x, y-(gv::CAMERA_DY * zoom) + h, z-(gv::CAMERA_DZ * zoom) + h);
+   ((CameraManager*)manager)->setCameraPosition(x, y , z-(gv::CAMERA_DZ * zoom));
 }
 
 void CameraComponent::setFOV(float fov)

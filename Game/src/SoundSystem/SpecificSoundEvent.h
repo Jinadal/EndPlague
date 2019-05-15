@@ -7,3 +7,4 @@
 #include "SpawnBreakSoundEvent.h"
 #include "EnemyDiesSoundEvent.h"
 #include "EnemyHurtsSoundEvent.h"
+#include "MenuSoundEvent.h"
