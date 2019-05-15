@@ -25,7 +25,7 @@ void Menu::down()
 };
 
 void Menu::up()
-{
+{   
     if(at<0.2)
         return;
 
