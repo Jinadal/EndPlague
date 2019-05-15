@@ -33,6 +33,9 @@ void PhysicBullet::clear()
 		{
 			_world->removeCollisionObject( obj );
 		}
+        _fileLoader->deleteAllData();
+        delete _fileLoader;
+        _fileLoader = nullptr;
 		delete obj;
 	}
 
@@ -202,8 +205,7 @@ btRigidBody* PhysicBullet::createFromFile(char* filename)
     rbody->getCollisionShape()->setLocalScaling(btVector3(-1, 1, 1));
     _world->setGravity(btVector3(0,0, gv::PHYSICS_GRAVITY));
 
-    //fileLoader->deleteAllData();
-    delete fileLoader;
-    fileLoader = nullptr;
+    _fileLoader = fileLoader;
+  
     return rbody;
 }

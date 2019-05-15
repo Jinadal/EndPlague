@@ -24,16 +24,26 @@ void PlayState::initState()
         LevelLoader::getInstance()->loadLevel();
         GameManager::getInstance()->initAll();
        
-    }
     
-    AmbientSoundEvent* s = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ambiente"));
-    s->start();
-    SoundSystem::getInstance()->saveEvent(s,"ambiente");
+    
+        AmbientSoundEvent* s = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ambiente"));
+        s->start();
+        SoundSystem::getInstance()->saveEvent(s,"ambiente");
 
-    AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
-    m->start();
-    SoundSystem::getInstance()->saveEvent(m,"musica");
-    m->setTensionParameter(1);
+        AmbientSoundEvent* m = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("musica"));
+        m->start();
+        SoundSystem::getInstance()->saveEvent(m,"musica");
+        m->setTensionParameter(1);
+
+    }else{
+        AmbientSoundEvent* s = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente");
+        AmbientSoundEvent* sm = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("musica");
+        sm->resume();
+        s->resume();
+        SoundSystem::getInstance()->Update();
+
+
+    }
 
 } 
 

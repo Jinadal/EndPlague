@@ -29,6 +29,11 @@ void SoundEvent::pause()
     SoundSystem::ErrorCheck(soundInstance->setPaused(true) );
 }
 
+void SoundEvent::resume()
+{
+    SoundSystem::ErrorCheck(soundInstance->setPaused(false) );
+}
+
 void SoundEvent::setVolume(float vol)
 {
     SoundSystem::ErrorCheck(soundInstance->setVolume(vol) );

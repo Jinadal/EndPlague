@@ -1,5 +1,7 @@
 #pragma once 
 #include <btBulletDynamicsCommon.h>
+#include <btBulletWorldImporter.h>
+
 
 
 class PhysicBullet{
@@ -10,6 +12,7 @@ class PhysicBullet{
         btSequentialImpulseConstraintSolver*        _solver;
         btDynamicsWorld*                            _world;
         btAlignedObjectArray<btCollisionShape*>     _collisionShapes;
+        btBulletWorldImporter*                      _fileLoader;
     public:
         PhysicBullet(){init();}
         ~PhysicBullet();
