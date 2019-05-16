@@ -319,65 +319,20 @@ void IAComponent::Clear()
     mapa.clear();
 }
 
-void IAComponent::setPatrollingRoute(GameObject* owner, int lv)
+void IAComponent::setPatrollingRoute(GameObject* owner)
 {
    std::vector<Area*> AML = ((IAManager*)manager)->getGPS()->getAreas();
-    int ai = 0;
+    std::vector<float> ruta;
+ 
     for (std::size_t i = 0; i< AML.size(); i++)
     {
         if(AML[i]->checkinArea(owner->getX(), owner->getY()))
         {
-            ai = i;
+         
+            ruta = AML[i]->getPatrulla();
+            break;
         }
 
-    }
-
-    std::vector<float> ruta;
-
-    if(ai == 0){
-        if(lv == 0){
-        ruta = {7, 1, -8, 3 };
-
-        }else{
-        ruta = {-45, 10, -35, -20 };
-        }
-
-    }
-     if(ai == 1){
-        ruta = {-43, 35, -34, 35, -36,18, -34,4, -36, 10  };
-       
-    }
-     if(ai == 2){ 
-        ruta = {-19, 21, 5, 20, 8,31, -4,44, -19,40 };
-        
-    }
-     if(ai == 3){
-        ruta = {-7, 1, -16, -5, -23,1 };
-        
-    }
-     if(ai == 4){
-       ruta = {6, -39, 4, -21 ,-11,-23,-20,-29,-17,-40,-2,-38 };
-      
-    }
-     if(ai == 5){
-        ruta = {12, 7, 19, 1, 16,-4 };
-       
-    }
-     if(ai == 6){
-       ruta = {45,27, 39, 40, 32,31 };
-       
-    }
-     if(ai == 7){
-        ruta = {46,-1, 45,10,33,9,30,2 };
-       
-    }
-     if(ai == 8){
-       ruta = {21, -22,24,-31, 42,-30, 39,-20 };
-    
-    }
-     if(ai == 9){
-        ruta = {37, -40, 24, -40, 24,-47 };
-      
     }
 
     while(!ruta.empty()){

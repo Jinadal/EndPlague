@@ -5,6 +5,8 @@ class Area
 {
     private:
     std::vector<Waypoint*> waypoints;
+    std::vector<float> puntosPatrulla;
+
     float sx,sy,ix,iy;
 
     public:
@@ -15,5 +17,8 @@ class Area
     std::vector<Waypoint*> getWaypoints(){ return waypoints;}
 
     void addWaypoint(Waypoint* w);
+    void addPatrulla(std::vector<float> patrulla);
+    std::vector<float> getPatrulla(){return puntosPatrulla;}
+
     
 };
