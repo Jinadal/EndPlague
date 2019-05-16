@@ -58,7 +58,7 @@ class Katana
         TNode* getSceneRoot() { return scene; }
         TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
-        TNode* createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf, const char* t);
+        TNode* createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf);
         TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
         TNode* getNodeCamera() {return camera;}
         void renderBillboards();

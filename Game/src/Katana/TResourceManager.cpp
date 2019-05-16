@@ -178,11 +178,10 @@ TResourceTexture* TResourceManager::getResourceTexture(const char* name)
     return res;
 }
 
-TResourceAnimation* TResourceManager::getResourceAnimation(const char* name, int nf, const char* t)
+TResourceAnimation* TResourceManager::getResourceAnimation(const char* name, int nf)
 {
     TResourceAnimation* res = nullptr;
     bool found = false; //We must read the resource as less as possible
-    TResourceTexture* text = getResourceTexture(t);
     for(unsigned int i=0; i<animation.size() && found==false; i++)
     {
         if(strcmp(name,animation[i]->getName())==0)  // 0 = we've found a coincidence
@@ -199,7 +198,6 @@ TResourceAnimation* TResourceManager::getResourceAnimation(const char* name, int
         if(res->loadResource())
         {
             //Load in vector for futures researches
-            res->setTexture(text);
             animation.push_back(res);
         }
         else
