@@ -131,6 +131,7 @@ void LevelLoader::assignPatrulla(float a, std::vector<float> p)
     Ar[a]->addPatrulla(p);
 }
 
+
 void LevelLoader::addWay(float x, float y)
 {
     IAManager::getInstance()->getGPS()->addWaypoint(x,y);
