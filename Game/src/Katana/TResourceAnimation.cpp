@@ -22,20 +22,20 @@ bool TResourceAnimation::loadResource()
         ret = true;
     }
 
-    Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(name,0);
-    if(scene)
-    {
-        for(unsigned int i = 1; i<scene->mNumMaterials; i++)
-        {
-            TResourceMaterial* mat = new TResourceMaterial();
-            mat->loadResource(scene->mMaterials[i]);
-            for(unsigned int j = 0; j < frame.size(); j++)
-            {
-                frame[j]->setMaterial(mat);
-            }
-        }
-    }
+    //Assimp::Importer importer;
+    //const aiScene* scene = importer.ReadFile(name,0);
+    //if(scene)
+    //{
+    //    for(unsigned int i = 1; i<scene->mNumMaterials; i++)
+    //    {
+    //        TResourceMaterial* mat = new TResourceMaterial();
+    //        mat->loadResource(scene->mMaterials[i]);
+    //        for(unsigned int j = 0; j < frame.size(); j++)
+    //        {
+    //            frame[j]->setMaterial(mat);
+    //        }
+    //    }
+    //}
     return ret;
 }
 
