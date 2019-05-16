@@ -26,6 +26,10 @@ class LevelLoader
         void createWell(float x, float y, float rz);
         GameObject* getPlayer(){return player;}
         void writeFile();
+
+        
+        void assignPatrulla(float a, std::vector<float> p);
+
 };
 
 
@@ -33,6 +37,13 @@ struct xyrt
 {
     float x, y, r;
     bool t;
+};
+
+struct pat
+{
+    float a;
+    std::vector<float> p;
+
 };
 
 
@@ -49,5 +60,8 @@ struct Level
     std::vector<xyrt> wells;
 
     //GPS
+
+    //patrulla 
+    std::vector<pat> patrulla;
 };
 

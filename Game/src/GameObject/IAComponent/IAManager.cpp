@@ -7,7 +7,7 @@
 
 void IAManager::createComponent(GameObject *owner)
 {
-    components.push_back(new IAComponent(owner,this, player, nivel));
+    components.push_back(new IAComponent(owner,this, player));
     owner->addComponent(components[components.size()-1]);
   
 }

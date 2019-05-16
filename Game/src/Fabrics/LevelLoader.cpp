@@ -14,7 +14,8 @@
 #include "CameraManager.h"
 #include "StorageManager.h"
 #include "IAManager.h"
-
+#include "Area.h"
+#include "Waypoint.h"
 //LEVELS
 #include "Village.h"
 
@@ -46,6 +47,9 @@ void LevelLoader::loadLevel()
 
     for(std::size_t i = 0; i<level.wells.size(); i++) 
         createWell(level.wells[i].x, level.wells[i].y, level.wells[i].r);
+
+    for(std::size_t i = 0; i<level.patrulla.size(); i++) 
+        assignPatrulla(level.patrulla[i].a, level.patrulla[i].p);
 
     next++;
 }
@@ -105,4 +109,11 @@ void LevelLoader::createWell(float x, float y, float rz)
     RenderManager::getInstance()->createComponent(well, (char*)"res/obj/POZO.obj");//Fachada de render y path de obj
     WellManager::getInstance()->createComponent(well);
     BPhysicManager::getInstance()->createComponent(well, .5f, .5f, .5f, 0.f, 1);   
+}
+
+void LevelLoader::assignPatrulla(float a, std::vector<float> p)
+{
+    std::vector<Area*> Ar = IAManager::getInstance()->getGPS()->getAreas();
+
+    Ar[a]->addPatrulla(p);
 }
