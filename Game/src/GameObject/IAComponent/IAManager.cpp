@@ -45,7 +45,7 @@ void IAManager::updateAll(float dt)
 void IAManager::init(int lv)
 {
     gps = new GPS();
-    gps->Initialice(lv);
+    //gps->Initialice(lv);
     nivel = lv;
   
      

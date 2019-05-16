@@ -48,6 +48,18 @@ void LevelLoader::loadLevel()
     for(std::size_t i = 0; i<level.wells.size(); i++) 
         createWell(level.wells[i].x, level.wells[i].y, level.wells[i].r);
 
+   for(std::size_t i = 0; i<level.waypoints.size(); i++) 
+        addWay(level.waypoints[i].x, level.waypoints[i].y);
+
+   for(std::size_t i = 0; i<level.areas.size(); i++) 
+        addArea(level.areas[i].xup, level.areas[i].yup, level.areas[i].xdw, level.areas[i].ydw );
+   
+   for(std::size_t i = 0; i<level.wayToArea.size(); i++) 
+        addWayToArea(level.wayToArea[i].ia, level.wayToArea[i].ib);
+
+    for(std::size_t i = 0; i<level.conexToGraph.size(); i++) 
+        addConexToGraph(level.conexToGraph[i].ia, level.conexToGraph[i].ib);
+
     for(std::size_t i = 0; i<level.patrulla.size(); i++) 
         assignPatrulla(level.patrulla[i].a, level.patrulla[i].p);
 
@@ -116,4 +128,24 @@ void LevelLoader::assignPatrulla(float a, std::vector<float> p)
     std::vector<Area*> Ar = IAManager::getInstance()->getGPS()->getAreas();
 
     Ar[a]->addPatrulla(p);
+}
+
+void LevelLoader::addWay(float x, float y)
+{
+    IAManager::getInstance()->getGPS()->addWaypoint(x,y);
+}
+
+void LevelLoader::addArea(float xup, float yup, float xdw, float ydw)
+{
+    IAManager::getInstance()->getGPS()->addArea(xup, yup, xdw, ydw);
+}
+
+void LevelLoader::addWayToArea(int a, int w)
+{
+    IAManager::getInstance()->getGPS()->addWaypointToArea(a,w);
+}
+
+void LevelLoader::addConexToGraph(int w1, int w2)
+{
+    IAManager::getInstance()->getGPS()->addConexionToGraph(w1, w2);
 }

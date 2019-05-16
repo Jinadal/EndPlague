@@ -29,6 +29,11 @@ class LevelLoader
 
         
         void assignPatrulla(float a, std::vector<float> p);
+        void addWay(float x, float y);
+        void addArea(float xup, float yup, float xdw, float ydw);
+        void addWayToArea(int a, int w);
+        void addConexToGraph(int w1, int w2);
+
 
 };
 
@@ -46,6 +51,25 @@ struct pat
 
 };
 
+struct f2
+{
+    float x;
+    float y;
+};
+struct f4{
+    float xup;
+    float yup;
+    float xdw;
+    float ydw;
+};
+
+struct i2
+{
+    int ia;
+    int ib;
+};
+
+
 
 struct Level
 {
@@ -59,8 +83,18 @@ struct Level
     //Wells
     std::vector<xyrt> wells;
 
-    //GPS
+    //GPS_ways
+    std::vector<f2> waypoints;
 
+    //GPS_areas
+    std::vector<f4> areas;
+
+    //GPS_wayToArea
+
+    std::vector<i2> wayToArea;
+    //GPS_conexToGraph
+
+    std::vector<i2> conexToGraph;
     //patrulla 
     std::vector<pat> patrulla;
 };

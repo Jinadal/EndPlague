@@ -264,6 +264,7 @@ void Katana::initOpenGL()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 	glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
 
     scene->getEntity()->setProgramID(shaderProgram);
 
@@ -309,10 +310,7 @@ void Katana::renderCamera()
     glm::mat4 fm = tm * sm * rm;
     scene->getEntity()->viewMatrix() = glm::inverse(fm);
 
-    //if(camera != nullptr)
-    //{
-    //    glUniformMatrix4fv(scene->getEntity()->getViewID(), 1, GL_FALSE, &scene->getEntity()->viewMatrix()[0][0]);
-    //}
+
 }
 
 void Katana::drawAll()
@@ -323,7 +321,6 @@ void Katana::drawAll()
     glUseProgram(scene->getEntity()->getProgramID());
     renderCamera();
     renderLight();
-    //renderBillboards();
 
     // Use our shader
     scene->draw();
@@ -336,13 +333,7 @@ void Katana::drawAll()
 
 void Katana::close()
 {
-
     glfwSetWindowShouldClose(window, 1);
-	//glDeleteProgram(scene->getEntity()->getProgramID());
-	//glDeleteTextures(1, &Texture);
-
-	// Close OpenGL window and terminate GLFW
-	//glfwTerminate();
 }
 
 CursorXYZ Katana::cursorPosition()
@@ -361,8 +352,6 @@ CursorXYZ Katana::cursorPosition()
     ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
 
     glm::vec3 ray_wor = (glm::inverse(scene->getEntity()->viewMatrix()) * ray_eye);
-
-    //ray_wor = glm::normalize(ray_wor);
 
     x = cameraPos.x - ((cameraPos.z * ray_wor.x) / ray_wor.z);
     y = cameraPos.y - ((cameraPos.z * ray_wor.y) / ray_wor.z);

@@ -2,7 +2,7 @@
 #include <cmath>
 #include "Area.h"
 
-void GPS::Initialice(int lv)
+/*void GPS::Initialice(int lv)
 {
 
 if(lv == 0)
@@ -122,7 +122,7 @@ if(lv == 1)
 
 
     
-}
+}*/
 
 Waypoint* Grafo::getNearestWaypoint(float x, float y)
 {
