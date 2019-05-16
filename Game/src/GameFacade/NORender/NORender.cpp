@@ -4,6 +4,7 @@
 #include "NOHUD.h"
 #include "NOMenu.h"
 #include "NOSprite.h"
+#include "NOAnimation.h"
 
 NORender::NORender()
 {
@@ -42,6 +43,12 @@ FMesh* NORender::createMesh(char* s)
 {
     return new NOMesh();
 }
+
+FMesh* createAnimation(char* s, int n)
+{
+    return new NOMesh();
+}
+
 
 FCamera* NORender::createCamera()
 {

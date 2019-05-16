@@ -49,6 +49,14 @@ FMesh* KATRender::createMesh(char* s)
     return r;
 }
 
+FMesh* KATRender::createAnimation(char* s, int n)
+{
+    KATMesh* r = new KATMesh();
+    r->setMesh(katana->createNodeAnimation(scene,glm::vec3(0,0,0),s, n));
+    return r;
+}
+
+
 FCamera* KATRender::createCamera()
 {
     KATCamera* camara = new KATCamera();

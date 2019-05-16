@@ -26,6 +26,7 @@ class NORender : public FRender{
         float getCursorX();
         float getCursorY();
         FMesh* createMesh(char* s);
+        FMesh* createAnimation(char* s, int n);
         FCamera* createCamera();
         FHUD* getHUD();
         FMenu* getMenu();

@@ -18,6 +18,18 @@ class KATMesh : public FMesh
         void isMap();
 
 
-        void setMesh(TNode* node){mesh = node;}
+        void setMesh(TNode* node){
+                        if(mesh)
+            {
+                KATRender::getInstance()->deleteNode(mesh);
+            }
+            mesh = node;}
+        void setAnimation(TNode* node){
+            if(mesh)
+            {
+                KATRender::getInstance()->deleteNode(mesh);
+            }
+
+            mesh = node;}
 };
 
