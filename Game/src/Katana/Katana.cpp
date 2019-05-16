@@ -135,7 +135,7 @@ TNode* Katana::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
     }
     return nullptr;
 }
-TNode* Katana::createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf, const char* t)
+TNode* Katana::createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf)
 {
     if(f!= nullptr)
     {
@@ -147,7 +147,7 @@ TNode* Katana::createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int 
             
             //Mesh Leaf, load in memory mesh and assign it
             TAnimation* animation = new TAnimation();
-            TResourceAnimation* an = manager->getResourceAnimation(name,nf,t);
+            TResourceAnimation* an = manager->getResourceAnimation(name,nf);
             animation->setAnimation(an);
             
             TNode* nodeAnimation = new TNode(nodeRST,animation);

@@ -29,7 +29,7 @@ public:
     TResourceMaterial* getResourceMaterial(const char* name);
     TResourceTexture* getResourceTexture(const char* name);
     TResourceShader* getResourceShader(const char* name, GLenum type);
-    TResourceAnimation* getResourceAnimation(const char* n, int nf, const char* t);
+    TResourceAnimation* getResourceAnimation(const char* n, int nf);
 
     void deleteOBJ(const char* n);
     void deleteAnimation(const char* n);
