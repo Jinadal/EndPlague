@@ -1,5 +1,5 @@
  #include "SoundSystem.h"
-
+#include "GameObject.h"
 class AmbientSoundEvent : public SoundEvent
 {
     public:
@@ -9,6 +9,7 @@ class AmbientSoundEvent : public SoundEvent
 
     void setAttackParameter(bool bol);
     void setTensionParameter(bool ten);
+    void setVidaParameter(GameObject* player);
     protected:
 
     virtual AmbientSoundEvent* newSoundEvent(FMOD::Studio::EventInstance* ei);

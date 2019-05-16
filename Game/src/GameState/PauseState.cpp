@@ -14,6 +14,8 @@ void PauseState::initState()
     menu = new PauseMenu();
     AmbientSoundEvent* s = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente");
     AmbientSoundEvent* sm = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("musica");
+    AmbientSoundEvent* lat = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("latido");
+    lat->pause();
     sm->pause();
     s->pause();
     SoundSystem::getInstance()->Update();

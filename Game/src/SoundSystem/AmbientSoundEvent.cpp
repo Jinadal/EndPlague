@@ -1,5 +1,5 @@
 #include "AmbientSoundEvent.h"
-
+#include "LifeComponent.h"
 
 AmbientSoundEvent* AmbientSoundEvent::newSoundEvent(FMOD::Studio::EventInstance* ei)
 {
@@ -21,5 +21,13 @@ void AmbientSoundEvent::setTensionParameter(bool ten)
     FMOD::Studio::ParameterInstance* pParameter = NULL;
     SoundSystem::ErrorCheck(soundInstance->getParameter("tension", &pParameter));
     SoundSystem::ErrorCheck(pParameter->setValue(ten));
+
+}
+
+void AmbientSoundEvent::setVidaParameter(GameObject* player)
+{
+    FMOD::Studio::ParameterInstance* pParameter = NULL;
+    SoundSystem::ErrorCheck(soundInstance->getParameter("Vida", &pParameter));
+    SoundSystem::ErrorCheck(pParameter->setValue(player->getComponent<LifeComponent>()->getLife()));
 
 }
