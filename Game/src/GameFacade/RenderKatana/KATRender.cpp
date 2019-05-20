@@ -17,9 +17,9 @@ KATRender::KATRender() : FRender()
     katana->createNodeCamera(scene, glm::vec3(0,0,0),glm::vec3(0,0,-1),0.01f,100.0f);
 }
 
-void KATRender::drawAll()
+void KATRender::drawAll(float dt)
 {
-    katana->drawAll();
+    katana->drawAll(dt);
 }
 
 bool KATRender::run()

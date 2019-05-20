@@ -22,7 +22,7 @@ class KATRender : public FRender{
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------          
 
-        void drawAll();
+        void drawAll(float dt);
         void getWindowSize(int &x, int &y);
         bool run();
         void drop();

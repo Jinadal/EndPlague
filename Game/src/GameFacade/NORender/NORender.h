@@ -20,7 +20,7 @@ class NORender : public FRender{
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------          
 
-        void drawAll();
+        void drawAll(float dt);
         bool run();
         void drop();
         float getCursorX();

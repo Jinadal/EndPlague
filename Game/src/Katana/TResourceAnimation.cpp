@@ -1,5 +1,10 @@
 #include "TResourceAnimation.h"
+#include "GameValues.h"
 
+TResourceAnimation::TResourceAnimation(int f)
+{
+    numFrames = f;
+}
 TResourceAnimation::~TResourceAnimation()
 {
     for(unsigned int i = 0; i < frame.size(); i++)
@@ -11,17 +16,22 @@ TResourceAnimation::~TResourceAnimation()
 
 bool TResourceAnimation::loadResource()
 {
-    bool ret = false;
-    std::string path = name;
-
-    TResourceOBJ* obj = new TResourceOBJ(true);
-    obj->setName(path.c_str());
-    if(obj->loadResource())
+    bool ret = true;
+    std::string path;
+    std::string o(".obj");
+    TResourceOBJ* obj;
+    for(int i = 1; i<=numFrames; i++)
     {
-        frame.push_back(obj);
-        ret = true;
-    }
+        obj = new TResourceOBJ(true);
+    
+        path = name + std::to_string(i) + o;
 
+        obj->setName(path.c_str());
+        if(obj->loadResource())
+        {
+            frame.push_back(obj);
+        }else{ret = false;}
+    }
     //Assimp::Importer importer;
     //const aiScene* scene = importer.ReadFile(name,0);
     //if(scene)
@@ -41,12 +51,22 @@ bool TResourceAnimation::loadResource()
 
 void TResourceAnimation::draw()
 {
-    for(unsigned int i = 0; i < frame.size(); i++)
+
+    dt += 0.1f;
+    if(dt>1/gv::FRAMES_PER_SECOND)
     {
-        if(texture != NULL)
-        {
-            texture->draw();
-        }
-        frame[i]->draw();
+        frameToRender++;
+
+        if(frameToRender>=frame.size())
+            frameToRender = 0;
     }
+    //
+    //for(unsigned int i = 0; i < frame.size(); i++)
+    //{
+        //if(texture != NULL)
+        //{
+        //    texture->draw();
+        //}
+        frame[frameToRender]->draw();
+    //}
 }

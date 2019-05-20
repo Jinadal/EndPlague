@@ -4,13 +4,12 @@
 #include "NOHUD.h"
 #include "NOMenu.h"
 #include "NOSprite.h"
-#include "NOAnimation.h"
 
 NORender::NORender()
 {
 }
 
-void NORender::drawAll()
+void NORender::drawAll(float dt)
 {
 }
 
@@ -44,7 +43,7 @@ FMesh* NORender::createMesh(char* s)
     return new NOMesh();
 }
 
-FMesh* createAnimation(char* s, int n)
+FMesh* NORender::createAnimation(char* s, int n)
 {
     return new NOMesh();
 }

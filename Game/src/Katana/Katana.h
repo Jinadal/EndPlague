@@ -28,6 +28,7 @@ struct CursorXYZ
 class Katana
 {
     private: 
+        float dTime = 0.f;
         GLFWwindow* window;
         TNode* scene;
         TNode* camera;
@@ -51,7 +52,7 @@ class Katana
         void clean();
         void initOpenGL();
         void renderCamera();
-        void drawAll();
+        void drawAll(float dt);
 
         //TREE METHODS
         void initRoot();

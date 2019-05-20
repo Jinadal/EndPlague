@@ -135,6 +135,7 @@ TNode* Katana::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
     }
     return nullptr;
 }
+
 TNode* Katana::createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf)
 {
     if(f!= nullptr)
@@ -323,8 +324,9 @@ void Katana::renderCamera()
     //}
 }
 
-void Katana::drawAll()
+void Katana::drawAll(float dt)
 {
+    dTime = dt;
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

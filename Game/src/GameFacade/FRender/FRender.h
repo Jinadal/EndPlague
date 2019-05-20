@@ -11,7 +11,7 @@ class FRender
     public:
         virtual ~FRender(){}
         //Draws all the scene, better at the end of loop
-        virtual void drawAll() = 0;
+        virtual void drawAll(float dt) = 0;
 
         //Returns true if cotinues the loop
         virtual bool run() = 0;

@@ -12,11 +12,13 @@ class TResourceAnimation : public TResource
 {
     protected:
         int numFrames = 1;
+        float dt = 0.f;
+        unsigned int frameToRender = 0;
         std::vector<TResourceOBJ*> frame;
         TResourceMaterial* material = nullptr;
         TResourceTexture* texture = nullptr;
     public:
-        TResourceAnimation(int f){ numFrames = f;};
+        TResourceAnimation(int f);
         ~TResourceAnimation();
 
         void setFrames(int f){numFrames = f;};

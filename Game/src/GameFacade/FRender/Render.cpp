@@ -16,7 +16,7 @@ Render::Render(){
     }
 }
 
-void Render::drawAll(){render->drawAll();}
+void Render::drawAll(float dt){render->drawAll(dt);}
 
 bool Render::run(){return render->run();}
 

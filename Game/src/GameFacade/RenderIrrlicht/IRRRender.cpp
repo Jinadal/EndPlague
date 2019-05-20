@@ -28,7 +28,7 @@ IRRRender::IRRRender(){
 }
 
 
-void IRRRender::drawAll()
+void IRRRender::drawAll(float dt)
 {
     driver->beginScene(true, true, irr::video::SColor(255,100,100,100));
 
@@ -143,7 +143,15 @@ void IRRRender::close()
 }
 
 
-FMesh* createAnimation(char* s, int n)
+FMesh* IRRRender::createAnimation(char* s, int n)
 {
-    return new IRRMesh(s);
+    irr::scene::IMesh* mesh = smgr->getMesh(s); //Gets a mesh
+    irr::scene::IMeshSceneNode* node = nullptr;
+    if (mesh)
+    {
+        node = smgr->addMeshSceneNode(mesh);//Adds the mesh to the node
+        node->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    }
+
+    return new IRRMesh(node);
 }

@@ -15,7 +15,7 @@ class Render
 
         ~Render(){}
         //Draws all the scene, better at the end of loop
-        void drawAll();
+        void drawAll(float dt);
 
         //Returns true if cotinues the loop
         bool run();
