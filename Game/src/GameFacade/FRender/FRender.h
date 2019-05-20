@@ -4,7 +4,6 @@ class FCamera;
 class FHUD;
 class FMenu;
 class FSprite;
-
 class FRender
 {
     protected:
@@ -26,6 +25,7 @@ class FRender
 
         //Creates mesh and camera
         virtual FMesh* createMesh(char* s) = 0;
+        virtual FMesh* createAnimation(char* s, int n) = 0;
         virtual FCamera* createCamera() = 0;
         virtual FHUD* getHUD() = 0;
         virtual FMenu* getMenu() = 0;

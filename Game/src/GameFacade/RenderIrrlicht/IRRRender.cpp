@@ -141,3 +141,9 @@ void IRRRender::close()
 {
     //device->close();
 }
+
+
+FMesh* createAnimation(char* s, int n)
+{
+    return new IRRMesh(s);
+}
