@@ -288,11 +288,8 @@ void Katana::initOpenGL()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 	glEnable(GL_CULL_FACE);
-<<<<<<< HEAD
     glCullFace(GL_BACK);
 
-=======
->>>>>>> Animations
     scene->getEntity()->setProgramID(shaderProgram);
 
     GLuint view         = glGetUniformLocation(shaderProgram, "view");
