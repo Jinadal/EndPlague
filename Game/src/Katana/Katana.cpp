@@ -9,6 +9,7 @@
 #include "SpriteRenderer.h"
 #include "Texture2D.h"
 
+//float Katana::dTime;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void MessageCallback( GLenum source,

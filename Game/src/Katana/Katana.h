@@ -28,7 +28,7 @@ struct CursorXYZ
 class Katana
 {
     private: 
-        float dTime = 0.f;
+        float dTime = 0.1f;
         GLFWwindow* window;
         TNode* scene;
         TNode* camera;
@@ -42,6 +42,10 @@ class Katana
         SpriteRenderer* spriteRenderer;
         
     public:
+        static Katana* getInstance(){
+            static Katana only_instance;
+            return &only_instance;
+        }
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
         void processInput(GLFWwindow *window);
@@ -79,4 +83,5 @@ class Katana
         TSprite* createSprite(char* path);
         void removeSprite(TSprite* sprite);
         void getWindowSize(int &window_w,int &window_h);
+        float getTime(){return dTime;};
 };

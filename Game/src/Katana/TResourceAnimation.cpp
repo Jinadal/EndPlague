@@ -1,6 +1,6 @@
 #include "TResourceAnimation.h"
 #include "GameValues.h"
-
+#include "Katana.h"
 TResourceAnimation::TResourceAnimation(int f)
 {
     numFrames = f;
@@ -51,8 +51,8 @@ bool TResourceAnimation::loadResource()
 
 void TResourceAnimation::draw()
 {
-
-    dt += 0.1f;
+    dt = Katana::getInstance()->getTime();
+    //dt += 0.1f;
     if(dt>1/gv::FRAMES_PER_SECOND)
     {
         frameToRender++;
@@ -61,12 +61,12 @@ void TResourceAnimation::draw()
             frameToRender = 0;
     }
     //
-    //for(unsigned int i = 0; i < frame.size(); i++)
-    //{
-        //if(texture != NULL)
-        //{
-        //    texture->draw();
-        //}
+    for(unsigned int i = 0; i < frame.size(); i++)
+    {
+        if(texture != NULL)
+        {
+            texture->draw();
+        }
         frame[frameToRender]->draw();
-    //}
+    }
 }
