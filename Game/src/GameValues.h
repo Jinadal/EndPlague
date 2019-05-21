@@ -14,14 +14,14 @@ namespace gv
         const float     INTRO_DURATION          = .1f;  //seg
 
     //----------   CAMERA   ------------
-        const float     CAMERA_MIN_ZOOM         = 2.f;
-        const float     CAMERA_MAX_ZOOM         = 10.2f;
+        const float     CAMERA_MIN_ZOOM         = .7f;
+        const float     CAMERA_MAX_ZOOM         = 1.5f;
         const float     CAMERA_ZOOM_VEL         = .05f;  //Velocity of camera zoom
 
         const float     CAMERA_HIT_DISTANCE     = .5f;
         const float     CAMERA_HIT_TIME         = 0.05f;
 
-        const float     CAMERA_DY               = 5.f;  //Camera Y distance
+        const float     CAMERA_DY               = 6.5f;  //Camera Y distance
         const float     CAMERA_DZ               = 10.f; //Camera Z distance
 
         const float     CAMERA_VELOCITY         = 10.f; //Velocity of camera movement
@@ -33,8 +33,9 @@ namespace gv
 
     //------------- RENDER  --------------
         const int          RENDER_ENGINE        = 1;     //1 = Katana || 2 = Irrlicht || 3 = No Render 
-        const unsigned int SCR_WIDTH            = 1920;
-        const unsigned int SCR_HEIGHT           = 1080;
+        const unsigned int SCR_WIDTH            = 1366;
+        const unsigned int SCR_HEIGHT           = 768;
+        const unsigned int FRAMES_PER_SECOND    = 15;
 
 
     //-------------- SOUND --------------

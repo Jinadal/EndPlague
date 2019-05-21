@@ -2,6 +2,7 @@
 #include "ShootComponent.h"
 #include "GameObject.h"
 #include "BPhysicComponent.h"
+#include "RenderComponent.h"
 #include "CameraComponent.h"
 #include <SFML/Window.hpp>
 #include "GameValues.h"
@@ -10,23 +11,43 @@
 #include <iostream>
 void InputComponent::update(float cursorX, float cursorY)
 {
+    bool in = false;
     int enX = 0, enY = 0;
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        in = true;
         enY+=1;
+    }
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
+        in = true;
         enX-=1;
+    }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        in = true;
         enY-=1;
+    }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        in = true;
         enX+=1;
+    }
 
-  /**  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-   *     libre = !libre;
-   */
+    if(in != walking)
+    {
+        walking = in;
+        if(walking){
+            gameObject->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Walk_Goblin/Walk_Goblin_", 23);
+        }else{
+            gameObject->getComponent<RenderComponent>()->setMesh((char*)"res/animations/Walk_Goblin/Walk_Goblin_1.obj");            
+        }
+    }
+
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         if(gameObject->getComponent<ShootComponent>())
         gameObject->getComponent<ShootComponent>()->shoot();

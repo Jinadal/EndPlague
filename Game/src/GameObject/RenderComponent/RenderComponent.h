@@ -31,4 +31,7 @@ class RenderComponent : public Component{
 
         void isLeviosa(){leviosa = true;}
         void isRotates(){rotates = true;}
+
+        void setAnimation(char* a, int n){delete node; node = Render::getInstance()->createAnimation(a, n);}
+        void setMesh(char* a){delete node; node = Render::getInstance()->createMesh(a);}
 };

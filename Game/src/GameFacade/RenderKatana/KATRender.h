@@ -22,13 +22,14 @@ class KATRender : public FRender{
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------          
 
-        void drawAll();
+        void drawAll(float dt);
         void getWindowSize(int &x, int &y);
         bool run();
         void drop();
         float getCursorX();
         float getCursorY();
         FMesh* createMesh(char* s);
+        FMesh* createAnimation(char* s, int n);
         FCamera* createCamera();
         FHUD* getHUD();
         FMenu* getMenu();

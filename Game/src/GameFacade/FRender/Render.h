@@ -15,7 +15,7 @@ class Render
 
         ~Render(){}
         //Draws all the scene, better at the end of loop
-        void drawAll();
+        void drawAll(float dt);
 
         //Returns true if cotinues the loop
         bool run();
@@ -29,6 +29,7 @@ class Render
 
         //Creates mesh and camera
         FMesh* createMesh(char* s);
+        FMesh* createAnimation(char* s, int n);
         FCamera* createCamera();
         FHUD* getHUD();
         FMenu* getMenu();

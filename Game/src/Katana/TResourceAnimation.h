@@ -1,14 +1,30 @@
 #pragma once
 #include "TResource.h"
-
+#include "TResourceOBJ.h"
+#include "TResourceMaterial.h"
+#include "TResourceTexture.h"
+#include <vector>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <iostream>
 class TResourceAnimation : public TResource
 {
     protected:
-
+        int numFrames = 1;
+        float dt = 0.f;
+        unsigned int frameToRender = 0;
+        std::vector<TResourceOBJ*> frame;
+        TResourceMaterial* material = nullptr;
+        TResourceTexture* texture = nullptr;
     public:
-        TResourceAnimation(){};
-        ~TResourceAnimation(){};
+        TResourceAnimation(int f);
+        ~TResourceAnimation();
 
-        bool loadResource(){return false;};
-        void draw(){};
+        void setFrames(int f){numFrames = f;};
+        int getFrames(){return numFrames;};
+        void setTexture(TResourceTexture* t){ texture = t;};
+        TResourceTexture* getTexture(){ return texture;};
+        bool loadResource();
+        void draw();
 };

@@ -19,5 +19,9 @@ class KATMesh : public FMesh
 
 
         void setMesh(TNode* node){mesh = node;}
+
+        void setAnimation(TNode* node){mesh = node;}
+
+        void deleteNode(){KATRender::getInstance()->deleteNode(mesh); mesh = nullptr;}
 };
 

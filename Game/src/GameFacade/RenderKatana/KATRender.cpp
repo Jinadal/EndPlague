@@ -13,13 +13,13 @@ KATRender::KATRender() : FRender()
     katana->initRoot();
 	katana->initOpenGL();
     scene = katana->getSceneRoot();
-
+    katana->initAnimations();
     katana->createNodeCamera(scene, glm::vec3(0,0,0),glm::vec3(0,0,-1),0.01f,100.0f);
 }
 
-void KATRender::drawAll()
+void KATRender::drawAll(float dt)
 {
-    katana->drawAll();
+    katana->drawAll(dt);
 }
 
 bool KATRender::run()
@@ -48,6 +48,14 @@ FMesh* KATRender::createMesh(char* s)
     r->setMesh(katana->createNodeMesh(scene,glm::vec3(0,0,0),s));
     return r;
 }
+
+FMesh* KATRender::createAnimation(char* s, int n)
+{
+    KATMesh* r = new KATMesh();
+    r->setMesh(katana->createNodeAnimation(scene,glm::vec3(0,0,0),s, n));
+    return r;
+}
+
 
 FCamera* KATRender::createCamera()
 {

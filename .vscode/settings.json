@@ -52,7 +52,9 @@
         "iomanip": "cpp",
         "variant": "cpp",
         "string": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

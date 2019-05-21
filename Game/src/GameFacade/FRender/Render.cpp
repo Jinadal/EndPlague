@@ -16,7 +16,7 @@ Render::Render(){
     }
 }
 
-void Render::drawAll(){render->drawAll();}
+void Render::drawAll(float dt){render->drawAll(dt);}
 
 bool Render::run(){return render->run();}
 
@@ -26,6 +26,7 @@ float Render::getCursorX(){return render->getCursorX();}
 float Render::getCursorY(){return render->getCursorY();}
 
 FMesh* Render::createMesh(char* s){return render->createMesh(s);}
+FMesh* Render::createAnimation(char* s, int n){return render->createAnimation(s, n);}
 FCamera* Render::createCamera(){return render->createCamera();}
 FHUD* Render::getHUD(){return render->getHUD();}
 FMenu* Render::getMenu(){return render->getMenu();}
