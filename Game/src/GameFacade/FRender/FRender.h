@@ -4,7 +4,6 @@ class FCamera;
 class FHUD;
 class FMenu;
 class FSprite;
-
 class FRender
 {
     protected:
@@ -12,7 +11,7 @@ class FRender
     public:
         virtual ~FRender(){}
         //Draws all the scene, better at the end of loop
-        virtual void drawAll() = 0;
+        virtual void drawAll(float dt) = 0;
 
         //Returns true if cotinues the loop
         virtual bool run() = 0;
@@ -26,6 +25,7 @@ class FRender
 
         //Creates mesh and camera
         virtual FMesh* createMesh(char* s) = 0;
+        virtual FMesh* createAnimation(char* s, int n) = 0;
         virtual FCamera* createCamera() = 0;
         virtual FHUD* getHUD() = 0;
         virtual FMenu* getMenu() = 0;

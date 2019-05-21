@@ -21,8 +21,9 @@ void Game::run()
     {
         if(clock.canContinue())
         {
-            state->update(clock.getElapsedTime());
-            Render::getInstance()->drawAll();
+            float t = clock.getElapsedTime();
+            state->update(t);
+            Render::getInstance()->drawAll(t);
         }
     }
 }

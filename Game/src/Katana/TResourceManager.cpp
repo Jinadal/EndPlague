@@ -23,9 +23,24 @@ TResourceManager::~TResourceManager()
     {
         delete texture[i];
     }
+    for(i = 0; i < shader.size(); i++)
+    {
+        delete shader[i];
+    }
+    for(i = 0; i < objs.size(); i++)
+    {
+        delete objs[i];
+    }
+    for(i = 0; i < animation.size(); i++)
+    {
+        delete animation[i];
+    }
     mesh.clear();
     material.clear();
     texture.clear();
+    shader.clear();
+    objs.clear();
+    animation.clear();
 }
 
 TResourceShader* TResourceManager::getResourceShader(const char* name, GLenum type)
@@ -178,11 +193,10 @@ TResourceTexture* TResourceManager::getResourceTexture(const char* name)
     return res;
 }
 
-TResourceAnimation* TResourceManager::getResourceAnimation(const char* name)
+TResourceAnimation* TResourceManager::getResourceAnimation(const char* name, int nf)
 {
     TResourceAnimation* res = nullptr;
     bool found = false; //We must read the resource as less as possible
-
     for(unsigned int i=0; i<animation.size() && found==false; i++)
     {
         if(strcmp(name,animation[i]->getName())==0)  // 0 = we've found a coincidence
@@ -194,7 +208,7 @@ TResourceAnimation* TResourceManager::getResourceAnimation(const char* name)
     //No res coincidence loaded before
     if(res == nullptr)                             
     {
-        res = new TResourceAnimation();
+        res = new TResourceAnimation(nf);
         res->setName(name);
         if(res->loadResource())
         {

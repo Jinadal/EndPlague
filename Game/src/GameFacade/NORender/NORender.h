@@ -20,12 +20,13 @@ class NORender : public FRender{
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------          
 
-        void drawAll();
+        void drawAll(float dt);
         bool run();
         void drop();
         float getCursorX();
         float getCursorY();
         FMesh* createMesh(char* s);
+        FMesh* createAnimation(char* s, int n);
         FCamera* createCamera();
         FHUD* getHUD();
         FMenu* getMenu();

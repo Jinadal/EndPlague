@@ -9,6 +9,7 @@
 #include "SpriteRenderer.h"
 #include "Texture2D.h"
 
+//float Katana::dTime;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void MessageCallback( GLenum source,
@@ -144,6 +145,29 @@ TNode* Katana::createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i)
     return nullptr;
 }
 
+TNode* Katana::createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf)
+{
+    if(f!= nullptr)
+    {
+        //Be sure that the father is a root or a transformation node
+        if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
+        {
+            //Creates a 3 node branch with their respective transformations
+            TNode* nodeRST = createBranch(f,v);
+            
+            //Mesh Leaf, load in memory mesh and assign it
+            TAnimation* animation = new TAnimation();
+            TResourceAnimation* an = manager->getResourceAnimation(name,nf);
+            animation->setAnimation(an);
+            
+            TNode* nodeAnimation = new TNode(nodeRST,animation);
+            nodeRST->addChild(nodeAnimation);
+
+            return nodeAnimation;
+        }
+    }
+    return nullptr;
+}
 TNode* Katana::createNodeCamera(TNode* f, glm::vec3 p, glm::vec3 v, float n,float ff)
 {
     if(f->getEntity() == nullptr || dynamic_cast<TTransform*>(f->getEntity()) != nullptr)
@@ -264,8 +288,11 @@ void Katana::initOpenGL()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 	glEnable(GL_CULL_FACE);
+<<<<<<< HEAD
     glCullFace(GL_BACK);
 
+=======
+>>>>>>> Animations
     scene->getEntity()->setProgramID(shaderProgram);
 
     GLuint view         = glGetUniformLocation(shaderProgram, "view");
@@ -274,15 +301,13 @@ void Katana::initOpenGL()
 	GLuint matrix       = glGetUniformLocation(shaderProgram, "MVP");
     GLuint TextureID    = glGetUniformLocation(shaderProgram, "myTextureSampler");
 
-
-
-
     scene->getEntity()->setviewID(view);
     scene->getEntity()->setmodelID(model);
     scene->getEntity()->setprojectionID(projection);
 	scene->getEntity()->setMVPID(matrix);
 
     glUseProgram(shaderProgram);
+	glUniform1i(TextureID, 0);
 
 	glUniform1i(TextureID, 0);
 
@@ -313,8 +338,9 @@ void Katana::renderCamera()
 
 }
 
-void Katana::drawAll()
+void Katana::drawAll(float dt)
 {
+    dTime = dt;
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -450,3 +476,9 @@ void Katana::getWindowSize(int &window_w,int &window_h)
     glfwGetWindowSize(window, &window_w, &window_h);
 }
 
+void Katana::initAnimations()
+{
+    manager->getResourceAnimation("res/animation/Goblo/Walk/Walk_Goblin_", 23);
+    //manager->getResourceAnimation("res/animations/Soldier/Walk_Soldier_",23);
+    //manager->getResourceAnimation("res/animation/Lady/Walk_Lady_",23);
+}

@@ -8,6 +8,7 @@
 #include "../../lib/glm/glm.hpp"
 
 #include "TNode.h"
+#include "TAnimation.h"
 #include "TCamera.h"
 #include "TLight.h"
 #include "TMesh.h"
@@ -15,6 +16,7 @@
 #include "TResourceManager.h"
 #include "TResourceOBJ.h"
 #include "TResourceShader.h"
+#include "TResourceAnimation.h"
 #include "TSprite.h"
 
 class SpriteRenderer;
@@ -26,6 +28,7 @@ struct CursorXYZ
 class Katana
 {
     private: 
+        float dTime = 0.1f;
         GLFWwindow* window;
         TNode* scene;
         TNode* camera;
@@ -39,6 +42,10 @@ class Katana
         SpriteRenderer* spriteRenderer;
         
     public:
+        static Katana* getInstance(){
+            static Katana only_instance;
+            return &only_instance;
+        }
         GLFWwindow* initWindow();
         bool openWindow(GLFWwindow* w);
         void processInput(GLFWwindow *window);
@@ -49,17 +56,19 @@ class Katana
         void clean();
         void initOpenGL();
         void renderCamera();
-        void drawAll();
+        void drawAll(float dt);
 
         //TREE METHODS
         void initRoot();
         TNode* getSceneRoot() { return scene; }
         TNode* createNodeMesh(TNode* f, glm::vec3 v, const char* mesh);   
         TNode* createNodeLigth(TNode* f, glm::vec3 v, glm::vec4 i);
+        TNode* createNodeAnimation(TNode* f, glm::vec3 v, const char* name, int nf);
         TNode* createNodeCamera(TNode* f, glm::vec3 m, glm::vec3 v, float n,float ff);
         TNode* getNodeCamera() {return camera;}
         void renderBillboards();
         void deleteNodeBranch(TNode* n);
+        void initAnimations();
 
         TNode* createBranch(TNode* f, glm::vec3 v);
         CursorXYZ cursorPosition();
@@ -75,4 +84,5 @@ class Katana
         TSprite* createSprite(char* path);
         void removeSprite(TSprite* sprite);
         void getWindowSize(int &window_w,int &window_h);
+        float getTime(){return dTime;};
 };

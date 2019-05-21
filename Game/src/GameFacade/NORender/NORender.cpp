@@ -9,7 +9,7 @@ NORender::NORender()
 {
 }
 
-void NORender::drawAll()
+void NORender::drawAll(float dt)
 {
 }
 
@@ -43,6 +43,12 @@ FMesh* NORender::createMesh(char* s)
 {
     return new NOMesh();
 }
+
+FMesh* NORender::createAnimation(char* s, int n)
+{
+    return new NOMesh();
+}
+
 
 FCamera* NORender::createCamera()
 {
