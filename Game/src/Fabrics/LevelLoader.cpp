@@ -19,9 +19,12 @@
 //LEVELS
 #include "Village.h"
 #include "Level1.h"
+#include "Level2.h"
+#include "Level3.h"
 
 
-std::vector<Level> levels{level1, village};
+
+std::vector<Level> levels{level1, level2, level3, village};
 
 bool LevelLoader::hasNext()
 {

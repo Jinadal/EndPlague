@@ -24,7 +24,7 @@ void PlayState::initState()
         LevelLoader::getInstance()->loadLevel();
         GameManager::getInstance()->initAll();
        
-    
+
     
         AmbientSoundEvent* s = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ambiente"));
         s->start();
@@ -67,6 +67,10 @@ void PlayState::update(float dt)
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         Game::getInstance()->setState(IGameState::stateType::PAUSE);
 
+    GameObject* g = GameResource::getInstance()->getPlayer();
+    std::cout << "\033[2J";
+    std::cout << " x " << g->getX()<< " y " << g->getY()<< "\n";
+    std::cout << "\033[2J";
 
     if(IAManager::getInstance()->getPlayer() && IAManager::getInstance()->getPlayer()->getKill())
     {
