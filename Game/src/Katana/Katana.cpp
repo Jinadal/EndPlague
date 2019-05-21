@@ -41,7 +41,7 @@ GLFWwindow* Katana::initWindow()
     glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
     glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
     glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
-    window = glfwCreateWindow(mode->width, mode->height, "Screams In Goblin", NULL, NULL); //monitor
+    window = glfwCreateWindow(mode->width, mode->height, "Screams In Goblin", monitor, NULL); //monitor
 
     //window = glfwCreateWindow(gv::SCR_WIDTH, gv::SCR_HEIGHT, "Screams In Goblin", monitor, NULL);
     if (window == NULL)
