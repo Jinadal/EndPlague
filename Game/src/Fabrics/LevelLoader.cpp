@@ -71,7 +71,7 @@ void LevelLoader::createPlayer(float x, float y, float z)
     //ADDING A PLAYER 1 x 1 x 2
     player = GameResource::getInstance()->createPlayer(x, y, z, 0.f);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(player, (char*)"res/obj/GOBLINBB.obj");//Fachada de render y path de obj
-    player->getComponent<RenderComponent>()->setAnimation("res/animation/Goblo/Walk/Walk_Goblin_", 15);    
+    player->getComponent<RenderComponent>()->setAnimation("res/animation/Goblo/Walk/Walk_Goblin_", 26);    
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(gv::PLAYER_VELOCITY);
     InputManager::getInstance()->createComponent(player);

@@ -23,9 +23,24 @@ TResourceManager::~TResourceManager()
     {
         delete texture[i];
     }
+    for(i = 0; i < shader.size(); i++)
+    {
+        delete shader[i];
+    }
+    for(i = 0; i < objs.size(); i++)
+    {
+        delete objs[i];
+    }
+    for(i = 0; i < animation.size(); i++)
+    {
+        delete animation[i];
+    }
     mesh.clear();
     material.clear();
     texture.clear();
+    shader.clear();
+    objs.clear();
+    animation.clear();
 }
 
 TResourceShader* TResourceManager::getResourceShader(const char* name, GLenum type)
