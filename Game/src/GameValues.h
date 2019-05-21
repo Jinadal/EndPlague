@@ -14,7 +14,7 @@ namespace gv
         const float     INTRO_DURATION          = .1f;  //seg
 
     //----------   CAMERA   ------------
-        const float     CAMERA_MIN_ZOOM         = 2.f;
+        const float     CAMERA_MIN_ZOOM         = 0.7f;
         const float     CAMERA_MAX_ZOOM         = 10.2f;
         const float     CAMERA_ZOOM_VEL         = .05f;  //Velocity of camera zoom
 
