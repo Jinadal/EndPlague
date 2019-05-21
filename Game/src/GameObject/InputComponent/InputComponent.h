@@ -4,7 +4,8 @@
 class GameObject;
 class InputComponent : public Component
 {
-
+    private:
+        bool walking = false;
     public:
     bool proyec = false;
     //Constructor
