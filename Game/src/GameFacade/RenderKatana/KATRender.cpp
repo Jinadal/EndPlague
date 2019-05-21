@@ -13,7 +13,7 @@ KATRender::KATRender() : FRender()
     katana->initRoot();
 	katana->initOpenGL();
     scene = katana->getSceneRoot();
-
+    katana->initAnimations();
     katana->createNodeCamera(scene, glm::vec3(0,0,0),glm::vec3(0,0,-1),0.01f,100.0f);
 }
 

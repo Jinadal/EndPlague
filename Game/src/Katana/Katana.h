@@ -68,6 +68,7 @@ class Katana
         TNode* getNodeCamera() {return camera;}
         void renderBillboards();
         void deleteNodeBranch(TNode* n);
+        void initAnimations();
 
         TNode* createBranch(TNode* f, glm::vec3 v);
         CursorXYZ cursorPosition();
