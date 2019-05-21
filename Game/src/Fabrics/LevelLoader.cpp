@@ -18,9 +18,10 @@
 #include "Waypoint.h"
 //LEVELS
 #include "Village.h"
+#include "Level1.h"
 
 
-std::vector<Level> levels{village};
+std::vector<Level> levels{level1, village};
 
 bool LevelLoader::hasNext()
 {
@@ -129,6 +130,7 @@ void LevelLoader::assignPatrulla(float a, std::vector<float> p)
 
     Ar[a]->addPatrulla(p);
 }
+
 
 void LevelLoader::addWay(float x, float y)
 {
