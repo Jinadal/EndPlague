@@ -180,6 +180,21 @@ bool IA_Graf_FollowPatrol::run()
 
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
 
+    IAComponent* iac = owner->getComponent<IAComponent>();
+    if(!iac->walking)
+    {
+        iac->walking = true;
+        if(iac->mode == 0)
+        {
+            owner->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Soldado/Walk/Walk_Soldier_", 25);
+        }else
+        {
+            owner->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Aldeana/Walk/Walk_Aldeana_", 24);            
+        }
+        
+    }
+
+
     float vel = owner->getComponent<BPhysicComponent>()->getvMax();
     if(vel == 0.f) owner->getComponent<BPhysicComponent>()->setvMax(5.f);
     float d = sqrt(pow(nextX - owner->getX(),2) + pow(nextY - owner->getY(), 2));

@@ -28,7 +28,7 @@ class EnemyFabric
         {
             {
                 ENEMY_1,
-                26,
+                25,
                 (char*)"res/animations/Soldado/Walk/Walk_Soldier_",
                 (char*)"res/animations/Soldado/Walk/Walk_Soldier_1.obj",                
                 (char*)"res/red.bmp",
