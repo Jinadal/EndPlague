@@ -49,24 +49,12 @@ bool TResourceAnimation::loadResource()
     return ret;
 }
 
-void TResourceAnimation::draw()
+void TResourceAnimation::draw(int f)
 {
-    dt = Katana::getInstance()->getTime();
-    //dt += 0.1f;
-    if(dt>1/gv::FRAMES_PER_SECOND)
-    {
-        frameToRender++;
-
-        if(frameToRender>=frame.size())
-            frameToRender = 0;
-    }
-    //
-    for(unsigned int i = 0; i < frame.size(); i++)
-    {
         if(texture != NULL)
         {
             texture->draw();
         }
-        frame[frameToRender]->draw();
-    }
+        frame[f]->draw();
+    
 }
