@@ -31,7 +31,8 @@ class IAComponent : public Component
     bool didIcollide = false;
     bool onRoute = false;
     bool onPatrol = false;
-
+    bool walking = true;
+    int mode;
 
     std::vector<float> route;
     std::vector<float> patrollingRoute;

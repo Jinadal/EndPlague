@@ -1,5 +1,6 @@
 #include "IASeguimiento.h"
 #include "BPhysicComponent.h"
+#include "IAComponent.h"
 #include "RenderComponent.h"
 #include <iostream>
 #include <cmath>
@@ -27,18 +28,19 @@ bool IA_Seg_ToPlayer::run()
 
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
 
-    if(is != walking)
+    IAComponent* iac = owner->getComponent<IAComponent>();
+    if(iw != iac->walking)
     {
-        walking = is;
-        if(walking)
+        iac->walking = iw;
+        if(iw)
         {
-            owner->getComponent<RenderComponent>()->setAnimation("res/animations/Walk_Soldado/Walk_Soldado_", 26);
+            owner->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Soldado/Walk/Walk_Soldier_", 25);
         }else
         {
-            owner->getComponent<RenderComponent>()->setMesh("res/animations/Walk_Soldado/Walk_Soldado_1.obj");            
-        }
-        
+            owner->getComponent<RenderComponent>()->setMesh((char*)"res/animations/Soldado/Walk/Walk_Soldier_1.obj");            
+        }    
     }
+
     return true;
 }
 
