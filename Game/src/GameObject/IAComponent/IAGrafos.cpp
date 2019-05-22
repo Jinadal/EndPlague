@@ -113,9 +113,8 @@ bool IA_Graf_FollowRuta::run()
         if(distancia == .4F)
             distancia = 4.1F;
     }
-   /* std::cout << "distancia: " << d << " ///// objetivo: " << distancia<< " /// ruta: " << ruta.size() <<
-     " Patrol " << owner->getComponent<IAComponent>()->onPatrol
-    << " ruta " << owner->getComponent<IAComponent>()->onRoute <<  "\n"; */
+
+
     if(round(fabs(d)) < distancia  )
     {
         int tam = ruta.size();
