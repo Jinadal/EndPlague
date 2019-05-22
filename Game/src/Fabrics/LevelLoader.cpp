@@ -24,6 +24,7 @@
 
 
 
+//std::vector<Level> levels{level4};
 std::vector<Level> levels{level3, level2, level4};
 
 bool LevelLoader::hasNext()
@@ -33,7 +34,6 @@ bool LevelLoader::hasNext()
 
     return false;
 }
-
 
 void LevelLoader::loadLevel()
 {
