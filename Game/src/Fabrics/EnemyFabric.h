@@ -1,5 +1,6 @@
 #pragma once
 #include "GameValues.h"
+#include <string>
 
 class GameObject;
 
@@ -12,6 +13,8 @@ enum EnemyType
 
 struct EType{
     EnemyType type;
+    int numFrames;
+    char* animation;
     char* mesh;
     char* texture;
     float life;
@@ -25,14 +28,18 @@ class EnemyFabric
         {
             {
                 ENEMY_1,
-                (char*)"res/obj/SOLDADOBB.obj",
+                26,
+                (char*)"res/animations/Walk_Soldado/Walk_Soldier_",
+                (char*)"res/animations/Walk_Soldado/Walk_Soldier_1.obj",                
                 (char*)"res/red.bmp",
                 gv::ENEMY_1_LIFE,
                 gv::ENEMY_1_VELOCITY
             },
             {
                 ENEMY_2,
-                (char*)"res/obj/ALDEANOBB.obj",
+                24,
+                (char*)"res/animations/Walk_Aldeana/Walk_Aldeana_",
+                (char*)"res/animations/Walk_Aldeana/Walk_Aldeana_1.obj",
                 (char*)"res/green.bmp",
                 gv::ENEMY_2_LIFE,
                 gv::ENEMY_2_VELOCITY
