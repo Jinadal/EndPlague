@@ -99,7 +99,7 @@ bool IA_Graf_FollowRuta::run()
     if (rZ < 0)
         rZ += 360;
 
-    if(fabs(prevD - d) < 0.1F) rZ +=20;
+    if(fabs(prevD - d) < 0.3F) rZ +=20;
     
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
 

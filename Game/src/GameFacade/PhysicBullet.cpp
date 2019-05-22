@@ -33,9 +33,12 @@ void PhysicBullet::clear()
 		{
 			_world->removeCollisionObject( obj );
 		}
-        _fileLoader->deleteAllData();
-        delete _fileLoader;
-        _fileLoader = nullptr;
+        if(_fileLoader)
+        {
+            _fileLoader->deleteAllData();
+            delete _fileLoader;
+            _fileLoader = nullptr;
+        }
 		delete obj;
 	}
 

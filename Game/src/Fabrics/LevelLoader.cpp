@@ -19,9 +19,12 @@
 //LEVELS
 #include "Village.h"
 #include "Level1.h"
+#include "Level2.h"
+#include "Level3.h"
 
 
-std::vector<Level> levels{level1, village};
+
+std::vector<Level> levels{level1, level2, level3, village};
 
 bool LevelLoader::hasNext()
 {
@@ -86,7 +89,7 @@ void LevelLoader::createPlayer(float x, float y, float z)
 {
     //ADDING A PLAYER 1 x 1 x 2
     player = GameResource::getInstance()->createPlayer(x, y, z, 0.f);//Creates a new GO on x, y, z, rz
-    RenderManager::getInstance()->createComponent(player, (char*)"res/animation/Goblo/Walk/Walk_Goblin_1.obj");//Fachada de render y path de obj
+    RenderManager::getInstance()->createComponent(player, (char*)"res/animations/Walk_Goblin/Walk_Goblin_1.obj");//Fachada de render y path de obj
     BPhysicManager::getInstance()->createComponent(player, .5f, .5f, 1.f, 100.f, 0);
     player->getComponent<BPhysicComponent>()->setvMax(gv::PLAYER_VELOCITY);
     InputManager::getInstance()->createComponent(player);

@@ -42,9 +42,9 @@ void InputComponent::update(float cursorX, float cursorY)
     {
         walking = in;
         if(walking){
-            gameObject->getComponent<RenderComponent>()->setAnimation((char*)"res/animation/Goblo/Walk/Walk_Goblin_", 23);
+            gameObject->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Walk_Goblin/Walk_Goblin_", 23);
         }else{
-            gameObject->getComponent<RenderComponent>()->setMesh((char*)"res/animation/Goblo/Walk/Walk_Goblin_1.obj");            
+            gameObject->getComponent<RenderComponent>()->setMesh((char*)"res/animations/Walk_Goblin/Walk_Goblin_1.obj");            
         }
     }
 

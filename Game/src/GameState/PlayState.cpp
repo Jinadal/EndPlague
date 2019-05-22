@@ -10,7 +10,7 @@
 #include "ScoreManager.h"
 #include "LevelLoader.h"
 #include "SpecificSoundEvent.h"
-
+#include "GameResource.h"
 
 #include <iostream>
 
@@ -24,7 +24,7 @@ void PlayState::initState()
         LevelLoader::getInstance()->loadLevel();
         GameManager::getInstance()->initAll();
        
-    
+
     
         AmbientSoundEvent* s = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("ambiente"));
         s->start();
@@ -35,11 +35,20 @@ void PlayState::initState()
         SoundSystem::getInstance()->saveEvent(m,"musica");
         m->setTensionParameter(1);
 
+        AmbientSoundEvent* l = new AmbientSoundEvent(SoundSystem::getInstance()->getEventInstanceFromName("latido"));
+        l->setVolume(5);
+        l->start();
+        SoundSystem::getInstance()->saveEvent(l,"latido");
+        l->setVidaParameter(GameResource::getInstance()->getPlayer());
+
     }else{
         AmbientSoundEvent* s = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("ambiente");
         AmbientSoundEvent* sm = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("musica");
+        AmbientSoundEvent* lat = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("latido");
+
         sm->resume();
         s->resume();
+        lat->resume();
         SoundSystem::getInstance()->Update();
 
 
@@ -50,6 +59,9 @@ void PlayState::initState()
 
 void PlayState::update(float dt)
 {
+    AmbientSoundEvent* lat = (AmbientSoundEvent*)SoundSystem::getInstance()->getEvent("latido");
+    lat->setVidaParameter(GameResource::getInstance()->getPlayer());
+
     GameManager::getInstance()->updateAll(dt);
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

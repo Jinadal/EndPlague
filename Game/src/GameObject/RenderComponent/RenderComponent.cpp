@@ -24,6 +24,7 @@ void RenderComponent::update(float dt){
 }
 
 
+
 void RenderComponent::setVisible(bool h){
     node->setVisible(h);
 }

@@ -236,7 +236,7 @@ void Katana::initOpenGL()
         fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
     }
     glEnable( GL_DEBUG_OUTPUT );
-    glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
+    //glDebugMessageCallback( (GLDEBUGPROC) MessageCallback, 0 );
 
     TResourceShader* vertexShader   = manager->getResourceShader(vshader_path, (GLenum)GL_VERTEX_SHADER);
 	TResourceShader* fragmentShader = manager->getResourceShader(fshader_path, (GLenum)GL_FRAGMENT_SHADER);

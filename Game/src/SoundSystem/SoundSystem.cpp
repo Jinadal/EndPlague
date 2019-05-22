@@ -41,6 +41,7 @@ void SoundSystem::Init()
     SoundSystem::LoadEvent("event:/ambiente", "ambiente");
     SoundSystem::LoadEvent("event:/musica", "musica");
     SoundSystem::LoadEvent("event:/menu_musica", "menumusica");
+    SoundSystem::LoadEvent("event:/heartbeat", "latido");
 
 
 

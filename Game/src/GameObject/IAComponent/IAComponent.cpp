@@ -323,6 +323,7 @@ void IAComponent::setPatrollingRoute(GameObject* owner)
 {
    std::vector<Area*> AML = ((IAManager*)manager)->getGPS()->getAreas();
     std::vector<float> ruta;
+        ruta = AML[0]->getPatrulla();
  
     for (std::size_t i = 0; i< AML.size(); i++)
     {
