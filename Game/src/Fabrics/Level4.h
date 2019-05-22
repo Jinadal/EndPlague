@@ -1,7 +1,7 @@
 #include "LevelLoader.h"
 
 
-Level village = {
+Level level4 = {
     "res/obj/SUELO.obj",//Map OBJ
     "res/obj/Suelo.bmp",//Map BMP
     "res/bullet/Mapa_2.bullet",//Map BULLET

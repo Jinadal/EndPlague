@@ -9,6 +9,7 @@ class IA_Seg_ToPlayer : public Nodo
     virtual ~IA_Seg_ToPlayer(){}
 
     bool run() override;
+    bool walking = false;
     GameObject * owner;
     GameObject* main;
 
