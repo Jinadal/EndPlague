@@ -2,7 +2,7 @@
 
 
 Level level4 = {
-    "res/obj/Mapa3.obj",//Map OBJ
+    "res/Mapa3.obj",//Map OBJ
     "res/obj/Suelo.bmp",//Map BMP
     "res/bullet/Mapa_2.bullet",//Map BULLET
 
