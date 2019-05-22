@@ -24,7 +24,7 @@
 
 
 
-std::vector<Level> levels{level1, level2, level3, village};
+std::vector<Level> levels{ village};
 
 bool LevelLoader::hasNext()
 {
