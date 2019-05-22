@@ -21,11 +21,10 @@ GameObject* EnemyFabric::createEnemy(float x, float y, float z, float rz, EnemyT
         return nullptr;
     
 
-    
     //ADDING A ENEMY
     GameObject* primero = GameResource::getInstance()->createGameObject(x, y, z, rz);//Creates a new GO on x, y, z, rz
     RenderManager::getInstance()->createComponent(primero, enemytypes[type].mesh);//Fachada de render y path de obj
-    primero->getComponent<RenderComponent>()->setTexture(enemytypes[type].texture);//Path de bmp
+    primero->getComponent<RenderComponent>()->setAnimation((char*)enemytypes[type].animation, enemytypes[type].numFrames);//Path de bmp
     BPhysicManager::getInstance()->createComponent(primero, .5f, .5f, 1.f, 100.f, 0);
     primero->getComponent<BPhysicComponent>()->setvMax(enemytypes[type].vMax);
     ScoreManager::getInstance()->createComponent(primero, gv::ENEMY_SCORE);

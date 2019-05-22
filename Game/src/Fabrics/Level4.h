@@ -1,8 +1,13 @@
 #include "LevelLoader.h"
 
 
+<<<<<<< HEAD:Game/src/Fabrics/Village.h
 Level village = {
     "res/Mapa3.obj",//Map OBJ
+=======
+Level level4 = {
+    "res/obj/SUELO.obj",//Map OBJ
+>>>>>>> 2e7ce4e726b3f08ecd2c4759fc8e0f9bff9a15db:Game/src/Fabrics/Level4.h
     "res/obj/Suelo.bmp",//Map BMP
     "res/bullet/Mapa_2.bullet",//Map BULLET
 
