@@ -401,10 +401,10 @@ void Katana::renderLight()
     glm::mat4 v         = scene->getEntity()->viewMatrix();
 
 	glm::vec3 camPos    = glm::vec3(-v[3][2], -v[3][1], -v[3][0]);
-    glm::vec3 lc = glm::vec3(0.5,0.5,1.0);
-    glm::vec3 dc = glm::vec3(1.0,0.8,0.5);
-    glm::vec3 oc = glm::vec3(1.0,0.5,0.31);
-    glm::vec3 lp = glm::vec3(0.0,0.0,-25.0);
+    glm::vec3 lc        = glm::vec3(0.5,0.5,1.0);
+    glm::vec3 dc        = glm::vec3(1.0,0.8,0.5);
+    glm::vec3 oc        = glm::vec3(1.0,0.5,0.31);
+    glm::vec3 lp        = glm::vec3(0.0,0.0,-25.0);
 
     glUniform3fv(camID,1,&camPos[0]);
     glUniform3fv(lightpos,1,&lp[0]);
