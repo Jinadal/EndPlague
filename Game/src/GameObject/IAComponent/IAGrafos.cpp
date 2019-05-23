@@ -102,6 +102,20 @@ bool IA_Graf_FollowRuta::run()
     if(fabs(prevD - d) < 0.3F) rZ +=20;
     
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
+    
+    IAComponent* iac = owner->getComponent<IAComponent>();
+    if(!iac->walking)
+    {
+        iac->walking = true;
+        if(iac->mode == 0)
+        {
+            owner->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Soldado/Walk/Walk_Soldier_", 25);
+        }else
+        {
+            owner->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Aldeana/Walk/Walk_Aldeana_", 24);            
+        }
+        
+    }
 
     float vel = owner->getComponent<BPhysicComponent>()->getvMax();
     if(vel == 0.f) owner->getComponent<BPhysicComponent>()->setvMax(5.f);
@@ -113,9 +127,8 @@ bool IA_Graf_FollowRuta::run()
         if(distancia == .4F)
             distancia = 4.1F;
     }
-   /* std::cout << "distancia: " << d << " ///// objetivo: " << distancia<< " /// ruta: " << ruta.size() <<
-     " Patrol " << owner->getComponent<IAComponent>()->onPatrol
-    << " ruta " << owner->getComponent<IAComponent>()->onRoute <<  "\n"; */
+
+
     if(round(fabs(d)) < distancia  )
     {
         int tam = ruta.size();
@@ -166,6 +179,21 @@ bool IA_Graf_FollowPatrol::run()
 
 
     owner->getComponent<BPhysicComponent>()->setVelocity(rZ, true);
+
+    IAComponent* iac = owner->getComponent<IAComponent>();
+    if(!iac->walking)
+    {
+        iac->walking = true;
+        if(iac->mode == 0)
+        {
+            owner->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Soldado/Walk/Walk_Soldier_", 25);
+        }else
+        {
+            owner->getComponent<RenderComponent>()->setAnimation((char*)"res/animations/Aldeana/Walk/Walk_Aldeana_", 24);            
+        }
+        
+    }
+
 
     float vel = owner->getComponent<BPhysicComponent>()->getvMax();
     if(vel == 0.f) owner->getComponent<BPhysicComponent>()->setvMax(5.f);

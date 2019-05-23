@@ -17,7 +17,7 @@
 
 void IAComponent::Initialice(int mode){
 
-
+this->mode = mode;
 
 
 // Planificacion 

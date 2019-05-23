@@ -475,7 +475,7 @@ void Katana::getWindowSize(int &window_w,int &window_h)
 
 void Katana::initAnimations()
 {
-    manager->getResourceAnimation("res/animations/Walk_Goblin/Walk_Goblin_", 23);
-    //manager->getResourceAnimation("res/animations/Walk_Soilder/Walk_Silder_",23);
-    //manager->getResourceAnimation("res/animation/Lady/Walk_Lady_",23);
+    manager->getResourceAnimation("res/animations/Goblin/Walk/Walk_Goblin_", 23);
+    manager->getResourceAnimation("res/animations/Soldado/Walk/Walk_Soldier_",25);
+    manager->getResourceAnimation("res/animations/Aldeana/Walk/Walk_Aldeana_",24);
 }

@@ -11,7 +11,9 @@
 #include "LevelLoader.h"
 #include "SpecificSoundEvent.h"
 #include "GameResource.h"
-
+#include "KATRender.h"
+#include "TCamera.h"
+#include "RenderComponent.h"
 #include <iostream>
 
 void PlayState::initState()
@@ -53,6 +55,8 @@ void PlayState::initState()
 
 
     }
+
+     ((TCamera*)((KATRender*)Render::getInstance()->getRender())->getKatana()->getNodeCamera()->getEntity())->switchProyection(false);
 
 } 
 

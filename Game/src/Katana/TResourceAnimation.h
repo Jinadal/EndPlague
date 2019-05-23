@@ -12,8 +12,6 @@ class TResourceAnimation : public TResource
 {
     protected:
         int numFrames = 1;
-        float dt = 0.f;
-        unsigned int frameToRender = 0;
         std::vector<TResourceOBJ*> frame;
         TResourceMaterial* material = nullptr;
         TResourceTexture* texture = nullptr;
@@ -26,5 +24,5 @@ class TResourceAnimation : public TResource
         void setTexture(TResourceTexture* t){ texture = t;};
         TResourceTexture* getTexture(){ return texture;};
         bool loadResource();
-        void draw();
+        void draw(int f);
 };

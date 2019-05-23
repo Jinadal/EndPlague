@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "../../lib/GL/glew.h"
 #include "TEntity.h"
@@ -8,7 +9,7 @@ class TAnimation : public TEntity
 {
     private:
         TResourceAnimation* animation;
-        int numFrames = 1;
+        int frame = 1;
     public:
         TAnimation(){}
         ~TAnimation(){}
